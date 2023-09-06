@@ -16,5 +16,10 @@ namespace SaborAcielo
         {
             InitializeComponent();
         }
+
+        private void Bcerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

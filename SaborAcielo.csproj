@@ -83,5 +83,11 @@
   <ItemGroup>
     <None Include="Resources\saboracielo2.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\botonpildora.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cruz.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
