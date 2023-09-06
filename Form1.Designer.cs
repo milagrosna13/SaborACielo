@@ -1,6 +1,6 @@
 ﻿namespace SaborAcielo
 {
-    partial class Form1
+    partial class Finicio
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -30,14 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // Form1
+            // Finicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SaborAcielo.Properties.Resources.saboracielo2;
             this.ClientSize = new System.Drawing.Size(563, 547);
             this.ControlBox = false;
-            this.Name = "Form1";
+            this.Name = "Finicio";
             this.Text = "Form1";
             this.ResumeLayout(false);
 

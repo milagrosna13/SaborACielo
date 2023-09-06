@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SaborAcielo
 {
-    public partial class Form1 : Form
+    public partial class Finicio : Form
     {
-        public Form1()
+        public Finicio()
         {
             InitializeComponent();
         }
