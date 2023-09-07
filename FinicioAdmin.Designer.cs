@@ -42,13 +42,14 @@
             // 
             // Bproductos
             // 
+            this.Bproductos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Bproductos.BackColor = System.Drawing.Color.Transparent;
             this.Bproductos.FlatAppearance.BorderSize = 0;
             this.Bproductos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.Bproductos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.Bproductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Bproductos.Image = global::SaborAcielo.Properties.Resources.EmpleadosInicio;
-            this.Bproductos.Location = new System.Drawing.Point(165, 280);
+            this.Bproductos.Location = new System.Drawing.Point(126, 280);
             this.Bproductos.Name = "Bproductos";
             this.Bproductos.Size = new System.Drawing.Size(237, 234);
             this.Bproductos.TabIndex = 3;
@@ -59,7 +60,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Script MT Bold", 25F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(218, 236);
+            this.label2.Location = new System.Drawing.Point(168, 240);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(155, 41);
             this.label2.TabIndex = 5;
@@ -67,12 +68,13 @@
             // 
             // Bventas
             // 
+            this.Bventas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Bventas.BackColor = System.Drawing.Color.Transparent;
             this.Bventas.FlatAppearance.BorderSize = 0;
             this.Bventas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.Bventas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Bventas.Image = global::SaborAcielo.Properties.Resources.VentasInicio;
-            this.Bventas.Location = new System.Drawing.Point(558, 8);
+            this.Bventas.Location = new System.Drawing.Point(528, 6);
             this.Bventas.Name = "Bventas";
             this.Bventas.Size = new System.Drawing.Size(242, 235);
             this.Bventas.TabIndex = 2;
@@ -80,10 +82,11 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Script MT Bold", 25F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(624, 240);
+            this.label3.Location = new System.Drawing.Point(590, 240);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(111, 41);
             this.label3.TabIndex = 6;
@@ -96,18 +99,19 @@
             this.Bempleados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.Bempleados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Bempleados.Image = global::SaborAcielo.Properties.Resources.ProductosInicio;
-            this.Bempleados.Location = new System.Drawing.Point(165, -7);
+            this.Bempleados.Location = new System.Drawing.Point(129, 3);
             this.Bempleados.Name = "Bempleados";
-            this.Bempleados.Size = new System.Drawing.Size(234, 250);
+            this.Bempleados.Size = new System.Drawing.Size(234, 240);
             this.Bempleados.TabIndex = 1;
             this.Bempleados.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Script MT Bold", 25F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(624, 518);
+            this.label1.Location = new System.Drawing.Point(590, 518);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 41);
             this.label1.TabIndex = 4;
@@ -115,12 +119,13 @@
             // 
             // Bclientes
             // 
+            this.Bclientes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Bclientes.BackColor = System.Drawing.Color.Transparent;
             this.Bclientes.FlatAppearance.BorderSize = 0;
             this.Bclientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.Bclientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Bclientes.Image = global::SaborAcielo.Properties.Resources.ClientesInicio;
-            this.Bclientes.Location = new System.Drawing.Point(567, 280);
+            this.Bclientes.Location = new System.Drawing.Point(537, 279);
             this.Bclientes.Name = "Bclientes";
             this.Bclientes.Size = new System.Drawing.Size(233, 235);
             this.Bclientes.TabIndex = 0;
@@ -128,10 +133,11 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Script MT Bold", 25F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(218, 518);
+            this.label4.Location = new System.Drawing.Point(168, 518);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(167, 41);
             this.label4.TabIndex = 7;
@@ -140,6 +146,9 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label4);
@@ -149,7 +158,6 @@
             this.panel1.Controls.Add(this.Bproductos);
             this.panel1.Controls.Add(this.Bempleados);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(897, 599);
