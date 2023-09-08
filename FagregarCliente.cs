@@ -10,21 +10,16 @@ using System.Windows.Forms;
 
 namespace SaborAcielo
 {
-    public partial class FinicioEmpleado : Form
+    public partial class FagregarCliente : Form
     {
-        public FinicioEmpleado()
+        public FagregarCliente()
         {
             InitializeComponent();
         }
 
-        private void Bcliente_Click(object sender, EventArgs e)
+        private void BguardarCliente_Click(object sender, EventArgs e)
         {
-            //desplegar opciones
-        }
 
-        private void BagregarC_Click(object sender, EventArgs e)
-        {
-            
         }
     }
 }

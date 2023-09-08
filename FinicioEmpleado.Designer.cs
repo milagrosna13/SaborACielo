@@ -34,9 +34,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Bcliente = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.BagregarC = new System.Windows.Forms.Button();
+            this.BeditarC = new System.Windows.Forms.Button();
+            this.BverC = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -109,12 +109,13 @@
             this.Bcliente.TabIndex = 1;
             this.Bcliente.Text = "Clientes";
             this.Bcliente.UseVisualStyleBackColor = true;
+            this.Bcliente.Click += new System.EventHandler(this.Bcliente_Click);
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.button4);
-            this.panel3.Controls.Add(this.button3);
-            this.panel3.Controls.Add(this.button2);
+            this.panel3.Controls.Add(this.BverC);
+            this.panel3.Controls.Add(this.BeditarC);
+            this.panel3.Controls.Add(this.BagregarC);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel3.Location = new System.Drawing.Point(0, 142);
@@ -122,38 +123,39 @@
             this.panel3.Size = new System.Drawing.Size(332, 152);
             this.panel3.TabIndex = 2;
             // 
-            // button2
+            // BagregarC
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(332, 52);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.BagregarC.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BagregarC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BagregarC.Location = new System.Drawing.Point(0, 0);
+            this.BagregarC.Name = "BagregarC";
+            this.BagregarC.Size = new System.Drawing.Size(332, 52);
+            this.BagregarC.TabIndex = 2;
+            this.BagregarC.Text = "Agregar cliente";
+            this.BagregarC.UseVisualStyleBackColor = true;
+            this.BagregarC.Click += new System.EventHandler(this.BagregarC_Click);
             // 
-            // button3
+            // BeditarC
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(0, 52);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(332, 52);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.BeditarC.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BeditarC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BeditarC.Location = new System.Drawing.Point(0, 52);
+            this.BeditarC.Name = "BeditarC";
+            this.BeditarC.Size = new System.Drawing.Size(332, 52);
+            this.BeditarC.TabIndex = 3;
+            this.BeditarC.Text = "Editar cliente";
+            this.BeditarC.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // BverC
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(0, 104);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(332, 48);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.BverC.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BverC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BverC.Location = new System.Drawing.Point(0, 104);
+            this.BverC.Name = "BverC";
+            this.BverC.Size = new System.Drawing.Size(332, 48);
+            this.BverC.TabIndex = 4;
+            this.BverC.Text = "Listar clientes";
+            this.BverC.UseVisualStyleBackColor = true;
             // 
             // panel4
             // 
@@ -294,9 +296,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BverC;
+        private System.Windows.Forms.Button BeditarC;
+        private System.Windows.Forms.Button BagregarC;
         private System.Windows.Forms.Button Bcliente;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button button9;
