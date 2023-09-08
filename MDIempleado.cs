@@ -95,5 +95,15 @@ namespace SaborAcielo
                 childForm.Close();
             }
         }
+
+        private void Bcliente_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BagregarC_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
