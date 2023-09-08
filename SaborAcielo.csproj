@@ -46,6 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FagregarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FagregarCliente.Designer.cs">
+      <DependentUpon>FagregarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FagregarVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FagregarVenta.Designer.cs">
+      <DependentUpon>FagregarVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FeditarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FeditarCliente.Designer.cs">
+      <DependentUpon>FeditarCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Finicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,22 +76,55 @@
     <Compile Include="FinicioAdmin.Designer.cs">
       <DependentUpon>FinicioAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="MDIadmin.cs">
+    <Compile Include="FinicioEmpleado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MDIadmin.Designer.cs">
-      <DependentUpon>MDIadmin.cs</DependentUpon>
+    <Compile Include="FinicioEmpleado.Designer.cs">
+      <DependentUpon>FinicioEmpleado.cs</DependentUpon>
     </Compile>
+    <Compile Include="FlistarVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlistarVentas.Designer.cs">
+      <DependentUpon>FlistarVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDIempleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIempleado.Designer.cs">
+      <DependentUpon>MDIempleado.cs</DependentUpon>
+    </Compile>
+	  <Compile Include="MDIadmin.cs">
+		  <SubType>Form</SubType>
+	  </Compile>
+	  <Compile Include="MDIadmin.Designer.cs">
+		  <DependentUpon>MDIadmin.cs</DependentUpon>
+	  </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FagregarCliente.resx">
+      <DependentUpon>FagregarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FagregarVenta.resx">
+      <DependentUpon>FagregarVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FeditarCliente.resx">
+      <DependentUpon>FeditarCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Finicio.resx">
       <DependentUpon>Finicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FinicioAdmin.resx">
       <DependentUpon>FinicioAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MDIadmin.resx">
-      <DependentUpon>MDIadmin.cs</DependentUpon>
+    <EmbeddedResource Include="FinicioEmpleado.resx">
+      <DependentUpon>FinicioEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FlistarVentas.resx">
+      <DependentUpon>FlistarVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIempleado.resx">
+      <DependentUpon>MDIempleado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
