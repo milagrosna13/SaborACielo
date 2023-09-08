@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace SaborAcielo
+{
+    public partial class FinicioEmpleado : Form
+    {
+        public FinicioEmpleado()
+        {
+            InitializeComponent();
+        }
+
+        private void Bcliente_Click(object sender, EventArgs e)
+        {
+            //desplegar opciones
+        }
+
+        private void BagregarC_Click(object sender, EventArgs e)
+        {
+            
+        }
+    }
+}
