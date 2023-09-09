@@ -52,10 +52,10 @@
     <Compile Include="FagregarCliente.Designer.cs">
       <DependentUpon>FagregarCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="FagregarVenta.cs">
+    <Compile Include="Empleado\FagregarVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FagregarVenta.Designer.cs">
+    <Compile Include="Empleado\FagregarVenta.Designer.cs">
       <DependentUpon>FagregarVenta.cs</DependentUpon>
     </Compile>
     <Compile Include="FeditarCliente.cs">
@@ -76,11 +76,11 @@
     <Compile Include="FinicioAdmin.Designer.cs">
       <DependentUpon>FinicioAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FinicioEmpleado.cs">
+    <Compile Include="FlistarClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FinicioEmpleado.Designer.cs">
-      <DependentUpon>FinicioEmpleado.cs</DependentUpon>
+    <Compile Include="FlistarClientes.Designer.cs">
+      <DependentUpon>FlistarClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="FlistarVentas.cs">
       <SubType>Form</SubType>
@@ -88,30 +88,30 @@
     <Compile Include="FlistarVentas.Designer.cs">
       <DependentUpon>FlistarVentas.cs</DependentUpon>
     </Compile>
-	  <Compile Include="Fproducto.cs">
-		  <SubType>Form</SubType>
-	  </Compile>
-	  <Compile Include="Fproducto.Designer.cs">
-		  <DependentUpon>Fproducto.cs</DependentUpon>
-	  </Compile>
-    <Compile Include="MDIempleado.cs">
+    <Compile Include="Fproducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MDIempleado.Designer.cs">
+    <Compile Include="Fproducto.Designer.cs">
+      <DependentUpon>Fproducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleado\MDIempleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleado\MDIempleado.Designer.cs">
       <DependentUpon>MDIempleado.cs</DependentUpon>
     </Compile>
-	  <Compile Include="MDIadmin.cs">
-		  <SubType>Form</SubType>
-	  </Compile>
-	  <Compile Include="MDIadmin.Designer.cs">
-		  <DependentUpon>MDIadmin.cs</DependentUpon>
-	  </Compile>
+    <Compile Include="MDIadmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIadmin.Designer.cs">
+      <DependentUpon>MDIadmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FagregarCliente.resx">
       <DependentUpon>FagregarCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FagregarVenta.resx">
+    <EmbeddedResource Include="Empleado\FagregarVenta.resx">
       <DependentUpon>FagregarVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FeditarCliente.resx">
@@ -123,13 +123,16 @@
     <EmbeddedResource Include="FinicioAdmin.resx">
       <DependentUpon>FinicioAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FinicioEmpleado.resx">
-      <DependentUpon>FinicioEmpleado.cs</DependentUpon>
+    <EmbeddedResource Include="FlistarClientes.resx">
+      <DependentUpon>FlistarClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FlistarVentas.resx">
       <DependentUpon>FlistarVentas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MDIempleado.resx">
+    <EmbeddedResource Include="MDIadmin.resx">
+      <DependentUpon>MDIadmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleado\MDIempleado.resx">
       <DependentUpon>MDIempleado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
