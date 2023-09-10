@@ -43,11 +43,11 @@
             this.BagregarC = new System.Windows.Forms.Button();
             this.Bcliente = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.PchildForm = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BcerrarSesion = new System.Windows.Forms.Button();
             this.PmenuEmpleado.SuspendLayout();
             this.PsubmnVentas.SuspendLayout();
             this.PsubmnProductos.SuspendLayout();
@@ -92,6 +92,7 @@
             this.button10.BackColor = System.Drawing.Color.Sienna;
             this.button10.Dock = System.Windows.Forms.DockStyle.Top;
             this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.ForeColor = System.Drawing.Color.Black;
             this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button10.Location = new System.Drawing.Point(0, 52);
             this.button10.Name = "button10";
@@ -105,6 +106,7 @@
             this.button11.BackColor = System.Drawing.Color.Sienna;
             this.button11.Dock = System.Windows.Forms.DockStyle.Top;
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.ForeColor = System.Drawing.Color.Black;
             this.button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button11.Location = new System.Drawing.Point(0, 0);
             this.button11.Name = "button11";
@@ -116,17 +118,18 @@
             // 
             // Bventa
             // 
+            this.Bventa.BackColor = System.Drawing.Color.SaddleBrown;
             this.Bventa.Dock = System.Windows.Forms.DockStyle.Top;
             this.Bventa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Bventa.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Bventa.ForeColor = System.Drawing.Color.Tomato;
+            this.Bventa.ForeColor = System.Drawing.Color.White;
             this.Bventa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Bventa.Location = new System.Drawing.Point(0, 455);
             this.Bventa.Name = "Bventa";
             this.Bventa.Size = new System.Drawing.Size(332, 52);
             this.Bventa.TabIndex = 5;
             this.Bventa.Text = "Ventas";
-            this.Bventa.UseVisualStyleBackColor = true;
+            this.Bventa.UseVisualStyleBackColor = false;
             this.Bventa.Click += new System.EventHandler(this.Bventa_Click);
             // 
             // PsubmnProductos
@@ -146,6 +149,7 @@
             this.button7.BackColor = System.Drawing.Color.Sienna;
             this.button7.Dock = System.Windows.Forms.DockStyle.Top;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.ForeColor = System.Drawing.Color.Black;
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button7.Location = new System.Drawing.Point(0, 0);
             this.button7.Name = "button7";
@@ -157,17 +161,18 @@
             // 
             // Bproducto
             // 
+            this.Bproducto.BackColor = System.Drawing.Color.SaddleBrown;
             this.Bproducto.Dock = System.Windows.Forms.DockStyle.Top;
             this.Bproducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Bproducto.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Bproducto.ForeColor = System.Drawing.Color.Tomato;
+            this.Bproducto.ForeColor = System.Drawing.Color.White;
             this.Bproducto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Bproducto.Location = new System.Drawing.Point(0, 349);
             this.Bproducto.Name = "Bproducto";
             this.Bproducto.Size = new System.Drawing.Size(332, 52);
             this.Bproducto.TabIndex = 3;
             this.Bproducto.Text = "Productos";
-            this.Bproducto.UseVisualStyleBackColor = true;
+            this.Bproducto.UseVisualStyleBackColor = false;
             this.Bproducto.Click += new System.EventHandler(this.Bproducto_Click);
             // 
             // PsubmnClientes
@@ -188,6 +193,7 @@
             this.BverC.BackColor = System.Drawing.Color.Sienna;
             this.BverC.Dock = System.Windows.Forms.DockStyle.Top;
             this.BverC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BverC.ForeColor = System.Drawing.Color.Black;
             this.BverC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BverC.Location = new System.Drawing.Point(0, 52);
             this.BverC.Name = "BverC";
@@ -202,6 +208,7 @@
             this.BagregarC.BackColor = System.Drawing.Color.Sienna;
             this.BagregarC.Dock = System.Windows.Forms.DockStyle.Top;
             this.BagregarC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BagregarC.ForeColor = System.Drawing.Color.Black;
             this.BagregarC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BagregarC.Location = new System.Drawing.Point(0, 0);
             this.BagregarC.Name = "BagregarC";
@@ -213,23 +220,24 @@
             // 
             // Bcliente
             // 
+            this.Bcliente.BackColor = System.Drawing.Color.SaddleBrown;
             this.Bcliente.Dock = System.Windows.Forms.DockStyle.Top;
             this.Bcliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Bcliente.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Bcliente.ForeColor = System.Drawing.Color.Tomato;
+            this.Bcliente.ForeColor = System.Drawing.Color.White;
             this.Bcliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Bcliente.Location = new System.Drawing.Point(0, 194);
             this.Bcliente.Name = "Bcliente";
             this.Bcliente.Size = new System.Drawing.Size(332, 52);
             this.Bcliente.TabIndex = 1;
             this.Bcliente.Text = "Clientes";
-            this.Bcliente.UseVisualStyleBackColor = true;
+            this.Bcliente.UseVisualStyleBackColor = false;
             this.Bcliente.Click += new System.EventHandler(this.Bcliente_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Sienna;
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.BcerrarSesion);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -237,16 +245,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(332, 194);
             this.panel2.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(207, 6);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 35);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Cerrar Sesión";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -268,9 +266,11 @@
             // 
             // PchildForm
             // 
-            this.PchildForm.BackColor = System.Drawing.Color.Sienna;
+            this.PchildForm.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.PchildForm.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
             this.PchildForm.Controls.Add(this.pictureBox1);
             this.PchildForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PchildForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PchildForm.Location = new System.Drawing.Point(332, 0);
             this.PchildForm.Name = "PchildForm";
             this.PchildForm.Size = new System.Drawing.Size(1082, 675);
@@ -279,13 +279,31 @@
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Image = global::SaborAcielo.Properties.Resources.EmpleadosInicio;
-            this.pictureBox1.Location = new System.Drawing.Point(355, 163);
+            this.pictureBox1.Location = new System.Drawing.Point(366, 149);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(399, 290);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // BcerrarSesion
+            // 
+            this.BcerrarSesion.BackColor = System.Drawing.Color.RosyBrown;
+            this.BcerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BcerrarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BcerrarSesion.Image = global::SaborAcielo.Properties.Resources.salir;
+            this.BcerrarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BcerrarSesion.Location = new System.Drawing.Point(237, 6);
+            this.BcerrarSesion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BcerrarSesion.Name = "BcerrarSesion";
+            this.BcerrarSesion.Size = new System.Drawing.Size(94, 42);
+            this.BcerrarSesion.TabIndex = 2;
+            this.BcerrarSesion.Text = "Salir";
+            this.BcerrarSesion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BcerrarSesion.UseVisualStyleBackColor = false;
             // 
             // MDIempleado
             // 
@@ -326,7 +344,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BcerrarSesion;
         private System.Windows.Forms.Panel PchildForm;
         private System.Windows.Forms.PictureBox pictureBox1;
     }

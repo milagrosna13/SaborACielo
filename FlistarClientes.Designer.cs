@@ -31,7 +31,9 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.CBtodosClientes = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +52,8 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox1.Controls.Add(this.CBtodosClientes);
+            this.groupBox1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(48, 18);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(680, 149);
@@ -67,6 +71,16 @@
             this.panel1.Size = new System.Drawing.Size(883, 276);
             this.panel1.TabIndex = 2;
             // 
+            // CBtodosClientes
+            // 
+            this.CBtodosClientes.AutoSize = true;
+            this.CBtodosClientes.Location = new System.Drawing.Point(23, 110);
+            this.CBtodosClientes.Name = "CBtodosClientes";
+            this.CBtodosClientes.Size = new System.Drawing.Size(210, 33);
+            this.CBtodosClientes.TabIndex = 0;
+            this.CBtodosClientes.Text = "Todos los clientes";
+            this.CBtodosClientes.UseVisualStyleBackColor = true;
+            // 
             // FlistarClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -79,6 +93,8 @@
             this.Name = "FlistarClientes";
             this.Text = "Clientes";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -89,5 +105,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox CBtodosClientes;
     }
 }
