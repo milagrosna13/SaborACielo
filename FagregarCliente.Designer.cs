@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.PagregarCliente = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.RBhombre = new System.Windows.Forms.RadioButton();
             this.RBmujer = new System.Windows.Forms.RadioButton();
@@ -52,36 +55,36 @@
             this.tel_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.direc_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.baja_cliente = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.panel1.SuspendLayout();
+            this.PagregarCliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGclientes)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // PagregarCliente
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.PagregarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.AutoScroll = true;
-            this.panel1.BackColor = System.Drawing.Color.RosyBrown;
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.RBhombre);
-            this.panel1.Controls.Add(this.RBmujer);
-            this.panel1.Controls.Add(this.TBdireCliente);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.TBtelCliente);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.TBdniCliente);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.TBapeCliente);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.TBnomCliente);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.BcancelCliente);
-            this.panel1.Controls.Add(this.BguardarCliente);
-            this.panel1.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(85, 32);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(902, 384);
-            this.panel1.TabIndex = 0;
+            this.PagregarCliente.AutoScroll = true;
+            this.PagregarCliente.BackColor = System.Drawing.Color.RosyBrown;
+            this.PagregarCliente.Controls.Add(this.label6);
+            this.PagregarCliente.Controls.Add(this.RBhombre);
+            this.PagregarCliente.Controls.Add(this.RBmujer);
+            this.PagregarCliente.Controls.Add(this.TBdireCliente);
+            this.PagregarCliente.Controls.Add(this.label5);
+            this.PagregarCliente.Controls.Add(this.TBtelCliente);
+            this.PagregarCliente.Controls.Add(this.label4);
+            this.PagregarCliente.Controls.Add(this.TBdniCliente);
+            this.PagregarCliente.Controls.Add(this.label3);
+            this.PagregarCliente.Controls.Add(this.TBapeCliente);
+            this.PagregarCliente.Controls.Add(this.label2);
+            this.PagregarCliente.Controls.Add(this.TBnomCliente);
+            this.PagregarCliente.Controls.Add(this.label1);
+            this.PagregarCliente.Controls.Add(this.BcancelCliente);
+            this.PagregarCliente.Controls.Add(this.BguardarCliente);
+            this.PagregarCliente.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PagregarCliente.Location = new System.Drawing.Point(85, 32);
+            this.PagregarCliente.Name = "PagregarCliente";
+            this.PagregarCliente.Size = new System.Drawing.Size(902, 384);
+            this.PagregarCliente.TabIndex = 0;
             // 
             // label6
             // 
@@ -240,8 +243,19 @@
             // 
             // DGclientes
             // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SaddleBrown;
+            this.DGclientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGclientes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGclientes.BackgroundColor = System.Drawing.Color.RosyBrown;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGclientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGclientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGclientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nombre_cliente,
@@ -251,11 +265,19 @@
             this.tel_cliente,
             this.direc_cliente,
             this.baja_cliente});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGclientes.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGclientes.Location = new System.Drawing.Point(12, 468);
             this.DGclientes.Name = "DGclientes";
             this.DGclientes.RowHeadersWidth = 62;
             this.DGclientes.RowTemplate.Height = 28;
-            this.DGclientes.Size = new System.Drawing.Size(1058, 207);
+            this.DGclientes.Size = new System.Drawing.Size(1074, 207);
             this.DGclientes.TabIndex = 1;
             // 
             // nombre_cliente
@@ -263,6 +285,7 @@
             this.nombre_cliente.HeaderText = "Nombre";
             this.nombre_cliente.MinimumWidth = 8;
             this.nombre_cliente.Name = "nombre_cliente";
+            this.nombre_cliente.ReadOnly = true;
             this.nombre_cliente.Width = 150;
             // 
             // apellido_cliente
@@ -270,6 +293,7 @@
             this.apellido_cliente.HeaderText = "Apellido";
             this.apellido_cliente.MinimumWidth = 8;
             this.apellido_cliente.Name = "apellido_cliente";
+            this.apellido_cliente.ReadOnly = true;
             this.apellido_cliente.Width = 150;
             // 
             // dni_cliente
@@ -277,6 +301,7 @@
             this.dni_cliente.HeaderText = "DNI";
             this.dni_cliente.MinimumWidth = 8;
             this.dni_cliente.Name = "dni_cliente";
+            this.dni_cliente.ReadOnly = true;
             this.dni_cliente.Width = 150;
             // 
             // sexo_cliente
@@ -284,6 +309,7 @@
             this.sexo_cliente.HeaderText = "Sexo";
             this.sexo_cliente.MinimumWidth = 8;
             this.sexo_cliente.Name = "sexo_cliente";
+            this.sexo_cliente.ReadOnly = true;
             this.sexo_cliente.Width = 150;
             // 
             // tel_cliente
@@ -291,6 +317,7 @@
             this.tel_cliente.HeaderText = "Teléfono";
             this.tel_cliente.MinimumWidth = 8;
             this.tel_cliente.Name = "tel_cliente";
+            this.tel_cliente.ReadOnly = true;
             this.tel_cliente.Width = 150;
             // 
             // direc_cliente
@@ -298,6 +325,7 @@
             this.direc_cliente.HeaderText = "Dirección";
             this.direc_cliente.MinimumWidth = 8;
             this.direc_cliente.Name = "direc_cliente";
+            this.direc_cliente.ReadOnly = true;
             this.direc_cliente.Width = 150;
             // 
             // baja_cliente
@@ -314,12 +342,12 @@
             this.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
             this.ClientSize = new System.Drawing.Size(1082, 675);
             this.Controls.Add(this.DGclientes);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.PagregarCliente);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FagregarCliente";
             this.Text = "Agregar Cliente";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.PagregarCliente.ResumeLayout(false);
+            this.PagregarCliente.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGclientes)).EndInit();
             this.ResumeLayout(false);
 
@@ -327,7 +355,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel PagregarCliente;
         private System.Windows.Forms.DataGridView DGclientes;
         private System.Windows.Forms.TextBox TBnomCliente;
         private System.Windows.Forms.Label label1;

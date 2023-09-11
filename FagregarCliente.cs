@@ -25,7 +25,7 @@ namespace SaborAcielo
                 MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             } else
             {
-                var res = MessageBox.Show("Se guardará el cliente: " + TBnomCliente.Text + TBapeCliente.Text, "Guardar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                var res = MessageBox.Show("¿Desea guardar los datos del cliente: " + TBnomCliente.Text + "" + TBapeCliente.Text, "Guardar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if(res == System.Windows.Forms.DialogResult.Yes)
                 {
                     string sexo;
@@ -40,6 +40,9 @@ namespace SaborAcielo
                     //mostrar en datagrid
                     DGclientes.Rows.Add(TBnomCliente.Text, TBapeCliente.Text, TBdniCliente.Text, sexo, TBtelCliente.Text, TBdireCliente.Text);
 
+                    MessageBox.Show("Cliente guardado con éxito", "Guardar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    limpiarTextBox();
                 } else
                 {
                     limpiarTextBox();
