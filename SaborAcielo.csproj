@@ -88,6 +88,24 @@
     <Compile Include="FlistarVentas.Designer.cs">
       <DependentUpon>FlistarVentas.cs</DependentUpon>
     </Compile>
+    <Compile Include="FlistaProductosAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlistaProductosAdmin.Designer.cs">
+      <DependentUpon>FlistaProductosAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FlistaUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlistaUsuarios.Designer.cs">
+      <DependentUpon>FlistaUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FlistaUsuariosAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlistaUsuariosAdmin.Designer.cs">
+      <DependentUpon>FlistaUsuariosAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fproducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +146,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FlistarVentas.resx">
       <DependentUpon>FlistarVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FlistaProductosAdmin.resx">
+      <DependentUpon>FlistaProductosAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FlistaUsuarios.resx">
+      <DependentUpon>FlistaUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FlistaUsuariosAdmin.resx">
+      <DependentUpon>FlistaUsuariosAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fproducto.resx">
+      <DependentUpon>Fproducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDIadmin.resx">
       <DependentUpon>MDIadmin.cs</DependentUpon>

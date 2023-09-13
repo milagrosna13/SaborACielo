@@ -104,5 +104,10 @@ namespace SaborAcielo
                 return;
             }
         }
+
+        private void TBnomCliente_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
