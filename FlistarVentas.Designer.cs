@@ -34,9 +34,9 @@
             this.GBfiltroVenta = new System.Windows.Forms.GroupBox();
             this.CBcliente = new System.Windows.Forms.CheckBox();
             this.CBfecha = new System.Windows.Forms.CheckBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.DThasta = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.DTdesde = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.LnomEmpleado = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -85,9 +85,9 @@
             this.GBfiltroVenta.Controls.Add(this.Ccliente);
             this.GBfiltroVenta.Controls.Add(this.CBcliente);
             this.GBfiltroVenta.Controls.Add(this.CBfecha);
-            this.GBfiltroVenta.Controls.Add(this.dateTimePicker2);
+            this.GBfiltroVenta.Controls.Add(this.DThasta);
             this.GBfiltroVenta.Controls.Add(this.label5);
-            this.GBfiltroVenta.Controls.Add(this.dateTimePicker1);
+            this.GBfiltroVenta.Controls.Add(this.DTdesde);
             this.GBfiltroVenta.Controls.Add(this.label4);
             this.GBfiltroVenta.Location = new System.Drawing.Point(35, 63);
             this.GBfiltroVenta.Name = "GBfiltroVenta";
@@ -118,13 +118,16 @@
             this.CBfecha.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.CBfecha.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker2
+            // DThasta
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(547, 36);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(154, 34);
-            this.dateTimePicker2.TabIndex = 6;
+            this.DThasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DThasta.Location = new System.Drawing.Point(547, 36);
+            this.DThasta.MaxDate = new System.DateTime(2023, 9, 14, 0, 0, 0, 0);
+            this.DThasta.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.DThasta.Name = "DThasta";
+            this.DThasta.Size = new System.Drawing.Size(154, 34);
+            this.DThasta.TabIndex = 6;
+            this.DThasta.Value = new System.DateTime(2023, 9, 14, 0, 0, 0, 0);
             // 
             // label5
             // 
@@ -135,13 +138,16 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Hasta";
             // 
-            // dateTimePicker1
+            // DTdesde
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(289, 36);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(138, 34);
-            this.dateTimePicker1.TabIndex = 4;
+            this.DTdesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DTdesde.Location = new System.Drawing.Point(289, 36);
+            this.DTdesde.MaxDate = new System.DateTime(2023, 9, 14, 20, 31, 59, 0);
+            this.DTdesde.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.DTdesde.Name = "DTdesde";
+            this.DTdesde.Size = new System.Drawing.Size(138, 34);
+            this.DTdesde.TabIndex = 4;
+            this.DTdesde.Value = new System.DateTime(2023, 9, 14, 0, 0, 0, 0);
             // 
             // label4
             // 
@@ -210,9 +216,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel Pventas;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker DThasta;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker DTdesde;
         private System.Windows.Forms.Label LnomEmpleado;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox GBfiltroVenta;
