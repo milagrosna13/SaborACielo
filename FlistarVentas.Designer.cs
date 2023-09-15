@@ -31,18 +31,19 @@
             this.DGventas = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.Pventas = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.CBfecha = new System.Windows.Forms.CheckBox();
+            this.GBfiltroVenta = new System.Windows.Forms.GroupBox();
             this.CBcliente = new System.Windows.Forms.CheckBox();
+            this.CBfecha = new System.Windows.Forms.CheckBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.LnomEmpleado = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Ccliente = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGventas)).BeginInit();
             this.Pventas.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.GBfiltroVenta.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGventas
@@ -69,8 +70,8 @@
             // Pventas
             // 
             this.Pventas.BackColor = System.Drawing.Color.RosyBrown;
-            this.Pventas.Controls.Add(this.groupBox1);
-            this.Pventas.Controls.Add(this.label3);
+            this.Pventas.Controls.Add(this.GBfiltroVenta);
+            this.Pventas.Controls.Add(this.LnomEmpleado);
             this.Pventas.Controls.Add(this.label2);
             this.Pventas.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Pventas.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -78,6 +79,52 @@
             this.Pventas.Name = "Pventas";
             this.Pventas.Size = new System.Drawing.Size(851, 250);
             this.Pventas.TabIndex = 3;
+            // 
+            // GBfiltroVenta
+            // 
+            this.GBfiltroVenta.Controls.Add(this.Ccliente);
+            this.GBfiltroVenta.Controls.Add(this.CBcliente);
+            this.GBfiltroVenta.Controls.Add(this.CBfecha);
+            this.GBfiltroVenta.Controls.Add(this.dateTimePicker2);
+            this.GBfiltroVenta.Controls.Add(this.label5);
+            this.GBfiltroVenta.Controls.Add(this.dateTimePicker1);
+            this.GBfiltroVenta.Controls.Add(this.label4);
+            this.GBfiltroVenta.Location = new System.Drawing.Point(35, 63);
+            this.GBfiltroVenta.Name = "GBfiltroVenta";
+            this.GBfiltroVenta.Size = new System.Drawing.Size(776, 162);
+            this.GBfiltroVenta.TabIndex = 8;
+            this.GBfiltroVenta.TabStop = false;
+            this.GBfiltroVenta.Text = "Filtrar por";
+            // 
+            // CBcliente
+            // 
+            this.CBcliente.AutoSize = true;
+            this.CBcliente.Location = new System.Drawing.Point(28, 104);
+            this.CBcliente.Name = "CBcliente";
+            this.CBcliente.Size = new System.Drawing.Size(95, 31);
+            this.CBcliente.TabIndex = 9;
+            this.CBcliente.Text = "Cliente";
+            this.CBcliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBcliente.UseVisualStyleBackColor = true;
+            // 
+            // CBfecha
+            // 
+            this.CBfecha.AutoSize = true;
+            this.CBfecha.Location = new System.Drawing.Point(28, 39);
+            this.CBfecha.Name = "CBfecha";
+            this.CBfecha.Size = new System.Drawing.Size(89, 31);
+            this.CBfecha.TabIndex = 8;
+            this.CBfecha.Text = "Fecha";
+            this.CBfecha.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBfecha.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(547, 36);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(154, 34);
+            this.dateTimePicker2.TabIndex = 6;
             // 
             // label5
             // 
@@ -88,13 +135,13 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Hasta";
             // 
-            // dateTimePicker2
+            // dateTimePicker1
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(547, 36);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(154, 34);
-            this.dateTimePicker2.TabIndex = 6;
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(289, 36);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(138, 34);
+            this.dateTimePicker1.TabIndex = 4;
             // 
             // label4
             // 
@@ -105,22 +152,13 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "Desde";
             // 
-            // dateTimePicker1
+            // LnomEmpleado
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(289, 36);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(138, 34);
-            this.dateTimePicker1.TabIndex = 4;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(135, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 27);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "label3";
+            this.LnomEmpleado.AutoSize = true;
+            this.LnomEmpleado.Location = new System.Drawing.Point(135, 12);
+            this.LnomEmpleado.Name = "LnomEmpleado";
+            this.LnomEmpleado.Size = new System.Drawing.Size(0, 27);
+            this.LnomEmpleado.TabIndex = 3;
             // 
             // label1
             // 
@@ -135,42 +173,14 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Lista de ventas";
             // 
-            // groupBox1
+            // Ccliente
             // 
-            this.groupBox1.Controls.Add(this.CBcliente);
-            this.groupBox1.Controls.Add(this.CBfecha);
-            this.groupBox1.Controls.Add(this.dateTimePicker2);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(35, 63);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 162);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Filtrar por";
-            // 
-            // CBfecha
-            // 
-            this.CBfecha.AutoSize = true;
-            this.CBfecha.Location = new System.Drawing.Point(28, 39);
-            this.CBfecha.Name = "CBfecha";
-            this.CBfecha.Size = new System.Drawing.Size(89, 31);
-            this.CBfecha.TabIndex = 8;
-            this.CBfecha.Text = "Fecha";
-            this.CBfecha.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBfecha.UseVisualStyleBackColor = true;
-            // 
-            // CBcliente
-            // 
-            this.CBcliente.AutoSize = true;
-            this.CBcliente.Location = new System.Drawing.Point(28, 104);
-            this.CBcliente.Name = "CBcliente";
-            this.CBcliente.Size = new System.Drawing.Size(95, 31);
-            this.CBcliente.TabIndex = 9;
-            this.CBcliente.Text = "Cliente";
-            this.CBcliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBcliente.UseVisualStyleBackColor = true;
+            this.Ccliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ccliente.FormattingEnabled = true;
+            this.Ccliente.Location = new System.Drawing.Point(223, 104);
+            this.Ccliente.Name = "Ccliente";
+            this.Ccliente.Size = new System.Drawing.Size(280, 34);
+            this.Ccliente.TabIndex = 10;
             // 
             // FlistarVentas
             // 
@@ -187,8 +197,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGventas)).EndInit();
             this.Pventas.ResumeLayout(false);
             this.Pventas.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.GBfiltroVenta.ResumeLayout(false);
+            this.GBfiltroVenta.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,10 +213,11 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label LnomEmpleado;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox GBfiltroVenta;
         private System.Windows.Forms.CheckBox CBfecha;
         private System.Windows.Forms.CheckBox CBcliente;
+        private System.Windows.Forms.ComboBox Ccliente;
     }
 }

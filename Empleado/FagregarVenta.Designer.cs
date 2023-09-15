@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Bcompra = new System.Windows.Forms.Button();
-            this.BcancelarCompra = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.Ncant = new System.Windows.Forms.NumericUpDown();
-            this.CBtipoProd = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.CBproducto = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.TBprecioProd = new System.Windows.Forms.TextBox();
+            this.BagregarCompra = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.BagregarCompra = new System.Windows.Forms.Button();
+            this.TBprecioProd = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.CBproducto = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.CBtipoProd = new System.Windows.Forms.ComboBox();
+            this.Ncant = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Bcompra = new System.Windows.Forms.Button();
+            this.BcancelarCompra = new System.Windows.Forms.Button();
             this.DGcarrito = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Ncant)).BeginInit();
@@ -69,6 +69,117 @@
             this.panel1.Size = new System.Drawing.Size(959, 366);
             this.panel1.TabIndex = 0;
             // 
+            // BagregarCompra
+            // 
+            this.BagregarCompra.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BagregarCompra.Location = new System.Drawing.Point(569, 299);
+            this.BagregarCompra.Name = "BagregarCompra";
+            this.BagregarCompra.Size = new System.Drawing.Size(179, 50);
+            this.BagregarCompra.TabIndex = 3;
+            this.BagregarCompra.Text = "Agregar";
+            this.BagregarCompra.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(604, 222);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(298, 32);
+            this.textBox2.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(414, 222);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(97, 29);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Subtotal";
+            // 
+            // TBprecioProd
+            // 
+            this.TBprecioProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBprecioProd.Location = new System.Drawing.Point(604, 154);
+            this.TBprecioProd.Name = "TBprecioProd";
+            this.TBprecioProd.Size = new System.Drawing.Size(298, 32);
+            this.TBprecioProd.TabIndex = 12;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(414, 154);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(160, 29);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Precio Unitario";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(406, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 20);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Venta";
+            // 
+            // CBproducto
+            // 
+            this.CBproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CBproducto.FormattingEnabled = true;
+            this.CBproducto.Location = new System.Drawing.Point(522, 86);
+            this.CBproducto.Name = "CBproducto";
+            this.CBproducto.Size = new System.Drawing.Size(380, 34);
+            this.CBproducto.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(37, 82);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 29);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Tipo";
+            // 
+            // CBtipoProd
+            // 
+            this.CBtipoProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CBtipoProd.FormattingEnabled = true;
+            this.CBtipoProd.Location = new System.Drawing.Point(103, 86);
+            this.CBtipoProd.Name = "CBtipoProd";
+            this.CBtipoProd.Size = new System.Drawing.Size(280, 34);
+            this.CBtipoProd.TabIndex = 7;
+            // 
+            // Ncant
+            // 
+            this.Ncant.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ncant.Location = new System.Drawing.Point(165, 169);
+            this.Ncant.Name = "Ncant";
+            this.Ncant.Size = new System.Drawing.Size(77, 30);
+            this.Ncant.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(30, 164);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(103, 29);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Cantidad";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(414, 86);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 29);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Producto";
+            // 
             // Bcompra
             // 
             this.Bcompra.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -89,112 +200,6 @@
             this.BcancelarCompra.Text = "Cancelar";
             this.BcancelarCompra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BcancelarCompra.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(414, 86);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 29);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Producto";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(30, 164);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 29);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Cantidad";
-            // 
-            // Ncant
-            // 
-            this.Ncant.Location = new System.Drawing.Point(175, 164);
-            this.Ncant.Name = "Ncant";
-            this.Ncant.Size = new System.Drawing.Size(77, 26);
-            this.Ncant.TabIndex = 5;
-            // 
-            // CBtipoProd
-            // 
-            this.CBtipoProd.FormattingEnabled = true;
-            this.CBtipoProd.Location = new System.Drawing.Point(117, 86);
-            this.CBtipoProd.Name = "CBtipoProd";
-            this.CBtipoProd.Size = new System.Drawing.Size(280, 28);
-            this.CBtipoProd.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(37, 82);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 29);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Tipo";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(304, 52);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 20);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Venta";
-            // 
-            // CBproducto
-            // 
-            this.CBproducto.FormattingEnabled = true;
-            this.CBproducto.Location = new System.Drawing.Point(604, 86);
-            this.CBproducto.Name = "CBproducto";
-            this.CBproducto.Size = new System.Drawing.Size(298, 28);
-            this.CBproducto.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(414, 168);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(160, 29);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Precio Unitario";
-            // 
-            // TBprecioProd
-            // 
-            this.TBprecioProd.Location = new System.Drawing.Point(604, 168);
-            this.TBprecioProd.Name = "TBprecioProd";
-            this.TBprecioProd.Size = new System.Drawing.Size(298, 26);
-            this.TBprecioProd.TabIndex = 12;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(604, 236);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(298, 26);
-            this.textBox2.TabIndex = 14;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(414, 236);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(97, 29);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Subtotal";
-            // 
-            // BagregarCompra
-            // 
-            this.BagregarCompra.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BagregarCompra.Location = new System.Drawing.Point(569, 299);
-            this.BagregarCompra.Name = "BagregarCompra";
-            this.BagregarCompra.Size = new System.Drawing.Size(179, 50);
-            this.BagregarCompra.TabIndex = 3;
-            this.BagregarCompra.Text = "Agregar";
-            this.BagregarCompra.UseVisualStyleBackColor = true;
             // 
             // DGcarrito
             // 
