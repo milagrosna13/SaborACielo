@@ -38,7 +38,7 @@
             this.BlistarVentas = new System.Windows.Forms.Button();
             this.Bventas = new System.Windows.Forms.Button();
             this.PsubmProductos = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BagregarProdu = new System.Windows.Forms.Button();
             this.BlistarProductos = new System.Windows.Forms.Button();
             this.Bproductos = new System.Windows.Forms.Button();
             this.PsubmUsuarios = new System.Windows.Forms.Panel();
@@ -47,6 +47,7 @@
             this.Busuarios = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PchildAdmin = new System.Windows.Forms.Panel();
             this.PmenuLateral.SuspendLayout();
             this.PsubmClientes.SuspendLayout();
             this.PsubmVentas.SuspendLayout();
@@ -96,6 +97,7 @@
             this.BlistarClientes.TabIndex = 0;
             this.BlistarClientes.Text = "Listar CLientes";
             this.BlistarClientes.UseVisualStyleBackColor = true;
+            this.BlistarClientes.Click += new System.EventHandler(this.BlistarClientes_Click);
             // 
             // Bclientes
             // 
@@ -149,7 +151,7 @@
             // 
             // PsubmProductos
             // 
-            this.PsubmProductos.Controls.Add(this.button1);
+            this.PsubmProductos.Controls.Add(this.BagregarProdu);
             this.PsubmProductos.Controls.Add(this.BlistarProductos);
             this.PsubmProductos.Dock = System.Windows.Forms.DockStyle.Top;
             this.PsubmProductos.Location = new System.Drawing.Point(0, 328);
@@ -158,17 +160,18 @@
             this.PsubmProductos.TabIndex = 4;
             this.PsubmProductos.Visible = false;
             // 
-            // button1
+            // BagregarProdu
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(0, 23);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(226, 27);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Agregar Productos";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BagregarProdu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BagregarProdu.FlatAppearance.BorderSize = 0;
+            this.BagregarProdu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BagregarProdu.Location = new System.Drawing.Point(0, 23);
+            this.BagregarProdu.Name = "BagregarProdu";
+            this.BagregarProdu.Size = new System.Drawing.Size(226, 27);
+            this.BagregarProdu.TabIndex = 1;
+            this.BagregarProdu.Text = "Agregar Productos";
+            this.BagregarProdu.UseVisualStyleBackColor = true;
+            this.BagregarProdu.Click += new System.EventHandler(this.BagregarProdu_Click);
             // 
             // BlistarProductos
             // 
@@ -181,6 +184,7 @@
             this.BlistarProductos.TabIndex = 0;
             this.BlistarProductos.Text = "Listar Productos";
             this.BlistarProductos.UseVisualStyleBackColor = true;
+            this.BlistarProductos.Click += new System.EventHandler(this.BlistarProductos_Click);
             // 
             // Bproductos
             // 
@@ -222,6 +226,7 @@
             this.BagregarUsuarios.TabIndex = 1;
             this.BagregarUsuarios.Text = "Agregar empleado";
             this.BagregarUsuarios.UseVisualStyleBackColor = false;
+            this.BagregarUsuarios.Click += new System.EventHandler(this.BagregarUsuarios_Click);
             // 
             // BlistaUsuarios
             // 
@@ -237,6 +242,7 @@
             this.BlistaUsuarios.TabIndex = 0;
             this.BlistaUsuarios.Text = "Listar empleados";
             this.BlistaUsuarios.UseVisualStyleBackColor = false;
+            this.BlistaUsuarios.Click += new System.EventHandler(this.BlistaUsuarios_Click);
             // 
             // Busuarios
             // 
@@ -273,12 +279,21 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // PchildAdmin
+            // 
+            this.PchildAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PchildAdmin.Location = new System.Drawing.Point(243, 0);
+            this.PchildAdmin.Name = "PchildAdmin";
+            this.PchildAdmin.Size = new System.Drawing.Size(463, 464);
+            this.PchildAdmin.TabIndex = 6;
+            // 
             // MDIadmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
             this.ClientSize = new System.Drawing.Size(706, 464);
+            this.Controls.Add(this.PchildAdmin);
             this.Controls.Add(this.PmenuLateral);
             this.IsMdiContainer = true;
             this.Name = "MDIadmin";
@@ -304,7 +319,7 @@
         private System.Windows.Forms.Button Bproductos;
         private System.Windows.Forms.Button BagregarUsuarios;
         private System.Windows.Forms.Button BlistaUsuarios;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BagregarProdu;
         private System.Windows.Forms.Panel PsubmVentas;
         private System.Windows.Forms.Button BlistarVentas;
         private System.Windows.Forms.Button Bventas;
@@ -312,6 +327,7 @@
         private System.Windows.Forms.Panel PsubmClientes;
         private System.Windows.Forms.Button BlistarClientes;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel PchildAdmin;
     }
 }
 

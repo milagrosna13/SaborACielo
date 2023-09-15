@@ -65,5 +65,42 @@ namespace SaborAcielo
             mostrarSubMenu(PsubmClientes);
         }
 
+        private Form activeForm = null;
+        private void abrirFormularioHijo(Form formHijo)
+        {
+            if (activeForm != null) { activeForm.Close(); }
+            activeForm = formHijo;
+            formHijo.TopLevel = false;
+            formHijo.Dock = DockStyle.Fill;
+            PchildAdmin.Controls.Add(formHijo);
+            PchildAdmin.Tag = formHijo;//asocia el panel con el formulario hijo
+            formHijo.BringToFront();//traer el formulario al frente
+            formHijo.Show();
+        }
+
+        private void BlistaUsuarios_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FlistaUsuarios());
+        }
+
+        private void BlistarProductos_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new Fproducto());
+        }
+
+        private void BagregarUsuarios_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FlistaUsuariosAdmin());
+        }
+
+        private void BagregarProdu_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FlistaProductosAdmin());
+        }
+
+        private void BlistarClientes_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FlistarClientes());
+        }
     }
 }

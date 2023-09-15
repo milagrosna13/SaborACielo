@@ -83,7 +83,7 @@
             this.direc_cliente,
             this.baja_cliente});
             this.DGclientes.Location = new System.Drawing.Point(-19, 315);
-            this.DGclientes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DGclientes.Margin = new System.Windows.Forms.Padding(2);
             this.DGclientes.Name = "DGclientes";
             this.DGclientes.RowHeadersWidth = 62;
             this.DGclientes.RowTemplate.Height = 28;
@@ -160,7 +160,7 @@
             this.PeditarCliente.Controls.Add(this.BeditarCliente);
             this.PeditarCliente.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PeditarCliente.Location = new System.Drawing.Point(30, 31);
-            this.PeditarCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PeditarCliente.Margin = new System.Windows.Forms.Padding(2);
             this.PeditarCliente.Name = "PeditarCliente";
             this.PeditarCliente.Size = new System.Drawing.Size(601, 250);
             this.PeditarCliente.TabIndex = 2;
@@ -168,8 +168,8 @@
             // bagregar
             // 
             this.bagregar.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bagregar.Location = new System.Drawing.Point(0, 209);
-            this.bagregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bagregar.Location = new System.Drawing.Point(3, 209);
+            this.bagregar.Margin = new System.Windows.Forms.Padding(2);
             this.bagregar.Name = "bagregar";
             this.bagregar.Size = new System.Drawing.Size(115, 32);
             this.bagregar.TabIndex = 15;
@@ -195,7 +195,7 @@
             this.RBhombre.Checked = true;
             this.RBhombre.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
             this.RBhombre.Location = new System.Drawing.Point(417, 61);
-            this.RBhombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RBhombre.Margin = new System.Windows.Forms.Padding(2);
             this.RBhombre.Name = "RBhombre";
             this.RBhombre.Size = new System.Drawing.Size(79, 23);
             this.RBhombre.TabIndex = 13;
@@ -208,7 +208,7 @@
             this.RBmujer.AutoSize = true;
             this.RBmujer.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
             this.RBmujer.Location = new System.Drawing.Point(504, 61);
-            this.RBmujer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RBmujer.Margin = new System.Windows.Forms.Padding(2);
             this.RBmujer.Name = "RBmujer";
             this.RBmujer.Size = new System.Drawing.Size(69, 23);
             this.RBmujer.TabIndex = 12;
@@ -220,7 +220,7 @@
             // 
             this.TBdireCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.TBdireCliente.Location = new System.Drawing.Point(109, 145);
-            this.TBdireCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TBdireCliente.Margin = new System.Windows.Forms.Padding(2);
             this.TBdireCliente.Name = "TBdireCliente";
             this.TBdireCliente.Size = new System.Drawing.Size(261, 26);
             this.TBdireCliente.TabIndex = 11;
@@ -240,7 +240,7 @@
             // 
             this.TBtelCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.TBtelCliente.Location = new System.Drawing.Point(111, 102);
-            this.TBtelCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TBtelCliente.Margin = new System.Windows.Forms.Padding(2);
             this.TBtelCliente.Name = "TBtelCliente";
             this.TBtelCliente.Size = new System.Drawing.Size(178, 26);
             this.TBtelCliente.TabIndex = 9;
@@ -260,7 +260,7 @@
             // 
             this.TBdniCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.TBdniCliente.Location = new System.Drawing.Point(111, 55);
-            this.TBdniCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TBdniCliente.Margin = new System.Windows.Forms.Padding(2);
             this.TBdniCliente.Name = "TBdniCliente";
             this.TBdniCliente.Size = new System.Drawing.Size(178, 26);
             this.TBdniCliente.TabIndex = 7;
@@ -280,7 +280,7 @@
             // 
             this.TBapeCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.TBapeCliente.Location = new System.Drawing.Point(414, 8);
-            this.TBapeCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TBapeCliente.Margin = new System.Windows.Forms.Padding(2);
             this.TBapeCliente.Name = "TBapeCliente";
             this.TBapeCliente.Size = new System.Drawing.Size(178, 26);
             this.TBapeCliente.TabIndex = 5;
@@ -300,7 +300,7 @@
             // 
             this.TBnomCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.TBnomCliente.Location = new System.Drawing.Point(111, 10);
-            this.TBnomCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TBnomCliente.Margin = new System.Windows.Forms.Padding(2);
             this.TBnomCliente.Name = "TBnomCliente";
             this.TBnomCliente.Size = new System.Drawing.Size(178, 26);
             this.TBnomCliente.TabIndex = 3;
@@ -322,7 +322,7 @@
             this.BcancelCliente.Image = global::SaborAcielo.Properties.Resources.cruz;
             this.BcancelCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BcancelCliente.Location = new System.Drawing.Point(291, 209);
-            this.BcancelCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BcancelCliente.Margin = new System.Windows.Forms.Padding(2);
             this.BcancelCliente.Name = "BcancelCliente";
             this.BcancelCliente.Size = new System.Drawing.Size(113, 32);
             this.BcancelCliente.TabIndex = 1;
@@ -334,7 +334,7 @@
             // 
             this.BeditarCliente.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BeditarCliente.Location = new System.Drawing.Point(122, 209);
-            this.BeditarCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BeditarCliente.Margin = new System.Windows.Forms.Padding(2);
             this.BeditarCliente.Name = "BeditarCliente";
             this.BeditarCliente.Size = new System.Drawing.Size(115, 32);
             this.BeditarCliente.TabIndex = 0;
@@ -352,7 +352,7 @@
             this.Controls.Add(this.DGclientes);
             this.Controls.Add(this.PeditarCliente);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FeditarCliente";
             this.Text = "FeditarCliente";
             ((System.ComponentModel.ISupportInitialize)(this.DGclientes)).EndInit();
