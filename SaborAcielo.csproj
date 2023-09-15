@@ -58,12 +58,6 @@
     <Compile Include="Empleado\FagregarVenta.Designer.cs">
       <DependentUpon>FagregarVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="FeditarCliente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FeditarCliente.Designer.cs">
-      <DependentUpon>FeditarCliente.cs</DependentUpon>
-    </Compile>
     <Compile Include="Finicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,9 +125,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Empleado\FagregarVenta.resx">
       <DependentUpon>FagregarVenta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FeditarCliente.resx">
-      <DependentUpon>FeditarCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Finicio.resx">
       <DependentUpon>Finicio.cs</DependentUpon>

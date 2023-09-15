@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGlistaProductos = new System.Windows.Forms.DataGridView();
             this.GBfiltroProductos = new System.Windows.Forms.GroupBox();
             this.BbuscarProducto = new System.Windows.Forms.Button();
@@ -51,13 +51,14 @@
             this.TBnomProdu = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.BcancelProdu = new System.Windows.Forms.Button();
-            this.Eliminar_produ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Editar_produ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.imagen_produ = new System.Windows.Forms.DataGridViewImageColumn();
-            this.cant_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipo_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.desc_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipo_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cant_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imagen_produ = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Editar_produ = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Eliminar_produ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BeditarProd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaProductos)).BeginInit();
             this.GBfiltroProductos.SuspendLayout();
             this.PagregarProdu.SuspendLayout();
@@ -70,14 +71,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGlistaProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGlistaProductos.BackgroundColor = System.Drawing.Color.RosyBrown;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DGlistaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGlistaProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.desc_producto,
@@ -94,6 +95,8 @@
             this.DGlistaProductos.RowTemplate.Height = 28;
             this.DGlistaProductos.Size = new System.Drawing.Size(747, 301);
             this.DGlistaProductos.TabIndex = 6;
+            this.DGlistaProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaProductos_CellClick);
+            this.DGlistaProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaProductos_CellContentClick);
             // 
             // GBfiltroProductos
             // 
@@ -169,6 +172,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PagregarProdu.AutoScroll = true;
             this.PagregarProdu.BackColor = System.Drawing.Color.RosyBrown;
+            this.PagregarProdu.Controls.Add(this.BeditarProd);
             this.PagregarProdu.Controls.Add(this.BexaminarImProdu);
             this.PagregarProdu.Controls.Add(this.PBproducto);
             this.PagregarProdu.Controls.Add(this.BagregarProdu);
@@ -321,33 +325,16 @@
             this.BcancelProdu.Text = "Cancelar";
             this.BcancelProdu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BcancelProdu.UseVisualStyleBackColor = true;
+            this.BcancelProdu.Click += new System.EventHandler(this.BcancelProdu_Click);
             // 
-            // Eliminar_produ
+            // desc_producto
             // 
-            this.Eliminar_produ.HeaderText = "Eliminar";
-            this.Eliminar_produ.Name = "Eliminar_produ";
-            // 
-            // Editar_produ
-            // 
-            this.Editar_produ.HeaderText = "Editar";
-            this.Editar_produ.Name = "Editar_produ";
-            // 
-            // imagen_produ
-            // 
-            this.imagen_produ.HeaderText = "Imagen";
-            this.imagen_produ.Name = "imagen_produ";
-            this.imagen_produ.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // cant_producto
-            // 
-            this.cant_producto.HeaderText = "Cantidad";
-            this.cant_producto.Name = "cant_producto";
-            // 
-            // precio
-            // 
-            this.precio.HeaderText = "Precio";
-            this.precio.MinimumWidth = 8;
-            this.precio.Name = "precio";
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Sienna;
+            this.desc_producto.DefaultCellStyle = dataGridViewCellStyle6;
+            this.desc_producto.HeaderText = "Nombre";
+            this.desc_producto.MinimumWidth = 8;
+            this.desc_producto.Name = "desc_producto";
             // 
             // tipo_producto
             // 
@@ -355,14 +342,47 @@
             this.tipo_producto.MinimumWidth = 8;
             this.tipo_producto.Name = "tipo_producto";
             // 
-            // desc_producto
+            // precio
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Sienna;
-            this.desc_producto.DefaultCellStyle = dataGridViewCellStyle2;
-            this.desc_producto.HeaderText = "Nombre";
-            this.desc_producto.MinimumWidth = 8;
-            this.desc_producto.Name = "desc_producto";
+            this.precio.HeaderText = "Precio";
+            this.precio.MinimumWidth = 8;
+            this.precio.Name = "precio";
+            // 
+            // cant_producto
+            // 
+            this.cant_producto.HeaderText = "Cantidad";
+            this.cant_producto.Name = "cant_producto";
+            // 
+            // imagen_produ
+            // 
+            this.imagen_produ.HeaderText = "Imagen";
+            this.imagen_produ.Name = "imagen_produ";
+            this.imagen_produ.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Editar_produ
+            // 
+            this.Editar_produ.HeaderText = "Editar";
+            this.Editar_produ.Name = "Editar_produ";
+            this.Editar_produ.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Editar_produ.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Eliminar_produ
+            // 
+            this.Eliminar_produ.HeaderText = "Eliminar";
+            this.Eliminar_produ.Name = "Eliminar_produ";
+            // 
+            // BeditarProd
+            // 
+            this.BeditarProd.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BeditarProd.Location = new System.Drawing.Point(346, 209);
+            this.BeditarProd.Margin = new System.Windows.Forms.Padding(2);
+            this.BeditarProd.Name = "BeditarProd";
+            this.BeditarProd.Size = new System.Drawing.Size(115, 32);
+            this.BeditarProd.TabIndex = 18;
+            this.BeditarProd.Text = "Modificar";
+            this.BeditarProd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BeditarProd.UseVisualStyleBackColor = true;
+            this.BeditarProd.Click += new System.EventHandler(this.BeditarProd_Click);
             // 
             // FlistaProductosAdmin
             // 
@@ -414,7 +434,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn cant_producto;
         private System.Windows.Forms.DataGridViewImageColumn imagen_produ;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Editar_produ;
+        private System.Windows.Forms.DataGridViewButtonColumn Editar_produ;
         private System.Windows.Forms.DataGridViewTextBoxColumn Eliminar_produ;
+        private System.Windows.Forms.Button BeditarProd;
     }
 }

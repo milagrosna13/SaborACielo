@@ -41,6 +41,7 @@
             this.Ltipousuario = new System.Windows.Forms.Label();
             this.Lnombre = new System.Windows.Forms.Label();
             this.PagregarProdu = new System.Windows.Forms.Panel();
+            this.CBusuarioTipo = new System.Windows.Forms.ComboBox();
             this.BexaminarImProdu = new System.Windows.Forms.Button();
             this.PBproducto = new System.Windows.Forms.PictureBox();
             this.BagregarProdu = new System.Windows.Forms.Button();
@@ -53,7 +54,6 @@
             this.LdniUsuario = new System.Windows.Forms.Label();
             this.BcancelProdu = new System.Windows.Forms.Button();
             this.DGlistaUsuarios = new System.Windows.Forms.DataGridView();
-            this.CBusuarioTipo = new System.Windows.Forms.ComboBox();
             this.GBfiltroUsuarios.SuspendLayout();
             this.PagregarProdu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBproducto)).BeginInit();
@@ -187,8 +187,16 @@
             this.PagregarProdu.Location = new System.Drawing.Point(273, 12);
             this.PagregarProdu.Margin = new System.Windows.Forms.Padding(2);
             this.PagregarProdu.Name = "PagregarProdu";
-            this.PagregarProdu.Size = new System.Drawing.Size(516, 263);
+            this.PagregarProdu.Size = new System.Drawing.Size(516, 281);
             this.PagregarProdu.TabIndex = 8;
+            // 
+            // CBusuarioTipo
+            // 
+            this.CBusuarioTipo.FormattingEnabled = true;
+            this.CBusuarioTipo.Location = new System.Drawing.Point(157, 174);
+            this.CBusuarioTipo.Name = "CBusuarioTipo";
+            this.CBusuarioTipo.Size = new System.Drawing.Size(148, 23);
+            this.CBusuarioTipo.TabIndex = 18;
             // 
             // BexaminarImProdu
             // 
@@ -213,7 +221,7 @@
             // BagregarProdu
             // 
             this.BagregarProdu.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BagregarProdu.Location = new System.Drawing.Point(64, 209);
+            this.BagregarProdu.Location = new System.Drawing.Point(62, 231);
             this.BagregarProdu.Margin = new System.Windows.Forms.Padding(2);
             this.BagregarProdu.Name = "BagregarProdu";
             this.BagregarProdu.Size = new System.Drawing.Size(115, 32);
@@ -226,7 +234,7 @@
             // 
             this.LusuarioTipo.AutoSize = true;
             this.LusuarioTipo.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LusuarioTipo.Location = new System.Drawing.Point(30, 141);
+            this.LusuarioTipo.Location = new System.Drawing.Point(30, 178);
             this.LusuarioTipo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LusuarioTipo.Name = "LusuarioTipo";
             this.LusuarioTipo.Size = new System.Drawing.Size(109, 19);
@@ -298,7 +306,7 @@
             this.BcancelProdu.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BcancelProdu.Image = global::SaborAcielo.Properties.Resources.cruz;
             this.BcancelProdu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BcancelProdu.Location = new System.Drawing.Point(214, 209);
+            this.BcancelProdu.Location = new System.Drawing.Point(219, 231);
             this.BcancelProdu.Margin = new System.Windows.Forms.Padding(2);
             this.BcancelProdu.Name = "BcancelProdu";
             this.BcancelProdu.Size = new System.Drawing.Size(113, 32);
@@ -329,14 +337,6 @@
             this.DGlistaUsuarios.RowTemplate.Height = 28;
             this.DGlistaUsuarios.Size = new System.Drawing.Size(747, 301);
             this.DGlistaUsuarios.TabIndex = 9;
-            // 
-            // CBusuarioTipo
-            // 
-            this.CBusuarioTipo.FormattingEnabled = true;
-            this.CBusuarioTipo.Location = new System.Drawing.Point(147, 138);
-            this.CBusuarioTipo.Name = "CBusuarioTipo";
-            this.CBusuarioTipo.Size = new System.Drawing.Size(148, 23);
-            this.CBusuarioTipo.TabIndex = 18;
             // 
             // FlistaUsuariosAdmin
             // 

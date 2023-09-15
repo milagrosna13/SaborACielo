@@ -16,10 +16,11 @@ namespace SaborAcielo
         public FlistaProductosAdmin()
         {
             InitializeComponent();
+            BeditarProd.Visible = false;
         }
 
 
-        
+
 
         private void limpiarTextBox()
         {
@@ -27,6 +28,7 @@ namespace SaborAcielo
             TBcantidadProdu.Text = "";
             TBtipoproducto.Text = "";
             TBprecio.Text = "";
+            PBproducto.Image = null;
         }
 
         private void TBnomProdu_KeyPress(object sender, KeyPressEventArgs e)
@@ -49,7 +51,7 @@ namespace SaborAcielo
             }
         }
 
-       
+
 
         private void TBcantidadProdu_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -71,7 +73,7 @@ namespace SaborAcielo
             }
         }
 
-       
+
 
         private bool EsArchivoImagen(string rutaArchivo)
         {
@@ -100,7 +102,7 @@ namespace SaborAcielo
                 var res = MessageBox.Show("¿Desea guardar los datos del producto: " + TBnomProdu.Text + "", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == System.Windows.Forms.DialogResult.Yes)
                 {
-                    
+
 
                     string nombre = TBnomProdu.Text;
                     string tipo = TBtipoproducto.Text;
@@ -115,7 +117,7 @@ namespace SaborAcielo
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = nombre });
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = tipo });
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = precio });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = cantidad});
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = cantidad });
                     // Cargar la imagen en una celda de la columna de imágenes
                     DataGridViewImageCell imagenCell = new DataGridViewImageCell();
                     imagenCell.Value = imagen;
@@ -124,17 +126,15 @@ namespace SaborAcielo
                     // Agregar la fila al DataGridView
                     DGlistaProductos.Rows.Add(fila);
 
-                    
+
 
                     MessageBox.Show("Producto agregado con éxito", "Agregar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    limpiarTextBox();
-                    PBproducto.Image = null;
+                    limpiarTextBox();   
                 }
                 else
                 {
                     limpiarTextBox();
-                    PBproducto.Image = null;
                 }
 
             }
@@ -172,6 +172,71 @@ namespace SaborAcielo
         {
 
         }
+        int pos;
+        private void DGlistaProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
-    }
+
+
+        }
+
+        private void DGlistaProductos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = DGlistaProductos.Rows[e.RowIndex];
+            DataGridViewCell nombreCell = row.Cells["desc_producto"];
+            DataGridViewCell editarCell = row.Cells["Editar_produ"];
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                DataGridViewColumn columna = DGlistaProductos.Columns[e.ColumnIndex];
+                if (columna.Name != "Editar_produ")
+                {
+                    // Desactivar el evento Click en celdas que no sean del tipo botón
+                    DGlistaProductos.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = false;
+
+                }
+                else
+                {
+
+                    if (string.IsNullOrWhiteSpace(Convert.ToString(nombreCell.Value)))
+                    {
+                        // Desactivar el botón de eliminar si la fila está vacía
+                        editarCell.ReadOnly = true;
+                    }
+                    else
+                    {
+                        limpiarTextBox();
+                        editarCell.ReadOnly = false;
+                        BagregarProdu.Visible = false;
+                        BeditarProd.Visible = true;
+
+                        pos = DGlistaProductos.CurrentRow.Index;
+                        TBnomProdu.Text = DGlistaProductos[0, pos].Value.ToString();
+                        TBtipoproducto.Text = DGlistaProductos[1, pos].Value.ToString();
+                        TBprecio.Text = DGlistaProductos[2, pos].Value.ToString();
+                        TBcantidadProdu.Text = DGlistaProductos[3, pos].Value.ToString();
+                        
+
+                    }
+                }
+            }
+        }
+
+        private void BeditarProd_Click(object sender, EventArgs e)
+        {
+            DGlistaProductos[0, pos].Value = TBnomProdu.Text;
+            DGlistaProductos[1, pos].Value = TBtipoproducto.Text;
+            DGlistaProductos[2, pos].Value = TBprecio.Text;
+            DGlistaProductos[3, pos].Value = TBcantidadProdu.Text;
+
+            BeditarProd.Visible = false;
+            BagregarProdu.Visible = true;
+            limpiarTextBox();
+        }
+
+        private void BcancelProdu_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    } 
 }

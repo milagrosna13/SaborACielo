@@ -87,7 +87,7 @@ namespace SaborAcielo
 
         private void BverC_Click(object sender, EventArgs e)
         {
-            abrirFormularioHijo(new FeditarCliente());
+            abrirFormularioHijo(new FlistarClientes());
         }
 
         private void button7_Click(object sender, EventArgs e)
