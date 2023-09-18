@@ -43,11 +43,11 @@
             this.BagregarC = new System.Windows.Forms.Button();
             this.Bcliente = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.BcerrarSesion = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.PchildForm = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.BcerrarSesion = new System.Windows.Forms.Button();
             this.PmenuEmpleado.SuspendLayout();
             this.PsubmnVentas.SuspendLayout();
             this.PsubmnProductos.SuspendLayout();
@@ -71,7 +71,7 @@
             this.PmenuEmpleado.Dock = System.Windows.Forms.DockStyle.Left;
             this.PmenuEmpleado.Location = new System.Drawing.Point(0, 0);
             this.PmenuEmpleado.Name = "PmenuEmpleado";
-            this.PmenuEmpleado.Size = new System.Drawing.Size(332, 675);
+            this.PmenuEmpleado.Size = new System.Drawing.Size(357, 675);
             this.PmenuEmpleado.TabIndex = 4;
             // 
             // PsubmnVentas
@@ -81,9 +81,9 @@
             this.PsubmnVentas.Dock = System.Windows.Forms.DockStyle.Top;
             this.PsubmnVentas.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PsubmnVentas.ForeColor = System.Drawing.Color.LightCoral;
-            this.PsubmnVentas.Location = new System.Drawing.Point(0, 507);
+            this.PsubmnVentas.Location = new System.Drawing.Point(0, 714);
             this.PsubmnVentas.Name = "PsubmnVentas";
-            this.PsubmnVentas.Size = new System.Drawing.Size(332, 109);
+            this.PsubmnVentas.Size = new System.Drawing.Size(331, 109);
             this.PsubmnVentas.TabIndex = 6;
             this.PsubmnVentas.Visible = false;
             // 
@@ -96,7 +96,7 @@
             this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button10.Location = new System.Drawing.Point(0, 52);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(332, 52);
+            this.button10.Size = new System.Drawing.Size(331, 52);
             this.button10.TabIndex = 3;
             this.button10.Text = "Listar";
             this.button10.UseVisualStyleBackColor = false;
@@ -110,7 +110,7 @@
             this.button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button11.Location = new System.Drawing.Point(0, 0);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(332, 52);
+            this.button11.Size = new System.Drawing.Size(331, 52);
             this.button11.TabIndex = 2;
             this.button11.Text = "Generar ventas";
             this.button11.UseVisualStyleBackColor = false;
@@ -124,9 +124,9 @@
             this.Bventa.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bventa.ForeColor = System.Drawing.Color.White;
             this.Bventa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Bventa.Location = new System.Drawing.Point(0, 455);
+            this.Bventa.Location = new System.Drawing.Point(0, 662);
             this.Bventa.Name = "Bventa";
-            this.Bventa.Size = new System.Drawing.Size(332, 52);
+            this.Bventa.Size = new System.Drawing.Size(331, 52);
             this.Bventa.TabIndex = 5;
             this.Bventa.Text = "Ventas";
             this.Bventa.UseVisualStyleBackColor = false;
@@ -138,9 +138,9 @@
             this.PsubmnProductos.Dock = System.Windows.Forms.DockStyle.Top;
             this.PsubmnProductos.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PsubmnProductos.ForeColor = System.Drawing.Color.LightCoral;
-            this.PsubmnProductos.Location = new System.Drawing.Point(0, 401);
+            this.PsubmnProductos.Location = new System.Drawing.Point(0, 608);
             this.PsubmnProductos.Name = "PsubmnProductos";
-            this.PsubmnProductos.Size = new System.Drawing.Size(332, 54);
+            this.PsubmnProductos.Size = new System.Drawing.Size(331, 54);
             this.PsubmnProductos.TabIndex = 4;
             this.PsubmnProductos.Visible = false;
             // 
@@ -153,7 +153,7 @@
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button7.Location = new System.Drawing.Point(0, 0);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(332, 52);
+            this.button7.Size = new System.Drawing.Size(331, 52);
             this.button7.TabIndex = 2;
             this.button7.Text = "Listar productos";
             this.button7.UseVisualStyleBackColor = false;
@@ -167,9 +167,9 @@
             this.Bproducto.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bproducto.ForeColor = System.Drawing.Color.White;
             this.Bproducto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Bproducto.Location = new System.Drawing.Point(0, 349);
+            this.Bproducto.Location = new System.Drawing.Point(0, 556);
             this.Bproducto.Name = "Bproducto";
-            this.Bproducto.Size = new System.Drawing.Size(332, 52);
+            this.Bproducto.Size = new System.Drawing.Size(331, 52);
             this.Bproducto.TabIndex = 3;
             this.Bproducto.Text = "Productos";
             this.Bproducto.UseVisualStyleBackColor = false;
@@ -182,9 +182,9 @@
             this.PsubmnClientes.Dock = System.Windows.Forms.DockStyle.Top;
             this.PsubmnClientes.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PsubmnClientes.ForeColor = System.Drawing.Color.LightCoral;
-            this.PsubmnClientes.Location = new System.Drawing.Point(0, 246);
+            this.PsubmnClientes.Location = new System.Drawing.Point(0, 453);
             this.PsubmnClientes.Name = "PsubmnClientes";
-            this.PsubmnClientes.Size = new System.Drawing.Size(332, 103);
+            this.PsubmnClientes.Size = new System.Drawing.Size(331, 103);
             this.PsubmnClientes.TabIndex = 2;
             this.PsubmnClientes.Visible = false;
             // 
@@ -197,7 +197,7 @@
             this.BverC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BverC.Location = new System.Drawing.Point(0, 52);
             this.BverC.Name = "BverC";
-            this.BverC.Size = new System.Drawing.Size(332, 48);
+            this.BverC.Size = new System.Drawing.Size(331, 48);
             this.BverC.TabIndex = 4;
             this.BverC.Text = "Listar clientes";
             this.BverC.UseVisualStyleBackColor = false;
@@ -212,7 +212,7 @@
             this.BagregarC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BagregarC.Location = new System.Drawing.Point(0, 0);
             this.BagregarC.Name = "BagregarC";
-            this.BagregarC.Size = new System.Drawing.Size(332, 52);
+            this.BagregarC.Size = new System.Drawing.Size(331, 52);
             this.BagregarC.TabIndex = 2;
             this.BagregarC.Text = "Agregar cliente";
             this.BagregarC.UseVisualStyleBackColor = false;
@@ -226,9 +226,9 @@
             this.Bcliente.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bcliente.ForeColor = System.Drawing.Color.White;
             this.Bcliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Bcliente.Location = new System.Drawing.Point(0, 194);
+            this.Bcliente.Location = new System.Drawing.Point(0, 401);
             this.Bcliente.Name = "Bcliente";
-            this.Bcliente.Size = new System.Drawing.Size(332, 52);
+            this.Bcliente.Size = new System.Drawing.Size(331, 52);
             this.Bcliente.TabIndex = 1;
             this.Bcliente.Text = "Clientes";
             this.Bcliente.UseVisualStyleBackColor = false;
@@ -243,51 +243,8 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(332, 194);
+            this.panel2.Size = new System.Drawing.Size(331, 401);
             this.panel2.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(122, 149);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(102, 109);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Bienvenido ";
-            // 
-            // PchildForm
-            // 
-            this.PchildForm.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.PchildForm.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
-            this.PchildForm.Controls.Add(this.pictureBox1);
-            this.PchildForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PchildForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PchildForm.Location = new System.Drawing.Point(332, 0);
-            this.PchildForm.Name = "PchildForm";
-            this.PchildForm.Size = new System.Drawing.Size(1082, 675);
-            this.PchildForm.TabIndex = 6;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = global::SaborAcielo.Properties.Resources.EmpleadosInicio;
-            this.pictureBox1.Location = new System.Drawing.Point(366, 149);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(399, 290);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // BcerrarSesion
             // 
@@ -304,6 +261,49 @@
             this.BcerrarSesion.Text = "Salir";
             this.BcerrarSesion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BcerrarSesion.UseVisualStyleBackColor = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(115, 343);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "label2";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(95, 303);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Bienvenido ";
+            // 
+            // PchildForm
+            // 
+            this.PchildForm.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.PchildForm.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
+            this.PchildForm.Controls.Add(this.pictureBox1);
+            this.PchildForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PchildForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PchildForm.Location = new System.Drawing.Point(357, 0);
+            this.PchildForm.Name = "PchildForm";
+            this.PchildForm.Size = new System.Drawing.Size(1057, 675);
+            this.PchildForm.TabIndex = 6;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Image = global::SaborAcielo.Properties.Resources.EmpleadosInicio;
+            this.pictureBox1.Location = new System.Drawing.Point(330, 360);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(399, 290);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // MDIempleado
             // 
