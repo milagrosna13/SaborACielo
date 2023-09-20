@@ -73,7 +73,7 @@
             this.PmenuLateral.Dock = System.Windows.Forms.DockStyle.Left;
             this.PmenuLateral.Location = new System.Drawing.Point(0, 0);
             this.PmenuLateral.Name = "PmenuLateral";
-            this.PmenuLateral.Size = new System.Drawing.Size(243, 464);
+            this.PmenuLateral.Size = new System.Drawing.Size(243, 550);
             this.PmenuLateral.TabIndex = 4;
             // 
             // PsubmClientes
@@ -82,7 +82,7 @@
             this.PsubmClientes.Dock = System.Windows.Forms.DockStyle.Top;
             this.PsubmClientes.Location = new System.Drawing.Point(0, 495);
             this.PsubmClientes.Name = "PsubmClientes";
-            this.PsubmClientes.Size = new System.Drawing.Size(226, 25);
+            this.PsubmClientes.Size = new System.Drawing.Size(243, 25);
             this.PsubmClientes.TabIndex = 8;
             this.PsubmClientes.Visible = false;
             // 
@@ -93,7 +93,7 @@
             this.BlistarClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BlistarClientes.Location = new System.Drawing.Point(0, 0);
             this.BlistarClientes.Name = "BlistarClientes";
-            this.BlistarClientes.Size = new System.Drawing.Size(226, 25);
+            this.BlistarClientes.Size = new System.Drawing.Size(243, 25);
             this.BlistarClientes.TabIndex = 0;
             this.BlistarClientes.Text = "Listar CLientes";
             this.BlistarClientes.UseVisualStyleBackColor = true;
@@ -105,9 +105,11 @@
             this.Bclientes.Dock = System.Windows.Forms.DockStyle.Top;
             this.Bclientes.FlatAppearance.BorderSize = 0;
             this.Bclientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Bclientes.Font = new System.Drawing.Font("Script MT Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bclientes.ForeColor = System.Drawing.Color.RosyBrown;
             this.Bclientes.Location = new System.Drawing.Point(0, 450);
             this.Bclientes.Name = "Bclientes";
-            this.Bclientes.Size = new System.Drawing.Size(226, 45);
+            this.Bclientes.Size = new System.Drawing.Size(243, 45);
             this.Bclientes.TabIndex = 7;
             this.Bclientes.Text = "Clientes";
             this.Bclientes.UseVisualStyleBackColor = false;
@@ -119,7 +121,7 @@
             this.PsubmVentas.Dock = System.Windows.Forms.DockStyle.Top;
             this.PsubmVentas.Location = new System.Drawing.Point(0, 423);
             this.PsubmVentas.Name = "PsubmVentas";
-            this.PsubmVentas.Size = new System.Drawing.Size(226, 27);
+            this.PsubmVentas.Size = new System.Drawing.Size(243, 27);
             this.PsubmVentas.TabIndex = 6;
             this.PsubmVentas.Visible = false;
             // 
@@ -130,7 +132,7 @@
             this.BlistarVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BlistarVentas.Location = new System.Drawing.Point(0, 0);
             this.BlistarVentas.Name = "BlistarVentas";
-            this.BlistarVentas.Size = new System.Drawing.Size(226, 27);
+            this.BlistarVentas.Size = new System.Drawing.Size(243, 27);
             this.BlistarVentas.TabIndex = 0;
             this.BlistarVentas.Text = "Listar Ventas";
             this.BlistarVentas.UseVisualStyleBackColor = true;
@@ -141,9 +143,11 @@
             this.Bventas.Dock = System.Windows.Forms.DockStyle.Top;
             this.Bventas.FlatAppearance.BorderSize = 0;
             this.Bventas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Bventas.Font = new System.Drawing.Font("Script MT Bold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bventas.ForeColor = System.Drawing.Color.RosyBrown;
             this.Bventas.Location = new System.Drawing.Point(0, 378);
             this.Bventas.Name = "Bventas";
-            this.Bventas.Size = new System.Drawing.Size(226, 45);
+            this.Bventas.Size = new System.Drawing.Size(243, 45);
             this.Bventas.TabIndex = 5;
             this.Bventas.Text = "Ventas";
             this.Bventas.UseVisualStyleBackColor = false;
@@ -156,7 +160,7 @@
             this.PsubmProductos.Dock = System.Windows.Forms.DockStyle.Top;
             this.PsubmProductos.Location = new System.Drawing.Point(0, 328);
             this.PsubmProductos.Name = "PsubmProductos";
-            this.PsubmProductos.Size = new System.Drawing.Size(226, 50);
+            this.PsubmProductos.Size = new System.Drawing.Size(243, 50);
             this.PsubmProductos.TabIndex = 4;
             this.PsubmProductos.Visible = false;
             // 
@@ -167,7 +171,7 @@
             this.BagregarProdu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BagregarProdu.Location = new System.Drawing.Point(0, 23);
             this.BagregarProdu.Name = "BagregarProdu";
-            this.BagregarProdu.Size = new System.Drawing.Size(226, 27);
+            this.BagregarProdu.Size = new System.Drawing.Size(243, 27);
             this.BagregarProdu.TabIndex = 1;
             this.BagregarProdu.Text = "Agregar Productos";
             this.BagregarProdu.UseVisualStyleBackColor = true;
@@ -180,7 +184,7 @@
             this.BlistarProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BlistarProductos.Location = new System.Drawing.Point(0, 0);
             this.BlistarProductos.Name = "BlistarProductos";
-            this.BlistarProductos.Size = new System.Drawing.Size(226, 23);
+            this.BlistarProductos.Size = new System.Drawing.Size(243, 23);
             this.BlistarProductos.TabIndex = 0;
             this.BlistarProductos.Text = "Listar Productos";
             this.BlistarProductos.UseVisualStyleBackColor = true;
@@ -196,7 +200,7 @@
             this.Bproductos.ForeColor = System.Drawing.Color.RosyBrown;
             this.Bproductos.Location = new System.Drawing.Point(0, 283);
             this.Bproductos.Name = "Bproductos";
-            this.Bproductos.Size = new System.Drawing.Size(226, 45);
+            this.Bproductos.Size = new System.Drawing.Size(243, 45);
             this.Bproductos.TabIndex = 3;
             this.Bproductos.Text = "Productos";
             this.Bproductos.UseVisualStyleBackColor = false;
@@ -210,7 +214,7 @@
             this.PsubmUsuarios.Dock = System.Windows.Forms.DockStyle.Top;
             this.PsubmUsuarios.Location = new System.Drawing.Point(0, 237);
             this.PsubmUsuarios.Name = "PsubmUsuarios";
-            this.PsubmUsuarios.Size = new System.Drawing.Size(226, 46);
+            this.PsubmUsuarios.Size = new System.Drawing.Size(243, 46);
             this.PsubmUsuarios.TabIndex = 2;
             this.PsubmUsuarios.Visible = false;
             // 
@@ -222,7 +226,7 @@
             this.BagregarUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BagregarUsuarios.Location = new System.Drawing.Point(0, 23);
             this.BagregarUsuarios.Name = "BagregarUsuarios";
-            this.BagregarUsuarios.Size = new System.Drawing.Size(226, 23);
+            this.BagregarUsuarios.Size = new System.Drawing.Size(243, 23);
             this.BagregarUsuarios.TabIndex = 1;
             this.BagregarUsuarios.Text = "Agregar empleado";
             this.BagregarUsuarios.UseVisualStyleBackColor = false;
@@ -238,7 +242,7 @@
             this.BlistaUsuarios.ForeColor = System.Drawing.SystemColors.ControlText;
             this.BlistaUsuarios.Location = new System.Drawing.Point(0, 0);
             this.BlistaUsuarios.Name = "BlistaUsuarios";
-            this.BlistaUsuarios.Size = new System.Drawing.Size(226, 23);
+            this.BlistaUsuarios.Size = new System.Drawing.Size(243, 23);
             this.BlistaUsuarios.TabIndex = 0;
             this.BlistaUsuarios.Text = "Listar empleados";
             this.BlistaUsuarios.UseVisualStyleBackColor = false;
@@ -254,7 +258,7 @@
             this.Busuarios.ForeColor = System.Drawing.Color.RosyBrown;
             this.Busuarios.Location = new System.Drawing.Point(0, 192);
             this.Busuarios.Name = "Busuarios";
-            this.Busuarios.Size = new System.Drawing.Size(226, 45);
+            this.Busuarios.Size = new System.Drawing.Size(243, 45);
             this.Busuarios.TabIndex = 1;
             this.Busuarios.Text = "Empleados";
             this.Busuarios.UseVisualStyleBackColor = false;
@@ -266,7 +270,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(226, 192);
+            this.panel1.Size = new System.Drawing.Size(243, 192);
             this.panel1.TabIndex = 0;
             // 
             // pictureBox1
@@ -284,7 +288,7 @@
             this.PchildAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PchildAdmin.Location = new System.Drawing.Point(243, 0);
             this.PchildAdmin.Name = "PchildAdmin";
-            this.PchildAdmin.Size = new System.Drawing.Size(463, 464);
+            this.PchildAdmin.Size = new System.Drawing.Size(531, 550);
             this.PchildAdmin.TabIndex = 6;
             // 
             // MDIadmin
@@ -292,7 +296,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
-            this.ClientSize = new System.Drawing.Size(706, 464);
+            this.ClientSize = new System.Drawing.Size(774, 550);
             this.Controls.Add(this.PchildAdmin);
             this.Controls.Add(this.PmenuLateral);
             this.IsMdiContainer = true;

@@ -100,6 +100,12 @@
     <Compile Include="FlistaUsuariosAdmin.Designer.cs">
       <DependentUpon>FlistaUsuariosAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="MDIgerente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIgerente.Designer.cs">
+      <DependentUpon>MDIgerente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fproducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FlistaUsuariosAdmin.resx">
       <DependentUpon>FlistaUsuariosAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIgerente.resx">
+      <DependentUpon>MDIgerente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fproducto.resx">
       <DependentUpon>Fproducto.cs</DependentUpon>
