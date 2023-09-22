@@ -30,7 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.BagregarCompra = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TBsubtotal = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.TBprecioProd = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -44,6 +44,7 @@
             this.Bcompra = new System.Windows.Forms.Button();
             this.BcancelarCompra = new System.Windows.Forms.Button();
             this.DGcarrito = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Ncant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGcarrito)).BeginInit();
@@ -53,7 +54,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.RosyBrown;
             this.panel1.Controls.Add(this.BagregarCompra);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.TBsubtotal);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.TBprecioProd);
             this.panel1.Controls.Add(this.label5);
@@ -78,14 +79,15 @@
             this.BagregarCompra.TabIndex = 3;
             this.BagregarCompra.Text = "Agregar";
             this.BagregarCompra.UseVisualStyleBackColor = true;
+            this.BagregarCompra.Click += new System.EventHandler(this.BagregarCompra_Click);
             // 
-            // textBox2
+            // TBsubtotal
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(604, 222);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(298, 32);
-            this.textBox2.TabIndex = 14;
+            this.TBsubtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBsubtotal.Location = new System.Drawing.Point(604, 222);
+            this.TBsubtotal.Name = "TBsubtotal";
+            this.TBsubtotal.Size = new System.Drawing.Size(298, 32);
+            this.TBsubtotal.TabIndex = 14;
             // 
             // label6
             // 
@@ -102,6 +104,7 @@
             this.TBprecioProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TBprecioProd.Location = new System.Drawing.Point(604, 154);
             this.TBprecioProd.Name = "TBprecioProd";
+            this.TBprecioProd.ReadOnly = true;
             this.TBprecioProd.Size = new System.Drawing.Size(298, 32);
             this.TBprecioProd.TabIndex = 12;
             // 
@@ -159,6 +162,7 @@
             this.Ncant.Name = "Ncant";
             this.Ncant.Size = new System.Drawing.Size(77, 30);
             this.Ncant.TabIndex = 5;
+            this.Ncant.ValueChanged += new System.EventHandler(this.Ncant_ValueChanged);
             // 
             // label2
             // 
@@ -204,12 +208,21 @@
             // DGcarrito
             // 
             this.DGcarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGcarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1});
             this.DGcarrito.Location = new System.Drawing.Point(87, 436);
             this.DGcarrito.Name = "DGcarrito";
             this.DGcarrito.RowHeadersWidth = 62;
             this.DGcarrito.RowTemplate.Height = 28;
             this.DGcarrito.Size = new System.Drawing.Size(854, 150);
             this.DGcarrito.TabIndex = 3;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "subtotal";
+            this.Column1.MinimumWidth = 8;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 150;
             // 
             // FagregarVenta
             // 
@@ -241,7 +254,7 @@
         private System.Windows.Forms.NumericUpDown Ncant;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TBsubtotal;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox TBprecioProd;
         private System.Windows.Forms.Label label5;
@@ -251,5 +264,6 @@
         private System.Windows.Forms.ComboBox CBtipoProd;
         private System.Windows.Forms.Button BagregarCompra;
         private System.Windows.Forms.DataGridView DGcarrito;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }
