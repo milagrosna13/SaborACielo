@@ -26,5 +26,79 @@ namespace SaborAcielo
         {
 
         }
+        private void esconderSubMenu()
+        {
+            if (Pvendedores.Visible == true)
+            {
+                Pvendedores.Visible = false;
+            }
+            if (Pclientes.Visible == true)
+            {
+                Pclientes.Visible = false;
+            }
+            if (Pventas.Visible == true)
+            {
+                Pventas.Visible = false;
+            }
+            if (Pprodu.Visible == true)
+            {
+                Pprodu.Visible = false;
+            }
+        }
+
+        private void mostrarSubMenu(Panel subMenu)
+        {
+            if (subMenu.Visible == false)
+            {
+                esconderSubMenu();
+                subMenu.Visible = true;
+            }
+            else
+            {
+                subMenu.Visible = false;
+            }
+        }
+
+        private Form activeForm = null;
+        private void abrirFormularioHijo(Form formHijo)
+        {
+            if (activeForm != null) { activeForm.Close(); }
+            activeForm = formHijo;
+            formHijo.TopLevel = false;
+            formHijo.Dock = DockStyle.Fill;
+            PchildForm.Controls.Add(formHijo);
+            PchildForm.Tag = formHijo;//asocia el panel con el formulario hijo
+            formHijo.BringToFront();//traer el formulario al frente
+            formHijo.Show();
+        }
+
+        private void Bvendedor_Click(object sender, EventArgs e)
+        {
+            mostrarSubMenu(Pvendedores);
+        }
+        private void BeditarVendedor_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FlistaUsuariosAdmin());
+        }
+
+        private void Bproducto_Click(object sender, EventArgs e)
+        {
+            mostrarSubMenu(Pprodu);
+        }
+        private void BlistarProdu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Bclientes_Click(object sender, EventArgs e)
+        {
+            mostrarSubMenu(Pclientes);
+        }
+
+        private void Bventas_Click(object sender, EventArgs e)
+        {
+            mostrarSubMenu(Pventas);
+        }
+
     }
 }

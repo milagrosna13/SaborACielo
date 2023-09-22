@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SaborAcielo
 {
-    public partial class FlistarVentas : Form
+    public partial class FVentasEm : Form
     {
-        public FlistarVentas()
+        public FVentasEm()
         {
             InitializeComponent();
         }

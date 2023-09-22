@@ -25,7 +25,7 @@ namespace SaborAcielo
             TBdetalle.Clear();
             TBprecio.Clear();
             TBcantidadProdu.Clear();
-            CtipoProd.SelectedIndex = -1;
+            CtipoProd.Text = "";
             PBproducto.Image = null;
         }
 
@@ -90,7 +90,7 @@ namespace SaborAcielo
                 {
 
                     string nombre = TBnomProdu.Text;
-                    string tipo = CtipoProd.SelectedIndex.ToString();
+                    string tipo = CtipoProd.Text;
                     string precio = TBprecio.Text;
                     string detalle = TBdetalle.Text;
                     string cantidad = TBcantidadProdu.Text;
@@ -153,16 +153,10 @@ namespace SaborAcielo
             }
         }
 
-        private void TBnomProdu_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void TBnomProdu_TextChanged(object sender, EventArgs e){}
         int pos;
         private void DGlistaProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-
-
         }
 
         private void DGlistaProductos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -207,7 +201,7 @@ namespace SaborAcielo
         private void BeditarProd_Click(object sender, EventArgs e)
         {
             DGlistaProductos[0, pos].Value = TBnomProdu.Text;
-            DGlistaProductos[1, pos].Value = CtipoProd.SelectedIndex.ToString();
+            DGlistaProductos[1, pos].Value = CtipoProd.Text;
             DGlistaProductos[2, pos].Value = TBprecio.Text;
             DGlistaProductos[3, pos].Value = TBcantidadProdu.Text;
 

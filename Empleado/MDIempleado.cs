@@ -12,7 +12,7 @@ namespace SaborAcielo
 {
     public partial class MDIempleado : Form
     {
-        private int childFormNumber = 0;
+        //private int childFormNumber = 0;
 
         public MDIempleado()
         {
@@ -46,7 +46,6 @@ namespace SaborAcielo
                 subMenu.Visible = false;
             }
         }
-
         private void Bcliente_Click(object sender, EventArgs e)
         {
             mostrarSubMenu(PsubmnClientes);
@@ -61,10 +60,22 @@ namespace SaborAcielo
         {
             mostrarSubMenu(PsubmnProductos);
         }
+        private void BverC_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FlistarClientes());
+        }
 
+        private void BmostrarProdu_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new Fproducto());  
+        }
         private void Bventa_Click(object sender, EventArgs e)
         {
             mostrarSubMenu(PsubmnVentas);
+        }
+        private void BnuevaVenta_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FagregarVenta());
         }
 
         private Form activeForm = null;
@@ -79,20 +90,9 @@ namespace SaborAcielo
             formHijo.BringToFront();//traer el formulario al frente
             formHijo.Show();
         }
-
-        private void button11_Click(object sender, EventArgs e)
+        private void BlistarVenta_Click(object sender, EventArgs e)
         {
-            abrirFormularioHijo(new FagregarVenta());
-        }
-
-        private void BverC_Click(object sender, EventArgs e)
-        {
-            abrirFormularioHijo(new FlistarClientes());
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            abrirFormularioHijo(new Fproducto());   
+            abrirFormularioHijo(new FVentasEm());
         }
     }
 }

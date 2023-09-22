@@ -32,11 +32,11 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.PmenuEmpleado = new System.Windows.Forms.Panel();
             this.PsubmnVentas = new System.Windows.Forms.Panel();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
+            this.BlistarVenta = new System.Windows.Forms.Button();
+            this.BnuevaVenta = new System.Windows.Forms.Button();
             this.Bventa = new System.Windows.Forms.Button();
             this.PsubmnProductos = new System.Windows.Forms.Panel();
-            this.button7 = new System.Windows.Forms.Button();
+            this.BmostrarProdu = new System.Windows.Forms.Button();
             this.Bproducto = new System.Windows.Forms.Button();
             this.PsubmnClientes = new System.Windows.Forms.Panel();
             this.BverC = new System.Windows.Forms.Button();
@@ -76,8 +76,8 @@
             // 
             // PsubmnVentas
             // 
-            this.PsubmnVentas.Controls.Add(this.button10);
-            this.PsubmnVentas.Controls.Add(this.button11);
+            this.PsubmnVentas.Controls.Add(this.BlistarVenta);
+            this.PsubmnVentas.Controls.Add(this.BnuevaVenta);
             this.PsubmnVentas.Dock = System.Windows.Forms.DockStyle.Top;
             this.PsubmnVentas.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PsubmnVentas.ForeColor = System.Drawing.Color.LightCoral;
@@ -87,34 +87,35 @@
             this.PsubmnVentas.TabIndex = 6;
             this.PsubmnVentas.Visible = false;
             // 
-            // button10
+            // BlistarVenta
             // 
-            this.button10.BackColor = System.Drawing.Color.Sienna;
-            this.button10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.ForeColor = System.Drawing.Color.Black;
-            this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.Location = new System.Drawing.Point(0, 52);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(331, 52);
-            this.button10.TabIndex = 3;
-            this.button10.Text = "Listar";
-            this.button10.UseVisualStyleBackColor = false;
+            this.BlistarVenta.BackColor = System.Drawing.Color.Sienna;
+            this.BlistarVenta.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BlistarVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BlistarVenta.ForeColor = System.Drawing.Color.Black;
+            this.BlistarVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BlistarVenta.Location = new System.Drawing.Point(0, 52);
+            this.BlistarVenta.Name = "BlistarVenta";
+            this.BlistarVenta.Size = new System.Drawing.Size(331, 52);
+            this.BlistarVenta.TabIndex = 3;
+            this.BlistarVenta.Text = "Listar";
+            this.BlistarVenta.UseVisualStyleBackColor = false;
+            this.BlistarVenta.Click += new System.EventHandler(this.BlistarVenta_Click);
             // 
-            // button11
+            // BnuevaVenta
             // 
-            this.button11.BackColor = System.Drawing.Color.Sienna;
-            this.button11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.ForeColor = System.Drawing.Color.Black;
-            this.button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button11.Location = new System.Drawing.Point(0, 0);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(331, 52);
-            this.button11.TabIndex = 2;
-            this.button11.Text = "Generar ventas";
-            this.button11.UseVisualStyleBackColor = false;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
+            this.BnuevaVenta.BackColor = System.Drawing.Color.Sienna;
+            this.BnuevaVenta.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BnuevaVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BnuevaVenta.ForeColor = System.Drawing.Color.Black;
+            this.BnuevaVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BnuevaVenta.Location = new System.Drawing.Point(0, 0);
+            this.BnuevaVenta.Name = "BnuevaVenta";
+            this.BnuevaVenta.Size = new System.Drawing.Size(331, 52);
+            this.BnuevaVenta.TabIndex = 2;
+            this.BnuevaVenta.Text = "Generar ventas";
+            this.BnuevaVenta.UseVisualStyleBackColor = false;
+            this.BnuevaVenta.Click += new System.EventHandler(this.BnuevaVenta_Click);
             // 
             // Bventa
             // 
@@ -134,7 +135,7 @@
             // 
             // PsubmnProductos
             // 
-            this.PsubmnProductos.Controls.Add(this.button7);
+            this.PsubmnProductos.Controls.Add(this.BmostrarProdu);
             this.PsubmnProductos.Dock = System.Windows.Forms.DockStyle.Top;
             this.PsubmnProductos.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PsubmnProductos.ForeColor = System.Drawing.Color.LightCoral;
@@ -144,20 +145,20 @@
             this.PsubmnProductos.TabIndex = 4;
             this.PsubmnProductos.Visible = false;
             // 
-            // button7
+            // BmostrarProdu
             // 
-            this.button7.BackColor = System.Drawing.Color.Sienna;
-            this.button7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.ForeColor = System.Drawing.Color.Black;
-            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(0, 0);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(331, 52);
-            this.button7.TabIndex = 2;
-            this.button7.Text = "Listar productos";
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.BmostrarProdu.BackColor = System.Drawing.Color.Sienna;
+            this.BmostrarProdu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BmostrarProdu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BmostrarProdu.ForeColor = System.Drawing.Color.Black;
+            this.BmostrarProdu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BmostrarProdu.Location = new System.Drawing.Point(0, 0);
+            this.BmostrarProdu.Name = "BmostrarProdu";
+            this.BmostrarProdu.Size = new System.Drawing.Size(331, 52);
+            this.BmostrarProdu.TabIndex = 2;
+            this.BmostrarProdu.Text = "Listar productos";
+            this.BmostrarProdu.UseVisualStyleBackColor = false;
+            this.BmostrarProdu.Click += new System.EventHandler(this.BmostrarProdu_Click);
             // 
             // Bproducto
             // 
@@ -331,11 +332,11 @@
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Panel PmenuEmpleado;
         private System.Windows.Forms.Panel PsubmnVentas;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button BlistarVenta;
+        private System.Windows.Forms.Button BnuevaVenta;
         private System.Windows.Forms.Button Bventa;
         private System.Windows.Forms.Panel PsubmnProductos;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button BmostrarProdu;
         private System.Windows.Forms.Button Bproducto;
         private System.Windows.Forms.Panel PsubmnClientes;
         private System.Windows.Forms.Button BverC;

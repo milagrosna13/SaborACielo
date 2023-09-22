@@ -76,11 +76,11 @@
     <Compile Include="FlistarClientes.Designer.cs">
       <DependentUpon>FlistarClientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="FlistarVentas.cs">
+    <Compile Include="Empleado\FVentasEm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FlistarVentas.Designer.cs">
-      <DependentUpon>FlistarVentas.cs</DependentUpon>
+    <Compile Include="Empleado\FVentasEm.Designer.cs">
+      <DependentUpon>FVentasEm.cs</DependentUpon>
     </Compile>
     <Compile Include="FlistaProductosAdmin.cs">
       <SubType>Form</SubType>
@@ -141,8 +141,8 @@
     <EmbeddedResource Include="FlistarClientes.resx">
       <DependentUpon>FlistarClientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FlistarVentas.resx">
-      <DependentUpon>FlistarVentas.cs</DependentUpon>
+    <EmbeddedResource Include="Empleado\FVentasEm.resx">
+      <DependentUpon>FVentasEm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FlistaProductosAdmin.resx">
       <DependentUpon>FlistaProductosAdmin.cs</DependentUpon>

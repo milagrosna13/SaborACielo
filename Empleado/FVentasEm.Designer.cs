@@ -1,6 +1,6 @@
 ﻿namespace SaborAcielo
 {
-    partial class FlistarVentas
+    partial class FVentasEm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,15 +32,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Pventas = new System.Windows.Forms.Panel();
             this.GBfiltroVenta = new System.Windows.Forms.GroupBox();
+            this.Ccliente = new System.Windows.Forms.ComboBox();
             this.CBcliente = new System.Windows.Forms.CheckBox();
             this.CBfecha = new System.Windows.Forms.CheckBox();
             this.DThasta = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.DTdesde = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.LnomEmpleado = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.Ccliente = new System.Windows.Forms.ComboBox();
+            this.Lempleado = new System.Windows.Forms.Label();
+            this.id_venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dni_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGventas)).BeginInit();
             this.Pventas.SuspendLayout();
             this.GBfiltroVenta.SuspendLayout();
@@ -51,17 +54,21 @@
             this.DGventas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGventas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGventas.Location = new System.Drawing.Point(27, 313);
+            this.DGventas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id_venta,
+            this.dni_cliente,
+            this.total});
+            this.DGventas.Location = new System.Drawing.Point(27, 415);
             this.DGventas.Name = "DGventas";
             this.DGventas.RowHeadersWidth = 62;
             this.DGventas.RowTemplate.Height = 28;
-            this.DGventas.Size = new System.Drawing.Size(995, 346);
+            this.DGventas.Size = new System.Drawing.Size(1121, 346);
             this.DGventas.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 12);
+            this.label2.Location = new System.Drawing.Point(30, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 27);
             this.label2.TabIndex = 2;
@@ -70,8 +77,8 @@
             // Pventas
             // 
             this.Pventas.BackColor = System.Drawing.Color.RosyBrown;
+            this.Pventas.Controls.Add(this.Lempleado);
             this.Pventas.Controls.Add(this.GBfiltroVenta);
-            this.Pventas.Controls.Add(this.LnomEmpleado);
             this.Pventas.Controls.Add(this.label2);
             this.Pventas.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Pventas.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -95,6 +102,15 @@
             this.GBfiltroVenta.TabIndex = 8;
             this.GBfiltroVenta.TabStop = false;
             this.GBfiltroVenta.Text = "Filtrar por";
+            // 
+            // Ccliente
+            // 
+            this.Ccliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ccliente.FormattingEnabled = true;
+            this.Ccliente.Location = new System.Drawing.Point(223, 104);
+            this.Ccliente.Name = "Ccliente";
+            this.Ccliente.Size = new System.Drawing.Size(280, 34);
+            this.Ccliente.TabIndex = 10;
             // 
             // CBcliente
             // 
@@ -158,14 +174,6 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "Desde";
             // 
-            // LnomEmpleado
-            // 
-            this.LnomEmpleado.AutoSize = true;
-            this.LnomEmpleado.Location = new System.Drawing.Point(135, 12);
-            this.LnomEmpleado.Name = "LnomEmpleado";
-            this.LnomEmpleado.Size = new System.Drawing.Size(0, 27);
-            this.LnomEmpleado.TabIndex = 3;
-            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -179,21 +187,42 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Lista de ventas";
             // 
-            // Ccliente
+            // Lempleado
             // 
-            this.Ccliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ccliente.FormattingEnabled = true;
-            this.Ccliente.Location = new System.Drawing.Point(223, 104);
-            this.Ccliente.Name = "Ccliente";
-            this.Ccliente.Size = new System.Drawing.Size(280, 34);
-            this.Ccliente.TabIndex = 10;
+            this.Lempleado.AutoSize = true;
+            this.Lempleado.Location = new System.Drawing.Point(193, 12);
+            this.Lempleado.Name = "Lempleado";
+            this.Lempleado.Size = new System.Drawing.Size(66, 27);
+            this.Lempleado.TabIndex = 9;
+            this.Lempleado.Text = "label3";
+            // 
+            // id_venta
+            // 
+            this.id_venta.HeaderText = "Venta nr";
+            this.id_venta.MinimumWidth = 8;
+            this.id_venta.Name = "id_venta";
+            this.id_venta.Width = 150;
+            // 
+            // dni_cliente
+            // 
+            this.dni_cliente.HeaderText = "Cliente";
+            this.dni_cliente.MinimumWidth = 8;
+            this.dni_cliente.Name = "dni_cliente";
+            this.dni_cliente.Width = 150;
+            // 
+            // total
+            // 
+            this.total.HeaderText = "Total";
+            this.total.MinimumWidth = 8;
+            this.total.Name = "total";
+            this.total.Width = 150;
             // 
             // FlistarVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
-            this.ClientSize = new System.Drawing.Size(1099, 671);
+            this.ClientSize = new System.Drawing.Size(1225, 773);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Pventas);
             this.Controls.Add(this.DGventas);
@@ -219,11 +248,14 @@
         private System.Windows.Forms.DateTimePicker DThasta;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker DTdesde;
-        private System.Windows.Forms.Label LnomEmpleado;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox GBfiltroVenta;
         private System.Windows.Forms.CheckBox CBfecha;
         private System.Windows.Forms.CheckBox CBcliente;
         private System.Windows.Forms.ComboBox Ccliente;
+        private System.Windows.Forms.Label Lempleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_venta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dni_cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn total;
     }
 }
