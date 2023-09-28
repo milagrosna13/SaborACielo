@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
+
 namespace SaborAcielo
 {
     public partial class FlistaProductosAdmin : Form
@@ -17,6 +18,7 @@ namespace SaborAcielo
         {
             InitializeComponent();
             BeditarProd.Visible = false;
+            //cargar tabla
         }
 
         private void limpiarTextBox()
@@ -94,7 +96,7 @@ namespace SaborAcielo
                     string precio = TBprecio.Text;
                     string detalle = TBdetalle.Text;
                     string cantidad = TBcantidadProdu.Text;
-
+                    DateTime fecha = dateTimePicker1.Value;
                     // Obtener la imagen del PictureBox
                     Image imagen = PBproducto.Image;
 
@@ -105,6 +107,9 @@ namespace SaborAcielo
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = detalle });
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = precio });
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = cantidad });
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = 1 });
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = fecha});
+
                     // Cargar la imagen en una celda de la columna de imágenes
                     DataGridViewImageCell imagenCell = new DataGridViewImageCell();
                     imagenCell.Value = imagen;
@@ -159,6 +164,7 @@ namespace SaborAcielo
         {
         }
 
+        //editar
         private void DGlistaProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = DGlistaProductos.Rows[e.RowIndex];
@@ -213,6 +219,13 @@ namespace SaborAcielo
         private void BcancelProdu_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FlistaProductosAdmin_Load(object sender, EventArgs e)
+        {
+            // TODO: esta línea de código carga datos en la tabla 'saborAcieloDataSet.Producto' Puede moverla o quitarla según sea necesario.
+            this.productoTableAdapter.Fill(this.saborAcieloDataSet.Producto);
+
         }
     } 
 }

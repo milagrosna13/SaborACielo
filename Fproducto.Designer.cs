@@ -30,20 +30,20 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GBfiltroProductos = new System.Windows.Forms.GroupBox();
+            this.CtipoProd = new System.Windows.Forms.ComboBox();
+            this.CnombreProd = new System.Windows.Forms.ComboBox();
             this.BbuscarProducto = new System.Windows.Forms.Button();
             this.CBtodosProductos = new System.Windows.Forms.CheckBox();
             this.ltipo = new System.Windows.Forms.Label();
             this.Lnombre = new System.Windows.Forms.Label();
-            this.CnombreProd = new System.Windows.Forms.ComboBox();
-            this.CtipoProd = new System.Windows.Forms.ComboBox();
             this.DGlistaProductos = new System.Windows.Forms.DataGridView();
             this.nombre_prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_tipoproducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcion_prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precio_unitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cant_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.foto_producto = new System.Windows.Forms.DataGridViewImageColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.foto_producto = new System.Windows.Forms.DataGridViewImageColumn();
             this.GBfiltroProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaProductos)).BeginInit();
             this.SuspendLayout();
@@ -58,21 +58,36 @@
             this.GBfiltroProductos.Controls.Add(this.ltipo);
             this.GBfiltroProductos.Controls.Add(this.Lnombre);
             this.GBfiltroProductos.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GBfiltroProductos.Location = new System.Drawing.Point(46, 18);
-            this.GBfiltroProductos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GBfiltroProductos.Location = new System.Drawing.Point(31, 12);
             this.GBfiltroProductos.Name = "GBfiltroProductos";
-            this.GBfiltroProductos.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GBfiltroProductos.Size = new System.Drawing.Size(1071, 154);
+            this.GBfiltroProductos.Size = new System.Drawing.Size(714, 100);
             this.GBfiltroProductos.TabIndex = 1;
             this.GBfiltroProductos.TabStop = false;
             this.GBfiltroProductos.Text = "Filtrar por";
             // 
+            // CtipoProd
+            // 
+            this.CtipoProd.FormattingEnabled = true;
+            this.CtipoProd.Location = new System.Drawing.Point(479, 57);
+            this.CtipoProd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CtipoProd.Name = "CtipoProd";
+            this.CtipoProd.Size = new System.Drawing.Size(159, 27);
+            this.CtipoProd.TabIndex = 22;
+            // 
+            // CnombreProd
+            // 
+            this.CnombreProd.FormattingEnabled = true;
+            this.CnombreProd.Location = new System.Drawing.Point(279, 57);
+            this.CnombreProd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CnombreProd.Name = "CnombreProd";
+            this.CnombreProd.Size = new System.Drawing.Size(159, 27);
+            this.CnombreProd.TabIndex = 21;
+            // 
             // BbuscarProducto
             // 
-            this.BbuscarProducto.Location = new System.Drawing.Point(99, 92);
-            this.BbuscarProducto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BbuscarProducto.Location = new System.Drawing.Point(66, 60);
             this.BbuscarProducto.Name = "BbuscarProducto";
-            this.BbuscarProducto.Size = new System.Drawing.Size(112, 52);
+            this.BbuscarProducto.Size = new System.Drawing.Size(75, 34);
             this.BbuscarProducto.TabIndex = 5;
             this.BbuscarProducto.Text = "Buscar";
             this.BbuscarProducto.UseVisualStyleBackColor = true;
@@ -80,10 +95,9 @@
             // CBtodosProductos
             // 
             this.CBtodosProductos.AutoSize = true;
-            this.CBtodosProductos.Location = new System.Drawing.Point(33, 40);
-            this.CBtodosProductos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CBtodosProductos.Location = new System.Drawing.Point(22, 26);
             this.CBtodosProductos.Name = "CBtodosProductos";
-            this.CBtodosProductos.Size = new System.Drawing.Size(238, 33);
+            this.CBtodosProductos.Size = new System.Drawing.Size(154, 23);
             this.CBtodosProductos.TabIndex = 2;
             this.CBtodosProductos.Text = "Todos los productos";
             this.CBtodosProductos.UseVisualStyleBackColor = true;
@@ -91,38 +105,20 @@
             // ltipo
             // 
             this.ltipo.AutoSize = true;
-            this.ltipo.Location = new System.Drawing.Point(741, 31);
-            this.ltipo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ltipo.Location = new System.Drawing.Point(494, 20);
             this.ltipo.Name = "ltipo";
-            this.ltipo.Size = new System.Drawing.Size(60, 29);
+            this.ltipo.Size = new System.Drawing.Size(40, 19);
             this.ltipo.TabIndex = 1;
             this.ltipo.Text = "Tipo";
             // 
             // Lnombre
             // 
             this.Lnombre.AutoSize = true;
-            this.Lnombre.Location = new System.Drawing.Point(430, 31);
-            this.Lnombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Lnombre.Location = new System.Drawing.Point(287, 20);
             this.Lnombre.Name = "Lnombre";
-            this.Lnombre.Size = new System.Drawing.Size(91, 29);
+            this.Lnombre.Size = new System.Drawing.Size(61, 19);
             this.Lnombre.TabIndex = 0;
             this.Lnombre.Text = "Nombre";
-            // 
-            // CnombreProd
-            // 
-            this.CnombreProd.FormattingEnabled = true;
-            this.CnombreProd.Location = new System.Drawing.Point(418, 87);
-            this.CnombreProd.Name = "CnombreProd";
-            this.CnombreProd.Size = new System.Drawing.Size(237, 37);
-            this.CnombreProd.TabIndex = 21;
-            // 
-            // CtipoProd
-            // 
-            this.CtipoProd.FormattingEnabled = true;
-            this.CtipoProd.Location = new System.Drawing.Point(718, 87);
-            this.CtipoProd.Name = "CtipoProd";
-            this.CtipoProd.Size = new System.Drawing.Size(237, 37);
-            this.CtipoProd.TabIndex = 22;
             // 
             // DGlistaProductos
             // 
@@ -145,13 +141,14 @@
             this.descripcion_prod,
             this.precio_unitario,
             this.cant_producto,
-            this.foto_producto,
-            this.estado});
-            this.DGlistaProductos.Location = new System.Drawing.Point(28, 217);
+            this.estado,
+            this.foto_producto});
+            this.DGlistaProductos.Location = new System.Drawing.Point(19, 141);
+            this.DGlistaProductos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DGlistaProductos.Name = "DGlistaProductos";
             this.DGlistaProductos.RowHeadersWidth = 62;
             this.DGlistaProductos.RowTemplate.Height = 28;
-            this.DGlistaProductos.Size = new System.Drawing.Size(1120, 463);
+            this.DGlistaProductos.Size = new System.Drawing.Size(747, 301);
             this.DGlistaProductos.TabIndex = 7;
             // 
             // nombre_prod
@@ -184,6 +181,13 @@
             this.cant_producto.MinimumWidth = 8;
             this.cant_producto.Name = "cant_producto";
             // 
+            // estado
+            // 
+            this.estado.HeaderText = "Estado";
+            this.estado.MinimumWidth = 8;
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
+            // 
             // foto_producto
             // 
             this.foto_producto.HeaderText = "Imagen";
@@ -192,23 +196,15 @@
             this.foto_producto.Name = "foto_producto";
             this.foto_producto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // estado
-            // 
-            this.estado.HeaderText = "Estado";
-            this.estado.MinimumWidth = 8;
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
-            // 
             // Fproducto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
-            this.ClientSize = new System.Drawing.Size(1200, 692);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.DGlistaProductos);
             this.Controls.Add(this.GBfiltroProductos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Fproducto";
             this.Text = "Lista de Productos";
             this.GBfiltroProductos.ResumeLayout(false);
@@ -232,7 +228,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion_prod;
         private System.Windows.Forms.DataGridViewTextBoxColumn precio_unitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn cant_producto;
-        private System.Windows.Forms.DataGridViewImageColumn foto_producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn estado;
+        private System.Windows.Forms.DataGridViewImageColumn foto_producto;
     }
 }

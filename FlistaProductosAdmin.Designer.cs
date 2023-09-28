@@ -38,7 +38,7 @@
             this.ltipo = new System.Windows.Forms.Label();
             this.Lnombre = new System.Windows.Forms.Label();
             this.PagregarProdu = new System.Windows.Forms.Panel();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.TBdetalle = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,19 +55,9 @@
             this.TBnomProdu = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.BcancelProdu = new System.Windows.Forms.Button();
-            this.nombre_prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_tipoproducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcion_prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precio_unitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cant_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.foto_producto = new System.Windows.Forms.DataGridViewImageColumn();
-            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Editar_produ = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Eliminar_produ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaProductos)).BeginInit();
             this.GBfiltroProductos.SuspendLayout();
             this.PagregarProdu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBproducto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,21 +76,12 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGlistaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGlistaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGlistaProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nombre_prod,
-            this.id_tipoproducto,
-            this.descripcion_prod,
-            this.precio_unitario,
-            this.cant_producto,
-            this.foto_producto,
-            this.estado,
-            this.Editar_produ,
-            this.Eliminar_produ});
-            this.DGlistaProductos.Location = new System.Drawing.Point(48, 489);
+            this.DGlistaProductos.Location = new System.Drawing.Point(32, 318);
+            this.DGlistaProductos.Margin = new System.Windows.Forms.Padding(2);
             this.DGlistaProductos.Name = "DGlistaProductos";
             this.DGlistaProductos.RowHeadersWidth = 62;
             this.DGlistaProductos.RowTemplate.Height = 28;
-            this.DGlistaProductos.Size = new System.Drawing.Size(1120, 463);
+            this.DGlistaProductos.Size = new System.Drawing.Size(747, 301);
             this.DGlistaProductos.TabIndex = 6;
             this.DGlistaProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaProductos_CellClick);
             this.DGlistaProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaProductos_CellContentClick);
@@ -115,11 +96,9 @@
             this.GBfiltroProductos.Controls.Add(this.ltipo);
             this.GBfiltroProductos.Controls.Add(this.Lnombre);
             this.GBfiltroProductos.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
-            this.GBfiltroProductos.Location = new System.Drawing.Point(28, 23);
-            this.GBfiltroProductos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GBfiltroProductos.Location = new System.Drawing.Point(19, 15);
             this.GBfiltroProductos.Name = "GBfiltroProductos";
-            this.GBfiltroProductos.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GBfiltroProductos.Size = new System.Drawing.Size(314, 386);
+            this.GBfiltroProductos.Size = new System.Drawing.Size(209, 251);
             this.GBfiltroProductos.TabIndex = 5;
             this.GBfiltroProductos.TabStop = false;
             this.GBfiltroProductos.Text = "Filtrar por";
@@ -127,25 +106,26 @@
             // CfiltroTipo
             // 
             this.CfiltroTipo.FormattingEnabled = true;
-            this.CfiltroTipo.Location = new System.Drawing.Point(28, 272);
+            this.CfiltroTipo.Location = new System.Drawing.Point(19, 177);
+            this.CfiltroTipo.Margin = new System.Windows.Forms.Padding(2);
             this.CfiltroTipo.Name = "CfiltroTipo";
-            this.CfiltroTipo.Size = new System.Drawing.Size(236, 37);
+            this.CfiltroTipo.Size = new System.Drawing.Size(159, 27);
             this.CfiltroTipo.TabIndex = 21;
             // 
             // CnombreProd
             // 
             this.CnombreProd.FormattingEnabled = true;
-            this.CnombreProd.Location = new System.Drawing.Point(28, 180);
+            this.CnombreProd.Location = new System.Drawing.Point(19, 117);
+            this.CnombreProd.Margin = new System.Windows.Forms.Padding(2);
             this.CnombreProd.Name = "CnombreProd";
-            this.CnombreProd.Size = new System.Drawing.Size(236, 37);
+            this.CnombreProd.Size = new System.Drawing.Size(159, 27);
             this.CnombreProd.TabIndex = 20;
             // 
             // BbuscarProducto
             // 
-            this.BbuscarProducto.Location = new System.Drawing.Point(82, 331);
-            this.BbuscarProducto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BbuscarProducto.Location = new System.Drawing.Point(55, 215);
             this.BbuscarProducto.Name = "BbuscarProducto";
-            this.BbuscarProducto.Size = new System.Drawing.Size(112, 46);
+            this.BbuscarProducto.Size = new System.Drawing.Size(75, 30);
             this.BbuscarProducto.TabIndex = 5;
             this.BbuscarProducto.Text = "Buscar";
             this.BbuscarProducto.UseVisualStyleBackColor = true;
@@ -153,10 +133,9 @@
             // CBtodosProductos
             // 
             this.CBtodosProductos.AutoSize = true;
-            this.CBtodosProductos.Location = new System.Drawing.Point(28, 88);
-            this.CBtodosProductos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CBtodosProductos.Location = new System.Drawing.Point(19, 57);
             this.CBtodosProductos.Name = "CBtodosProductos";
-            this.CBtodosProductos.Size = new System.Drawing.Size(238, 33);
+            this.CBtodosProductos.Size = new System.Drawing.Size(154, 23);
             this.CBtodosProductos.TabIndex = 2;
             this.CBtodosProductos.Text = "Todos los productos";
             this.CBtodosProductos.UseVisualStyleBackColor = true;
@@ -164,20 +143,18 @@
             // ltipo
             // 
             this.ltipo.AutoSize = true;
-            this.ltipo.Location = new System.Drawing.Point(33, 235);
-            this.ltipo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ltipo.Location = new System.Drawing.Point(22, 153);
             this.ltipo.Name = "ltipo";
-            this.ltipo.Size = new System.Drawing.Size(60, 29);
+            this.ltipo.Size = new System.Drawing.Size(40, 19);
             this.ltipo.TabIndex = 1;
             this.ltipo.Text = "Tipo";
             // 
             // Lnombre
             // 
             this.Lnombre.AutoSize = true;
-            this.Lnombre.Location = new System.Drawing.Point(33, 148);
-            this.Lnombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Lnombre.Location = new System.Drawing.Point(22, 96);
             this.Lnombre.Name = "Lnombre";
-            this.Lnombre.Size = new System.Drawing.Size(91, 29);
+            this.Lnombre.Size = new System.Drawing.Size(61, 19);
             this.Lnombre.TabIndex = 0;
             this.Lnombre.Text = "Nombre";
             // 
@@ -187,7 +164,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PagregarProdu.AutoScroll = true;
             this.PagregarProdu.BackColor = System.Drawing.Color.RosyBrown;
-            this.PagregarProdu.Controls.Add(this.numericUpDown1);
+            this.PagregarProdu.Controls.Add(this.dateTimePicker1);
             this.PagregarProdu.Controls.Add(this.label6);
             this.PagregarProdu.Controls.Add(this.TBdetalle);
             this.PagregarProdu.Controls.Add(this.label2);
@@ -205,44 +182,49 @@
             this.PagregarProdu.Controls.Add(this.label1);
             this.PagregarProdu.Controls.Add(this.BcancelProdu);
             this.PagregarProdu.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PagregarProdu.Location = new System.Drawing.Point(363, 23);
+            this.PagregarProdu.Location = new System.Drawing.Point(242, 15);
+            this.PagregarProdu.Margin = new System.Windows.Forms.Padding(2);
             this.PagregarProdu.Name = "PagregarProdu";
-            this.PagregarProdu.Size = new System.Drawing.Size(820, 460);
+            this.PagregarProdu.Size = new System.Drawing.Size(547, 299);
             this.PagregarProdu.TabIndex = 7;
             // 
-            // numericUpDown1
+            // dateTimePicker1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(447, 338);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 32);
-            this.numericUpDown1.TabIndex = 24;
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(327, 221);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(107, 24);
+            this.dateTimePicker1.TabIndex = 23;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(326, 338);
+            this.label6.Location = new System.Drawing.Point(217, 220);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(105, 29);
+            this.label6.Size = new System.Drawing.Size(96, 19);
             this.label6.TabIndex = 22;
-            this.label6.Text = "Stock min";
+            this.label6.Text = "Fecha ingreso";
             // 
             // TBdetalle
             // 
             this.TBdetalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBdetalle.Location = new System.Drawing.Point(166, 158);
+            this.TBdetalle.Location = new System.Drawing.Point(111, 103);
+            this.TBdetalle.Margin = new System.Windows.Forms.Padding(2);
             this.TBdetalle.Multiline = true;
             this.TBdetalle.Name = "TBdetalle";
-            this.TBdetalle.Size = new System.Drawing.Size(340, 106);
+            this.TBdetalle.Size = new System.Drawing.Size(228, 70);
             this.TBdetalle.TabIndex = 21;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(50, 158);
+            this.label2.Location = new System.Drawing.Point(33, 103);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 29);
+            this.label2.Size = new System.Drawing.Size(55, 19);
             this.label2.TabIndex = 20;
             this.label2.Text = "Detalle";
             // 
@@ -253,18 +235,20 @@
             "abc",
             "def",
             "ghi"});
-            this.CtipoProd.Location = new System.Drawing.Point(166, 88);
+            this.CtipoProd.Location = new System.Drawing.Point(111, 57);
+            this.CtipoProd.Margin = new System.Windows.Forms.Padding(2);
             this.CtipoProd.Name = "CtipoProd";
-            this.CtipoProd.Size = new System.Drawing.Size(336, 32);
+            this.CtipoProd.Size = new System.Drawing.Size(225, 23);
             this.CtipoProd.TabIndex = 19;
             this.CtipoProd.Text = "--seleccione el tipo de producto";
             // 
             // BeditarProd
             // 
             this.BeditarProd.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BeditarProd.Location = new System.Drawing.Point(106, 408);
+            this.BeditarProd.Location = new System.Drawing.Point(71, 265);
+            this.BeditarProd.Margin = new System.Windows.Forms.Padding(2);
             this.BeditarProd.Name = "BeditarProd";
-            this.BeditarProd.Size = new System.Drawing.Size(172, 49);
+            this.BeditarProd.Size = new System.Drawing.Size(115, 32);
             this.BeditarProd.TabIndex = 18;
             this.BeditarProd.Text = "Modificar";
             this.BeditarProd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -274,10 +258,9 @@
             // BexaminarImProdu
             // 
             this.BexaminarImProdu.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
-            this.BexaminarImProdu.Location = new System.Drawing.Point(648, 260);
-            this.BexaminarImProdu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BexaminarImProdu.Location = new System.Drawing.Point(432, 169);
             this.BexaminarImProdu.Name = "BexaminarImProdu";
-            this.BexaminarImProdu.Size = new System.Drawing.Size(142, 42);
+            this.BexaminarImProdu.Size = new System.Drawing.Size(95, 27);
             this.BexaminarImProdu.TabIndex = 17;
             this.BexaminarImProdu.Text = "Examinar";
             this.BexaminarImProdu.UseVisualStyleBackColor = true;
@@ -287,10 +270,9 @@
             // 
             this.PBproducto.BackgroundImage = global::SaborAcielo.Properties.Resources.ProductosInicio;
             this.PBproducto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PBproducto.Location = new System.Drawing.Point(588, 22);
-            this.PBproducto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PBproducto.Location = new System.Drawing.Point(392, 14);
             this.PBproducto.Name = "PBproducto";
-            this.PBproducto.Size = new System.Drawing.Size(202, 208);
+            this.PBproducto.Size = new System.Drawing.Size(135, 135);
             this.PBproducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PBproducto.TabIndex = 16;
             this.PBproducto.TabStop = false;
@@ -298,9 +280,10 @@
             // BagregarProdu
             // 
             this.BagregarProdu.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BagregarProdu.Location = new System.Drawing.Point(106, 408);
+            this.BagregarProdu.Location = new System.Drawing.Point(71, 265);
+            this.BagregarProdu.Margin = new System.Windows.Forms.Padding(2);
             this.BagregarProdu.Name = "BagregarProdu";
-            this.BagregarProdu.Size = new System.Drawing.Size(172, 49);
+            this.BagregarProdu.Size = new System.Drawing.Size(115, 32);
             this.BagregarProdu.TabIndex = 15;
             this.BagregarProdu.Text = "Agregar";
             this.BagregarProdu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -310,9 +293,10 @@
             // TBcantidadProdu
             // 
             this.TBcantidadProdu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBcantidadProdu.Location = new System.Drawing.Point(166, 335);
+            this.TBcantidadProdu.Location = new System.Drawing.Point(111, 218);
+            this.TBcantidadProdu.Margin = new System.Windows.Forms.Padding(2);
             this.TBcantidadProdu.Name = "TBcantidadProdu";
-            this.TBcantidadProdu.Size = new System.Drawing.Size(91, 35);
+            this.TBcantidadProdu.Size = new System.Drawing.Size(62, 26);
             this.TBcantidadProdu.TabIndex = 11;
             this.TBcantidadProdu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBcantidadProdu_KeyPress);
             // 
@@ -320,18 +304,20 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(56, 337);
+            this.label5.Location = new System.Drawing.Point(37, 219);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 29);
+            this.label5.Size = new System.Drawing.Size(43, 19);
             this.label5.TabIndex = 10;
             this.label5.Text = "Stock";
             // 
             // TBprecio
             // 
             this.TBprecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBprecio.Location = new System.Drawing.Point(166, 272);
+            this.TBprecio.Location = new System.Drawing.Point(111, 177);
+            this.TBprecio.Margin = new System.Windows.Forms.Padding(2);
             this.TBprecio.Name = "TBprecio";
-            this.TBprecio.Size = new System.Drawing.Size(342, 35);
+            this.TBprecio.Size = new System.Drawing.Size(229, 26);
             this.TBprecio.TabIndex = 9;
             this.TBprecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBprecio_KeyPress);
             // 
@@ -339,9 +325,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(45, 88);
+            this.label4.Location = new System.Drawing.Point(30, 57);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 29);
+            this.label4.Size = new System.Drawing.Size(40, 19);
             this.label4.TabIndex = 8;
             this.label4.Text = "Tipo";
             // 
@@ -349,18 +336,20 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(48, 272);
+            this.label3.Location = new System.Drawing.Point(32, 177);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 29);
+            this.label3.Size = new System.Drawing.Size(49, 19);
             this.label3.TabIndex = 6;
             this.label3.Text = "Precio";
             // 
             // TBnomProdu
             // 
             this.TBnomProdu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBnomProdu.Location = new System.Drawing.Point(166, 15);
+            this.TBnomProdu.Location = new System.Drawing.Point(111, 10);
+            this.TBnomProdu.Margin = new System.Windows.Forms.Padding(2);
             this.TBnomProdu.Name = "TBnomProdu";
-            this.TBnomProdu.Size = new System.Drawing.Size(342, 35);
+            this.TBnomProdu.Size = new System.Drawing.Size(229, 26);
             this.TBnomProdu.TabIndex = 3;
             this.TBnomProdu.TextChanged += new System.EventHandler(this.TBnomProdu_TextChanged);
             this.TBnomProdu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBnomProdu_KeyPress);
@@ -369,9 +358,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(48, 22);
+            this.label1.Location = new System.Drawing.Point(32, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 29);
+            this.label1.Size = new System.Drawing.Size(61, 19);
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombre";
             // 
@@ -380,86 +370,26 @@
             this.BcancelProdu.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BcancelProdu.Image = global::SaborAcielo.Properties.Resources.cruz;
             this.BcancelProdu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BcancelProdu.Location = new System.Drawing.Point(332, 408);
+            this.BcancelProdu.Location = new System.Drawing.Point(221, 265);
+            this.BcancelProdu.Margin = new System.Windows.Forms.Padding(2);
             this.BcancelProdu.Name = "BcancelProdu";
-            this.BcancelProdu.Size = new System.Drawing.Size(170, 49);
+            this.BcancelProdu.Size = new System.Drawing.Size(113, 32);
             this.BcancelProdu.TabIndex = 1;
             this.BcancelProdu.Text = "Cancelar";
             this.BcancelProdu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BcancelProdu.UseVisualStyleBackColor = true;
             this.BcancelProdu.Click += new System.EventHandler(this.BcancelProdu_Click);
             // 
-            // nombre_prod
-            // 
-            this.nombre_prod.HeaderText = "Nombre";
-            this.nombre_prod.MinimumWidth = 8;
-            this.nombre_prod.Name = "nombre_prod";
-            // 
-            // id_tipoproducto
-            // 
-            this.id_tipoproducto.HeaderText = "Tipo";
-            this.id_tipoproducto.MinimumWidth = 8;
-            this.id_tipoproducto.Name = "id_tipoproducto";
-            // 
-            // descripcion_prod
-            // 
-            this.descripcion_prod.HeaderText = "Detalle";
-            this.descripcion_prod.MinimumWidth = 8;
-            this.descripcion_prod.Name = "descripcion_prod";
-            // 
-            // precio_unitario
-            // 
-            this.precio_unitario.HeaderText = "Precio";
-            this.precio_unitario.MinimumWidth = 8;
-            this.precio_unitario.Name = "precio_unitario";
-            // 
-            // cant_producto
-            // 
-            this.cant_producto.HeaderText = "Stock";
-            this.cant_producto.MinimumWidth = 8;
-            this.cant_producto.Name = "cant_producto";
-            // 
-            // foto_producto
-            // 
-            this.foto_producto.HeaderText = "Imagen";
-            this.foto_producto.Image = global::SaborAcielo.Properties.Resources.decoracion_de_pasteles;
-            this.foto_producto.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.foto_producto.MinimumWidth = 8;
-            this.foto_producto.Name = "foto_producto";
-            this.foto_producto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // estado
-            // 
-            this.estado.HeaderText = "Estado";
-            this.estado.MinimumWidth = 8;
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
-            // 
-            // Editar_produ
-            // 
-            this.Editar_produ.HeaderText = "Editar";
-            this.Editar_produ.MinimumWidth = 8;
-            this.Editar_produ.Name = "Editar_produ";
-            this.Editar_produ.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Editar_produ.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Eliminar_produ
-            // 
-            this.Eliminar_produ.HeaderText = "Eliminar";
-            this.Eliminar_produ.MinimumWidth = 8;
-            this.Eliminar_produ.Name = "Eliminar_produ";
-            // 
             // FlistaProductosAdmin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
-            this.ClientSize = new System.Drawing.Size(1200, 788);
+            this.ClientSize = new System.Drawing.Size(800, 512);
             this.Controls.Add(this.PagregarProdu);
             this.Controls.Add(this.DGlistaProductos);
             this.Controls.Add(this.GBfiltroProductos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FlistaProductosAdmin";
             this.Text = "Lista de Productos";
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaProductos)).EndInit();
@@ -467,7 +397,6 @@
             this.GBfiltroProductos.PerformLayout();
             this.PagregarProdu.ResumeLayout(false);
             this.PagregarProdu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBproducto)).EndInit();
             this.ResumeLayout(false);
 
@@ -497,18 +426,9 @@
         private System.Windows.Forms.ComboBox CtipoProd;
         private System.Windows.Forms.TextBox TBdetalle;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox CfiltroTipo;
         private System.Windows.Forms.ComboBox CnombreProd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_prod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_tipoproducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion_prod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precio_unitario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cant_producto;
-        private System.Windows.Forms.DataGridViewImageColumn foto_producto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
-        private System.Windows.Forms.DataGridViewButtonColumn Editar_produ;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Eliminar_produ;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
