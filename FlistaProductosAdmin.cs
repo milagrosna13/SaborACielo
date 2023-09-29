@@ -2,25 +2,35 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Configuration;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Collections;
+using SaborAcielo.datos;
 
 
 namespace SaborAcielo
 {
     public partial class FlistaProductosAdmin : Form
     {
+        //private readonly string connectionString = ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString;
+        //private readonly SqlDataAdapter dataAdapter;
+        //private readonly DataTable dataTable;
         public FlistaProductosAdmin()
         {
             InitializeComponent();
             BeditarProd.Visible = false;
-            //cargar tabla
+            Cproducto producto = new Cproducto();
+            bool resultado = producto.CargarProductos(DGlistaProductos);
+            
         }
-
+       
         private void limpiarTextBox()
         {
             TBnomProdu.Clear();
@@ -79,8 +89,11 @@ namespace SaborAcielo
             }
         }
 
+      
         private void BagregarProdu_Click_1(object sender, EventArgs e)
         {
+           // Cproducto produ = new Cproducto();
+
             if (string.IsNullOrWhiteSpace(TBnomProdu.Text) || string.IsNullOrEmpty(TBprecio.Text) || string.IsNullOrWhiteSpace(TBcantidadProdu.Text))
             {
                 MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -90,44 +103,37 @@ namespace SaborAcielo
                 var res = MessageBox.Show("¿Desea guardar los datos del producto: " + TBnomProdu.Text + "", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == System.Windows.Forms.DialogResult.Yes)
                 {
+                    bool exito = Cproducto.AgregarProducto(TBnomProdu.Text, CtipoProd.Text, Convert.ToDecimal(TBprecio.Text), TBdetalle.Text, TBcantidadProdu.Text, Convert.ToDateTime(dtFecha.Text), DGlistaProductos);
 
-                    string nombre = TBnomProdu.Text;
-                    string tipo = CtipoProd.Text;
-                    string precio = TBprecio.Text;
-                    string detalle = TBdetalle.Text;
-                    string cantidad = TBcantidadProdu.Text;
-                    DateTime fecha = dateTimePicker1.Value;
-                    // Obtener la imagen del PictureBox
-                    Image imagen = PBproducto.Image;
+                    if (exito)
+                    {
+                        // Producto agregado con éxito, realiza las acciones necesarias
+                        // Limpiar campos, actualizar DataGridView, etc.
+                       MessageBox.Show("Producto agregado con éxito", "Agregar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Agregar una nueva fila al DataGridView
-                    DataGridViewRow fila = new DataGridViewRow();
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = nombre });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = tipo });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = detalle });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = precio });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = cantidad });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = 1 });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = fecha});
+                    }
 
-                    // Cargar la imagen en una celda de la columna de imágenes
-                    DataGridViewImageCell imagenCell = new DataGridViewImageCell();
-                    imagenCell.Value = imagen;
-                    fila.Cells.Add(imagenCell);
-
-                    // Agregar la fila al DataGridView
-                    DGlistaProductos.Rows.Add(fila);
-
-                    MessageBox.Show("Producto agregado con éxito", "Agregar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    limpiarTextBox();   
+                    
+                    limpiarTextBox();
                 }
                 else
                 {
                     limpiarTextBox();
                 }
 
-            }
+                    }
+                }
+
+
+        private void DGlistaProductos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {/*
+            if (e.ColumnIndex == DGlistaProductos.Columns["estado"].Index && e.Value != null)
+            {
+                bool estado = Convert.ToBoolean(e.Value);
+                e.Value = estado ? true : false;
+                e.FormattingApplied = true;
+               
+            }*/
         }
 
         private void BexaminarImProdu_Click_1(object sender, EventArgs e)
@@ -160,15 +166,12 @@ namespace SaborAcielo
 
         private void TBnomProdu_TextChanged(object sender, EventArgs e){}
         int pos;
-        private void DGlistaProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
 
         //editar
         private void DGlistaProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = DGlistaProductos.Rows[e.RowIndex];
-            DataGridViewCell nombreCell = row.Cells["nombre_prod"];
+            DataGridViewCell nombreCell = row.Cells["nombre"];
             DataGridViewCell editarCell = row.Cells["Editar_produ"];
 
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
@@ -192,13 +195,7 @@ namespace SaborAcielo
                         editarCell.ReadOnly = false;
                         BagregarProdu.Visible = false;
                         BeditarProd.Visible = true;
-
-                        pos = DGlistaProductos.CurrentRow.Index;
-                        TBnomProdu.Text = DGlistaProductos[0, pos].Value.ToString();
-                        CtipoProd.Text = DGlistaProductos[1, pos].Value.ToString();
-                        TBprecio.Text = DGlistaProductos[2, pos].Value.ToString();
-                        TBdetalle.Text = DGlistaProductos[3, pos].Value.ToString();
-                        TBcantidadProdu.Text = DGlistaProductos[4, pos].Value.ToString();
+                        //metodo editar
                     }
                 }
             }
@@ -223,8 +220,14 @@ namespace SaborAcielo
 
         private void FlistaProductosAdmin_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'saborAcieloDataSet.Producto' Puede moverla o quitarla según sea necesario.
-            this.productoTableAdapter.Fill(this.saborAcieloDataSet.Producto);
+           
+
+
+        }
+
+        private void FlistaProductosAdmin_Load_1(object sender, EventArgs e)
+        {
+            
 
         }
     } 

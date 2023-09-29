@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGlistaProductos = new System.Windows.Forms.DataGridView();
+            this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GBfiltroProductos = new System.Windows.Forms.GroupBox();
             this.CfiltroTipo = new System.Windows.Forms.ComboBox();
             this.CnombreProd = new System.Windows.Forms.ComboBox();
@@ -38,7 +40,7 @@
             this.ltipo = new System.Windows.Forms.Label();
             this.Lnombre = new System.Windows.Forms.Label();
             this.PagregarProdu = new System.Windows.Forms.Panel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtFecha = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.TBdetalle = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,6 +58,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BcancelProdu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaProductos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).BeginInit();
             this.GBfiltroProductos.SuspendLayout();
             this.PagregarProdu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBproducto)).BeginInit();
@@ -83,8 +86,7 @@
             this.DGlistaProductos.RowTemplate.Height = 28;
             this.DGlistaProductos.Size = new System.Drawing.Size(747, 301);
             this.DGlistaProductos.TabIndex = 6;
-            this.DGlistaProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaProductos_CellClick);
-            this.DGlistaProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaProductos_CellContentClick);
+            this.DGlistaProductos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGlistaProductos_CellFormatting);
             // 
             // GBfiltroProductos
             // 
@@ -164,7 +166,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PagregarProdu.AutoScroll = true;
             this.PagregarProdu.BackColor = System.Drawing.Color.RosyBrown;
-            this.PagregarProdu.Controls.Add(this.dateTimePicker1);
+            this.PagregarProdu.Controls.Add(this.dtFecha);
             this.PagregarProdu.Controls.Add(this.label6);
             this.PagregarProdu.Controls.Add(this.TBdetalle);
             this.PagregarProdu.Controls.Add(this.label2);
@@ -188,13 +190,13 @@
             this.PagregarProdu.Size = new System.Drawing.Size(547, 299);
             this.PagregarProdu.TabIndex = 7;
             // 
-            // dateTimePicker1
+            // dtFecha
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(327, 221);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(107, 24);
-            this.dateTimePicker1.TabIndex = 23;
+            this.dtFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFecha.Location = new System.Drawing.Point(327, 221);
+            this.dtFecha.Name = "dtFecha";
+            this.dtFecha.Size = new System.Drawing.Size(107, 24);
+            this.dtFecha.TabIndex = 23;
             // 
             // label6
             // 
@@ -232,9 +234,9 @@
             // 
             this.CtipoProd.FormattingEnabled = true;
             this.CtipoProd.Items.AddRange(new object[] {
-            "abc",
-            "def",
-            "ghi"});
+            "Regular",
+            "Vegano",
+            "Sin T.A.C.C"});
             this.CtipoProd.Location = new System.Drawing.Point(111, 57);
             this.CtipoProd.Margin = new System.Windows.Forms.Padding(2);
             this.CtipoProd.Name = "CtipoProd";
@@ -392,7 +394,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FlistaProductosAdmin";
             this.Text = "Lista de Productos";
+            this.Load += new System.EventHandler(this.FlistaProductosAdmin_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaProductos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).EndInit();
             this.GBfiltroProductos.ResumeLayout(false);
             this.GBfiltroProductos.PerformLayout();
             this.PagregarProdu.ResumeLayout(false);
@@ -429,6 +433,18 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox CfiltroTipo;
         private System.Windows.Forms.ComboBox CnombreProd;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtFecha;
+       // private SaborAcieloDataSet1 saborAcieloDataSet1;
+        private System.Windows.Forms.BindingSource productoBindingSource;
+        //private SaborAcieloDataSet1TableAdapters.ProductoTableAdapter productoTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idproduDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreproduDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn detalleDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn estadoDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewImageColumn imagenDataGridViewImageColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idtipoProduDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
     }
 }
