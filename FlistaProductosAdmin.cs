@@ -72,8 +72,6 @@ namespace SaborAcielo
             }
         }
 
-
-
         private bool EsArchivoImagen(string rutaArchivo)
         {
             try
@@ -89,10 +87,9 @@ namespace SaborAcielo
             }
         }
 
-      
         private void BagregarProdu_Click_1(object sender, EventArgs e)
         {
-           // Cproducto produ = new Cproducto();
+            // Cproducto produ = new Cproducto();
 
             if (string.IsNullOrWhiteSpace(TBnomProdu.Text) || string.IsNullOrEmpty(TBprecio.Text) || string.IsNullOrWhiteSpace(TBcantidadProdu.Text))
             {
@@ -103,17 +100,14 @@ namespace SaborAcielo
                 var res = MessageBox.Show("¿Desea guardar los datos del producto: " + TBnomProdu.Text + "", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == System.Windows.Forms.DialogResult.Yes)
                 {
-                    bool exito = Cproducto.AgregarProducto(TBnomProdu.Text, CtipoProd.Text, Convert.ToDecimal(TBprecio.Text), TBdetalle.Text, TBcantidadProdu.Text, Convert.ToDateTime(dtFecha.Text), DGlistaProductos);
+                    bool exito = Cproducto.AgregarProducto(TBnomProdu.Text, CtipoProd.SelectedIndex+1, Convert.ToDecimal(TBprecio.Text), TBdetalle.Text, TBcantidadProdu.Text, Convert.ToDateTime(dtFecha.Text), DGlistaProductos);
 
-                    if (exito)
+                    if (exito) //se actualiza la tabla con el registro cargado
                     {
-                        // Producto agregado con éxito, realiza las acciones necesarias
-                        // Limpiar campos, actualizar DataGridView, etc.
-                       MessageBox.Show("Producto agregado con éxito", "Agregar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                        Cproducto producto = new Cproducto();
+                        bool resultado = producto.CargarProductos(DGlistaProductos);
+                        MessageBox.Show("Producto agregado con éxito", "Agregar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
-                    
                     limpiarTextBox();
                 }
                 else
@@ -121,9 +115,8 @@ namespace SaborAcielo
                     limpiarTextBox();
                 }
 
-                    }
-                }
-
+            }
+        }
 
         private void DGlistaProductos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {/*
