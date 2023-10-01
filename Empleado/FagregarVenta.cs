@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaborAcielo.datos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SaborAcielo
 {
@@ -30,7 +32,7 @@ namespace SaborAcielo
             DataGridViewRow fila = new DataGridViewRow();
             fila.Cells.Add(new DataGridViewTextBoxCell { Value = venta});
             fila.Cells.Add(new DataGridViewTextBoxCell { Value = CBtipoProd.Text });
-            fila.Cells.Add(new DataGridViewTextBoxCell { Value = CBproducto.Text });
+            fila.Cells.Add(new DataGridViewTextBoxCell { Value = Fproducto.Text });
             fila.Cells.Add(new DataGridViewTextBoxCell { Value = Ncant.Value });
             fila.Cells.Add(new DataGridViewTextBoxCell { Value =  total});
             
@@ -45,6 +47,13 @@ namespace SaborAcielo
                 MessageBox.Show("Compra realizada con éxito", "Compra realizada", MessageBoxButtons.OK);
 
             }
+        }
+
+        private void Fproducto_TextChanged(object sender, EventArgs e)
+        {
+            
+
+
         }
     }
 }

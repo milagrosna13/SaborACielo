@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="datos\Cproducto.cs" />
+    <Compile Include="datos\Cventas.cs" />
     <Compile Include="FagregarCliente.cs">
       <SubType>Form</SubType>
     </Compile>

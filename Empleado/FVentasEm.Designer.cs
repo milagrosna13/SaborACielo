@@ -31,8 +31,8 @@
             this.DGventas = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.Pventas = new System.Windows.Forms.Panel();
+            this.Lempleado = new System.Windows.Forms.Label();
             this.GBfiltroVenta = new System.Windows.Forms.GroupBox();
-            this.Ccliente = new System.Windows.Forms.ComboBox();
             this.CBcliente = new System.Windows.Forms.CheckBox();
             this.CBfecha = new System.Windows.Forms.CheckBox();
             this.DThasta = new System.Windows.Forms.DateTimePicker();
@@ -40,10 +40,13 @@
             this.DTdesde = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.Lempleado = new System.Windows.Forms.Label();
+            this.CBProducto = new System.Windows.Forms.CheckBox();
+            this.Fprodu = new System.Windows.Forms.TextBox();
+            this.Fcliente = new System.Windows.Forms.TextBox();
             this.id_venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dni_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detalle_compra = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGventas)).BeginInit();
             this.Pventas.SuspendLayout();
             this.GBfiltroVenta.SuspendLayout();
@@ -53,11 +56,13 @@
             // 
             this.DGventas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGventas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGventas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGventas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_venta,
             this.dni_cliente,
-            this.total});
+            this.total,
+            this.detalle_compra});
             this.DGventas.Location = new System.Drawing.Point(27, 415);
             this.DGventas.Name = "DGventas";
             this.DGventas.RowHeadersWidth = 62;
@@ -84,12 +89,23 @@
             this.Pventas.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Pventas.Location = new System.Drawing.Point(84, 50);
             this.Pventas.Name = "Pventas";
-            this.Pventas.Size = new System.Drawing.Size(851, 250);
+            this.Pventas.Size = new System.Drawing.Size(993, 335);
             this.Pventas.TabIndex = 3;
+            // 
+            // Lempleado
+            // 
+            this.Lempleado.AutoSize = true;
+            this.Lempleado.Location = new System.Drawing.Point(193, 12);
+            this.Lempleado.Name = "Lempleado";
+            this.Lempleado.Size = new System.Drawing.Size(66, 27);
+            this.Lempleado.TabIndex = 9;
+            this.Lempleado.Text = "label3";
             // 
             // GBfiltroVenta
             // 
-            this.GBfiltroVenta.Controls.Add(this.Ccliente);
+            this.GBfiltroVenta.Controls.Add(this.Fcliente);
+            this.GBfiltroVenta.Controls.Add(this.Fprodu);
+            this.GBfiltroVenta.Controls.Add(this.CBProducto);
             this.GBfiltroVenta.Controls.Add(this.CBcliente);
             this.GBfiltroVenta.Controls.Add(this.CBfecha);
             this.GBfiltroVenta.Controls.Add(this.DThasta);
@@ -98,19 +114,10 @@
             this.GBfiltroVenta.Controls.Add(this.label4);
             this.GBfiltroVenta.Location = new System.Drawing.Point(35, 63);
             this.GBfiltroVenta.Name = "GBfiltroVenta";
-            this.GBfiltroVenta.Size = new System.Drawing.Size(776, 162);
+            this.GBfiltroVenta.Size = new System.Drawing.Size(908, 247);
             this.GBfiltroVenta.TabIndex = 8;
             this.GBfiltroVenta.TabStop = false;
             this.GBfiltroVenta.Text = "Filtrar por";
-            // 
-            // Ccliente
-            // 
-            this.Ccliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ccliente.FormattingEnabled = true;
-            this.Ccliente.Location = new System.Drawing.Point(223, 104);
-            this.Ccliente.Name = "Ccliente";
-            this.Ccliente.Size = new System.Drawing.Size(280, 34);
-            this.Ccliente.TabIndex = 10;
             // 
             // CBcliente
             // 
@@ -187,37 +194,57 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Lista de ventas";
             // 
-            // Lempleado
+            // CBProducto
             // 
-            this.Lempleado.AutoSize = true;
-            this.Lempleado.Location = new System.Drawing.Point(193, 12);
-            this.Lempleado.Name = "Lempleado";
-            this.Lempleado.Size = new System.Drawing.Size(66, 27);
-            this.Lempleado.TabIndex = 9;
-            this.Lempleado.Text = "label3";
+            this.CBProducto.AutoSize = true;
+            this.CBProducto.Location = new System.Drawing.Point(28, 176);
+            this.CBProducto.Name = "CBProducto";
+            this.CBProducto.Size = new System.Drawing.Size(117, 31);
+            this.CBProducto.TabIndex = 12;
+            this.CBProducto.Text = "Producto";
+            this.CBProducto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBProducto.UseVisualStyleBackColor = true;
+            // 
+            // Fprodu
+            // 
+            this.Fprodu.Location = new System.Drawing.Point(223, 176);
+            this.Fprodu.Name = "Fprodu";
+            this.Fprodu.Size = new System.Drawing.Size(258, 34);
+            this.Fprodu.TabIndex = 13;
+            this.Fprodu.TextChanged += new System.EventHandler(this.Fprodu_TextChanged);
+            // 
+            // Fcliente
+            // 
+            this.Fcliente.Location = new System.Drawing.Point(223, 104);
+            this.Fcliente.Name = "Fcliente";
+            this.Fcliente.Size = new System.Drawing.Size(268, 34);
+            this.Fcliente.TabIndex = 14;
             // 
             // id_venta
             // 
             this.id_venta.HeaderText = "Venta nr";
             this.id_venta.MinimumWidth = 8;
             this.id_venta.Name = "id_venta";
-            this.id_venta.Width = 150;
             // 
             // dni_cliente
             // 
             this.dni_cliente.HeaderText = "Cliente";
             this.dni_cliente.MinimumWidth = 8;
             this.dni_cliente.Name = "dni_cliente";
-            this.dni_cliente.Width = 150;
             // 
             // total
             // 
             this.total.HeaderText = "Total";
             this.total.MinimumWidth = 8;
             this.total.Name = "total";
-            this.total.Width = 150;
             // 
-            // FlistarVentas
+            // detalle_compra
+            // 
+            this.detalle_compra.HeaderText = "Detalle";
+            this.detalle_compra.MinimumWidth = 8;
+            this.detalle_compra.Name = "detalle_compra";
+            // 
+            // FVentasEm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -227,7 +254,7 @@
             this.Controls.Add(this.Pventas);
             this.Controls.Add(this.DGventas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FlistarVentas";
+            this.Name = "FVentasEm";
             this.Text = "FlistarVentas";
             ((System.ComponentModel.ISupportInitialize)(this.DGventas)).EndInit();
             this.Pventas.ResumeLayout(false);
@@ -252,10 +279,13 @@
         private System.Windows.Forms.GroupBox GBfiltroVenta;
         private System.Windows.Forms.CheckBox CBfecha;
         private System.Windows.Forms.CheckBox CBcliente;
-        private System.Windows.Forms.ComboBox Ccliente;
         private System.Windows.Forms.Label Lempleado;
+        private System.Windows.Forms.TextBox Fcliente;
+        private System.Windows.Forms.TextBox Fprodu;
+        private System.Windows.Forms.CheckBox CBProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_venta;
         private System.Windows.Forms.DataGridViewTextBoxColumn dni_cliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
+        private System.Windows.Forms.DataGridViewButtonColumn detalle_compra;
     }
 }

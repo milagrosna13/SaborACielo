@@ -31,24 +31,24 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.BagregarCompra = new System.Windows.Forms.Button();
             this.TBsubtotal = new System.Windows.Forms.TextBox();
+            this.BcancelarCompra = new System.Windows.Forms.Button();
+            this.Bcompra = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.TBprecioProd = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.Lventa = new System.Windows.Forms.Label();
-            this.CBproducto = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.CBtipoProd = new System.Windows.Forms.ComboBox();
             this.Ncant = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.Bcompra = new System.Windows.Forms.Button();
-            this.BcancelarCompra = new System.Windows.Forms.Button();
             this.DGcarrito = new System.Windows.Forms.DataGridView();
             this.id_venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sub = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fproducto = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Ncant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGcarrito)).BeginInit();
@@ -57,6 +57,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.RosyBrown;
+            this.panel1.Controls.Add(this.Fproducto);
             this.panel1.Controls.Add(this.BagregarCompra);
             this.panel1.Controls.Add(this.TBsubtotal);
             this.panel1.Controls.Add(this.BcancelarCompra);
@@ -65,7 +66,6 @@
             this.panel1.Controls.Add(this.TBprecioProd);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.Lventa);
-            this.panel1.Controls.Add(this.CBproducto);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.CBtipoProd);
             this.panel1.Controls.Add(this.Ncant);
@@ -94,6 +94,28 @@
             this.TBsubtotal.Name = "TBsubtotal";
             this.TBsubtotal.Size = new System.Drawing.Size(298, 32);
             this.TBsubtotal.TabIndex = 14;
+            // 
+            // BcancelarCompra
+            // 
+            this.BcancelarCompra.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
+            this.BcancelarCompra.Location = new System.Drawing.Point(462, 282);
+            this.BcancelarCompra.Name = "BcancelarCompra";
+            this.BcancelarCompra.Size = new System.Drawing.Size(148, 50);
+            this.BcancelarCompra.TabIndex = 2;
+            this.BcancelarCompra.Text = "Cancelar";
+            this.BcancelarCompra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BcancelarCompra.UseVisualStyleBackColor = true;
+            // 
+            // Bcompra
+            // 
+            this.Bcompra.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
+            this.Bcompra.Location = new System.Drawing.Point(824, 300);
+            this.Bcompra.Name = "Bcompra";
+            this.Bcompra.Size = new System.Drawing.Size(132, 66);
+            this.Bcompra.TabIndex = 1;
+            this.Bcompra.Text = "Finalizar Compra";
+            this.Bcompra.UseVisualStyleBackColor = true;
+            this.Bcompra.Click += new System.EventHandler(this.Bcompra_Click);
             // 
             // label6
             // 
@@ -133,20 +155,6 @@
             this.Lventa.Size = new System.Drawing.Size(92, 38);
             this.Lventa.TabIndex = 10;
             this.Lventa.Text = "Venta";
-            // 
-            // CBproducto
-            // 
-            this.CBproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CBproducto.FormattingEnabled = true;
-            this.CBproducto.Items.AddRange(new object[] {
-            "pan",
-            "pani",
-            "chipa",
-            "cito"});
-            this.CBproducto.Location = new System.Drawing.Point(515, 63);
-            this.CBproducto.Name = "CBproducto";
-            this.CBproducto.Size = new System.Drawing.Size(380, 34);
-            this.CBproducto.TabIndex = 9;
             // 
             // label3
             // 
@@ -200,28 +208,6 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Producto";
             // 
-            // Bcompra
-            // 
-            this.Bcompra.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
-            this.Bcompra.Location = new System.Drawing.Point(824, 300);
-            this.Bcompra.Name = "Bcompra";
-            this.Bcompra.Size = new System.Drawing.Size(132, 66);
-            this.Bcompra.TabIndex = 1;
-            this.Bcompra.Text = "Finalizar Compra";
-            this.Bcompra.UseVisualStyleBackColor = true;
-            this.Bcompra.Click += new System.EventHandler(this.Bcompra_Click);
-            // 
-            // BcancelarCompra
-            // 
-            this.BcancelarCompra.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
-            this.BcancelarCompra.Location = new System.Drawing.Point(462, 282);
-            this.BcancelarCompra.Name = "BcancelarCompra";
-            this.BcancelarCompra.Size = new System.Drawing.Size(148, 50);
-            this.BcancelarCompra.TabIndex = 2;
-            this.BcancelarCompra.Text = "Cancelar";
-            this.BcancelarCompra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BcancelarCompra.UseVisualStyleBackColor = true;
-            // 
             // DGcarrito
             // 
             this.DGcarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -273,6 +259,15 @@
             this.sub.Name = "sub";
             this.sub.Width = 150;
             // 
+            // Fproducto
+            // 
+            this.Fproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Fproducto.Location = new System.Drawing.Point(529, 62);
+            this.Fproducto.Name = "Fproducto";
+            this.Fproducto.Size = new System.Drawing.Size(307, 35);
+            this.Fproducto.TabIndex = 15;
+            this.Fproducto.TextChanged += new System.EventHandler(this.Fproducto_TextChanged);
+            // 
             // FagregarVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -306,7 +301,6 @@
         private System.Windows.Forms.TextBox TBprecioProd;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label Lventa;
-        private System.Windows.Forms.ComboBox CBproducto;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox CBtipoProd;
         private System.Windows.Forms.Button BagregarCompra;
@@ -316,5 +310,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn prod;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn sub;
+        private System.Windows.Forms.TextBox Fproducto;
     }
 }
