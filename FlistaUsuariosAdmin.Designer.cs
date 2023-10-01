@@ -41,6 +41,10 @@
             this.Ltipousuario = new System.Windows.Forms.Label();
             this.Lnombre = new System.Windows.Forms.Label();
             this.PagregarProdu = new System.Windows.Forms.Panel();
+            this.TBtelefono = new System.Windows.Forms.TextBox();
+            this.Ltel = new System.Windows.Forms.Label();
+            this.TBdireccion = new System.Windows.Forms.TextBox();
+            this.Ldireccion = new System.Windows.Forms.Label();
             this.CBusuarioTipo = new System.Windows.Forms.ComboBox();
             this.BexaminarImProdu = new System.Windows.Forms.Button();
             this.PBproducto = new System.Windows.Forms.PictureBox();
@@ -74,85 +78,75 @@
             this.GBfiltroUsuarios.Controls.Add(this.Ltipousuario);
             this.GBfiltroUsuarios.Controls.Add(this.Lnombre);
             this.GBfiltroUsuarios.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GBfiltroUsuarios.Location = new System.Drawing.Point(18, 18);
-            this.GBfiltroUsuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GBfiltroUsuarios.Location = new System.Drawing.Point(12, 12);
             this.GBfiltroUsuarios.Name = "GBfiltroUsuarios";
-            this.GBfiltroUsuarios.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GBfiltroUsuarios.Size = new System.Drawing.Size(380, 405);
+            this.GBfiltroUsuarios.Size = new System.Drawing.Size(253, 263);
             this.GBfiltroUsuarios.TabIndex = 3;
             this.GBfiltroUsuarios.TabStop = false;
             this.GBfiltroUsuarios.Text = "Filtrar por";
             // 
             // BbuscarUsuario
             // 
-            this.BbuscarUsuario.Location = new System.Drawing.Point(108, 337);
-            this.BbuscarUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BbuscarUsuario.Location = new System.Drawing.Point(72, 219);
             this.BbuscarUsuario.Name = "BbuscarUsuario";
-            this.BbuscarUsuario.Size = new System.Drawing.Size(112, 42);
+            this.BbuscarUsuario.Size = new System.Drawing.Size(75, 27);
             this.BbuscarUsuario.TabIndex = 9;
             this.BbuscarUsuario.Text = "Buscar";
             this.BbuscarUsuario.UseVisualStyleBackColor = true;
             // 
             // TBdni
             // 
-            this.TBdni.Location = new System.Drawing.Point(182, 98);
-            this.TBdni.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TBdni.Location = new System.Drawing.Point(121, 64);
             this.TBdni.Name = "TBdni";
-            this.TBdni.Size = new System.Drawing.Size(180, 36);
+            this.TBdni.Size = new System.Drawing.Size(121, 27);
             this.TBdni.TabIndex = 8;
             // 
             // CBtipoUsuario
             // 
             this.CBtipoUsuario.FormattingEnabled = true;
-            this.CBtipoUsuario.Location = new System.Drawing.Point(182, 262);
-            this.CBtipoUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CBtipoUsuario.Location = new System.Drawing.Point(121, 170);
             this.CBtipoUsuario.Name = "CBtipoUsuario";
-            this.CBtipoUsuario.Size = new System.Drawing.Size(180, 37);
+            this.CBtipoUsuario.Size = new System.Drawing.Size(121, 27);
             this.CBtipoUsuario.TabIndex = 7;
             // 
             // Lapellido
             // 
             this.Lapellido.AutoSize = true;
-            this.Lapellido.Location = new System.Drawing.Point(9, 209);
-            this.Lapellido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Lapellido.Location = new System.Drawing.Point(6, 136);
             this.Lapellido.Name = "Lapellido";
-            this.Lapellido.Size = new System.Drawing.Size(98, 29);
+            this.Lapellido.Size = new System.Drawing.Size(64, 19);
             this.Lapellido.TabIndex = 6;
             this.Lapellido.Text = "Apellido";
             // 
             // Ldni
             // 
             this.Ldni.AutoSize = true;
-            this.Ldni.Location = new System.Drawing.Point(14, 103);
-            this.Ldni.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Ldni.Location = new System.Drawing.Point(9, 67);
             this.Ldni.Name = "Ldni";
-            this.Ldni.Size = new System.Drawing.Size(66, 29);
+            this.Ldni.Size = new System.Drawing.Size(45, 19);
             this.Ldni.TabIndex = 5;
             this.Ldni.Text = "DNI";
             // 
             // TBapellidoUsuario
             // 
-            this.TBapellidoUsuario.Location = new System.Drawing.Point(182, 205);
-            this.TBapellidoUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TBapellidoUsuario.Location = new System.Drawing.Point(121, 133);
             this.TBapellidoUsuario.Name = "TBapellidoUsuario";
-            this.TBapellidoUsuario.Size = new System.Drawing.Size(180, 36);
+            this.TBapellidoUsuario.Size = new System.Drawing.Size(121, 27);
             this.TBapellidoUsuario.TabIndex = 4;
             // 
             // TBnombreUsuario
             // 
-            this.TBnombreUsuario.Location = new System.Drawing.Point(182, 152);
-            this.TBnombreUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TBnombreUsuario.Location = new System.Drawing.Point(121, 99);
             this.TBnombreUsuario.Name = "TBnombreUsuario";
-            this.TBnombreUsuario.Size = new System.Drawing.Size(180, 36);
+            this.TBnombreUsuario.Size = new System.Drawing.Size(121, 27);
             this.TBnombreUsuario.TabIndex = 3;
             // 
             // CBtodosUsuarios
             // 
             this.CBtodosUsuarios.AutoSize = true;
-            this.CBtodosUsuarios.Location = new System.Drawing.Point(20, 43);
-            this.CBtodosUsuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CBtodosUsuarios.Location = new System.Drawing.Point(13, 28);
             this.CBtodosUsuarios.Name = "CBtodosUsuarios";
-            this.CBtodosUsuarios.Size = new System.Drawing.Size(226, 33);
+            this.CBtodosUsuarios.Size = new System.Drawing.Size(146, 23);
             this.CBtodosUsuarios.TabIndex = 2;
             this.CBtodosUsuarios.Text = "Todos los usuarios";
             this.CBtodosUsuarios.UseVisualStyleBackColor = true;
@@ -160,20 +154,18 @@
             // Ltipousuario
             // 
             this.Ltipousuario.AutoSize = true;
-            this.Ltipousuario.Location = new System.Drawing.Point(9, 266);
-            this.Ltipousuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Ltipousuario.Location = new System.Drawing.Point(6, 173);
             this.Ltipousuario.Name = "Ltipousuario";
-            this.Ltipousuario.Size = new System.Drawing.Size(169, 29);
+            this.Ltipousuario.Size = new System.Drawing.Size(109, 19);
             this.Ltipousuario.TabIndex = 1;
             this.Ltipousuario.Text = "Tipo de usuario";
             // 
             // Lnombre
             // 
             this.Lnombre.AutoSize = true;
-            this.Lnombre.Location = new System.Drawing.Point(9, 152);
-            this.Lnombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Lnombre.Location = new System.Drawing.Point(6, 99);
             this.Lnombre.Name = "Lnombre";
-            this.Lnombre.Size = new System.Drawing.Size(91, 29);
+            this.Lnombre.Size = new System.Drawing.Size(61, 19);
             this.Lnombre.TabIndex = 0;
             this.Lnombre.Text = "Nombre";
             // 
@@ -183,6 +175,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PagregarProdu.AutoScroll = true;
             this.PagregarProdu.BackColor = System.Drawing.Color.RosyBrown;
+            this.PagregarProdu.Controls.Add(this.TBtelefono);
+            this.PagregarProdu.Controls.Add(this.Ltel);
+            this.PagregarProdu.Controls.Add(this.TBdireccion);
+            this.PagregarProdu.Controls.Add(this.Ldireccion);
             this.PagregarProdu.Controls.Add(this.CBusuarioTipo);
             this.PagregarProdu.Controls.Add(this.BexaminarImProdu);
             this.PagregarProdu.Controls.Add(this.PBproducto);
@@ -196,27 +192,73 @@
             this.PagregarProdu.Controls.Add(this.LdniUsuario);
             this.PagregarProdu.Controls.Add(this.BcancelProdu);
             this.PagregarProdu.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PagregarProdu.Location = new System.Drawing.Point(410, 18);
+            this.PagregarProdu.Location = new System.Drawing.Point(273, 12);
+            this.PagregarProdu.Margin = new System.Windows.Forms.Padding(2);
             this.PagregarProdu.Name = "PagregarProdu";
-            this.PagregarProdu.Size = new System.Drawing.Size(774, 432);
+            this.PagregarProdu.Size = new System.Drawing.Size(516, 306);
             this.PagregarProdu.TabIndex = 8;
+            // 
+            // TBtelefono
+            // 
+            this.TBtelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.TBtelefono.Location = new System.Drawing.Point(147, 161);
+            this.TBtelefono.Margin = new System.Windows.Forms.Padding(2);
+            this.TBtelefono.Name = "TBtelefono";
+            this.TBtelefono.Size = new System.Drawing.Size(148, 26);
+            this.TBtelefono.TabIndex = 22;
+            this.TBtelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBtelefono_TextChanged);
+            // 
+            // Ltel
+            // 
+            this.Ltel.AutoSize = true;
+            this.Ltel.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ltel.Location = new System.Drawing.Point(32, 165);
+            this.Ltel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Ltel.Name = "Ltel";
+            this.Ltel.Size = new System.Drawing.Size(65, 19);
+            this.Ltel.TabIndex = 21;
+            this.Ltel.Text = "Telefono";
+            // 
+            // TBdireccion
+            // 
+            this.TBdireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.TBdireccion.Location = new System.Drawing.Point(147, 125);
+            this.TBdireccion.Margin = new System.Windows.Forms.Padding(2);
+            this.TBdireccion.Name = "TBdireccion";
+            this.TBdireccion.Size = new System.Drawing.Size(148, 26);
+            this.TBdireccion.TabIndex = 20;
+            this.TBdireccion.TextChanged += new System.EventHandler(this.TBdireccion_TextChanged);
+            // 
+            // Ldireccion
+            // 
+            this.Ldireccion.AutoSize = true;
+            this.Ldireccion.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ldireccion.Location = new System.Drawing.Point(32, 129);
+            this.Ldireccion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Ldireccion.Name = "Ldireccion";
+            this.Ldireccion.Size = new System.Drawing.Size(68, 19);
+            this.Ldireccion.TabIndex = 19;
+            this.Ldireccion.Text = "Dirección";
             // 
             // CBusuarioTipo
             // 
+            this.CBusuarioTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBusuarioTipo.FormattingEnabled = true;
-            this.CBusuarioTipo.Location = new System.Drawing.Point(237, 275);
-            this.CBusuarioTipo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CBusuarioTipo.Items.AddRange(new object[] {
+            "Administrador",
+            "Gerente",
+            "Empleado"});
+            this.CBusuarioTipo.Location = new System.Drawing.Point(147, 203);
             this.CBusuarioTipo.Name = "CBusuarioTipo";
-            this.CBusuarioTipo.Size = new System.Drawing.Size(220, 32);
+            this.CBusuarioTipo.Size = new System.Drawing.Size(148, 23);
             this.CBusuarioTipo.TabIndex = 18;
             // 
             // BexaminarImProdu
             // 
             this.BexaminarImProdu.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
-            this.BexaminarImProdu.Location = new System.Drawing.Point(532, 258);
-            this.BexaminarImProdu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BexaminarImProdu.Location = new System.Drawing.Point(355, 168);
             this.BexaminarImProdu.Name = "BexaminarImProdu";
-            this.BexaminarImProdu.Size = new System.Drawing.Size(142, 42);
+            this.BexaminarImProdu.Size = new System.Drawing.Size(95, 27);
             this.BexaminarImProdu.TabIndex = 17;
             this.BexaminarImProdu.Text = "Examinar";
             this.BexaminarImProdu.UseVisualStyleBackColor = true;
@@ -224,10 +266,9 @@
             // PBproducto
             // 
             this.PBproducto.Image = global::SaborAcielo.Properties.Resources.ProductosInicio;
-            this.PBproducto.Location = new System.Drawing.Point(502, 22);
-            this.PBproducto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PBproducto.Location = new System.Drawing.Point(335, 14);
             this.PBproducto.Name = "PBproducto";
-            this.PBproducto.Size = new System.Drawing.Size(202, 208);
+            this.PBproducto.Size = new System.Drawing.Size(135, 135);
             this.PBproducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PBproducto.TabIndex = 16;
             this.PBproducto.TabStop = false;
@@ -235,9 +276,10 @@
             // BagregarProdu
             // 
             this.BagregarProdu.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BagregarProdu.Location = new System.Drawing.Point(93, 355);
+            this.BagregarProdu.Location = new System.Drawing.Point(233, 260);
+            this.BagregarProdu.Margin = new System.Windows.Forms.Padding(2);
             this.BagregarProdu.Name = "BagregarProdu";
-            this.BagregarProdu.Size = new System.Drawing.Size(172, 49);
+            this.BagregarProdu.Size = new System.Drawing.Size(115, 32);
             this.BagregarProdu.TabIndex = 15;
             this.BagregarProdu.Text = "agregar";
             this.BagregarProdu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -247,63 +289,72 @@
             // 
             this.LusuarioTipo.AutoSize = true;
             this.LusuarioTipo.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LusuarioTipo.Location = new System.Drawing.Point(45, 274);
+            this.LusuarioTipo.Location = new System.Drawing.Point(20, 207);
+            this.LusuarioTipo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LusuarioTipo.Name = "LusuarioTipo";
-            this.LusuarioTipo.Size = new System.Drawing.Size(169, 29);
+            this.LusuarioTipo.Size = new System.Drawing.Size(109, 19);
             this.LusuarioTipo.TabIndex = 10;
             this.LusuarioTipo.Text = "Tipo de usuario";
             // 
             // TBapeUsuario
             // 
             this.TBapeUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBapeUsuario.Location = new System.Drawing.Point(220, 146);
+            this.TBapeUsuario.Location = new System.Drawing.Point(147, 88);
+            this.TBapeUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.TBapeUsuario.Name = "TBapeUsuario";
-            this.TBapeUsuario.Size = new System.Drawing.Size(220, 35);
+            this.TBapeUsuario.Size = new System.Drawing.Size(148, 26);
             this.TBapeUsuario.TabIndex = 9;
             // 
             // LnombreUsuario
             // 
             this.LnombreUsuario.AutoSize = true;
             this.LnombreUsuario.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LnombreUsuario.Location = new System.Drawing.Point(45, 88);
+            this.LnombreUsuario.Location = new System.Drawing.Point(30, 57);
+            this.LnombreUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LnombreUsuario.Name = "LnombreUsuario";
-            this.LnombreUsuario.Size = new System.Drawing.Size(91, 29);
+            this.LnombreUsuario.Size = new System.Drawing.Size(61, 19);
             this.LnombreUsuario.TabIndex = 8;
             this.LnombreUsuario.Text = "Nombre";
             // 
             // TBnomUsuario
             // 
             this.TBnomUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBnomUsuario.Location = new System.Drawing.Point(220, 82);
+            this.TBnomUsuario.Location = new System.Drawing.Point(147, 53);
+            this.TBnomUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.TBnomUsuario.Name = "TBnomUsuario";
-            this.TBnomUsuario.Size = new System.Drawing.Size(220, 35);
+            this.TBnomUsuario.Size = new System.Drawing.Size(148, 26);
             this.TBnomUsuario.TabIndex = 7;
+            this.TBnomUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBnomUsuario_TextChanged);
             // 
             // LapellidoUsuario
             // 
             this.LapellidoUsuario.AutoSize = true;
             this.LapellidoUsuario.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LapellidoUsuario.Location = new System.Drawing.Point(48, 157);
+            this.LapellidoUsuario.Location = new System.Drawing.Point(32, 95);
+            this.LapellidoUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LapellidoUsuario.Name = "LapellidoUsuario";
-            this.LapellidoUsuario.Size = new System.Drawing.Size(98, 29);
+            this.LapellidoUsuario.Size = new System.Drawing.Size(64, 19);
             this.LapellidoUsuario.TabIndex = 6;
             this.LapellidoUsuario.Text = "Apellido";
             // 
             // TBdniUsuario
             // 
             this.TBdniUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBdniUsuario.Location = new System.Drawing.Point(220, 26);
+            this.TBdniUsuario.Location = new System.Drawing.Point(147, 17);
+            this.TBdniUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.TBdniUsuario.Name = "TBdniUsuario";
-            this.TBdniUsuario.Size = new System.Drawing.Size(220, 35);
+            this.TBdniUsuario.Size = new System.Drawing.Size(148, 26);
             this.TBdniUsuario.TabIndex = 3;
+            this.TBdniUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBdniUsuario_TextChanged);
             // 
             // LdniUsuario
             // 
             this.LdniUsuario.AutoSize = true;
             this.LdniUsuario.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LdniUsuario.Location = new System.Drawing.Point(48, 26);
+            this.LdniUsuario.Location = new System.Drawing.Point(32, 17);
+            this.LdniUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LdniUsuario.Name = "LdniUsuario";
-            this.LdniUsuario.Size = new System.Drawing.Size(66, 29);
+            this.LdniUsuario.Size = new System.Drawing.Size(45, 19);
             this.LdniUsuario.TabIndex = 2;
             this.LdniUsuario.Text = "DNI";
             // 
@@ -312,9 +363,10 @@
             this.BcancelProdu.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BcancelProdu.Image = global::SaborAcielo.Properties.Resources.cruz;
             this.BcancelProdu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BcancelProdu.Location = new System.Drawing.Point(328, 355);
+            this.BcancelProdu.Location = new System.Drawing.Point(386, 260);
+            this.BcancelProdu.Margin = new System.Windows.Forms.Padding(2);
             this.BcancelProdu.Name = "BcancelProdu";
-            this.BcancelProdu.Size = new System.Drawing.Size(170, 49);
+            this.BcancelProdu.Size = new System.Drawing.Size(113, 32);
             this.BcancelProdu.TabIndex = 1;
             this.BcancelProdu.Text = "Cancelar";
             this.BcancelProdu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -335,24 +387,24 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGlistaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGlistaUsuarios.Location = new System.Drawing.Point(38, 457);
+            this.DGlistaUsuarios.Location = new System.Drawing.Point(22, 343);
+            this.DGlistaUsuarios.Margin = new System.Windows.Forms.Padding(2);
             this.DGlistaUsuarios.Name = "DGlistaUsuarios";
             this.DGlistaUsuarios.RowHeadersWidth = 62;
             this.DGlistaUsuarios.RowTemplate.Height = 28;
-            this.DGlistaUsuarios.Size = new System.Drawing.Size(1120, 463);
+            this.DGlistaUsuarios.Size = new System.Drawing.Size(747, 138);
             this.DGlistaUsuarios.TabIndex = 9;
             // 
             // FlistaUsuariosAdmin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
-            this.ClientSize = new System.Drawing.Size(1200, 888);
+            this.ClientSize = new System.Drawing.Size(800, 512);
             this.Controls.Add(this.DGlistaUsuarios);
             this.Controls.Add(this.PagregarProdu);
             this.Controls.Add(this.GBfiltroUsuarios);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FlistaUsuariosAdmin";
             this.Text = "Lista de usuarios";
             this.GBfiltroUsuarios.ResumeLayout(false);
@@ -392,5 +444,9 @@
         private System.Windows.Forms.Button BcancelProdu;
         private System.Windows.Forms.DataGridView DGlistaUsuarios;
         private System.Windows.Forms.ComboBox CBusuarioTipo;
+        private System.Windows.Forms.TextBox TBtelefono;
+        private System.Windows.Forms.Label Ltel;
+        private System.Windows.Forms.TextBox TBdireccion;
+        private System.Windows.Forms.Label Ldireccion;
     }
 }

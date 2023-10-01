@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGlistaProductos = new System.Windows.Forms.DataGridView();
             this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GBfiltroProductos = new System.Windows.Forms.GroupBox();
@@ -70,22 +72,40 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGlistaProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGlistaProductos.BackgroundColor = System.Drawing.Color.RosyBrown;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.DGlistaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGlistaProductos.Location = new System.Drawing.Point(32, 318);
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGlistaProductos.DefaultCellStyle = dataGridViewCellStyle8;
+            this.DGlistaProductos.Location = new System.Drawing.Point(38, 347);
             this.DGlistaProductos.Margin = new System.Windows.Forms.Padding(2);
             this.DGlistaProductos.Name = "DGlistaProductos";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.DGlistaProductos.RowHeadersWidth = 62;
             this.DGlistaProductos.RowTemplate.Height = 28;
-            this.DGlistaProductos.Size = new System.Drawing.Size(747, 301);
+            this.DGlistaProductos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DGlistaProductos.Size = new System.Drawing.Size(747, 154);
             this.DGlistaProductos.TabIndex = 6;
+            this.DGlistaProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaProductos_CellContentClick);
             this.DGlistaProductos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGlistaProductos_CellFormatting);
             // 
             // GBfiltroProductos
@@ -232,6 +252,7 @@
             // 
             // CtipoProd
             // 
+            this.CtipoProd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CtipoProd.FormattingEnabled = true;
             this.CtipoProd.Items.AddRange(new object[] {
             "Regular",
@@ -242,7 +263,6 @@
             this.CtipoProd.Name = "CtipoProd";
             this.CtipoProd.Size = new System.Drawing.Size(225, 23);
             this.CtipoProd.TabIndex = 19;
-            this.CtipoProd.Text = "--seleccione el tipo de producto";
             // 
             // BeditarProd
             // 
@@ -394,7 +414,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FlistaProductosAdmin";
             this.Text = "Lista de Productos";
-            this.Load += new System.EventHandler(this.FlistaProductosAdmin_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).EndInit();
             this.GBfiltroProductos.ResumeLayout(false);

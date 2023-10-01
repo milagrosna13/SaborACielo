@@ -16,7 +16,7 @@ namespace SaborAcielo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FlistaProductosAdmin());
+            Application.Run(new MDIadmin());
         }
     }
 }

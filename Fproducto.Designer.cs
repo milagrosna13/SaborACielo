@@ -37,13 +37,6 @@
             this.ltipo = new System.Windows.Forms.Label();
             this.Lnombre = new System.Windows.Forms.Label();
             this.DGlistaProductos = new System.Windows.Forms.DataGridView();
-            this.nombre_prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_tipoproducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcion_prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precio_unitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cant_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.foto_producto = new System.Windows.Forms.DataGridViewImageColumn();
             this.GBfiltroProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaProductos)).BeginInit();
             this.SuspendLayout();
@@ -69,7 +62,7 @@
             // 
             this.CtipoProd.FormattingEnabled = true;
             this.CtipoProd.Location = new System.Drawing.Point(479, 57);
-            this.CtipoProd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CtipoProd.Margin = new System.Windows.Forms.Padding(2);
             this.CtipoProd.Name = "CtipoProd";
             this.CtipoProd.Size = new System.Drawing.Size(159, 27);
             this.CtipoProd.TabIndex = 22;
@@ -78,7 +71,7 @@
             // 
             this.CnombreProd.FormattingEnabled = true;
             this.CnombreProd.Location = new System.Drawing.Point(279, 57);
-            this.CnombreProd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CnombreProd.Margin = new System.Windows.Forms.Padding(2);
             this.CnombreProd.Name = "CnombreProd";
             this.CnombreProd.Size = new System.Drawing.Size(159, 27);
             this.CnombreProd.TabIndex = 21;
@@ -135,66 +128,13 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGlistaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGlistaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGlistaProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nombre_prod,
-            this.id_tipoproducto,
-            this.descripcion_prod,
-            this.precio_unitario,
-            this.cant_producto,
-            this.estado,
-            this.foto_producto});
             this.DGlistaProductos.Location = new System.Drawing.Point(19, 141);
-            this.DGlistaProductos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DGlistaProductos.Margin = new System.Windows.Forms.Padding(2);
             this.DGlistaProductos.Name = "DGlistaProductos";
             this.DGlistaProductos.RowHeadersWidth = 62;
             this.DGlistaProductos.RowTemplate.Height = 28;
             this.DGlistaProductos.Size = new System.Drawing.Size(747, 301);
             this.DGlistaProductos.TabIndex = 7;
-            // 
-            // nombre_prod
-            // 
-            this.nombre_prod.HeaderText = "Nombre";
-            this.nombre_prod.MinimumWidth = 8;
-            this.nombre_prod.Name = "nombre_prod";
-            // 
-            // id_tipoproducto
-            // 
-            this.id_tipoproducto.HeaderText = "Tipo";
-            this.id_tipoproducto.MinimumWidth = 8;
-            this.id_tipoproducto.Name = "id_tipoproducto";
-            // 
-            // descripcion_prod
-            // 
-            this.descripcion_prod.HeaderText = "Detalle";
-            this.descripcion_prod.MinimumWidth = 8;
-            this.descripcion_prod.Name = "descripcion_prod";
-            // 
-            // precio_unitario
-            // 
-            this.precio_unitario.HeaderText = "Precio";
-            this.precio_unitario.MinimumWidth = 8;
-            this.precio_unitario.Name = "precio_unitario";
-            // 
-            // cant_producto
-            // 
-            this.cant_producto.HeaderText = "Stock";
-            this.cant_producto.MinimumWidth = 8;
-            this.cant_producto.Name = "cant_producto";
-            // 
-            // estado
-            // 
-            this.estado.HeaderText = "Estado";
-            this.estado.MinimumWidth = 8;
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
-            // 
-            // foto_producto
-            // 
-            this.foto_producto.HeaderText = "Imagen";
-            this.foto_producto.Image = global::SaborAcielo.Properties.Resources.decoracion_de_pasteles;
-            this.foto_producto.MinimumWidth = 8;
-            this.foto_producto.Name = "foto_producto";
-            this.foto_producto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Fproducto
             // 
@@ -223,12 +163,5 @@
         private System.Windows.Forms.ComboBox CtipoProd;
         private System.Windows.Forms.ComboBox CnombreProd;
         private System.Windows.Forms.DataGridView DGlistaProductos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_prod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_tipoproducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion_prod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precio_unitario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cant_producto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
-        private System.Windows.Forms.DataGridViewImageColumn foto_producto;
     }
 }

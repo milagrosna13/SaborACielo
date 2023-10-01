@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaborAcielo.datos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,8 @@ namespace SaborAcielo
         public Fproducto()
         {
             InitializeComponent();
+            Cproducto producto = new Cproducto();
+            bool resultado = producto.CargarProductos(DGlistaProductos);
         }
     }
 }
