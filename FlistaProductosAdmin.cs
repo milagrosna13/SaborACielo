@@ -13,6 +13,7 @@ using System.Configuration;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Collections;
 using SaborAcielo.datos;
+using System.IO;
 
 
 namespace SaborAcielo
@@ -28,9 +29,10 @@ namespace SaborAcielo
             BeditarProd.Visible = false;
             Cproducto producto = new Cproducto();
             bool resultado = producto.CargarProductos(DGlistaProductos);
-            
+            Cproducto.AgregarColumnasBoton(DGlistaProductos);
+
         }
-       
+
         private void limpiarTextBox()
         {
             TBnomProdu.Clear();
@@ -40,7 +42,7 @@ namespace SaborAcielo
             CtipoProd.Text = "";
             PBproducto.Image = null;
         }
-
+        private string rutaImagenSeleccionada;
         private void TBnomProdu_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
@@ -91,7 +93,7 @@ namespace SaborAcielo
         {
             // Cproducto produ = new Cproducto();
 
-            if (string.IsNullOrWhiteSpace(TBnomProdu.Text) || string.IsNullOrEmpty(TBprecio.Text) || string.IsNullOrWhiteSpace(TBcantidadProdu.Text))
+            if (string.IsNullOrWhiteSpace(TBnomProdu.Text) || string.IsNullOrEmpty(TBprecio.Text) || string.IsNullOrWhiteSpace(TBcantidadProdu.Text) || string.IsNullOrEmpty(rutaImagenSeleccionada))
             {
                 MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -100,7 +102,9 @@ namespace SaborAcielo
                 var res = MessageBox.Show("¿Desea guardar los datos del producto: " + TBnomProdu.Text + "", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == System.Windows.Forms.DialogResult.Yes)
                 {
-                    bool exito = Cproducto.AgregarProducto(TBnomProdu.Text, CtipoProd.SelectedIndex+1, Convert.ToDecimal(TBprecio.Text), TBdetalle.Text, TBcantidadProdu.Text, Convert.ToDateTime(dtFecha.Text), DGlistaProductos);
+                    byte[] imagenBytes = ConvertirImagenABytes(rutaImagenSeleccionada);
+                    bool exito = Cproducto.AgregarProducto(TBnomProdu.Text, CtipoProd.SelectedIndex + 1, Convert.ToDecimal(TBprecio.Text), TBdetalle.Text, TBcantidadProdu.Text, Convert.ToDateTime(dtFecha.Text), imagenBytes, DGlistaProductos);
+
 
                     if (exito) //se actualiza la tabla con el registro cargado
                     {
@@ -149,6 +153,13 @@ namespace SaborAcielo
                 {
                     // Cargar la imagen en el PictureBox
                     PBproducto.Image = Image.FromFile(rutaImagen);
+
+                    // Guardar la ruta de la imagen en una variable global o en el formulario para que esté disponible en la función BagregarProdu_Click_1.
+                    // Puedes declarar una variable a nivel de formulario para esto.
+                    // Ejemplo:
+                    rutaImagenSeleccionada = rutaImagen;// Declara rutaImagenSeleccionada en tu formulario.
+
+
                 }
                 else
                 {
@@ -156,8 +167,27 @@ namespace SaborAcielo
                 }
             }
         }
+        private byte[] ConvertirImagenABytes(string rutaImagen)
+        {
+            byte[] imagenBytes = null;
 
-        private void TBnomProdu_TextChanged(object sender, EventArgs e){}
+            try
+            {
+                using (FileStream fs = new FileStream(rutaImagen, FileMode.Open, FileAccess.Read))
+                {
+                    imagenBytes = new byte[fs.Length];
+                    fs.Read(imagenBytes, 0, Convert.ToInt32(fs.Length));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al convertir la imagen a bytes: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return imagenBytes;
+        }
+
+        private void TBnomProdu_TextChanged(object sender, EventArgs e) { }
         int pos;
 
         //editar
@@ -193,35 +223,101 @@ namespace SaborAcielo
                 }
             }
         }
-
+        private int idProductoSeleccionado = -1;
         private void BeditarProd_Click(object sender, EventArgs e)
         {
-            DGlistaProductos[0, pos].Value = TBnomProdu.Text;
-            DGlistaProductos[1, pos].Value = CtipoProd.Text;
-            DGlistaProductos[2, pos].Value = TBprecio.Text;
-            DGlistaProductos[3, pos].Value = TBcantidadProdu.Text;
+            if (idProductoSeleccionado != -1)
+            {
+               
+               
+                
+                DateTime nuevaFecha = dtFecha.Value;
+                // Lógica para obtener la imagen editada (puedes reutilizar tu código para cargar una imagen)
+                byte[] nuevaImagen = ConvertirImagenABytes(rutaImagenSeleccionada); 
 
-            BeditarProd.Visible = false;
-            BagregarProdu.Visible = true;
-            limpiarTextBox();
+                // Actualiza el producto en la base de datos
+                bool exito = Cproducto.ActualizarProducto(idProductoSeleccionado, TBnomProdu.Text, TBdetalle.Text, Convert.ToDecimal(TBprecio.Text), Convert.ToInt32(TBcantidadProdu.Text), nuevaFecha, nuevaImagen);
+
+                if (exito)
+                {
+                    // Actualización exitosa, puedes mostrar un mensaje de éxito
+                    MessageBox.Show("Producto actualizado con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Vuelve a cargar los datos en el DataGridView después de la edición
+                    Cproducto producto = new Cproducto();
+                    bool resultado = producto.CargarProductos(DGlistaProductos);
+                }
+                else
+                {
+                    // Hubo un error en la actualización, muestra un mensaje de error
+                    MessageBox.Show("Error al actualizar el producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                // Restablece el formulario al modo de inserción
+                // Cambia el texto del botón de vuelta a "Agregar"
+                BeditarProd.Visible = false;
+                BagregarProdu.Visible = true;
+                limpiarTextBox(); // Limpia los campos del formulario
+            }
         }
+    // Utiliza los valores de los campos del formulario para agregar el nuevo producto.
+    
+           
 
         private void BcancelProdu_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+        private void DGlistaProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+            if (e.ColumnIndex == DGlistaProductos.Columns["Editar"].Index && e.RowIndex >= 0)
+            {
+               
+                idProductoSeleccionado = Convert.ToInt32(DGlistaProductos.Rows[e.RowIndex].Cells["ID"].Value);
+              //FALTA CARGAR LOS DETALLES DEL PRODUCTO QUE QUEREMOS EDITAR AL FORMULARIO
+                BagregarProdu.Visible = false;
+                BeditarProd.Visible = true;
+
+            }
+            // Verificar si se hizo clic en una celda de botón "Eliminar"
+            if (e.ColumnIndex == DGlistaProductos.Columns["Eliminar"].Index && e.RowIndex >= 0)
+            {
+                // Obtener el ID del producto en la fila actual
+                int idprodu = Convert.ToInt32(DGlistaProductos.Rows[e.RowIndex].Cells["ID"].Value);
+
+                // Mostrar un mensaje de confirmación
+                var confirmResult = MessageBox.Show("¿Está seguro de que desea eliminar este producto?",
+                                                   "Confirmar Eliminación",
+                                                   MessageBoxButtons.YesNo,
+                                                   MessageBoxIcon.Question);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    // El usuario confirmó la eliminación, proceder con la eliminación
+                    Cproducto.EliminarProducto(idprodu);
+
+                    // Volver a cargar los datos en el DataGridView
+                    Cproducto producto = new Cproducto();
+                    bool resultado = producto.CargarProductos(DGlistaProductos);
+                }
+                // Si el usuario elige "No" en el cuadro de diálogo, no se realizará ninguna acción.
+            }
+        }
+
+       
 
         private void FlistaProductosAdmin_Load(object sender, EventArgs e)
         {
-           
 
+          
 
         }
 
-        private void FlistaProductosAdmin_Load_1(object sender, EventArgs e)
-        {
+       
             
 
-        }
+       
     } 
 }
