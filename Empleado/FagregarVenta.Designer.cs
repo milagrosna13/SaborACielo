@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Fproducto = new System.Windows.Forms.TextBox();
             this.BagregarCompra = new System.Windows.Forms.Button();
             this.TBsubtotal = new System.Windows.Forms.TextBox();
             this.BcancelarCompra = new System.Windows.Forms.Button();
@@ -38,7 +40,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.Lventa = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.CBtipoProd = new System.Windows.Forms.ComboBox();
+            this.CtipoProd = new System.Windows.Forms.ComboBox();
             this.Ncant = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,7 +50,7 @@
             this.prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sub = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fproducto = new System.Windows.Forms.TextBox();
+            this.baja = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Ncant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGcarrito)).BeginInit();
@@ -67,7 +69,7 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.Lventa);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.CBtipoProd);
+            this.panel1.Controls.Add(this.CtipoProd);
             this.panel1.Controls.Add(this.Ncant);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -75,6 +77,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(959, 366);
             this.panel1.TabIndex = 0;
+            // 
+            // Fproducto
+            // 
+            this.Fproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Fproducto.Location = new System.Drawing.Point(529, 62);
+            this.Fproducto.Name = "Fproducto";
+            this.Fproducto.Size = new System.Drawing.Size(307, 35);
+            this.Fproducto.TabIndex = 15;
+            this.Fproducto.TextChanged += new System.EventHandler(this.Fproducto_TextChanged);
+            this.Fproducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Fproducto_KeyPress);
             // 
             // BagregarCompra
             // 
@@ -92,6 +104,7 @@
             this.TBsubtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TBsubtotal.Location = new System.Drawing.Point(578, 203);
             this.TBsubtotal.Name = "TBsubtotal";
+            this.TBsubtotal.ReadOnly = true;
             this.TBsubtotal.Size = new System.Drawing.Size(298, 32);
             this.TBsubtotal.TabIndex = 14;
             // 
@@ -105,13 +118,14 @@
             this.BcancelarCompra.Text = "Cancelar";
             this.BcancelarCompra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BcancelarCompra.UseVisualStyleBackColor = true;
+            this.BcancelarCompra.Click += new System.EventHandler(this.BcancelarCompra_Click);
             // 
             // Bcompra
             // 
             this.Bcompra.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
-            this.Bcompra.Location = new System.Drawing.Point(824, 300);
+            this.Bcompra.Location = new System.Drawing.Point(824, 282);
             this.Bcompra.Name = "Bcompra";
-            this.Bcompra.Size = new System.Drawing.Size(132, 66);
+            this.Bcompra.Size = new System.Drawing.Size(132, 81);
             this.Bcompra.TabIndex = 1;
             this.Bcompra.Text = "Finalizar Compra";
             this.Bcompra.UseVisualStyleBackColor = true;
@@ -166,18 +180,18 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Tipo";
             // 
-            // CBtipoProd
+            // CtipoProd
             // 
-            this.CBtipoProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CBtipoProd.FormattingEnabled = true;
-            this.CBtipoProd.Items.AddRange(new object[] {
-            "panif",
-            "factu",
-            "repos"});
-            this.CBtipoProd.Location = new System.Drawing.Point(96, 63);
-            this.CBtipoProd.Name = "CBtipoProd";
-            this.CBtipoProd.Size = new System.Drawing.Size(280, 34);
-            this.CBtipoProd.TabIndex = 7;
+            this.CtipoProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CtipoProd.FormattingEnabled = true;
+            this.CtipoProd.Items.AddRange(new object[] {
+            "Regular",
+            "Vegano",
+            "Sin T.A.C.C"});
+            this.CtipoProd.Location = new System.Drawing.Point(96, 63);
+            this.CtipoProd.Name = "CtipoProd";
+            this.CtipoProd.Size = new System.Drawing.Size(280, 34);
+            this.CtipoProd.TabIndex = 7;
             // 
             // Ncant
             // 
@@ -210,63 +224,74 @@
             // 
             // DGcarrito
             // 
+            this.DGcarrito.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGcarrito.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGcarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGcarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_venta,
             this.tipo,
             this.prod,
             this.cantidad,
-            this.sub});
-            this.DGcarrito.Location = new System.Drawing.Point(87, 436);
+            this.sub,
+            this.baja});
+            this.DGcarrito.Location = new System.Drawing.Point(29, 436);
             this.DGcarrito.Name = "DGcarrito";
             this.DGcarrito.RowHeadersWidth = 62;
             this.DGcarrito.RowTemplate.Height = 28;
-            this.DGcarrito.Size = new System.Drawing.Size(854, 150);
+            this.DGcarrito.Size = new System.Drawing.Size(1025, 209);
             this.DGcarrito.TabIndex = 3;
+            this.DGcarrito.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGcarrito_CellClick);
             // 
             // id_venta
             // 
             this.id_venta.HeaderText = "Venta nro";
             this.id_venta.MinimumWidth = 8;
             this.id_venta.Name = "id_venta";
-            this.id_venta.Width = 150;
+            this.id_venta.ReadOnly = true;
             // 
             // tipo
             // 
-            this.tipo.HeaderText = "tipo";
+            this.tipo.HeaderText = "Tipo de Producto";
             this.tipo.MinimumWidth = 8;
             this.tipo.Name = "tipo";
-            this.tipo.Width = 150;
+            this.tipo.ReadOnly = true;
             // 
             // prod
             // 
-            this.prod.HeaderText = "produ";
+            this.prod.HeaderText = "Producto";
             this.prod.MinimumWidth = 8;
             this.prod.Name = "prod";
-            this.prod.Width = 150;
+            this.prod.ReadOnly = true;
             // 
             // cantidad
             // 
-            this.cantidad.HeaderText = "cantidad";
+            this.cantidad.HeaderText = "Cantidad";
             this.cantidad.MinimumWidth = 8;
             this.cantidad.Name = "cantidad";
-            this.cantidad.Width = 150;
+            this.cantidad.ReadOnly = true;
             // 
             // sub
             // 
-            this.sub.HeaderText = "sub";
+            this.sub.HeaderText = "Subtotal";
             this.sub.MinimumWidth = 8;
             this.sub.Name = "sub";
-            this.sub.Width = 150;
+            this.sub.ReadOnly = true;
             // 
-            // Fproducto
+            // baja
             // 
-            this.Fproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Fproducto.Location = new System.Drawing.Point(529, 62);
-            this.Fproducto.Name = "Fproducto";
-            this.Fproducto.Size = new System.Drawing.Size(307, 35);
-            this.Fproducto.TabIndex = 15;
-            this.Fproducto.TextChanged += new System.EventHandler(this.Fproducto_TextChanged);
+            this.baja.HeaderText = "Eliminar";
+            this.baja.MinimumWidth = 8;
+            this.baja.Name = "baja";
+            this.baja.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.baja.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.baja.Text = "Eliminar";
             // 
             // FagregarVenta
             // 
@@ -302,14 +327,15 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label Lventa;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox CBtipoProd;
+        private System.Windows.Forms.ComboBox CtipoProd;
         private System.Windows.Forms.Button BagregarCompra;
         private System.Windows.Forms.DataGridView DGcarrito;
+        private System.Windows.Forms.TextBox Fproducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_venta;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn prod;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn sub;
-        private System.Windows.Forms.TextBox Fproducto;
+        private System.Windows.Forms.DataGridViewButtonColumn baja;
     }
 }

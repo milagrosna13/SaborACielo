@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Data.Common;
+using System.Collections;
 using System.Threading.Tasks;
 
 namespace SaborAcielo.datos
@@ -18,6 +19,39 @@ namespace SaborAcielo.datos
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString;
         private readonly SqlDataAdapter dataAdapter;
         private readonly DataTable dataTable;
+
+        public void MostrarResumen(int id)
+        {
+            string query = "SELECT * FROM venta WHERE ID = @id_venta"; // Reemplaza TuTabla y ID con los nombres reales
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id_venta", id);
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string detalles = $"ID: {reader["ID"]}\n";
+                            detalles += $"Producto: {reader["producto"]}\n";
+                            detalles += $"Precio: {reader["precio"]}\n"; 
+                            detalles += $"Cantidad: {reader["cantidad"]}\n"; 
+                            detalles += $"Total: {reader["total"]}\n"; 
+
+                            MessageBox.Show(detalles, "Detalles de la compra");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontraron detalles para el ID proporcionado", "Error");
+                        }
+                    }
+                }
+            }
+        }
+
 
         public bool Filtrar(string filtro, out DataTable resultado)
         {
