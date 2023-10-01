@@ -30,132 +30,90 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GBfiltroUsuarios = new System.Windows.Forms.GroupBox();
-            this.TBapellidoUsuario = new System.Windows.Forms.TextBox();
-            this.TBnombreUsuario = new System.Windows.Forms.TextBox();
-            this.CBtodosUsuarios = new System.Windows.Forms.CheckBox();
-            this.Ltipousuario = new System.Windows.Forms.Label();
-            this.Lnombre = new System.Windows.Forms.Label();
-            this.Ldni = new System.Windows.Forms.Label();
-            this.Lapellido = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.TBdni = new System.Windows.Forms.TextBox();
             this.BbuscarUsuario = new System.Windows.Forms.Button();
+            this.CBtipoUs = new System.Windows.Forms.ComboBox();
+            this.CBtodosUsuarios = new System.Windows.Forms.CheckBox();
             this.DGlistaUsuarios = new System.Windows.Forms.DataGridView();
+            this.Tdni_us = new System.Windows.Forms.TextBox();
+            this.Tnom_us = new System.Windows.Forms.TextBox();
+            this.Tape_us = new System.Windows.Forms.TextBox();
+            this.CBdniUS = new System.Windows.Forms.CheckBox();
+            this.CBnomUs = new System.Windows.Forms.CheckBox();
+            this.CBapeUs = new System.Windows.Forms.CheckBox();
+            this.CtipoUS = new System.Windows.Forms.CheckBox();
+            this.us_apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.us_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.us_dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.us_fechaNac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha_ingeso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.perfil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GBfiltroUsuarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
             // GBfiltroUsuarios
             // 
-            this.GBfiltroUsuarios.BackColor = System.Drawing.Color.Transparent;
+            this.GBfiltroUsuarios.BackColor = System.Drawing.Color.RosyBrown;
+            this.GBfiltroUsuarios.Controls.Add(this.CtipoUS);
+            this.GBfiltroUsuarios.Controls.Add(this.Tdni_us);
+            this.GBfiltroUsuarios.Controls.Add(this.Tnom_us);
+            this.GBfiltroUsuarios.Controls.Add(this.Tape_us);
+            this.GBfiltroUsuarios.Controls.Add(this.CBdniUS);
+            this.GBfiltroUsuarios.Controls.Add(this.CBnomUs);
+            this.GBfiltroUsuarios.Controls.Add(this.CBapeUs);
             this.GBfiltroUsuarios.Controls.Add(this.BbuscarUsuario);
-            this.GBfiltroUsuarios.Controls.Add(this.TBdni);
-            this.GBfiltroUsuarios.Controls.Add(this.comboBox1);
-            this.GBfiltroUsuarios.Controls.Add(this.Lapellido);
-            this.GBfiltroUsuarios.Controls.Add(this.Ldni);
-            this.GBfiltroUsuarios.Controls.Add(this.TBapellidoUsuario);
-            this.GBfiltroUsuarios.Controls.Add(this.TBnombreUsuario);
+            this.GBfiltroUsuarios.Controls.Add(this.CBtipoUs);
             this.GBfiltroUsuarios.Controls.Add(this.CBtodosUsuarios);
-            this.GBfiltroUsuarios.Controls.Add(this.Ltipousuario);
-            this.GBfiltroUsuarios.Controls.Add(this.Lnombre);
             this.GBfiltroUsuarios.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GBfiltroUsuarios.Location = new System.Drawing.Point(39, 21);
+            this.GBfiltroUsuarios.Location = new System.Drawing.Point(58, 32);
+            this.GBfiltroUsuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GBfiltroUsuarios.Name = "GBfiltroUsuarios";
-            this.GBfiltroUsuarios.Size = new System.Drawing.Size(714, 100);
+            this.GBfiltroUsuarios.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GBfiltroUsuarios.Size = new System.Drawing.Size(1027, 284);
             this.GBfiltroUsuarios.TabIndex = 2;
             this.GBfiltroUsuarios.TabStop = false;
             this.GBfiltroUsuarios.Text = "Filtrar por";
             // 
-            // TBapellidoUsuario
+            // BbuscarUsuario
             // 
-            this.TBapellidoUsuario.Location = new System.Drawing.Point(458, 57);
-            this.TBapellidoUsuario.Name = "TBapellidoUsuario";
-            this.TBapellidoUsuario.Size = new System.Drawing.Size(100, 27);
-            this.TBapellidoUsuario.TabIndex = 4;
+            this.BbuscarUsuario.Location = new System.Drawing.Point(823, 179);
+            this.BbuscarUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BbuscarUsuario.Name = "BbuscarUsuario";
+            this.BbuscarUsuario.Size = new System.Drawing.Size(112, 42);
+            this.BbuscarUsuario.TabIndex = 9;
+            this.BbuscarUsuario.Text = "Buscar";
+            this.BbuscarUsuario.UseVisualStyleBackColor = true;
             // 
-            // TBnombreUsuario
+            // CBtipoUs
             // 
-            this.TBnombreUsuario.Location = new System.Drawing.Point(326, 57);
-            this.TBnombreUsuario.Name = "TBnombreUsuario";
-            this.TBnombreUsuario.Size = new System.Drawing.Size(100, 27);
-            this.TBnombreUsuario.TabIndex = 3;
+            this.CBtipoUs.FormattingEnabled = true;
+            this.CBtipoUs.Location = new System.Drawing.Point(290, 200);
+            this.CBtipoUs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CBtipoUs.Name = "CBtipoUs";
+            this.CBtipoUs.Size = new System.Drawing.Size(336, 37);
+            this.CBtipoUs.TabIndex = 7;
             // 
             // CBtodosUsuarios
             // 
             this.CBtodosUsuarios.AutoSize = true;
-            this.CBtodosUsuarios.Location = new System.Drawing.Point(20, 26);
+            this.CBtodosUsuarios.Location = new System.Drawing.Point(772, 84);
+            this.CBtodosUsuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CBtodosUsuarios.Name = "CBtodosUsuarios";
-            this.CBtodosUsuarios.Size = new System.Drawing.Size(146, 23);
+            this.CBtodosUsuarios.Size = new System.Drawing.Size(226, 33);
             this.CBtodosUsuarios.TabIndex = 2;
             this.CBtodosUsuarios.Text = "Todos los usuarios";
             this.CBtodosUsuarios.UseVisualStyleBackColor = true;
-            // 
-            // Ltipousuario
-            // 
-            this.Ltipousuario.AutoSize = true;
-            this.Ltipousuario.Location = new System.Drawing.Point(598, 20);
-            this.Ltipousuario.Name = "Ltipousuario";
-            this.Ltipousuario.Size = new System.Drawing.Size(109, 19);
-            this.Ltipousuario.TabIndex = 1;
-            this.Ltipousuario.Text = "Tipo de usuario";
-            // 
-            // Lnombre
-            // 
-            this.Lnombre.AutoSize = true;
-            this.Lnombre.Location = new System.Drawing.Point(322, 20);
-            this.Lnombre.Name = "Lnombre";
-            this.Lnombre.Size = new System.Drawing.Size(61, 19);
-            this.Lnombre.TabIndex = 0;
-            this.Lnombre.Text = "Nombre";
-            // 
-            // Ldni
-            // 
-            this.Ldni.AutoSize = true;
-            this.Ldni.Location = new System.Drawing.Point(191, 20);
-            this.Ldni.Name = "Ldni";
-            this.Ldni.Size = new System.Drawing.Size(45, 19);
-            this.Ldni.TabIndex = 5;
-            this.Ldni.Text = "DNI";
-            // 
-            // Lapellido
-            // 
-            this.Lapellido.AutoSize = true;
-            this.Lapellido.Location = new System.Drawing.Point(454, 20);
-            this.Lapellido.Name = "Lapellido";
-            this.Lapellido.Size = new System.Drawing.Size(64, 19);
-            this.Lapellido.TabIndex = 6;
-            this.Lapellido.Text = "Apellido";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(586, 57);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 27);
-            this.comboBox1.TabIndex = 7;
-            // 
-            // TBdni
-            // 
-            this.TBdni.Location = new System.Drawing.Point(195, 57);
-            this.TBdni.Name = "TBdni";
-            this.TBdni.Size = new System.Drawing.Size(100, 27);
-            this.TBdni.TabIndex = 8;
-            // 
-            // BbuscarUsuario
-            // 
-            this.BbuscarUsuario.Location = new System.Drawing.Point(46, 57);
-            this.BbuscarUsuario.Name = "BbuscarUsuario";
-            this.BbuscarUsuario.Size = new System.Drawing.Size(75, 27);
-            this.BbuscarUsuario.TabIndex = 9;
-            this.BbuscarUsuario.Text = "Buscar";
-            this.BbuscarUsuario.UseVisualStyleBackColor = true;
             // 
             // DGlistaUsuarios
             // 
             this.DGlistaUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGlistaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DGlistaUsuarios.BackgroundColor = System.Drawing.Color.RosyBrown;
+            this.DGlistaUsuarios.BackgroundColor = System.Drawing.Color.DarkGray;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -165,23 +123,158 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGlistaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGlistaUsuarios.Location = new System.Drawing.Point(27, 152);
-            this.DGlistaUsuarios.Margin = new System.Windows.Forms.Padding(2);
+            this.DGlistaUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.us_apellido,
+            this.us_nombre,
+            this.us_dni,
+            this.us_fechaNac,
+            this.email,
+            this.direccion,
+            this.tel,
+            this.fecha_ingeso,
+            this.perfil,
+            this.estado});
+            this.DGlistaUsuarios.Location = new System.Drawing.Point(40, 350);
             this.DGlistaUsuarios.Name = "DGlistaUsuarios";
             this.DGlistaUsuarios.RowHeadersWidth = 62;
             this.DGlistaUsuarios.RowTemplate.Height = 28;
-            this.DGlistaUsuarios.Size = new System.Drawing.Size(747, 301);
+            this.DGlistaUsuarios.Size = new System.Drawing.Size(1120, 347);
             this.DGlistaUsuarios.TabIndex = 5;
+            // 
+            // Tdni_us
+            // 
+            this.Tdni_us.Location = new System.Drawing.Point(290, 149);
+            this.Tdni_us.Name = "Tdni_us";
+            this.Tdni_us.ReadOnly = true;
+            this.Tdni_us.Size = new System.Drawing.Size(336, 36);
+            this.Tdni_us.TabIndex = 15;
+            // 
+            // Tnom_us
+            // 
+            this.Tnom_us.Location = new System.Drawing.Point(290, 101);
+            this.Tnom_us.Name = "Tnom_us";
+            this.Tnom_us.ReadOnly = true;
+            this.Tnom_us.Size = new System.Drawing.Size(336, 36);
+            this.Tnom_us.TabIndex = 14;
+            // 
+            // Tape_us
+            // 
+            this.Tape_us.Location = new System.Drawing.Point(290, 56);
+            this.Tape_us.Name = "Tape_us";
+            this.Tape_us.ReadOnly = true;
+            this.Tape_us.Size = new System.Drawing.Size(336, 36);
+            this.Tape_us.TabIndex = 13;
+            // 
+            // CBdniUS
+            // 
+            this.CBdniUS.AutoSize = true;
+            this.CBdniUS.Location = new System.Drawing.Point(45, 149);
+            this.CBdniUS.Name = "CBdniUS";
+            this.CBdniUS.Size = new System.Drawing.Size(92, 33);
+            this.CBdniUS.TabIndex = 12;
+            this.CBdniUS.Text = "DNI";
+            this.CBdniUS.UseVisualStyleBackColor = true;
+            // 
+            // CBnomUs
+            // 
+            this.CBnomUs.AutoSize = true;
+            this.CBnomUs.Location = new System.Drawing.Point(45, 103);
+            this.CBnomUs.Name = "CBnomUs";
+            this.CBnomUs.Size = new System.Drawing.Size(117, 33);
+            this.CBnomUs.TabIndex = 11;
+            this.CBnomUs.Text = "Nombre";
+            this.CBnomUs.UseVisualStyleBackColor = true;
+            // 
+            // CBapeUs
+            // 
+            this.CBapeUs.AutoSize = true;
+            this.CBapeUs.Location = new System.Drawing.Point(45, 58);
+            this.CBapeUs.Name = "CBapeUs";
+            this.CBapeUs.Size = new System.Drawing.Size(124, 33);
+            this.CBapeUs.TabIndex = 10;
+            this.CBapeUs.Text = "Apellido";
+            this.CBapeUs.UseVisualStyleBackColor = true;
+            // 
+            // CtipoUS
+            // 
+            this.CtipoUS.AutoSize = true;
+            this.CtipoUS.Location = new System.Drawing.Point(45, 200);
+            this.CtipoUS.Name = "CtipoUS";
+            this.CtipoUS.Size = new System.Drawing.Size(200, 33);
+            this.CtipoUS.TabIndex = 16;
+            this.CtipoUS.Text = "Tipo de Usuario";
+            this.CtipoUS.UseVisualStyleBackColor = true;
+            // 
+            // us_apellido
+            // 
+            this.us_apellido.HeaderText = "Apellido";
+            this.us_apellido.MinimumWidth = 8;
+            this.us_apellido.Name = "us_apellido";
+            // 
+            // us_nombre
+            // 
+            this.us_nombre.HeaderText = "Nombre";
+            this.us_nombre.MinimumWidth = 8;
+            this.us_nombre.Name = "us_nombre";
+            // 
+            // us_dni
+            // 
+            this.us_dni.HeaderText = "Dni";
+            this.us_dni.MinimumWidth = 8;
+            this.us_dni.Name = "us_dni";
+            // 
+            // us_fechaNac
+            // 
+            this.us_fechaNac.HeaderText = "Fecha de Nacimiento";
+            this.us_fechaNac.MinimumWidth = 8;
+            this.us_fechaNac.Name = "us_fechaNac";
+            // 
+            // email
+            // 
+            this.email.HeaderText = "email";
+            this.email.MinimumWidth = 8;
+            this.email.Name = "email";
+            // 
+            // direccion
+            // 
+            this.direccion.HeaderText = "Direccion";
+            this.direccion.MinimumWidth = 8;
+            this.direccion.Name = "direccion";
+            // 
+            // tel
+            // 
+            this.tel.HeaderText = "Telefono";
+            this.tel.MinimumWidth = 8;
+            this.tel.Name = "tel";
+            // 
+            // fecha_ingeso
+            // 
+            this.fecha_ingeso.HeaderText = "Fecha de Ingreso";
+            this.fecha_ingeso.MinimumWidth = 8;
+            this.fecha_ingeso.Name = "fecha_ingeso";
+            // 
+            // perfil
+            // 
+            this.perfil.HeaderText = "Tipo de Usuario";
+            this.perfil.MinimumWidth = 8;
+            this.perfil.Name = "perfil";
+            // 
+            // estado
+            // 
+            this.estado.HeaderText = "Estado";
+            this.estado.MinimumWidth = 8;
+            this.estado.Name = "estado";
             // 
             // FlistaUsuarios
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1200, 692);
             this.Controls.Add(this.DGlistaUsuarios);
             this.Controls.Add(this.GBfiltroUsuarios);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FlistaUsuarios";
             this.Text = "Lista de usuarios";
             this.GBfiltroUsuarios.ResumeLayout(false);
@@ -194,16 +287,26 @@
         #endregion
 
         private System.Windows.Forms.GroupBox GBfiltroUsuarios;
-        private System.Windows.Forms.TextBox TBapellidoUsuario;
-        private System.Windows.Forms.TextBox TBnombreUsuario;
         private System.Windows.Forms.CheckBox CBtodosUsuarios;
-        private System.Windows.Forms.Label Ltipousuario;
-        private System.Windows.Forms.Label Lnombre;
-        private System.Windows.Forms.Label Ldni;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label Lapellido;
-        private System.Windows.Forms.TextBox TBdni;
+        private System.Windows.Forms.ComboBox CBtipoUs;
         private System.Windows.Forms.Button BbuscarUsuario;
         private System.Windows.Forms.DataGridView DGlistaUsuarios;
+        private System.Windows.Forms.CheckBox CtipoUS;
+        private System.Windows.Forms.TextBox Tdni_us;
+        private System.Windows.Forms.TextBox Tnom_us;
+        private System.Windows.Forms.TextBox Tape_us;
+        private System.Windows.Forms.CheckBox CBdniUS;
+        private System.Windows.Forms.CheckBox CBnomUs;
+        private System.Windows.Forms.CheckBox CBapeUs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn us_apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn us_nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn us_dni;
+        private System.Windows.Forms.DataGridViewTextBoxColumn us_fechaNac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn direccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha_ingeso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn perfil;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
     }
 }
