@@ -281,7 +281,18 @@ namespace SaborAcielo
             // Verificar si se hizo clic en una celda de botón "Eliminar"
             if (e.ColumnIndex == DGlistaProductos.Columns["Eliminar"].Index && e.RowIndex >= 0)
             {
-                // Obtener el ID del producto en la fila actual
+                // Obtener el valor de la columna "Estado" en la fila actual
+                bool estado = Convert.ToBoolean(DGlistaProductos.Rows[e.RowIndex].Cells["Estado"].Value);
+
+                // Verificar si el estado es 0 (inhabilitado)
+                if (!estado)
+                {
+                    // Mostrar un mensaje indicando que no se puede eliminar un producto inhabilitado
+                    MessageBox.Show("No se puede eliminar un producto dado de baja.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Salir del método sin realizar ninguna acción
+                }
+
+                // Si el estado es 1 (habilitado), continuar con la eliminación
                 int idprodu = Convert.ToInt32(DGlistaProductos.Rows[e.RowIndex].Cells["ID"].Value);
 
                 // Mostrar un mensaje de confirmación

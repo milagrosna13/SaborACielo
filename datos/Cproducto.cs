@@ -37,8 +37,10 @@ namespace SaborAcielo.datos
                 DataTable localDataTable = new DataTable();
 
                 // Configurar el SqlDataAdapter
-                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT id_produ AS ID ,nombre_produ AS Producto," +
-                    " detalle AS Detalle, precio AS Precio, stock, fecha AS Fecha, imagen FROM Producto", new SqlConnection(connectionString)))
+                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT p.id_produ AS ID, p.nombre_produ AS Producto," +
+                    "p.detalle AS Detalle, p.precio AS Precio, p.stock, p.fecha AS Fecha, p.imagen, t.desc_tipoProd AS Tipo, CAST(p.estado AS INT) AS Estado " +
+                    "FROM Producto p " +
+                    "INNER JOIN Tipo_produ t ON p.id_tipoProdu = t.id_tipoProdu", new SqlConnection(connectionString)))
                 {
                     // Llenar el DataTable con los datos
                     localDataAdapter.Fill(localDataTable);
@@ -47,48 +49,17 @@ namespace SaborAcielo.datos
                 // Asignar el DataTable como origen de datos del DataGridView
                 dataGridView.DataSource = localDataTable;
 
-                // Agregar las columnas de botones
-                if (dataGridView.Columns["tipoprodu"] == null)
-                {
-                    DataGridViewTextBoxColumn tipoprodu = new DataGridViewTextBoxColumn();
-                    tipoprodu.HeaderText = "Tipo";
-                    tipoprodu.Name = "tipoprodu"; // Asignar un nombre a la columna
-                    dataGridView.Columns.Add(tipoprodu);
-                }
-                if (dataGridView.Columns["estado"] == null)
-                {
-                    DataGridViewTextBoxColumn estado = new DataGridViewTextBoxColumn();
-                    estado.HeaderText = "estado";
-                    estado.Name = "estado"; // Asignar un nombre a la columna
-                    dataGridView.Columns.Add(estado);
-                }
-
-                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
-                {
-                    using (SqlCommand command = new SqlCommand("SELECT p.nombre_produ, t.desc_tipoProd FROM Producto p INNER JOIN Tipo_produ t ON p.id_tipoProdu= t.id_tipoProdu;", connection))
-                    {
-                        connection.Open();
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            int filaActual = 0;
-                            while (reader.Read())
-                            {
-                                dataGridView.Rows[filaActual].Cells["tipoprodu"].Value = reader["desc_tipoProd"].ToString();
-                                filaActual++;
-                            }
-                        }
-                        connection.Close();
-                    }
-                }
-
                 return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false; 
+                return false;
             }
         }
+
+
+
 
 
         // Método para agregar un producto

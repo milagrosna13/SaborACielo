@@ -102,5 +102,10 @@ namespace SaborAcielo
         {
             abrirFormularioHijo(new FlistarClientes());
         }
+
+        private void BlistarVentas_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FVentasEm());
+        }
     }
 }
