@@ -59,9 +59,6 @@ namespace SaborAcielo.datos
         }
 
 
-
-
-
         // Método para agregar un producto
         public static bool AgregarProducto(string nombre, int tipo, decimal precio, string detalle, string stock, DateTime fecha, byte[] imagen, DataGridView datagrid)
         {
@@ -160,31 +157,29 @@ namespace SaborAcielo.datos
         //Método para acceder a los registros del producto a editar
         public DataRow obtenerProducto(int idProducto)
         {
-            DataRow detalle = null;
-            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT * FROM Producto WHERE id_produ = @idProdu";
-                using (SqlCommand cmd = new SqlCommand(query, connection))
-                {
-                    cmd.Parameters.AddWithValue("@idProdu", idProducto);
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            DataTable dt = new DataTable();
-                            dt.Load(reader);
-                            if (dt.Rows.Count > 0)
-                            {
-                                detalle = dt.Rows[0];
-                            }
-                            
-                        }
-                    }
-                }
-                return detalle;
+                string query = "SELECT * FROM Producto WHERE id_produ = @id";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", idProducto);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataTable);
             }
+
+            if (dataTable.Rows.Count > 0)
+            {
+                return dataTable.Rows[0];
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
         //Método para eliminar lógicamente a un producto

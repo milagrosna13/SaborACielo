@@ -20,9 +20,6 @@ namespace SaborAcielo
 {
     public partial class FlistaProductosAdmin : Form
     {
-        //private readonly string connectionString = ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString;
-        //private readonly SqlDataAdapter dataAdapter;
-        //private readonly DataTable dataTable;
         public FlistaProductosAdmin()
         {
             InitializeComponent();
@@ -181,49 +178,26 @@ namespace SaborAcielo
         int pos;
 
         //editar
-        private void DGlistaProductos_CellClick(object sender, DataGridViewCellEventArgs e)
+        
+        private int obtenerID()
         {
-            DataGridViewRow row = DGlistaProductos.Rows[e.RowIndex];
-            DataGridViewCell nombreCell = row.Cells["nombre"];
-            DataGridViewCell editarCell = row.Cells["Editar_produ"];
-
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            if (DGlistaProductos.SelectedRows.Count > 0)
             {
-                DataGridViewColumn columna = DGlistaProductos.Columns[e.ColumnIndex];
-                if (columna.Name != "Editar_produ")
-                {
-                    // Desactivar el evento Click en celdas que no sean del tipo botón
-                    DGlistaProductos.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = false;
-                }
-                else
-                {
-                    if (string.IsNullOrWhiteSpace(Convert.ToString(nombreCell.Value)))
-                    {
-                        // Desactivar el botón de eliminar si la fila está vacía
-                        editarCell.ReadOnly = true;
-                    }
-                    else
-                    {
-                        limpiarTextBox();
-                        editarCell.ReadOnly = false;
-                        BagregarProdu.Visible = false;
-                        BeditarProd.Visible = true;
-                        //metodo editar
-                    }
-                }
+                DataGridViewRow selectedRow = DGlistaProductos.SelectedRows[0];
+                return Convert.ToInt32(selectedRow.Cells["ID"].Value); 
             }
+
+            return -1;
         }
-        private int idProductoSeleccionado = -1;
         private void BeditarProd_Click(object sender, EventArgs e)
         {
+            int idProductoSeleccionado = idprodu;
             if (idProductoSeleccionado != -1)
             {
-               
-               
                 
                 DateTime nuevaFecha = dtFecha.Value;
                 // Lógica para obtener la imagen editada
-                byte[] nuevaImagen = ConvertirImagenABytes(rutaImagenSeleccionada); 
+                byte[] nuevaImagen = ConvertirImagenABytes(rutaImagenSeleccionada);
 
                 // Actualiza el producto en la base de datos
                 bool exito = Cproducto.ActualizarProducto(idProductoSeleccionado, TBnomProdu.Text, TBdetalle.Text, Convert.ToDecimal(TBprecio.Text), Convert.ToInt32(TBcantidadProdu.Text), nuevaFecha, nuevaImagen);
@@ -246,8 +220,10 @@ namespace SaborAcielo
                 // Restablece el formulario al modo de inserción
                 BeditarProd.Visible = false;
                 BagregarProdu.Visible = true;
+                CtipoProd.Enabled = true;
                 limpiarTextBox(); // Limpia los campos del formulario
             }
+            else MessageBox.Show("Error "+idProductoSeleccionado, "");
         }  
            
 
@@ -255,27 +231,29 @@ namespace SaborAcielo
         {
             this.Close();
         }
+        int idprodu;
         private void DGlistaProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == DGlistaProductos.Columns["Editar"].Index && e.RowIndex >= 0)
             {
-                int idprodu = Convert.ToInt32(DGlistaProductos.Rows[e.RowIndex].Cells["ID"].Value);
-
+                idprodu = Convert.ToInt32(DGlistaProductos.Rows[e.RowIndex].Cells["ID"].Value);
+                
                 //se cargan los campos del producto
                 Cproducto producto = new Cproducto();
                 DataRow detalle = producto.obtenerProducto(idprodu);
 
                 if (detalle != null)
-                {
+                {                  
                     TBnomProdu.Text = detalle["nombre_produ"].ToString();
                     TBprecio.Text = detalle["precio"].ToString();
                     TBdetalle.Text = detalle["detalle"].ToString();
-                    CtipoProd.SelectedIndex = Convert.ToInt32(detalle["id_tipoProdu"].ToString());
+                    CtipoProd.SelectedIndex = Convert.ToInt32(detalle["id_tipoProdu"].ToString())-1;
                     TBcantidadProdu.Text = detalle["stock"].ToString();
+                    
+                    BagregarProdu.Visible = false;
+                    BeditarProd.Visible = true;
+                    CtipoProd.Enabled = false;
                 }
-
-                BagregarProdu.Visible = false;
-                BeditarProd.Visible = true;
 
             }
             // Verificar si se hizo clic en una celda de botón "Eliminar"

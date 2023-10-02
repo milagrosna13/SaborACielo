@@ -88,7 +88,7 @@ namespace SaborAcielo
         }
         private void BlistarProdu_Click(object sender, EventArgs e)
         {
-            abrirFormularioHijo(new FlistaProductosAdmin());
+            abrirFormularioHijo(new Fproducto());
         }
 
         private void Bclientes_Click(object sender, EventArgs e)
@@ -103,7 +103,7 @@ namespace SaborAcielo
 
         private void BagregarProdu_Click(object sender, EventArgs e)
         {
-            abrirFormularioHijo(new Fproducto());
+            abrirFormularioHijo(new FlistaProductosAdmin());
         }
 
         private void BlistarClientes_Click(object sender, EventArgs e)
