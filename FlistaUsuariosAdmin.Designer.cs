@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GBfiltroUsuarios = new System.Windows.Forms.GroupBox();
             this.BbuscarUsuario = new System.Windows.Forms.Button();
@@ -217,7 +219,7 @@
             this.PagregarProdu.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PagregarProdu.Location = new System.Drawing.Point(410, 18);
             this.PagregarProdu.Name = "PagregarProdu";
-            this.PagregarProdu.Size = new System.Drawing.Size(774, 471);
+            this.PagregarProdu.Size = new System.Drawing.Size(787, 523);
             this.PagregarProdu.TabIndex = 8;
             // 
             // BagregarUs
@@ -235,16 +237,16 @@
             // TBemail
             // 
             this.TBemail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBemail.Location = new System.Drawing.Point(220, 188);
+            this.TBemail.Location = new System.Drawing.Point(217, 127);
             this.TBemail.Name = "TBemail";
-            this.TBemail.Size = new System.Drawing.Size(220, 35);
+            this.TBemail.Size = new System.Drawing.Size(442, 35);
             this.TBemail.TabIndex = 24;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(48, 194);
+            this.label1.Location = new System.Drawing.Point(48, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 29);
             this.label1.TabIndex = 23;
@@ -253,7 +255,7 @@
             // TBtelefono
             // 
             this.TBtelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBtelefono.Location = new System.Drawing.Point(220, 293);
+            this.TBtelefono.Location = new System.Drawing.Point(217, 290);
             this.TBtelefono.Name = "TBtelefono";
             this.TBtelefono.Size = new System.Drawing.Size(220, 35);
             this.TBtelefono.TabIndex = 22;
@@ -263,7 +265,7 @@
             // 
             this.Ltel.AutoSize = true;
             this.Ltel.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ltel.Location = new System.Drawing.Point(48, 299);
+            this.Ltel.Location = new System.Drawing.Point(48, 296);
             this.Ltel.Name = "Ltel";
             this.Ltel.Size = new System.Drawing.Size(98, 29);
             this.Ltel.TabIndex = 21;
@@ -272,9 +274,9 @@
             // TBdireccion
             // 
             this.TBdireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBdireccion.Location = new System.Drawing.Point(220, 237);
+            this.TBdireccion.Location = new System.Drawing.Point(217, 199);
             this.TBdireccion.Name = "TBdireccion";
-            this.TBdireccion.Size = new System.Drawing.Size(220, 35);
+            this.TBdireccion.Size = new System.Drawing.Size(445, 35);
             this.TBdireccion.TabIndex = 20;
             this.TBdireccion.TextChanged += new System.EventHandler(this.TBdireccion_TextChanged);
             // 
@@ -282,7 +284,7 @@
             // 
             this.Ldireccion.AutoSize = true;
             this.Ldireccion.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ldireccion.Location = new System.Drawing.Point(48, 243);
+            this.Ldireccion.Location = new System.Drawing.Point(45, 205);
             this.Ldireccion.Name = "Ldireccion";
             this.Ldireccion.Size = new System.Drawing.Size(101, 29);
             this.Ldireccion.TabIndex = 19;
@@ -296,7 +298,7 @@
             "Administrador",
             "Gerente",
             "Empleado"});
-            this.CBusuarioTipo.Location = new System.Drawing.Point(221, 344);
+            this.CBusuarioTipo.Location = new System.Drawing.Point(687, 290);
             this.CBusuarioTipo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CBusuarioTipo.Name = "CBusuarioTipo";
             this.CBusuarioTipo.Size = new System.Drawing.Size(220, 32);
@@ -318,7 +320,7 @@
             // 
             this.LusuarioTipo.AutoSize = true;
             this.LusuarioTipo.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LusuarioTipo.Location = new System.Drawing.Point(31, 350);
+            this.LusuarioTipo.Location = new System.Drawing.Point(497, 296);
             this.LusuarioTipo.Name = "LusuarioTipo";
             this.LusuarioTipo.Size = new System.Drawing.Size(169, 29);
             this.LusuarioTipo.TabIndex = 10;
@@ -327,16 +329,16 @@
             // TBapeUsuario
             // 
             this.TBapeUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBapeUsuario.Location = new System.Drawing.Point(220, 135);
+            this.TBapeUsuario.Location = new System.Drawing.Point(863, 121);
             this.TBapeUsuario.Name = "TBapeUsuario";
-            this.TBapeUsuario.Size = new System.Drawing.Size(220, 35);
+            this.TBapeUsuario.Size = new System.Drawing.Size(320, 35);
             this.TBapeUsuario.TabIndex = 9;
             // 
             // LnombreUsuario
             // 
             this.LnombreUsuario.AutoSize = true;
             this.LnombreUsuario.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LnombreUsuario.Location = new System.Drawing.Point(45, 88);
+            this.LnombreUsuario.Location = new System.Drawing.Point(726, 51);
             this.LnombreUsuario.Name = "LnombreUsuario";
             this.LnombreUsuario.Size = new System.Drawing.Size(91, 29);
             this.LnombreUsuario.TabIndex = 8;
@@ -345,9 +347,9 @@
             // TBnomUsuario
             // 
             this.TBnomUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBnomUsuario.Location = new System.Drawing.Point(220, 82);
+            this.TBnomUsuario.Location = new System.Drawing.Point(860, 51);
             this.TBnomUsuario.Name = "TBnomUsuario";
-            this.TBnomUsuario.Size = new System.Drawing.Size(220, 35);
+            this.TBnomUsuario.Size = new System.Drawing.Size(320, 35);
             this.TBnomUsuario.TabIndex = 7;
             this.TBnomUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBnomUsuario_TextChanged);
             // 
@@ -355,7 +357,7 @@
             // 
             this.LapellidoUsuario.AutoSize = true;
             this.LapellidoUsuario.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LapellidoUsuario.Location = new System.Drawing.Point(48, 146);
+            this.LapellidoUsuario.Location = new System.Drawing.Point(726, 127);
             this.LapellidoUsuario.Name = "LapellidoUsuario";
             this.LapellidoUsuario.Size = new System.Drawing.Size(98, 29);
             this.LapellidoUsuario.TabIndex = 6;
@@ -364,9 +366,9 @@
             // TBdniUsuario
             // 
             this.TBdniUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBdniUsuario.Location = new System.Drawing.Point(220, 26);
+            this.TBdniUsuario.Location = new System.Drawing.Point(220, 41);
             this.TBdniUsuario.Name = "TBdniUsuario";
-            this.TBdniUsuario.Size = new System.Drawing.Size(220, 35);
+            this.TBdniUsuario.Size = new System.Drawing.Size(259, 35);
             this.TBdniUsuario.TabIndex = 3;
             this.TBdniUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBdniUsuario_TextChanged);
             // 
@@ -374,7 +376,7 @@
             // 
             this.LdniUsuario.AutoSize = true;
             this.LdniUsuario.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LdniUsuario.Location = new System.Drawing.Point(48, 26);
+            this.LdniUsuario.Location = new System.Drawing.Point(45, 47);
             this.LdniUsuario.Name = "LdniUsuario";
             this.LdniUsuario.Size = new System.Drawing.Size(66, 29);
             this.LdniUsuario.TabIndex = 2;
@@ -400,14 +402,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGlistaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGlistaUsuarios.BackgroundColor = System.Drawing.Color.RosyBrown;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGlistaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGlistaUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nom_em,
@@ -485,6 +487,9 @@
             // 
             // editar_em
             // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editar_em.DefaultCellStyle = dataGridViewCellStyle2;
             this.editar_em.HeaderText = "Editar";
             this.editar_em.MinimumWidth = 8;
             this.editar_em.Name = "editar_em";
@@ -495,6 +500,9 @@
             // 
             // eliminar_em
             // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eliminar_em.DefaultCellStyle = dataGridViewCellStyle3;
             this.eliminar_em.HeaderText = "Eliminar";
             this.eliminar_em.MinimumWidth = 8;
             this.eliminar_em.Name = "eliminar_em";

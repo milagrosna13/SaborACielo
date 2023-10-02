@@ -125,5 +125,10 @@ namespace SaborAcielo
         {
             abrirFormularioHijo(new FlistaUsuarios());
         }
+
+        private void BcerrarSesion_Click(object sender, EventArgs e)
+        {
+            this.Close();   
+        }
     }
 }

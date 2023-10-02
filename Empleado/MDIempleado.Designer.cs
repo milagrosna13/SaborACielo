@@ -43,11 +43,11 @@
             this.BagregarC = new System.Windows.Forms.Button();
             this.Bcliente = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BcerrarSesion = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.PchildForm = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PmenuEmpleado.SuspendLayout();
             this.PsubmnVentas.SuspendLayout();
             this.PsubmnProductos.SuspendLayout();
@@ -254,6 +254,19 @@
             this.panel2.Size = new System.Drawing.Size(365, 392);
             this.panel2.TabIndex = 0;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Image = global::SaborAcielo.Properties.Resources.EmpleadosInicio;
+            this.pictureBox1.Location = new System.Drawing.Point(77, 80);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(187, 181);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // BcerrarSesion
             // 
             this.BcerrarSesion.BackColor = System.Drawing.Color.RosyBrown;
@@ -269,6 +282,7 @@
             this.BcerrarSesion.Text = "Salir";
             this.BcerrarSesion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BcerrarSesion.UseVisualStyleBackColor = false;
+            this.BcerrarSesion.Click += new System.EventHandler(this.BcerrarSesion_Click);
             // 
             // label2
             // 
@@ -300,19 +314,6 @@
             this.PchildForm.Name = "PchildForm";
             this.PchildForm.Size = new System.Drawing.Size(775, 892);
             this.PchildForm.TabIndex = 6;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = global::SaborAcielo.Properties.Resources.EmpleadosInicio;
-            this.pictureBox1.Location = new System.Drawing.Point(77, 80);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(187, 181);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // MDIempleado
             // 

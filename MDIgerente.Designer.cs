@@ -315,6 +315,7 @@
             this.BcerrarSesion.Text = "Salir";
             this.BcerrarSesion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BcerrarSesion.UseVisualStyleBackColor = false;
+            this.BcerrarSesion.Click += new System.EventHandler(this.BcerrarSesion_Click);
             // 
             // label2
             // 

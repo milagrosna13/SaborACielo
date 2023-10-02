@@ -124,21 +124,19 @@ namespace SaborAcielo
             }
             else
             {
-                if (DGlistaUsuarios.SelectedRows.Count > 0)
-                {
-                    DataGridViewRow row = DGlistaUsuarios.SelectedRows[0];
-                    row.Cells["nom_em"].Value = TBnomUsuario.Text;
-                    row.Cells["ape_em"].Value = TBapeUsuario.Text;
-                    row.Cells["dni_em"].Value = TBdniUsuario.Text;
-                    row.Cells["email_em"].Value = TBemail.Text;
-                    row.Cells["direc_em"].Value = TBdireccion.Text;
-                    row.Cells["tel_em"].Value = TBtelefono.Text;
-                    row.Cells["perfil_em"].Value = CBusuarioTipo.SelectedItem?.ToString();
-                    MessageBox.Show("Usuario editado con exito", "Editar", MessageBoxButtons.OK);
-                    limpiar();
-                    BagregarUs.Visible = true;
-                }
-            } 
+                DataGridViewRow row = DGlistaUsuarios.Rows[DGlistaUsuarios.CurrentCell.RowIndex];
+                row.Cells["nom_em"].Value = TBnomUsuario.Text;
+                row.Cells["ape_em"].Value = TBapeUsuario.Text;
+                row.Cells["dni_em"].Value = TBdniUsuario.Text;
+                row.Cells["email_em"].Value = TBemail.Text;
+                row.Cells["dire_em"].Value = TBdireccion.Text;
+                row.Cells["tel_em"].Value = TBtelefono.Text;
+                row.Cells["perfil_em"].Value = CBusuarioTipo.SelectedItem?.ToString();
+                MessageBox.Show("Usuario editado con exito", "Editar", MessageBoxButtons.OK);
+                limpiar();
+                BagregarUs.Visible = true;
+
+            }
         }
 
         private void DGlistaUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
