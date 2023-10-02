@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGlistaCliente = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.CBtodosClientes = new System.Windows.Forms.CheckBox();
             this.dni_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellido_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,31 +41,33 @@
             this.direc_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tel_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha_registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CBapeCliente = new System.Windows.Forms.CheckBox();
-            this.CBnomCliente = new System.Windows.Forms.CheckBox();
-            this.CBdni = new System.Windows.Forms.CheckBox();
-            this.Tape_cliente = new System.Windows.Forms.TextBox();
-            this.Tnom_cliente = new System.Windows.Forms.TextBox();
-            this.Tdni_cliente = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BbuscarCliente = new System.Windows.Forms.Button();
+            this.Tdni_cliente = new System.Windows.Forms.TextBox();
+            this.Tnom_cliente = new System.Windows.Forms.TextBox();
+            this.Tape_cliente = new System.Windows.Forms.TextBox();
+            this.CBdni = new System.Windows.Forms.CheckBox();
+            this.CBnomCliente = new System.Windows.Forms.CheckBox();
+            this.CBapeCliente = new System.Windows.Forms.CheckBox();
+            this.CBtodosClientes = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaCliente)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGlistaCliente
             // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DGlistaCliente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DGlistaCliente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.DGlistaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.DGlistaCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGlistaCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dni_cliente,
@@ -77,59 +77,30 @@
             this.direc_cliente,
             this.tel_cliente,
             this.fecha_registro});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGlistaCliente.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGlistaCliente.DefaultCellStyle = dataGridViewCellStyle13;
             this.DGlistaCliente.Location = new System.Drawing.Point(12, 349);
             this.DGlistaCliente.Name = "DGlistaCliente";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.DGlistaCliente.RowHeadersWidth = 62;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DGlistaCliente.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DGlistaCliente.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.DGlistaCliente.RowTemplate.Height = 28;
             this.DGlistaCliente.Size = new System.Drawing.Size(1078, 314);
             this.DGlistaCliente.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.groupBox1.Controls.Add(this.BbuscarCliente);
-            this.groupBox1.Controls.Add(this.Tdni_cliente);
-            this.groupBox1.Controls.Add(this.Tnom_cliente);
-            this.groupBox1.Controls.Add(this.Tape_cliente);
-            this.groupBox1.Controls.Add(this.CBdni);
-            this.groupBox1.Controls.Add(this.CBnomCliente);
-            this.groupBox1.Controls.Add(this.CBapeCliente);
-            this.groupBox1.Controls.Add(this.CBtodosClientes);
-            this.groupBox1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(99, 49);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(853, 258);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Filtrar por";
-            // 
-            // CBtodosClientes
-            // 
-            this.CBtodosClientes.AutoSize = true;
-            this.CBtodosClientes.Location = new System.Drawing.Point(590, 70);
-            this.CBtodosClientes.Name = "CBtodosClientes";
-            this.CBtodosClientes.Size = new System.Drawing.Size(210, 33);
-            this.CBtodosClientes.TabIndex = 0;
-            this.CBtodosClientes.Text = "Todos los clientes";
-            this.CBtodosClientes.UseVisualStyleBackColor = true;
             // 
             // dni_cliente
             // 
@@ -180,59 +151,24 @@
             this.fecha_registro.Name = "fecha_registro";
             this.fecha_registro.Width = 150;
             // 
-            // CBapeCliente
+            // groupBox1
             // 
-            this.CBapeCliente.AutoSize = true;
-            this.CBapeCliente.Location = new System.Drawing.Point(6, 52);
-            this.CBapeCliente.Name = "CBapeCliente";
-            this.CBapeCliente.Size = new System.Drawing.Size(124, 33);
-            this.CBapeCliente.TabIndex = 1;
-            this.CBapeCliente.Text = "Apellido";
-            this.CBapeCliente.UseVisualStyleBackColor = true;
-            // 
-            // CBnomCliente
-            // 
-            this.CBnomCliente.AutoSize = true;
-            this.CBnomCliente.Location = new System.Drawing.Point(6, 108);
-            this.CBnomCliente.Name = "CBnomCliente";
-            this.CBnomCliente.Size = new System.Drawing.Size(117, 33);
-            this.CBnomCliente.TabIndex = 2;
-            this.CBnomCliente.Text = "Nombre";
-            this.CBnomCliente.UseVisualStyleBackColor = true;
-            // 
-            // CBdni
-            // 
-            this.CBdni.AutoSize = true;
-            this.CBdni.Location = new System.Drawing.Point(6, 167);
-            this.CBdni.Name = "CBdni";
-            this.CBdni.Size = new System.Drawing.Size(92, 33);
-            this.CBdni.TabIndex = 3;
-            this.CBdni.Text = "DNI";
-            this.CBdni.UseVisualStyleBackColor = true;
-            // 
-            // Tape_cliente
-            // 
-            this.Tape_cliente.Location = new System.Drawing.Point(197, 49);
-            this.Tape_cliente.Name = "Tape_cliente";
-            this.Tape_cliente.ReadOnly = true;
-            this.Tape_cliente.Size = new System.Drawing.Size(336, 36);
-            this.Tape_cliente.TabIndex = 4;
-            // 
-            // Tnom_cliente
-            // 
-            this.Tnom_cliente.Location = new System.Drawing.Point(197, 105);
-            this.Tnom_cliente.Name = "Tnom_cliente";
-            this.Tnom_cliente.ReadOnly = true;
-            this.Tnom_cliente.Size = new System.Drawing.Size(336, 36);
-            this.Tnom_cliente.TabIndex = 5;
-            // 
-            // Tdni_cliente
-            // 
-            this.Tdni_cliente.Location = new System.Drawing.Point(197, 166);
-            this.Tdni_cliente.Name = "Tdni_cliente";
-            this.Tdni_cliente.ReadOnly = true;
-            this.Tdni_cliente.Size = new System.Drawing.Size(336, 36);
-            this.Tdni_cliente.TabIndex = 6;
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox1.Controls.Add(this.BbuscarCliente);
+            this.groupBox1.Controls.Add(this.Tdni_cliente);
+            this.groupBox1.Controls.Add(this.Tnom_cliente);
+            this.groupBox1.Controls.Add(this.Tape_cliente);
+            this.groupBox1.Controls.Add(this.CBdni);
+            this.groupBox1.Controls.Add(this.CBnomCliente);
+            this.groupBox1.Controls.Add(this.CBapeCliente);
+            this.groupBox1.Controls.Add(this.CBtodosClientes);
+            this.groupBox1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(99, 49);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(853, 258);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Filtrar por";
             // 
             // BbuscarCliente
             // 
@@ -243,6 +179,73 @@
             this.BbuscarCliente.TabIndex = 10;
             this.BbuscarCliente.Text = "Buscar";
             this.BbuscarCliente.UseVisualStyleBackColor = true;
+            // 
+            // Tdni_cliente
+            // 
+            this.Tdni_cliente.Location = new System.Drawing.Point(197, 166);
+            this.Tdni_cliente.Name = "Tdni_cliente";
+            this.Tdni_cliente.ReadOnly = true;
+            this.Tdni_cliente.Size = new System.Drawing.Size(336, 36);
+            this.Tdni_cliente.TabIndex = 6;
+            // 
+            // Tnom_cliente
+            // 
+            this.Tnom_cliente.Location = new System.Drawing.Point(197, 105);
+            this.Tnom_cliente.Name = "Tnom_cliente";
+            this.Tnom_cliente.ReadOnly = true;
+            this.Tnom_cliente.Size = new System.Drawing.Size(336, 36);
+            this.Tnom_cliente.TabIndex = 5;
+            // 
+            // Tape_cliente
+            // 
+            this.Tape_cliente.Location = new System.Drawing.Point(197, 49);
+            this.Tape_cliente.Name = "Tape_cliente";
+            this.Tape_cliente.ReadOnly = true;
+            this.Tape_cliente.Size = new System.Drawing.Size(336, 36);
+            this.Tape_cliente.TabIndex = 4;
+            // 
+            // CBdni
+            // 
+            this.CBdni.AutoSize = true;
+            this.CBdni.Location = new System.Drawing.Point(6, 167);
+            this.CBdni.Name = "CBdni";
+            this.CBdni.Size = new System.Drawing.Size(92, 33);
+            this.CBdni.TabIndex = 3;
+            this.CBdni.Text = "DNI";
+            this.CBdni.UseVisualStyleBackColor = true;
+            this.CBdni.CheckedChanged += new System.EventHandler(this.CBdni_CheckedChanged);
+            // 
+            // CBnomCliente
+            // 
+            this.CBnomCliente.AutoSize = true;
+            this.CBnomCliente.Location = new System.Drawing.Point(6, 108);
+            this.CBnomCliente.Name = "CBnomCliente";
+            this.CBnomCliente.Size = new System.Drawing.Size(117, 33);
+            this.CBnomCliente.TabIndex = 2;
+            this.CBnomCliente.Text = "Nombre";
+            this.CBnomCliente.UseVisualStyleBackColor = true;
+            this.CBnomCliente.CheckedChanged += new System.EventHandler(this.CBnomCliente_CheckedChanged);
+            // 
+            // CBapeCliente
+            // 
+            this.CBapeCliente.AutoSize = true;
+            this.CBapeCliente.Location = new System.Drawing.Point(6, 52);
+            this.CBapeCliente.Name = "CBapeCliente";
+            this.CBapeCliente.Size = new System.Drawing.Size(124, 33);
+            this.CBapeCliente.TabIndex = 1;
+            this.CBapeCliente.Text = "Apellido";
+            this.CBapeCliente.UseVisualStyleBackColor = true;
+            this.CBapeCliente.CheckedChanged += new System.EventHandler(this.CBapeCliente_CheckedChanged);
+            // 
+            // CBtodosClientes
+            // 
+            this.CBtodosClientes.AutoSize = true;
+            this.CBtodosClientes.Location = new System.Drawing.Point(590, 70);
+            this.CBtodosClientes.Name = "CBtodosClientes";
+            this.CBtodosClientes.Size = new System.Drawing.Size(210, 33);
+            this.CBtodosClientes.TabIndex = 0;
+            this.CBtodosClientes.Text = "Todos los clientes";
+            this.CBtodosClientes.UseVisualStyleBackColor = true;
             // 
             // FlistarClientes
             // 

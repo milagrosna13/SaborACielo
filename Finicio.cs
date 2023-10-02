@@ -27,26 +27,11 @@ namespace SaborAcielo
 
         private void Bingresar_Click(object sender, EventArgs e)
         {
-            /*if(string.IsNullOrEmpty(Tusuario.Text) || String.IsNullOrEmpty(Tusuario.Text))
-            {
-                MessageBox.Show("Complete los campos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } else
-            {
-                if (Tusuario.Text == user)
-                {
-                     this.Close();
-                    MDIempleado formulario = new MDIempleado();
-                    formulario.MdiParent = this.ParentForm;
-                    formulario.Show();
-                   
-                }
-            }*/
             this.Close();
-            //MDIempleado formulario = new MDIempleado();
-            //formulario.MdiParent = this.ParentForm;
-            MDIempleado f = new MDIempleado();
-            f.MdiParent = this.ParentForm;
-            f.Show();
+
+            // Crea un nuevo formulario MDI
+            MDIempleado nuevoFormularioMDI = new MDIempleado();
+            nuevoFormularioMDI.Show();
         }
     }
 }

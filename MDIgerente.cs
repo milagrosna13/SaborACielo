@@ -26,6 +26,7 @@ namespace SaborAcielo
         {
 
         }
+        
         private void esconderSubMenu()
         {
             if (Pvendedores.Visible == true)
@@ -87,7 +88,7 @@ namespace SaborAcielo
         }
         private void BlistarProdu_Click(object sender, EventArgs e)
         {
-
+            abrirFormularioHijo(new FlistaProductosAdmin());
         }
 
         private void Bclientes_Click(object sender, EventArgs e)
@@ -100,5 +101,29 @@ namespace SaborAcielo
             mostrarSubMenu(Pventas);
         }
 
+        private void BagregarProdu_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new Fproducto());
+        }
+
+        private void BlistarClientes_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FlistarClientes());
+        }
+
+        private void BlistarVentas_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FVentasEm());
+        }
+
+        private void MDIgerente_Load(object sender, EventArgs e)
+        {
+            esconderSubMenu();
+        }
+
+        private void BlistarVendedores_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new FlistaUsuarios());
+        }
     }
 }

@@ -42,18 +42,30 @@ namespace SaborAcielo
 
         private void BagregarCompra_Click(object sender, EventArgs e)
         {
-            float total = Convert.ToInt32(TBsubtotal.Text);
-            DataGridViewRow fila = new DataGridViewRow();
-            fila.Cells.Add(new DataGridViewTextBoxCell { Value = venta});
-            fila.Cells.Add(new DataGridViewTextBoxCell { Value = CtipoProd.Text });
-            fila.Cells.Add(new DataGridViewTextBoxCell { Value = Fproducto.Text });
-            fila.Cells.Add(new DataGridViewTextBoxCell { Value = Ncant.Value });
-            fila.Cells.Add(new DataGridViewTextBoxCell { Value =  total});
-            
-            DGcarrito.Rows.Add(fila);
-            compra = venta - 1;
-            limpiar();
+            if (string.IsNullOrWhiteSpace(Fproducto.Text) || string.IsNullOrEmpty(CtipoProd.Text) || Ncant.Value == 0)
+            {
+                MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                var res = MessageBox.Show("¿Desea guardar los datos del producto: " + Fproducto.Text + "", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == System.Windows.Forms.DialogResult.Yes)
+                {
+                    float total = Convert.ToInt32(TBsubtotal.Text);
+                    DataGridViewRow fila = new DataGridViewRow();
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = venta });
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = CtipoProd.Text });
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = Fproducto.Text });
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = Ncant.Value });
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = total });
+
+                    DGcarrito.Rows.Add(fila);
+                    compra = venta - 1;
+                    limpiar();
+                }
+            }
         }
+
 
         private void Bcompra_Click(object sender, EventArgs e)
         {

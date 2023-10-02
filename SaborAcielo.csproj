@@ -93,12 +93,6 @@
     <Compile Include="Finicio.Designer.cs">
       <DependentUpon>Finicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="FinicioAdmin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FinicioAdmin.Designer.cs">
-      <DependentUpon>FinicioAdmin.cs</DependentUpon>
-    </Compile>
     <Compile Include="FlistarClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,9 +157,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Finicio.resx">
       <DependentUpon>Finicio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FinicioAdmin.resx">
-      <DependentUpon>FinicioAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FlistarClientes.resx">
       <DependentUpon>FlistarClientes.cs</DependentUpon>

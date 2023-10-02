@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaborAcielo.datos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -61,6 +62,107 @@ namespace SaborAcielo
                 MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
                 return;
+            }
+        }
+
+        private void limpiar()
+        {
+            TBapeUsuario.Clear();
+            TBapellidoUsuario.Clear();
+            TBnomUsuario.Clear();
+            TBnombreUsuario.Clear();
+            TBdireccion.Clear();
+            TBtelefono.Clear();
+            TBdniUsuario.Clear();
+            TBdni.Clear();
+            CBusuarioTipo.SelectedIndex = -1;
+            CBtipoUsuario.SelectedIndex = -1;
+        }
+                       
+        private void BcancelProdu_Click(object sender, EventArgs e)
+        {
+            limpiar();
+        }
+
+        private void BagregarUs_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(TBnomUsuario.Text) || string.IsNullOrEmpty(TBapeUsuario.Text) || string.IsNullOrWhiteSpace(TBdniUsuario.Text) )
+            {
+                MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                var res = MessageBox.Show("¿Desea guardar los datos del empleado: " + TBnomUsuario.Text + "", "Agregar empleado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == System.Windows.Forms.DialogResult.Yes)
+                {
+                    DataGridViewRow fila = new DataGridViewRow();
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBnomUsuario.Text });
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBapeUsuario.Text });
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBdniUsuario.Text });
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBemail.Text });
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBdireccion.Text });
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBtelefono.Text });
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = CBusuarioTipo.SelectedItem.ToString() });
+
+
+                    DGlistaUsuarios.Rows.Add(fila);
+                    limpiar();
+                }
+                else
+                {
+                    limpiar();
+                }
+            }
+        }
+
+        private void BeditarUs_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(TBnomUsuario.Text) || string.IsNullOrEmpty(TBapeUsuario.Text) || string.IsNullOrWhiteSpace(TBdniUsuario.Text) || string.IsNullOrEmpty(CBusuarioTipo.SelectedValue.ToString()))
+            {
+                MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                DataGridViewRow row = DGlistaUsuarios.SelectedRows[0];
+                row.Cells["nom_em"].Value = TBnomUsuario.Text;
+                row.Cells["ape_em"].Value = TBapeUsuario.Text;
+                row.Cells["dni_em"].Value = TBdniUsuario.Text;
+                row.Cells["email_em"].Value = TBemail.Text;
+                row.Cells["direc_em"].Value = TBdireccion.Text;
+                row.Cells["tel_em"].Value = TBtelefono.Text;
+                row.Cells["perfil_em"].Value = CBusuarioTipo.SelectedItem.ToString();
+                MessageBox.Show("Usuario editado con exito", "Editar", MessageBoxButtons.OK);
+            }
+        }
+
+        private void DGlistaUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = DGlistaUsuarios.Rows[e.RowIndex];
+            DataGridViewCell nombreCell = row.Cells["nom_em"];
+            DataGridViewCell editarCell = row.Cells["editar_em"];
+
+            if (string.IsNullOrWhiteSpace(Convert.ToString(nombreCell.Value)))
+            {
+                editarCell.ReadOnly = true;
+            }
+            else
+            {
+                editarCell.ReadOnly = false;
+                var msg = MessageBox.Show("Desea editar el empleado?", "Confirmar editar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (msg == DialogResult.Yes)
+                {
+                    if (e.RowIndex >= 0 && e.ColumnIndex == DGlistaUsuarios.Columns["editar_em"].Index)
+                    {
+                        BagregarUs.Visible = false;
+                        TBnomUsuario.Text = row.Cells["nom_em"].Value.ToString();
+                        TBapeUsuario.Text = row.Cells["ape_em"].Value.ToString();
+                        TBdniUsuario.Text = row.Cells["dni_em"].Value.ToString();
+                        TBemail.Text = row.Cells["email_em"].Value.ToString();
+                        TBtelefono.Text = row.Cells["tel_em"].Value.ToString();
+                        TBdireccion.Text = row.Cells["dire_em"].Value.ToString();
+                        CBusuarioTipo.SelectedItem = row.Cells["perfil_em"].Value.ToString() ;
+                    }
+                }
             }
         }
     }

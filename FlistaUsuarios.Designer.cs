@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GBfiltroUsuarios = new System.Windows.Forms.GroupBox();
-            this.BbuscarUsuario = new System.Windows.Forms.Button();
-            this.CBtipoUs = new System.Windows.Forms.ComboBox();
-            this.CBtodosUsuarios = new System.Windows.Forms.CheckBox();
-            this.DGlistaUsuarios = new System.Windows.Forms.DataGridView();
+            this.CtipoUS = new System.Windows.Forms.CheckBox();
             this.Tdni_us = new System.Windows.Forms.TextBox();
             this.Tnom_us = new System.Windows.Forms.TextBox();
             this.Tape_us = new System.Windows.Forms.TextBox();
             this.CBdniUS = new System.Windows.Forms.CheckBox();
             this.CBnomUs = new System.Windows.Forms.CheckBox();
             this.CBapeUs = new System.Windows.Forms.CheckBox();
-            this.CtipoUS = new System.Windows.Forms.CheckBox();
+            this.BbuscarUsuario = new System.Windows.Forms.Button();
+            this.CBtipoUs = new System.Windows.Forms.ComboBox();
+            this.CBtodosUsuarios = new System.Windows.Forms.CheckBox();
+            this.DGlistaUsuarios = new System.Windows.Forms.DataGridView();
             this.us_apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.us_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.us_dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,6 +78,73 @@
             this.GBfiltroUsuarios.TabStop = false;
             this.GBfiltroUsuarios.Text = "Filtrar por";
             // 
+            // CtipoUS
+            // 
+            this.CtipoUS.AutoSize = true;
+            this.CtipoUS.Location = new System.Drawing.Point(45, 200);
+            this.CtipoUS.Name = "CtipoUS";
+            this.CtipoUS.Size = new System.Drawing.Size(200, 33);
+            this.CtipoUS.TabIndex = 16;
+            this.CtipoUS.Text = "Tipo de Usuario";
+            this.CtipoUS.UseVisualStyleBackColor = true;
+            // 
+            // Tdni_us
+            // 
+            this.Tdni_us.Location = new System.Drawing.Point(290, 149);
+            this.Tdni_us.Name = "Tdni_us";
+            this.Tdni_us.ReadOnly = true;
+            this.Tdni_us.Size = new System.Drawing.Size(336, 36);
+            this.Tdni_us.TabIndex = 15;
+            // 
+            // Tnom_us
+            // 
+            this.Tnom_us.Location = new System.Drawing.Point(290, 101);
+            this.Tnom_us.Name = "Tnom_us";
+            this.Tnom_us.ReadOnly = true;
+            this.Tnom_us.Size = new System.Drawing.Size(336, 36);
+            this.Tnom_us.TabIndex = 14;
+            // 
+            // Tape_us
+            // 
+            this.Tape_us.Location = new System.Drawing.Point(290, 56);
+            this.Tape_us.Name = "Tape_us";
+            this.Tape_us.ReadOnly = true;
+            this.Tape_us.Size = new System.Drawing.Size(336, 36);
+            this.Tape_us.TabIndex = 13;
+            // 
+            // CBdniUS
+            // 
+            this.CBdniUS.AutoSize = true;
+            this.CBdniUS.Location = new System.Drawing.Point(45, 149);
+            this.CBdniUS.Name = "CBdniUS";
+            this.CBdniUS.Size = new System.Drawing.Size(92, 33);
+            this.CBdniUS.TabIndex = 12;
+            this.CBdniUS.Text = "DNI";
+            this.CBdniUS.UseVisualStyleBackColor = true;
+            this.CBdniUS.CheckedChanged += new System.EventHandler(this.CBdniUS_CheckedChanged);
+            // 
+            // CBnomUs
+            // 
+            this.CBnomUs.AutoSize = true;
+            this.CBnomUs.Location = new System.Drawing.Point(45, 103);
+            this.CBnomUs.Name = "CBnomUs";
+            this.CBnomUs.Size = new System.Drawing.Size(117, 33);
+            this.CBnomUs.TabIndex = 11;
+            this.CBnomUs.Text = "Nombre";
+            this.CBnomUs.UseVisualStyleBackColor = true;
+            this.CBnomUs.CheckedChanged += new System.EventHandler(this.CBnomUs_CheckedChanged);
+            // 
+            // CBapeUs
+            // 
+            this.CBapeUs.AutoSize = true;
+            this.CBapeUs.Location = new System.Drawing.Point(45, 58);
+            this.CBapeUs.Name = "CBapeUs";
+            this.CBapeUs.Size = new System.Drawing.Size(124, 33);
+            this.CBapeUs.TabIndex = 10;
+            this.CBapeUs.Text = "Apellido";
+            this.CBapeUs.UseVisualStyleBackColor = true;
+            this.CBapeUs.CheckedChanged += new System.EventHandler(this.CBapeUs_CheckedChanged);
+            // 
             // BbuscarUsuario
             // 
             this.BbuscarUsuario.Location = new System.Drawing.Point(823, 179);
@@ -114,14 +181,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGlistaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGlistaUsuarios.BackgroundColor = System.Drawing.Color.DarkGray;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.DGlistaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGlistaUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.us_apellido,
@@ -140,70 +207,6 @@
             this.DGlistaUsuarios.RowTemplate.Height = 28;
             this.DGlistaUsuarios.Size = new System.Drawing.Size(1120, 347);
             this.DGlistaUsuarios.TabIndex = 5;
-            // 
-            // Tdni_us
-            // 
-            this.Tdni_us.Location = new System.Drawing.Point(290, 149);
-            this.Tdni_us.Name = "Tdni_us";
-            this.Tdni_us.ReadOnly = true;
-            this.Tdni_us.Size = new System.Drawing.Size(336, 36);
-            this.Tdni_us.TabIndex = 15;
-            // 
-            // Tnom_us
-            // 
-            this.Tnom_us.Location = new System.Drawing.Point(290, 101);
-            this.Tnom_us.Name = "Tnom_us";
-            this.Tnom_us.ReadOnly = true;
-            this.Tnom_us.Size = new System.Drawing.Size(336, 36);
-            this.Tnom_us.TabIndex = 14;
-            // 
-            // Tape_us
-            // 
-            this.Tape_us.Location = new System.Drawing.Point(290, 56);
-            this.Tape_us.Name = "Tape_us";
-            this.Tape_us.ReadOnly = true;
-            this.Tape_us.Size = new System.Drawing.Size(336, 36);
-            this.Tape_us.TabIndex = 13;
-            // 
-            // CBdniUS
-            // 
-            this.CBdniUS.AutoSize = true;
-            this.CBdniUS.Location = new System.Drawing.Point(45, 149);
-            this.CBdniUS.Name = "CBdniUS";
-            this.CBdniUS.Size = new System.Drawing.Size(92, 33);
-            this.CBdniUS.TabIndex = 12;
-            this.CBdniUS.Text = "DNI";
-            this.CBdniUS.UseVisualStyleBackColor = true;
-            // 
-            // CBnomUs
-            // 
-            this.CBnomUs.AutoSize = true;
-            this.CBnomUs.Location = new System.Drawing.Point(45, 103);
-            this.CBnomUs.Name = "CBnomUs";
-            this.CBnomUs.Size = new System.Drawing.Size(117, 33);
-            this.CBnomUs.TabIndex = 11;
-            this.CBnomUs.Text = "Nombre";
-            this.CBnomUs.UseVisualStyleBackColor = true;
-            // 
-            // CBapeUs
-            // 
-            this.CBapeUs.AutoSize = true;
-            this.CBapeUs.Location = new System.Drawing.Point(45, 58);
-            this.CBapeUs.Name = "CBapeUs";
-            this.CBapeUs.Size = new System.Drawing.Size(124, 33);
-            this.CBapeUs.TabIndex = 10;
-            this.CBapeUs.Text = "Apellido";
-            this.CBapeUs.UseVisualStyleBackColor = true;
-            // 
-            // CtipoUS
-            // 
-            this.CtipoUS.AutoSize = true;
-            this.CtipoUS.Location = new System.Drawing.Point(45, 200);
-            this.CtipoUS.Name = "CtipoUS";
-            this.CtipoUS.Size = new System.Drawing.Size(200, 33);
-            this.CtipoUS.TabIndex = 16;
-            this.CtipoUS.Text = "Tipo de Usuario";
-            this.CtipoUS.UseVisualStyleBackColor = true;
             // 
             // us_apellido
             // 

@@ -148,6 +148,8 @@ namespace SaborAcielo.datos
             columnaEliminar.UseColumnTextForButtonValue = true;
             dataGridView.Columns.Add(columnaEliminar);
         }
+
+        //Método para actualizar producto
         public static bool ActualizarProducto(int idProducto, string nuevoNombre, string nuevoDetalle, decimal nuevoPrecio, int nuevoStock,  DateTime nuevaFecha, byte[] nuevaImagen)
         {
             bool estado = true;
@@ -184,8 +186,37 @@ namespace SaborAcielo.datos
             }
         }
 
+        //Método para acceder a los registros del producto a editar
+        public DataRow obtenerProducto(int idProducto)
+        {
+            DataRow detalle = null;
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM Producto WHERE id_produ = @idProdu";
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@idProdu", idProducto);
 
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            DataTable dt = new DataTable();
+                            dt.Load(reader);
+                            if (dt.Rows.Count > 0)
+                            {
+                                detalle = dt.Rows[0];
+                            }
+                            
+                        }
+                    }
+                }
+                return detalle;
+            }
+        }
 
+        //Método para eliminar lógicamente a un producto
         public static bool EliminarProducto(int idProducto)
         {
             try
@@ -197,7 +228,6 @@ namespace SaborAcielo.datos
                     string query = "UPDATE Producto SET estado = 0 WHERE id_produ = @idProducto";
                     SqlCommand command = new SqlCommand(query, connection);
 
-                    // Usar parámetros para evitar la inyección de SQL
                     command.Parameters.AddWithValue("@idProducto", idProducto);
 
                     command.ExecuteNonQuery();
@@ -209,7 +239,6 @@ namespace SaborAcielo.datos
             catch (Exception ex)
             {
                 Console.WriteLine("Ocurrió un error: " + ex.Message);
-                // Manejar el error de alguna manera, por ejemplo, mostrar un mensaje de error.
                 return false;
             }
         }

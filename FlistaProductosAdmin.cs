@@ -123,14 +123,7 @@ namespace SaborAcielo
         }
 
         private void DGlistaProductos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {/*
-            if (e.ColumnIndex == DGlistaProductos.Columns["estado"].Index && e.Value != null)
-            {
-                bool estado = Convert.ToBoolean(e.Value);
-                e.Value = estado ? true : false;
-                e.FormattingApplied = true;
-               
-            }*/
+        {
         }
 
         private void BexaminarImProdu_Click_1(object sender, EventArgs e)
@@ -154,10 +147,7 @@ namespace SaborAcielo
                     // Cargar la imagen en el PictureBox
                     PBproducto.Image = Image.FromFile(rutaImagen);
 
-                    // Guardar la ruta de la imagen en una variable global o en el formulario para que esté disponible en la función BagregarProdu_Click_1.
-                    // Puedes declarar una variable a nivel de formulario para esto.
-                    // Ejemplo:
-                    rutaImagenSeleccionada = rutaImagen;// Declara rutaImagenSeleccionada en tu formulario.
+                    rutaImagenSeleccionada = rutaImagen;
 
 
                 }
@@ -232,7 +222,7 @@ namespace SaborAcielo
                
                 
                 DateTime nuevaFecha = dtFecha.Value;
-                // Lógica para obtener la imagen editada (puedes reutilizar tu código para cargar una imagen)
+                // Lógica para obtener la imagen editada
                 byte[] nuevaImagen = ConvertirImagenABytes(rutaImagenSeleccionada); 
 
                 // Actualiza el producto en la base de datos
@@ -240,7 +230,7 @@ namespace SaborAcielo
 
                 if (exito)
                 {
-                    // Actualización exitosa, puedes mostrar un mensaje de éxito
+                    // Actualización exitosa, mostrar un mensaje de éxito
                     MessageBox.Show("Producto actualizado con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Vuelve a cargar los datos en el DataGridView después de la edición
@@ -254,14 +244,11 @@ namespace SaborAcielo
                 }
 
                 // Restablece el formulario al modo de inserción
-                // Cambia el texto del botón de vuelta a "Agregar"
                 BeditarProd.Visible = false;
                 BagregarProdu.Visible = true;
                 limpiarTextBox(); // Limpia los campos del formulario
             }
-        }
-    // Utiliza los valores de los campos del formulario para agregar el nuevo producto.
-    
+        }  
            
 
         private void BcancelProdu_Click(object sender, EventArgs e)
@@ -270,13 +257,23 @@ namespace SaborAcielo
         }
         private void DGlistaProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-
             if (e.ColumnIndex == DGlistaProductos.Columns["Editar"].Index && e.RowIndex >= 0)
             {
-               
-                idProductoSeleccionado = Convert.ToInt32(DGlistaProductos.Rows[e.RowIndex].Cells["ID"].Value);
-              //FALTA CARGAR LOS DETALLES DEL PRODUCTO QUE QUEREMOS EDITAR AL FORMULARIO
+                int idprodu = Convert.ToInt32(DGlistaProductos.Rows[e.RowIndex].Cells["ID"].Value);
+
+                //se cargan los campos del producto
+                Cproducto producto = new Cproducto();
+                DataRow detalle = producto.obtenerProducto(idprodu);
+
+                if (detalle != null)
+                {
+                    TBnomProdu.Text = detalle["nombre_produ"].ToString();
+                    TBprecio.Text = detalle["precio"].ToString();
+                    TBdetalle.Text = detalle["detalle"].ToString();
+                    CtipoProd.SelectedIndex = Convert.ToInt32(detalle["id_tipoProdu"].ToString());
+                    TBcantidadProdu.Text = detalle["stock"].ToString();
+                }
+
                 BagregarProdu.Visible = false;
                 BeditarProd.Visible = true;
 
