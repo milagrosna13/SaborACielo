@@ -77,6 +77,7 @@ namespace SaborAcielo
             TBdni.Clear();
             CBusuarioTipo.SelectedIndex = -1;
             CBtipoUsuario.SelectedIndex = -1;
+            TBemail.Clear();
         }
                        
         private void BcancelProdu_Click(object sender, EventArgs e)
@@ -102,8 +103,8 @@ namespace SaborAcielo
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBemail.Text });
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBdireccion.Text });
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBtelefono.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = CBusuarioTipo.SelectedItem.ToString() });
-
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = CBusuarioTipo.SelectedItem?.ToString() });
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = "Activo"});
 
                     DGlistaUsuarios.Rows.Add(fila);
                     limpiar();
@@ -117,22 +118,27 @@ namespace SaborAcielo
 
         private void BeditarUs_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TBnomUsuario.Text) || string.IsNullOrEmpty(TBapeUsuario.Text) || string.IsNullOrWhiteSpace(TBdniUsuario.Text) || string.IsNullOrEmpty(CBusuarioTipo.SelectedValue.ToString()))
+            if (string.IsNullOrWhiteSpace(TBnomUsuario.Text) || string.IsNullOrEmpty(TBapeUsuario.Text) || string.IsNullOrWhiteSpace(TBdniUsuario.Text))
             {
                 MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                DataGridViewRow row = DGlistaUsuarios.SelectedRows[0];
-                row.Cells["nom_em"].Value = TBnomUsuario.Text;
-                row.Cells["ape_em"].Value = TBapeUsuario.Text;
-                row.Cells["dni_em"].Value = TBdniUsuario.Text;
-                row.Cells["email_em"].Value = TBemail.Text;
-                row.Cells["direc_em"].Value = TBdireccion.Text;
-                row.Cells["tel_em"].Value = TBtelefono.Text;
-                row.Cells["perfil_em"].Value = CBusuarioTipo.SelectedItem.ToString();
-                MessageBox.Show("Usuario editado con exito", "Editar", MessageBoxButtons.OK);
-            }
+                if (DGlistaUsuarios.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow row = DGlistaUsuarios.SelectedRows[0];
+                    row.Cells["nom_em"].Value = TBnomUsuario.Text;
+                    row.Cells["ape_em"].Value = TBapeUsuario.Text;
+                    row.Cells["dni_em"].Value = TBdniUsuario.Text;
+                    row.Cells["email_em"].Value = TBemail.Text;
+                    row.Cells["direc_em"].Value = TBdireccion.Text;
+                    row.Cells["tel_em"].Value = TBtelefono.Text;
+                    row.Cells["perfil_em"].Value = CBusuarioTipo.SelectedItem?.ToString();
+                    MessageBox.Show("Usuario editado con exito", "Editar", MessageBoxButtons.OK);
+                    limpiar();
+                    BagregarUs.Visible = true;
+                }
+            } 
         }
 
         private void DGlistaUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -140,6 +146,7 @@ namespace SaborAcielo
             DataGridViewRow row = DGlistaUsuarios.Rows[e.RowIndex];
             DataGridViewCell nombreCell = row.Cells["nom_em"];
             DataGridViewCell editarCell = row.Cells["editar_em"];
+            DataGridViewCell eliminarCell = row.Cells["eliminar_em"];
 
             if (string.IsNullOrWhiteSpace(Convert.ToString(nombreCell.Value)))
             {
@@ -148,19 +155,35 @@ namespace SaborAcielo
             else
             {
                 editarCell.ReadOnly = false;
-                var msg = MessageBox.Show("Desea editar el empleado?", "Confirmar editar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (msg == DialogResult.Yes)
+                eliminarCell.ReadOnly = false;
+
+                if (e.RowIndex >= 0 && e.ColumnIndex == DGlistaUsuarios.Columns["editar_em"].Index)
                 {
-                    if (e.RowIndex >= 0 && e.ColumnIndex == DGlistaUsuarios.Columns["editar_em"].Index)
+                    var msg = MessageBox.Show("Desea editar el empleado?", "Confirmar editar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (msg == DialogResult.Yes)
                     {
+
                         BagregarUs.Visible = false;
+                        BeditarUs.Visible = true;
                         TBnomUsuario.Text = row.Cells["nom_em"].Value.ToString();
                         TBapeUsuario.Text = row.Cells["ape_em"].Value.ToString();
                         TBdniUsuario.Text = row.Cells["dni_em"].Value.ToString();
                         TBemail.Text = row.Cells["email_em"].Value.ToString();
                         TBtelefono.Text = row.Cells["tel_em"].Value.ToString();
                         TBdireccion.Text = row.Cells["dire_em"].Value.ToString();
-                        CBusuarioTipo.SelectedItem = row.Cells["perfil_em"].Value.ToString() ;
+                        if (CBtipoUsuario.SelectedIndex != -1)
+                        {
+                            CBusuarioTipo.SelectedItem = row.Cells["perfil_em"].Value.ToString();
+                        }
+                    }
+                }
+
+                if (e.RowIndex >= 0 && e.ColumnIndex == DGlistaUsuarios.Columns["eliminar_em"].Index)
+                {
+                    var msg = MessageBox.Show("Desea eliminar el empleado?", "Confirmar eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (msg == DialogResult.Yes)
+                    {
+                        row.Cells["estado_em"].Value = "Inactivo";
                     }
                 }
             }

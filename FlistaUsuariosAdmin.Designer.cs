@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GBfiltroUsuarios = new System.Windows.Forms.GroupBox();
             this.BbuscarUsuario = new System.Windows.Forms.Button();
             this.TBdni = new System.Windows.Forms.TextBox();
@@ -41,13 +41,14 @@
             this.Ltipousuario = new System.Windows.Forms.Label();
             this.Lnombre = new System.Windows.Forms.Label();
             this.PagregarProdu = new System.Windows.Forms.Panel();
+            this.BagregarUs = new System.Windows.Forms.Button();
+            this.TBemail = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.TBtelefono = new System.Windows.Forms.TextBox();
             this.Ltel = new System.Windows.Forms.Label();
             this.TBdireccion = new System.Windows.Forms.TextBox();
             this.Ldireccion = new System.Windows.Forms.Label();
             this.CBusuarioTipo = new System.Windows.Forms.ComboBox();
-            this.BexaminarImProdu = new System.Windows.Forms.Button();
-            this.PBproducto = new System.Windows.Forms.PictureBox();
             this.BeditarUs = new System.Windows.Forms.Button();
             this.LusuarioTipo = new System.Windows.Forms.Label();
             this.TBapeUsuario = new System.Windows.Forms.TextBox();
@@ -58,8 +59,6 @@
             this.LdniUsuario = new System.Windows.Forms.Label();
             this.BcancelProdu = new System.Windows.Forms.Button();
             this.DGlistaUsuarios = new System.Windows.Forms.DataGridView();
-            this.TBemail = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.nom_em = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ape_em = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dni_em = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,10 +69,8 @@
             this.estado_em = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.editar_em = new System.Windows.Forms.DataGridViewButtonColumn();
             this.eliminar_em = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.BagregarUs = new System.Windows.Forms.Button();
             this.GBfiltroUsuarios.SuspendLayout();
             this.PagregarProdu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PBproducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -208,8 +205,6 @@
             this.PagregarProdu.Controls.Add(this.TBdireccion);
             this.PagregarProdu.Controls.Add(this.Ldireccion);
             this.PagregarProdu.Controls.Add(this.CBusuarioTipo);
-            this.PagregarProdu.Controls.Add(this.BexaminarImProdu);
-            this.PagregarProdu.Controls.Add(this.PBproducto);
             this.PagregarProdu.Controls.Add(this.BeditarUs);
             this.PagregarProdu.Controls.Add(this.LusuarioTipo);
             this.PagregarProdu.Controls.Add(this.TBapeUsuario);
@@ -224,6 +219,36 @@
             this.PagregarProdu.Name = "PagregarProdu";
             this.PagregarProdu.Size = new System.Drawing.Size(774, 471);
             this.PagregarProdu.TabIndex = 8;
+            // 
+            // BagregarUs
+            // 
+            this.BagregarUs.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BagregarUs.Location = new System.Drawing.Point(350, 400);
+            this.BagregarUs.Name = "BagregarUs";
+            this.BagregarUs.Size = new System.Drawing.Size(172, 49);
+            this.BagregarUs.TabIndex = 25;
+            this.BagregarUs.Text = "Agregar";
+            this.BagregarUs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BagregarUs.UseVisualStyleBackColor = true;
+            this.BagregarUs.Click += new System.EventHandler(this.BagregarUs_Click);
+            // 
+            // TBemail
+            // 
+            this.TBemail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.TBemail.Location = new System.Drawing.Point(220, 188);
+            this.TBemail.Name = "TBemail";
+            this.TBemail.Size = new System.Drawing.Size(220, 35);
+            this.TBemail.TabIndex = 24;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(48, 194);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 29);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Email";
             // 
             // TBtelefono
             // 
@@ -276,28 +301,6 @@
             this.CBusuarioTipo.Name = "CBusuarioTipo";
             this.CBusuarioTipo.Size = new System.Drawing.Size(220, 32);
             this.CBusuarioTipo.TabIndex = 18;
-            // 
-            // BexaminarImProdu
-            // 
-            this.BexaminarImProdu.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
-            this.BexaminarImProdu.Location = new System.Drawing.Point(532, 258);
-            this.BexaminarImProdu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.BexaminarImProdu.Name = "BexaminarImProdu";
-            this.BexaminarImProdu.Size = new System.Drawing.Size(142, 42);
-            this.BexaminarImProdu.TabIndex = 17;
-            this.BexaminarImProdu.Text = "Examinar";
-            this.BexaminarImProdu.UseVisualStyleBackColor = true;
-            // 
-            // PBproducto
-            // 
-            this.PBproducto.Image = global::SaborAcielo.Properties.Resources.ProductosInicio;
-            this.PBproducto.Location = new System.Drawing.Point(502, 22);
-            this.PBproducto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.PBproducto.Name = "PBproducto";
-            this.PBproducto.Size = new System.Drawing.Size(202, 208);
-            this.PBproducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PBproducto.TabIndex = 16;
-            this.PBproducto.TabStop = false;
             // 
             // BeditarUs
             // 
@@ -397,14 +400,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGlistaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGlistaUsuarios.BackgroundColor = System.Drawing.Color.RosyBrown;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DGlistaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGlistaUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nom_em,
@@ -424,24 +427,6 @@
             this.DGlistaUsuarios.Size = new System.Drawing.Size(1154, 267);
             this.DGlistaUsuarios.TabIndex = 9;
             this.DGlistaUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaUsuarios_CellClick);
-            // 
-            // TBemail
-            // 
-            this.TBemail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBemail.Location = new System.Drawing.Point(220, 188);
-            this.TBemail.Name = "TBemail";
-            this.TBemail.Size = new System.Drawing.Size(220, 35);
-            this.TBemail.TabIndex = 24;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(48, 194);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 29);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "Email";
             // 
             // nom_em
             // 
@@ -506,6 +491,7 @@
             this.editar_em.ReadOnly = true;
             this.editar_em.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.editar_em.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.editar_em.Text = "Editar";
             // 
             // eliminar_em
             // 
@@ -515,18 +501,7 @@
             this.eliminar_em.ReadOnly = true;
             this.eliminar_em.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.eliminar_em.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // BagregarUs
-            // 
-            this.BagregarUs.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BagregarUs.Location = new System.Drawing.Point(350, 400);
-            this.BagregarUs.Name = "BagregarUs";
-            this.BagregarUs.Size = new System.Drawing.Size(172, 49);
-            this.BagregarUs.TabIndex = 25;
-            this.BagregarUs.Text = "Agregar";
-            this.BagregarUs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BagregarUs.UseVisualStyleBackColor = true;
-            this.BagregarUs.Click += new System.EventHandler(this.BagregarUs_Click);
+            this.eliminar_em.Text = "Eliminar";
             // 
             // FlistaUsuariosAdmin
             // 
@@ -545,7 +520,6 @@
             this.GBfiltroUsuarios.PerformLayout();
             this.PagregarProdu.ResumeLayout(false);
             this.PagregarProdu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PBproducto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaUsuarios)).EndInit();
             this.ResumeLayout(false);
 
@@ -565,8 +539,6 @@
         private System.Windows.Forms.Label Ltipousuario;
         private System.Windows.Forms.Label Lnombre;
         private System.Windows.Forms.Panel PagregarProdu;
-        private System.Windows.Forms.Button BexaminarImProdu;
-        private System.Windows.Forms.PictureBox PBproducto;
         private System.Windows.Forms.Button BeditarUs;
         private System.Windows.Forms.Label LusuarioTipo;
         private System.Windows.Forms.TextBox TBapeUsuario;
@@ -584,6 +556,7 @@
         private System.Windows.Forms.Label Ldireccion;
         private System.Windows.Forms.TextBox TBemail;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button BagregarUs;
         private System.Windows.Forms.DataGridViewTextBoxColumn nom_em;
         private System.Windows.Forms.DataGridViewTextBoxColumn ape_em;
         private System.Windows.Forms.DataGridViewTextBoxColumn dni_em;
@@ -594,6 +567,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn estado_em;
         private System.Windows.Forms.DataGridViewButtonColumn editar_em;
         private System.Windows.Forms.DataGridViewButtonColumn eliminar_em;
-        private System.Windows.Forms.Button BagregarUs;
     }
 }
