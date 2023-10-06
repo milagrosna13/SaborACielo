@@ -52,5 +52,36 @@ namespace SaborAcielo
                 Tdni_cliente.ReadOnly = true;
             }
         }
+
+        private void DGlistaCliente_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = DGlistaCliente.Rows[e.RowIndex];
+            DataGridViewCell estado = row.Cells["estado"];
+            DataGridViewCell eliminar = row.Cells["baja"];
+
+            if (estado.Value.ToString() == "Inactivo")
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex == DGlistaCliente.Columns["baja_cliente"].Index)
+                {
+                    var msg = MessageBox.Show("Desea dar de baja al cliente?", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (msg == DialogResult.Yes)
+                    {
+                        row.Cells["estado"].Value = "Inactivo";
+                        MessageBox.Show("Cliente dado de baja", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            } else
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex == DGlistaCliente.Columns["baja_cliente"].Index)
+                {
+                    var msg = MessageBox.Show("Desea dar de alta al cliente?", "Confirmar Alta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (msg == DialogResult.Yes)
+                    {
+                        row.Cells["estado"].Value = "Activo";
+                        MessageBox.Show("Cliente dado de alta con exito", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+        }
     }
 }

@@ -25,8 +25,8 @@ namespace SaborAcielo
                 MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             } else
             {
-                var res = MessageBox.Show("¿Desea guardar los datos del cliente: " + TBnomCliente.Text + "" + TBapeCliente.Text, "Guardar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if(res == System.Windows.Forms.DialogResult.Yes)
+                var res = MessageBox.Show("¿Desea guardar los datos del cliente: " + TBnomCliente.Text + " " + TBapeCliente.Text, "Guardar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(res == DialogResult.Yes)
                 {
                     string sexo = RBmujer.Checked == true ? RBmujer.Text : RBhombre.Text;
 
@@ -75,6 +75,7 @@ namespace SaborAcielo
 
         private void BcancelCliente_Click(object sender, EventArgs e)
         {
+            if(Beditar.Visible) { Beditar.Visible = false; }    
             limpiarTextBox();
         }
 
@@ -107,53 +108,74 @@ namespace SaborAcielo
         {
             DataGridViewRow row = DGclientes.Rows[e.RowIndex];
             DataGridViewCell estadoCell = row.Cells["estado_cliente"];
-            DataGridViewCell eliminarCell = row.Cells["baja_cliente"];
+            DataGridViewCell editar = row.Cells["editar_cliente"];
             DataGridViewCell nombreCell = row.Cells["nombre_cliente"];
 
 
             if (string.IsNullOrWhiteSpace(Convert.ToString(nombreCell.Value)))
             {
-                eliminarCell.ReadOnly = true;
+                editar.ReadOnly = true;
             }
             else
-            {   if (estadoCell.Value.ToString() == "Inactivo")
+            {   
+                editar.ReadOnly = false;
+                var res = MessageBox.Show("Desea editar los datos del cliente?", "Editar", MessageBoxButtons.YesNo);
+                if (res == DialogResult.Yes)
                 {
-                    eliminarCell.ReadOnly = false;
-                    if (e.RowIndex >= 0 && e.ColumnIndex == DGclientes.Columns["baja_cliente"].Index)
+                    Beditar.Visible = true;
+                    
+                    string sexo = row.Cells["sexo_cliente"].Value.ToString();
+                    switch (sexo)
                     {
-                        var msg = MessageBox.Show("Desea dar de baja al cliente?", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (msg == DialogResult.Yes)
-                        {
-                            DGclientes[6, e.RowIndex].Value = "Inactivo";
-                            MessageBox.Show("Cliente dado de baja", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                        case "Hombre":
+                            RBhombre.Checked = true; break;
+                        default:
+                            RBmujer.Checked = true; break;
                     }
+
+                    
+                    TBnomCliente.Text = row.Cells["nombre_cliente"].Value.ToString();
+                    TBapeCliente.Text = row.Cells["apellido_cliente"].Value.ToString();
+                    TBdniCliente.Text = row.Cells["dni_cliente"].Value.ToString();
+                    TBtelCliente.Text = row.Cells["tel_cliente"].Value.ToString();
+                    TBdireCliente.Text = row.Cells["direc_cliente"].Value.ToString();
+
+
                 }
+                else limpiarTextBox();
+                
+               
             }
             
         }
 
-        private void DGclientes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void Beditar_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = DGclientes.Rows[e.RowIndex];
-            DataGridViewCell nombreCell = row.Cells["nombre_cliente"];
-            DataGridViewCell eliminarCell = row.Cells["baja_cliente"];
-
-            if (e.ColumnIndex == 7 && e.RowIndex >= 0) 
+            if(string.IsNullOrEmpty(TBnomCliente.Text) || string.IsNullOrEmpty(TBapeCliente.Text) || string.IsNullOrEmpty(TBdniCliente.Text))
             {
-                // Verifica el contenido de la columna "estado"
-                if (e.Value != null && e.Value.ToString() == "Activo") 
+                MessageBox.Show("Debe completar los campos obligatorios");
+            } else
+            {
+                var msg = MessageBox.Show("Se editarán los datos del cliente: " + TBnomCliente.Text, "Confirmar editar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (msg == DialogResult.Yes)
                 {
-                    // Habilita el botón eliminar
-                    eliminarCell.ReadOnly = false;
+                    string sexo = RBmujer.Checked == true ? RBmujer.Text : RBhombre.Text;
 
+                    DataGridViewRow row = DGclientes.Rows[DGclientes.CurrentCell.RowIndex];
+                    row.Cells["nombre_cliente"].Value = TBnomCliente.Text;
+                    row.Cells["apellido_cliente"].Value = TBapeCliente.Text;
+                    row.Cells["dni_cliente"].Value = TBdniCliente.Text;
+                    row.Cells["tel_cliente"].Value = TBtelCliente.Text;
+                    row.Cells["direc_cliente"].Value = TBdireCliente.Text;
+                    row.Cells["sexo_cliente"].Value = sexo;
+                    
+                    limpiarTextBox();
+
+                    Beditar.Visible = false;
                 }
-                else
-                {
-                    // Deshabilita el botón eliminar
-                    eliminarCell.ReadOnly= true;
-                }
+                else limpiarTextBox();
             }
         }
+        
     }
 }

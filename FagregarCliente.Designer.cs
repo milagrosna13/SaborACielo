@@ -55,7 +55,8 @@
             this.tel_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.direc_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.baja_cliente = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.editar_cliente = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Beditar = new System.Windows.Forms.Button();
             this.PagregarCliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGclientes)).BeginInit();
             this.SuspendLayout();
@@ -66,6 +67,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PagregarCliente.AutoScroll = true;
             this.PagregarCliente.BackColor = System.Drawing.Color.RosyBrown;
+            this.PagregarCliente.Controls.Add(this.Beditar);
             this.PagregarCliente.Controls.Add(this.label6);
             this.PagregarCliente.Controls.Add(this.RBhombre);
             this.PagregarCliente.Controls.Add(this.RBmujer);
@@ -155,9 +157,9 @@
             this.label4.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(48, 88);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 29);
+            this.label4.Size = new System.Drawing.Size(59, 29);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Dni";
+            this.label4.Text = "Dni*";
             // 
             // TBdniCliente
             // 
@@ -193,9 +195,9 @@
             this.label2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(472, 18);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 29);
+            this.label2.Size = new System.Drawing.Size(109, 29);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Apellido";
+            this.label2.Text = "Apellido*";
             // 
             // TBnomCliente
             // 
@@ -213,9 +215,9 @@
             this.label1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(48, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 29);
+            this.label1.Size = new System.Drawing.Size(102, 29);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Nombre";
+            this.label1.Text = "Nombre*";
             // 
             // BcancelCliente
             // 
@@ -268,7 +270,7 @@
             this.tel_cliente,
             this.direc_cliente,
             this.estado_cliente,
-            this.baja_cliente});
+            this.editar_cliente});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -284,7 +286,6 @@
             this.DGclientes.Size = new System.Drawing.Size(1048, 208);
             this.DGclientes.TabIndex = 1;
             this.DGclientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGclientes_CellClick);
-            this.DGclientes.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGclientes_CellFormatting);
             // 
             // nombre_cliente
             // 
@@ -334,11 +335,26 @@
             this.estado_cliente.MinimumWidth = 8;
             this.estado_cliente.Name = "estado_cliente";
             // 
-            // baja_cliente
+            // editar_cliente
             // 
-            this.baja_cliente.HeaderText = "Eliminar";
-            this.baja_cliente.MinimumWidth = 8;
-            this.baja_cliente.Name = "baja_cliente";
+            this.editar_cliente.HeaderText = "Editar";
+            this.editar_cliente.MinimumWidth = 8;
+            this.editar_cliente.Name = "editar_cliente";
+            this.editar_cliente.ReadOnly = true;
+            this.editar_cliente.Text = "Editar";
+            // 
+            // Beditar
+            // 
+            this.Beditar.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Beditar.Location = new System.Drawing.Point(183, 322);
+            this.Beditar.Name = "Beditar";
+            this.Beditar.Size = new System.Drawing.Size(172, 49);
+            this.Beditar.TabIndex = 15;
+            this.Beditar.Text = "Editar";
+            this.Beditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Beditar.UseVisualStyleBackColor = true;
+            this.Beditar.Visible = false;
+            this.Beditar.Click += new System.EventHandler(this.Beditar_Click);
             // 
             // FagregarCliente
             // 
@@ -384,6 +400,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tel_cliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn direc_cliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn estado_cliente;
-        private System.Windows.Forms.DataGridViewButtonColumn baja_cliente;
+        private System.Windows.Forms.DataGridViewButtonColumn editar_cliente;
+        private System.Windows.Forms.Button Beditar;
     }
 }
