@@ -179,26 +179,23 @@ namespace SaborAcielo
 
         //editar
         
-        private int obtenerID()
-        {
-            if (DGlistaProductos.SelectedRows.Count > 0)
-            {
-                DataGridViewRow selectedRow = DGlistaProductos.SelectedRows[0];
-                return Convert.ToInt32(selectedRow.Cells["ID"].Value); 
-            }
-
-            return -1;
-        }
         private void BeditarProd_Click(object sender, EventArgs e)
         {
+            Cproducto producto = new Cproducto();
             int idProductoSeleccionado = idprodu;
+            byte[] nuevaImagen;
             if (idProductoSeleccionado != -1)
             {
                 
                 DateTime nuevaFecha = dtFecha.Value;
                 // Lógica para obtener la imagen editada
-                byte[] nuevaImagen = ConvertirImagenABytes(rutaImagenSeleccionada);
-
+                if (!string.IsNullOrEmpty(rutaImagenSeleccionada))
+                {
+                    nuevaImagen = ConvertirImagenABytes(rutaImagenSeleccionada);
+                } else
+                {
+                    nuevaImagen = producto.ObtenerImagenDesdeBaseDeDatos(idProductoSeleccionado);
+                }
                 // Actualiza el producto en la base de datos
                 bool exito = Cproducto.ActualizarProducto(idProductoSeleccionado, TBnomProdu.Text, TBdetalle.Text, Convert.ToDecimal(TBprecio.Text), Convert.ToInt32(TBcantidadProdu.Text), nuevaFecha, nuevaImagen);
 
@@ -208,7 +205,7 @@ namespace SaborAcielo
                     MessageBox.Show("Producto actualizado con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Vuelve a cargar los datos en el DataGridView después de la edición
-                    Cproducto producto = new Cproducto();
+                   
                     bool resultado = producto.CargarProductos(DGlistaProductos);
                 }
                 else
@@ -226,7 +223,6 @@ namespace SaborAcielo
             else MessageBox.Show("Error "+idProductoSeleccionado, "");
         }  
            
-
         private void BcancelProdu_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -249,7 +245,8 @@ namespace SaborAcielo
                     TBdetalle.Text = detalle["detalle"].ToString();
                     CtipoProd.SelectedIndex = Convert.ToInt32(detalle["id_tipoProdu"].ToString())-1;
                     TBcantidadProdu.Text = detalle["stock"].ToString();
-                    
+                    producto.MostrarImagenEnPictureBox(idprodu, PBproducto);
+
                     BagregarProdu.Visible = false;
                     BeditarProd.Visible = true;
                     CtipoProd.Enabled = false;
@@ -294,12 +291,6 @@ namespace SaborAcielo
 
        
 
-        private void FlistaProductosAdmin_Load(object sender, EventArgs e)
-        {
-
-          
-
-        }
 
        
             
