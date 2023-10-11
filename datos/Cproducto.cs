@@ -11,6 +11,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Data.Common;
 using System.Collections;
+using System.IO;
+using System.Drawing;
 
 namespace SaborAcielo.datos
 {
@@ -181,6 +183,49 @@ namespace SaborAcielo.datos
             }
             
         }
+        public byte[] ObtenerImagenDesdeBaseDeDatos(int id)
+        {
+            byte[] imagenBytes = null;
+
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                conexion.Open();
+
+                string consulta = "SELECT imagen FROM Producto WHERE id_produ = @id";
+                using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                {
+                    comando.Parameters.AddWithValue("@id", id);
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            imagenBytes = (byte[])reader["imagen"];
+                        }
+                    }
+                }
+            }
+
+            return imagenBytes;
+        }
+
+        public void MostrarImagenEnPictureBox(int id, PictureBox pictureBox)
+        {
+            byte[] imagenBytes = ObtenerImagenDesdeBaseDeDatos(id);
+
+            if (imagenBytes != null && imagenBytes.Length > 0)
+            {
+                using (MemoryStream ms = new MemoryStream(imagenBytes))
+                {
+                    Image imagen = Image.FromStream(ms);
+                    pictureBox.Image = imagen;
+                }
+            }
+            else
+            {                
+                pictureBox.Image = null; 
+            }
+        }
+
 
         //Método para eliminar lógicamente a un producto
         public static bool EliminarProducto(int idProducto)

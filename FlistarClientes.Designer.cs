@@ -28,19 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGlistaCliente = new System.Windows.Forms.DataGridView();
-            this.dni_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellido_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.direc_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tel_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fecha_registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BbuscarCliente = new System.Windows.Forms.Button();
             this.Tdni_cliente = new System.Windows.Forms.TextBox();
@@ -50,24 +43,34 @@
             this.CBnomCliente = new System.Windows.Forms.CheckBox();
             this.CBapeCliente = new System.Windows.Forms.CheckBox();
             this.CBtodosClientes = new System.Windows.Forms.CheckBox();
+            this.dni_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellido_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direc_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tel_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha_registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.baja = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaCliente)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGlistaCliente
             // 
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DGlistaCliente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DGlistaCliente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGlistaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.DGlistaCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGlistaCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGlistaCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dni_cliente,
@@ -76,80 +79,34 @@
             this.email_cliente,
             this.direc_cliente,
             this.tel_cliente,
-            this.fecha_registro});
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGlistaCliente.DefaultCellStyle = dataGridViewCellStyle13;
-            this.DGlistaCliente.Location = new System.Drawing.Point(12, 349);
+            this.fecha_registro,
+            this.estado,
+            this.baja});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGlistaCliente.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DGlistaCliente.Location = new System.Drawing.Point(14, 349);
             this.DGlistaCliente.Name = "DGlistaCliente";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DGlistaCliente.RowHeadersWidth = 62;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DGlistaCliente.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DGlistaCliente.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DGlistaCliente.RowTemplate.Height = 28;
-            this.DGlistaCliente.Size = new System.Drawing.Size(1078, 314);
+            this.DGlistaCliente.Size = new System.Drawing.Size(1131, 314);
             this.DGlistaCliente.TabIndex = 0;
-            // 
-            // dni_cliente
-            // 
-            this.dni_cliente.HeaderText = "Dni";
-            this.dni_cliente.MinimumWidth = 8;
-            this.dni_cliente.Name = "dni_cliente";
-            this.dni_cliente.Width = 150;
-            // 
-            // nombre_cliente
-            // 
-            this.nombre_cliente.HeaderText = "Nombre";
-            this.nombre_cliente.MinimumWidth = 8;
-            this.nombre_cliente.Name = "nombre_cliente";
-            this.nombre_cliente.Width = 150;
-            // 
-            // apellido_cliente
-            // 
-            this.apellido_cliente.HeaderText = "Apellido";
-            this.apellido_cliente.MinimumWidth = 8;
-            this.apellido_cliente.Name = "apellido_cliente";
-            this.apellido_cliente.Width = 150;
-            // 
-            // email_cliente
-            // 
-            this.email_cliente.HeaderText = "Email";
-            this.email_cliente.MinimumWidth = 8;
-            this.email_cliente.Name = "email_cliente";
-            this.email_cliente.Width = 150;
-            // 
-            // direc_cliente
-            // 
-            this.direc_cliente.HeaderText = "Direccion";
-            this.direc_cliente.MinimumWidth = 8;
-            this.direc_cliente.Name = "direc_cliente";
-            this.direc_cliente.Width = 150;
-            // 
-            // tel_cliente
-            // 
-            this.tel_cliente.HeaderText = "Telefono";
-            this.tel_cliente.MinimumWidth = 8;
-            this.tel_cliente.Name = "tel_cliente";
-            this.tel_cliente.Width = 150;
-            // 
-            // fecha_registro
-            // 
-            this.fecha_registro.HeaderText = "Fecha de registro";
-            this.fecha_registro.MinimumWidth = 8;
-            this.fecha_registro.Name = "fecha_registro";
-            this.fecha_registro.Width = 150;
+            this.DGlistaCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaCliente_CellClick);
             // 
             // groupBox1
             // 
@@ -247,6 +204,69 @@
             this.CBtodosClientes.Text = "Todos los clientes";
             this.CBtodosClientes.UseVisualStyleBackColor = true;
             // 
+            // dni_cliente
+            // 
+            this.dni_cliente.HeaderText = "Dni";
+            this.dni_cliente.MinimumWidth = 8;
+            this.dni_cliente.Name = "dni_cliente";
+            this.dni_cliente.ReadOnly = true;
+            // 
+            // nombre_cliente
+            // 
+            this.nombre_cliente.HeaderText = "Nombre";
+            this.nombre_cliente.MinimumWidth = 8;
+            this.nombre_cliente.Name = "nombre_cliente";
+            this.nombre_cliente.ReadOnly = true;
+            // 
+            // apellido_cliente
+            // 
+            this.apellido_cliente.HeaderText = "Apellido";
+            this.apellido_cliente.MinimumWidth = 8;
+            this.apellido_cliente.Name = "apellido_cliente";
+            this.apellido_cliente.ReadOnly = true;
+            // 
+            // email_cliente
+            // 
+            this.email_cliente.HeaderText = "Email";
+            this.email_cliente.MinimumWidth = 8;
+            this.email_cliente.Name = "email_cliente";
+            this.email_cliente.ReadOnly = true;
+            // 
+            // direc_cliente
+            // 
+            this.direc_cliente.HeaderText = "Direccion";
+            this.direc_cliente.MinimumWidth = 8;
+            this.direc_cliente.Name = "direc_cliente";
+            this.direc_cliente.ReadOnly = true;
+            // 
+            // tel_cliente
+            // 
+            this.tel_cliente.HeaderText = "Telefono";
+            this.tel_cliente.MinimumWidth = 8;
+            this.tel_cliente.Name = "tel_cliente";
+            this.tel_cliente.ReadOnly = true;
+            // 
+            // fecha_registro
+            // 
+            this.fecha_registro.HeaderText = "Fecha de registro";
+            this.fecha_registro.MinimumWidth = 8;
+            this.fecha_registro.Name = "fecha_registro";
+            this.fecha_registro.ReadOnly = true;
+            // 
+            // estado
+            // 
+            this.estado.HeaderText = "Estado";
+            this.estado.MinimumWidth = 8;
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
+            // 
+            // baja
+            // 
+            this.baja.HeaderText = "Editar estado";
+            this.baja.MinimumWidth = 8;
+            this.baja.Name = "baja";
+            this.baja.Text = "";
+            // 
             // FlistarClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -271,13 +291,6 @@
         private System.Windows.Forms.DataGridView DGlistaCliente;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox CBtodosClientes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dni_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellido_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn email_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn direc_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tel_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fecha_registro;
         private System.Windows.Forms.TextBox Tdni_cliente;
         private System.Windows.Forms.TextBox Tnom_cliente;
         private System.Windows.Forms.TextBox Tape_cliente;
@@ -285,5 +298,14 @@
         private System.Windows.Forms.CheckBox CBnomCliente;
         private System.Windows.Forms.CheckBox CBapeCliente;
         private System.Windows.Forms.Button BbuscarCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dni_cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellido_cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn email_cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn direc_cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tel_cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha_registro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
+        private System.Windows.Forms.DataGridViewButtonColumn baja;
     }
 }

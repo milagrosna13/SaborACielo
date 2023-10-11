@@ -190,7 +190,7 @@
             this.BagregarProdu.Name = "BagregarProdu";
             this.BagregarProdu.Size = new System.Drawing.Size(338, 37);
             this.BagregarProdu.TabIndex = 1;
-            this.BagregarProdu.Text = "AMB producto";
+            this.BagregarProdu.Text = "Reportes producto";
             this.BagregarProdu.UseVisualStyleBackColor = false;
             this.BagregarProdu.Click += new System.EventHandler(this.BagregarProdu_Click);
             // 
@@ -323,9 +323,9 @@
             this.label2.Font = new System.Drawing.Font("Script MT Bold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(124, 332);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 29);
+            this.label2.Size = new System.Drawing.Size(78, 29);
             this.label2.TabIndex = 3;
-            this.label2.Text = "empleado";
+            this.label2.Text = "gerente";
             // 
             // label1
             // 
