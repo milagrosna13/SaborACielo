@@ -73,6 +73,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="datos\Cempleado.cs" />
     <Compile Include="datos\Cproducto.cs" />
     <Compile Include="datos\Cventas.cs" />
     <Compile Include="FagregarCliente.cs">
@@ -122,6 +123,12 @@
     </Compile>
     <Compile Include="FlistaUsuariosAdmin.Designer.cs">
       <DependentUpon>FlistaUsuariosAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteProductos.Designer.cs">
+      <DependentUpon>ReporteProductos.cs</DependentUpon>
     </Compile>
     <Compile Include="MDIgerente.cs">
       <SubType>Form</SubType>
@@ -195,6 +202,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ReporteProductos.resx">
+      <DependentUpon>ReporteProductos.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -247,6 +257,15 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancelar2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FlistaProductosAdmin));
             this.DGlistaProductos = new System.Windows.Forms.DataGridView();
             this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GBfiltroProductos = new System.Windows.Forms.GroupBox();
@@ -207,7 +208,7 @@
             this.PagregarProdu.Location = new System.Drawing.Point(242, 15);
             this.PagregarProdu.Margin = new System.Windows.Forms.Padding(2);
             this.PagregarProdu.Name = "PagregarProdu";
-            this.PagregarProdu.Size = new System.Drawing.Size(547, 299);
+            this.PagregarProdu.Size = new System.Drawing.Size(547, 312);
             this.PagregarProdu.TabIndex = 7;
             // 
             // dtFecha
@@ -267,10 +268,12 @@
             // BeditarProd
             // 
             this.BeditarProd.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BeditarProd.Image = ((System.Drawing.Image)(resources.GetObject("BeditarProd.Image")));
+            this.BeditarProd.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.BeditarProd.Location = new System.Drawing.Point(71, 265);
             this.BeditarProd.Margin = new System.Windows.Forms.Padding(2);
             this.BeditarProd.Name = "BeditarProd";
-            this.BeditarProd.Size = new System.Drawing.Size(115, 32);
+            this.BeditarProd.Size = new System.Drawing.Size(125, 32);
             this.BeditarProd.TabIndex = 18;
             this.BeditarProd.Text = "Modificar";
             this.BeditarProd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -302,6 +305,8 @@
             // BagregarProdu
             // 
             this.BagregarProdu.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BagregarProdu.Image = ((System.Drawing.Image)(resources.GetObject("BagregarProdu.Image")));
+            this.BagregarProdu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BagregarProdu.Location = new System.Drawing.Point(71, 265);
             this.BagregarProdu.Margin = new System.Windows.Forms.Padding(2);
             this.BagregarProdu.Name = "BagregarProdu";
@@ -389,17 +394,20 @@
             // 
             // BcancelProdu
             // 
+            this.BcancelProdu.BackColor = System.Drawing.Color.Snow;
+            this.BcancelProdu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BcancelProdu.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
             this.BcancelProdu.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BcancelProdu.Image = global::SaborAcielo.Properties.Resources.cruz;
+            this.BcancelProdu.Image = ((System.Drawing.Image)(resources.GetObject("BcancelProdu.Image")));
             this.BcancelProdu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BcancelProdu.Location = new System.Drawing.Point(221, 265);
+            this.BcancelProdu.Location = new System.Drawing.Point(349, 265);
             this.BcancelProdu.Margin = new System.Windows.Forms.Padding(2);
             this.BcancelProdu.Name = "BcancelProdu";
-            this.BcancelProdu.Size = new System.Drawing.Size(113, 32);
+            this.BcancelProdu.Size = new System.Drawing.Size(120, 32);
             this.BcancelProdu.TabIndex = 1;
             this.BcancelProdu.Text = "Cancelar";
             this.BcancelProdu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BcancelProdu.UseVisualStyleBackColor = true;
+            this.BcancelProdu.UseVisualStyleBackColor = false;
             this.BcancelProdu.Click += new System.EventHandler(this.BcancelProdu_Click);
             // 
             // FlistaProductosAdmin

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,11 @@ namespace SaborAcielo
         public FlistaUsuariosAdmin()
         {
             InitializeComponent();
+            
+            BeditarUs.Visible = false;
+            Cempleado empleado= new Cempleado();
+            bool resultado = empleado.CargarEmpleados(DGlistaUsuarios);
+            Cproducto.AgregarColumnasBoton(DGlistaUsuarios);
         }
 
         private void TBdniUsuario_TextChanged(object sender, KeyPressEventArgs e)
@@ -64,7 +71,7 @@ namespace SaborAcielo
                 return;
             }
         }
-
+        private string rutaImagenSeleccionada;
         private void limpiar()
         {
             TBapeUsuario.Clear();
@@ -87,34 +94,59 @@ namespace SaborAcielo
 
         private void BagregarUs_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TBnomUsuario.Text) || string.IsNullOrEmpty(TBapeUsuario.Text) || string.IsNullOrWhiteSpace(TBdniUsuario.Text) )
+            // Cempleado em = new CEmpleado();
+
+            if (string.IsNullOrWhiteSpace(TBdniUsuario.Text) || string.IsNullOrEmpty(TBnomUsuario.Text) ||  string.IsNullOrEmpty(TBapeUsuario.Text) || string.IsNullOrEmpty(TBtelefono.Text) || string.IsNullOrWhiteSpace(TBdireccion.Text) )
             {
                 MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                var res = MessageBox.Show("¿Desea guardar los datos del empleado: " + TBnomUsuario.Text + "", "Agregar empleado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var res = MessageBox.Show("¿Desea guardar los datos del empleado: " + TBnomUsuario.Text + "", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == System.Windows.Forms.DialogResult.Yes)
                 {
-                    DataGridViewRow fila = new DataGridViewRow();
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBnomUsuario.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBapeUsuario.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBdniUsuario.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBemail.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBdireccion.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBtelefono.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = CBusuarioTipo.SelectedItem?.ToString() });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = "Activo"});
+                    byte[] imagenBytes;
+                    if (!string.IsNullOrEmpty(rutaImagenSeleccionada))
+                    {
+                        // Si se ha seleccionado una imagen, conviértela a bytes
+                        imagenBytes = ConvertirImagenABytes(rutaImagenSeleccionada);
+                    }
+                    else
+                    {
+                        // Si no se ha seleccionado una imagen, carga la imagen por defecto en forma de bytes
+                        imagenBytes = ImageToByteArray((Bitmap)PBusuario.Image); // Reemplaza "ruta_imagen_por_defecto.jpg" con la ruta de tu imagen por defecto
+                    }
+                   
+                    bool exito = Cempleado.AgregarEmpleado(Convert.ToInt32(TBdniUsuario.Text),TBnomUsuario.Text, TBapeUsuario.Text, TBemail.Text, Convert.ToInt32(TBtelefono.Text), TBdireccion.Text, Convert.ToDateTime(dtFecha.Text), imagenBytes, DGlistaUsuarios);
 
-                    DGlistaUsuarios.Rows.Add(fila);
+
+                    if (exito) //se actualiza la tabla con el registro cargado
+                    {
+                        Cempleado empleado = new Cempleado();
+                        bool resultado = empleado.CargarEmpleados(DGlistaUsuarios);
+                        MessageBox.Show("Empleado agregado con éxito", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                     limpiar();
                 }
                 else
                 {
                     limpiar();
                 }
+
+            }
+
+        }
+        private byte[] ImageToByteArray(Bitmap image)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                image.Save(stream, ImageFormat.Png); // Cambia a otro formato si es necesario
+                return stream.ToArray();
             }
         }
+
+
+
 
         private void BeditarUs_Click(object sender, EventArgs e)
         {
@@ -183,6 +215,94 @@ namespace SaborAcielo
                     {
                         row.Cells["estado_em"].Value = "Inactivo";
                     }
+                }
+            }
+        }
+
+        private void CBasignaUsuario_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CBasignaUsuario.Checked)
+            {
+                // Si el CheckBox está marcado, habilita los TextBox para nombre de usuario y contraseña
+                CBusuarioTipo.Enabled = true;
+                TBusuario.Enabled = true;
+                TBcontrasenia.Enabled = true;
+            }
+            else
+            {
+                // Si el CheckBox no está marcado, deshabilita los TextBox para nombre de usuario y contraseña
+                CBusuarioTipo.Enabled = false;
+                TBusuario.Enabled = false;
+                TBcontrasenia.Enabled = false;
+
+                TBusuario.Text = "";
+                TBcontrasenia.Text = "";
+                CBusuarioTipo.SelectedIndex = -1;
+            }
+        }
+
+        private byte[] ConvertirImagenABytes(string rutaImagen)
+        {
+            byte[] imagenBytes = null;
+
+            try
+            {
+                using (FileStream fs = new FileStream(rutaImagen, FileMode.Open, FileAccess.Read))
+                {
+                    imagenBytes = new byte[fs.Length];
+                    fs.Read(imagenBytes, 0, Convert.ToInt32(fs.Length));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al convertir la imagen a bytes: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return imagenBytes;
+        }
+
+        private bool EsArchivoImagen(string rutaArchivo)
+        {
+            try
+            {
+                using (Image img = Image.FromFile(rutaArchivo))
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        private void BexaminarImUs_Click_1(object sender, EventArgs e)
+        {
+            // Crear un cuadro de diálogo para seleccionar archivos
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            // Configurar el cuadro de diálogo para aceptar solo imágenes
+            openFileDialog.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.gif;*.bmp|Todos los archivos|*.*";
+            openFileDialog.Title = "Seleccionar una imagen";
+
+            // Mostrar el cuadro de diálogo
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Obtener la ruta del archivo seleccionado
+                string rutaImagen = openFileDialog.FileName;
+
+                // Verificar si el archivo es una imagen
+                if (EsArchivoImagen(rutaImagen))
+                {
+                    // Cargar la imagen en el PictureBox
+                    PBusuario.Image = Image.FromFile(rutaImagen);
+
+                    rutaImagenSeleccionada = rutaImagen;
+
+
+                }
+                else
+                {
+                    MessageBox.Show("El archivo seleccionado no es una imagen válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

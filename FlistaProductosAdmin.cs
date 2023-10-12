@@ -196,9 +196,17 @@ namespace SaborAcielo
                 {
                     nuevaImagen = producto.ObtenerImagenDesdeBaseDeDatos(idProductoSeleccionado);
                 }
+                bool exito;
                 // Actualiza el producto en la base de datos
-                bool exito = Cproducto.ActualizarProducto(idProductoSeleccionado, TBnomProdu.Text, TBdetalle.Text, Convert.ToDecimal(TBprecio.Text), Convert.ToInt32(TBcantidadProdu.Text), nuevaFecha, nuevaImagen);
+                if (string.IsNullOrWhiteSpace(TBnomProdu.Text) || string.IsNullOrEmpty(TBprecio.Text) || string.IsNullOrWhiteSpace(TBcantidadProdu.Text))
+                {
+                    exito = false;
+                    MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                } else
+                {
 
+                    exito = Cproducto.ActualizarProducto(idProductoSeleccionado, TBnomProdu.Text, TBdetalle.Text, Convert.ToDecimal(TBprecio.Text), Convert.ToInt32(TBcantidadProdu.Text), nuevaFecha, nuevaImagen); ;
+                }
                 if (exito)
                 {
                     // Actualización exitosa, mostrar un mensaje de éxito
