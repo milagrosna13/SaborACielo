@@ -42,13 +42,13 @@ namespace SaborAcielo
 
         private void BagregarCompra_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(Fproducto.Text) || string.IsNullOrEmpty(CtipoProd.Text) || Ncant.Value == 0)
+            if (string.IsNullOrWhiteSpace(Fproducto.Text) || string.IsNullOrEmpty(CtipoProd.Text) || Ncant.Value == 0 || string.IsNullOrWhiteSpace(TBdnicliente.Text))
             {
                 MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                var res = MessageBox.Show("¿Desea guardar los datos del producto: " + Fproducto.Text + "", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var res = MessageBox.Show("¿Desea guardar los datos del producto: " + Fproducto.Text + " ?", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == System.Windows.Forms.DialogResult.Yes)
                 {
                     float total = Convert.ToInt32(TBsubtotal.Text);
@@ -116,15 +116,19 @@ namespace SaborAcielo
             }
             else
             {
-                eliminarCell.ReadOnly = false;
-                var msg = MessageBox.Show("Desea eliminar el producto del carrito?", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (msg == DialogResult.Yes)
+                if (e.RowIndex >= 0 && e.ColumnIndex == DGcarrito.Columns["baja"].Index)
                 {
-                    if (e.RowIndex >= 0 && e.ColumnIndex == DGcarrito.Columns["baja"].Index)
+                    eliminarCell.ReadOnly = false;
+                    var msg = MessageBox.Show("Desea eliminar el producto del carrito?", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (msg == DialogResult.Yes)
                     {
                         DGcarrito.Rows.RemoveAt(e.RowIndex);
+                        MessageBox.Show("Producto eliminado", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    } else
+                    {
+
                     }
-                    MessageBox.Show("Producto eliminado", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

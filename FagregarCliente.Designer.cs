@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PagregarCliente = new System.Windows.Forms.Panel();
+            this.Beditar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.RBhombre = new System.Windows.Forms.RadioButton();
             this.RBmujer = new System.Windows.Forms.RadioButton();
@@ -48,15 +49,6 @@
             this.BcancelCliente = new System.Windows.Forms.Button();
             this.BguardarCliente = new System.Windows.Forms.Button();
             this.DGclientes = new System.Windows.Forms.DataGridView();
-            this.nombre_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellido_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dni_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sexo_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tel_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.direc_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.editar_cliente = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Beditar = new System.Windows.Forms.Button();
             this.PagregarCliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGclientes)).BeginInit();
             this.SuspendLayout();
@@ -88,6 +80,19 @@
             this.PagregarCliente.Name = "PagregarCliente";
             this.PagregarCliente.Size = new System.Drawing.Size(902, 385);
             this.PagregarCliente.TabIndex = 0;
+            // 
+            // Beditar
+            // 
+            this.Beditar.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Beditar.Location = new System.Drawing.Point(183, 322);
+            this.Beditar.Name = "Beditar";
+            this.Beditar.Size = new System.Drawing.Size(172, 49);
+            this.Beditar.TabIndex = 15;
+            this.Beditar.Text = "Editar";
+            this.Beditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Beditar.UseVisualStyleBackColor = true;
+            this.Beditar.Visible = false;
+            this.Beditar.Click += new System.EventHandler(this.Beditar_Click);
             // 
             // label6
             // 
@@ -262,15 +267,6 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGclientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGclientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGclientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nombre_cliente,
-            this.apellido_cliente,
-            this.dni_cliente,
-            this.sexo_cliente,
-            this.tel_cliente,
-            this.direc_cliente,
-            this.estado_cliente,
-            this.editar_cliente});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -286,75 +282,6 @@
             this.DGclientes.Size = new System.Drawing.Size(1048, 208);
             this.DGclientes.TabIndex = 1;
             this.DGclientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGclientes_CellClick);
-            // 
-            // nombre_cliente
-            // 
-            this.nombre_cliente.HeaderText = "Nombre";
-            this.nombre_cliente.MinimumWidth = 8;
-            this.nombre_cliente.Name = "nombre_cliente";
-            this.nombre_cliente.ReadOnly = true;
-            // 
-            // apellido_cliente
-            // 
-            this.apellido_cliente.HeaderText = "Apellido";
-            this.apellido_cliente.MinimumWidth = 8;
-            this.apellido_cliente.Name = "apellido_cliente";
-            this.apellido_cliente.ReadOnly = true;
-            // 
-            // dni_cliente
-            // 
-            this.dni_cliente.HeaderText = "DNI";
-            this.dni_cliente.MinimumWidth = 8;
-            this.dni_cliente.Name = "dni_cliente";
-            this.dni_cliente.ReadOnly = true;
-            // 
-            // sexo_cliente
-            // 
-            this.sexo_cliente.HeaderText = "Sexo";
-            this.sexo_cliente.MinimumWidth = 8;
-            this.sexo_cliente.Name = "sexo_cliente";
-            this.sexo_cliente.ReadOnly = true;
-            // 
-            // tel_cliente
-            // 
-            this.tel_cliente.HeaderText = "Teléfono";
-            this.tel_cliente.MinimumWidth = 8;
-            this.tel_cliente.Name = "tel_cliente";
-            this.tel_cliente.ReadOnly = true;
-            // 
-            // direc_cliente
-            // 
-            this.direc_cliente.HeaderText = "Dirección";
-            this.direc_cliente.MinimumWidth = 8;
-            this.direc_cliente.Name = "direc_cliente";
-            this.direc_cliente.ReadOnly = true;
-            // 
-            // estado_cliente
-            // 
-            this.estado_cliente.HeaderText = "Estado";
-            this.estado_cliente.MinimumWidth = 8;
-            this.estado_cliente.Name = "estado_cliente";
-            // 
-            // editar_cliente
-            // 
-            this.editar_cliente.HeaderText = "Editar";
-            this.editar_cliente.MinimumWidth = 8;
-            this.editar_cliente.Name = "editar_cliente";
-            this.editar_cliente.ReadOnly = true;
-            this.editar_cliente.Text = "Editar";
-            // 
-            // Beditar
-            // 
-            this.Beditar.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Beditar.Location = new System.Drawing.Point(183, 322);
-            this.Beditar.Name = "Beditar";
-            this.Beditar.Size = new System.Drawing.Size(172, 49);
-            this.Beditar.TabIndex = 15;
-            this.Beditar.Text = "Editar";
-            this.Beditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Beditar.UseVisualStyleBackColor = true;
-            this.Beditar.Visible = false;
-            this.Beditar.Click += new System.EventHandler(this.Beditar_Click);
             // 
             // FagregarCliente
             // 
@@ -393,14 +320,6 @@
         private System.Windows.Forms.RadioButton RBhombre;
         private System.Windows.Forms.RadioButton RBmujer;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellido_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dni_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sexo_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tel_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn direc_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estado_cliente;
-        private System.Windows.Forms.DataGridViewButtonColumn editar_cliente;
         private System.Windows.Forms.Button Beditar;
     }
 }

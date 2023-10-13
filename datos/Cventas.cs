@@ -22,7 +22,7 @@ namespace SaborAcielo.datos
 
         public void MostrarResumen(int id)
         {
-            string query = "SELECT * FROM venta WHERE ID = @id_venta"; // Reemplaza TuTabla y ID con los nombres reales
+            string query = "SELECT * FROM venta WHERE ID = @id_venta"; // 
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

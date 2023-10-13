@@ -73,6 +73,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="datos\Ccliente.cs" />
     <Compile Include="datos\Cproducto.cs" />
     <Compile Include="datos\Cventas.cs" />
     <Compile Include="FagregarCliente.cs">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaborAcielo.datos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,9 @@ namespace SaborAcielo
         public FagregarCliente()
         {
             InitializeComponent();
+            Ccliente clientes = new Ccliente();
+            bool res = clientes.MostrarClientes(DGclientes);
+            Ccliente.AgregarColumnasBoton(DGclientes);
         }
 
         private void BguardarCliente_Click(object sender, EventArgs e)
