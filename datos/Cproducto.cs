@@ -111,12 +111,50 @@ namespace SaborAcielo.datos
             columnaEditar.Text = "Editar";
             columnaEditar.UseColumnTextForButtonValue = true;
             dataGridView.Columns.Add(columnaEditar);
+          
 
             DataGridViewButtonColumn columnaEliminar = new DataGridViewButtonColumn();
             columnaEliminar.Name = "Eliminar";
             columnaEliminar.Text = "Eliminar";
             columnaEliminar.UseColumnTextForButtonValue = true;
             dataGridView.Columns.Add(columnaEliminar);
+            dataGridView.CellPainting += (sender, e) =>
+            {
+                if (e.RowIndex >= 0)
+                {
+                    if (e.ColumnIndex == dataGridView.Columns["Editar"].Index || e.ColumnIndex == dataGridView.Columns["Eliminar"].Index)
+                    {
+                        // Obtener la imagen y ajustar su tamaño
+                        Image image = null;
+                        int newWidth = 20; // Ancho deseado
+                        int newHeight = 20; // Alto deseado
+
+                        if (e.ColumnIndex == dataGridView.Columns["Editar"].Index)
+                        {
+                            // Personalizar la imagen para la columna "Editar"
+                            image = Properties.Resources.editaricon; 
+                        }
+                        else if (e.ColumnIndex == dataGridView.Columns["Eliminar"].Index)
+                        {
+                            // Personalizar la imagen para la columna "Eliminar"
+                            image = Properties.Resources.eliminaricon; 
+                        }
+
+                        // Ajustar el tamaño de la imagen
+                        Image smallImage = new Bitmap(image, new Size(newWidth, newHeight));
+
+                        // Calcular la posición para centrar la imagen en la celda
+                        int x = e.CellBounds.Left + (e.CellBounds.Width - smallImage.Width) / 2;
+                        int y = e.CellBounds.Top + (e.CellBounds.Height - smallImage.Height) / 2;
+
+                        // Dibujar la imagen en el centro de la celda
+                        e.PaintBackground(e.CellBounds, true);
+                        e.Graphics.DrawImage(smallImage, x, y);
+                        e.Handled = true;
+                    }
+                }
+            };
+
         }
 
         //Método para actualizar producto

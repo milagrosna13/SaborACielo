@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="datos\Ccliente.cs" />
+    <Compile Include="datos\Cempleado.cs" />
     <Compile Include="datos\Cproducto.cs" />
     <Compile Include="datos\Cventas.cs" />
     <Compile Include="FagregarCliente.cs">
@@ -123,6 +124,18 @@
     </Compile>
     <Compile Include="FlistaUsuariosAdmin.Designer.cs">
       <DependentUpon>FlistaUsuariosAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fusuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fusuarios.Designer.cs">
+      <DependentUpon>Fusuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteProductos.Designer.cs">
+      <DependentUpon>ReporteProductos.cs</DependentUpon>
     </Compile>
     <Compile Include="MDIgerente.cs">
       <SubType>Form</SubType>
@@ -174,6 +187,9 @@
     <EmbeddedResource Include="FlistaUsuariosAdmin.resx">
       <DependentUpon>FlistaUsuariosAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Fusuarios.resx">
+      <DependentUpon>Fusuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MDIgerente.resx">
       <DependentUpon>MDIgerente.cs</DependentUpon>
     </EmbeddedResource>
@@ -196,6 +212,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ReporteProductos.resx">
+      <DependentUpon>ReporteProductos.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -248,6 +267,21 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancelar2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editaricon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eliminaricon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

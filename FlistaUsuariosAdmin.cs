@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,11 @@ namespace SaborAcielo
         public FlistaUsuariosAdmin()
         {
             InitializeComponent();
+
+            BeditarUs.Visible = false;
+            Cempleado empleado = new Cempleado();
+            bool resultado = empleado.CargarEmpleados(DGlistaUsuarios);
+            Cproducto.AgregarColumnasBoton(DGlistaUsuarios);
         }
 
         private void TBdniUsuario_TextChanged(object sender, KeyPressEventArgs e)
@@ -64,7 +71,7 @@ namespace SaborAcielo
                 return;
             }
         }
-
+        private string rutaImagenSeleccionada;
         private void limpiar()
         {
             TBapeUsuario.Clear();
@@ -79,34 +86,71 @@ namespace SaborAcielo
             CBtipoUsuario.SelectedIndex = -1;
             TBemail.Clear();
         }
-                       
+
         private void BcancelProdu_Click(object sender, EventArgs e)
         {
             limpiar();
         }
 
+
         private void BagregarUs_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TBnomUsuario.Text) || string.IsNullOrEmpty(TBapeUsuario.Text) || string.IsNullOrWhiteSpace(TBdniUsuario.Text) )
+            if (string.IsNullOrWhiteSpace(TBdniUsuario.Text) || string.IsNullOrEmpty(TBnomUsuario.Text) || string.IsNullOrEmpty(TBapeUsuario.Text) || string.IsNullOrEmpty(TBtelefono.Text) || string.IsNullOrWhiteSpace(TBdireccion.Text))
             {
                 MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                var res = MessageBox.Show("¿Desea guardar los datos del empleado: " + TBnomUsuario.Text + "", "Agregar empleado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var res = MessageBox.Show("¿Desea guardar los datos del empleado: " + TBnomUsuario.Text + "", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == System.Windows.Forms.DialogResult.Yes)
                 {
-                    DataGridViewRow fila = new DataGridViewRow();
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBnomUsuario.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBapeUsuario.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBdniUsuario.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBemail.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBdireccion.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = TBtelefono.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = CBusuarioTipo.SelectedItem?.ToString() });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = "Activo"});
+                    byte[] imagenBytes;
+                    if (!string.IsNullOrEmpty(rutaImagenSeleccionada))
+                    {
+                        // Si se ha seleccionado una imagen, conviérte a bytes
+                        imagenBytes = ConvertirImagenABytes(rutaImagenSeleccionada);
+                    }
+                    else
+                    {
+                        // Si no se ha seleccionado una imagen, carga la imagen por defecto en forma de bytes
+                        imagenBytes = ImageToByteArray((Bitmap)PBusuario.Image);
+                    }
 
-                    DGlistaUsuarios.Rows.Add(fila);
+                    // Agregar el empleado
+                    bool exitoEmpleado = Cempleado.AgregarEmpleado(Convert.ToInt32(TBdniUsuario.Text), TBnomUsuario.Text, TBapeUsuario.Text, TBemail.Text, Convert.ToInt32(TBtelefono.Text), TBdireccion.Text, Convert.ToDateTime(dtFecha.Text), imagenBytes, DGlistaUsuarios);
+
+                    if (exitoEmpleado)
+                    {
+                        // Si se agregó el empleado con éxito, verifica si se debe agregar un usuario
+                        if (CBasignaUsuario.Checked)
+                        {
+                            bool exitoUsuario = Cempleado.CrearUsuario(Convert.ToInt32(TBdniUsuario.Text), TBusuario.Text, TBcontrasenia.Text, CBusuarioTipo.SelectedIndex + 1);
+
+                            if (exitoUsuario)
+                            {
+                                // Actualizar la tabla con el registro de usuarios
+                                Cempleado empleado = new Cempleado();
+                                bool resultado = empleado.CargarEmpleados(DGlistaUsuarios);
+                                MessageBox.Show("Empleado y usuario agregados con éxito", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error al agregar el usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            // Actualizar la tabla solo con el registro de empleados
+                            Cempleado empleado = new Cempleado();
+                            bool resultado = empleado.CargarEmpleados(DGlistaUsuarios);
+                            MessageBox.Show("Empleado agregado con éxito", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al agregar el empleado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                     limpiar();
                 }
                 else
@@ -116,75 +160,106 @@ namespace SaborAcielo
             }
         }
 
-        private void BeditarUs_Click(object sender, EventArgs e)
+        private byte[] ImageToByteArray(Bitmap image)
         {
-            if (string.IsNullOrWhiteSpace(TBnomUsuario.Text) || string.IsNullOrEmpty(TBapeUsuario.Text) || string.IsNullOrWhiteSpace(TBdniUsuario.Text))
+            using (MemoryStream stream = new MemoryStream())
             {
-                MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                DataGridViewRow row = DGlistaUsuarios.Rows[DGlistaUsuarios.CurrentCell.RowIndex];
-                row.Cells["nom_em"].Value = TBnomUsuario.Text;
-                row.Cells["ape_em"].Value = TBapeUsuario.Text;
-                row.Cells["dni_em"].Value = TBdniUsuario.Text;
-                row.Cells["email_em"].Value = TBemail.Text;
-                row.Cells["dire_em"].Value = TBdireccion.Text;
-                row.Cells["tel_em"].Value = TBtelefono.Text;
-                row.Cells["perfil_em"].Value = CBusuarioTipo.SelectedItem?.ToString();
-                MessageBox.Show("Usuario editado con exito", "Editar", MessageBoxButtons.OK);
-                limpiar();
-                BagregarUs.Visible = true;
-
+                image.Save(stream, ImageFormat.Png); 
+                return stream.ToArray();
             }
         }
 
-        private void DGlistaUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
+       
+        private void CBasignaUsuario_CheckedChanged(object sender, EventArgs e)
         {
-            DataGridViewRow row = DGlistaUsuarios.Rows[e.RowIndex];
-            DataGridViewCell nombreCell = row.Cells["nom_em"];
-            DataGridViewCell editarCell = row.Cells["editar_em"];
-            DataGridViewCell eliminarCell = row.Cells["eliminar_em"];
-
-            if (string.IsNullOrWhiteSpace(Convert.ToString(nombreCell.Value)))
+            if (CBasignaUsuario.Checked)
             {
-                editarCell.ReadOnly = true;
+                // Si el CheckBox está marcado, habilita los TextBox para nombre de usuario y contraseña
+                CBusuarioTipo.Enabled = true;
+                TBusuario.Enabled = true;
+                TBcontrasenia.Enabled = true;
             }
             else
             {
-                editarCell.ReadOnly = false;
-                eliminarCell.ReadOnly = false;
+                // Si el CheckBox no está marcado, deshabilita los TextBox para nombre de usuario y contraseña
+                CBusuarioTipo.Enabled = false;
+                TBusuario.Enabled = false;
+                TBcontrasenia.Enabled = false;
 
-                if (e.RowIndex >= 0 && e.ColumnIndex == DGlistaUsuarios.Columns["editar_em"].Index)
+                TBusuario.Text = "";
+                TBcontrasenia.Text = "";
+                CBusuarioTipo.SelectedIndex = -1;
+            }
+        }
+
+        private byte[] ConvertirImagenABytes(string rutaImagen)
+        {
+            byte[] imagenBytes = null;
+
+            try
+            {
+                using (FileStream fs = new FileStream(rutaImagen, FileMode.Open, FileAccess.Read))
                 {
-                    var msg = MessageBox.Show("Desea editar el empleado?", "Confirmar editar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (msg == DialogResult.Yes)
-                    {
-
-                        BagregarUs.Visible = false;
-                        BeditarUs.Visible = true;
-                        TBnomUsuario.Text = row.Cells["nom_em"].Value.ToString();
-                        TBapeUsuario.Text = row.Cells["ape_em"].Value.ToString();
-                        TBdniUsuario.Text = row.Cells["dni_em"].Value.ToString();
-                        TBemail.Text = row.Cells["email_em"].Value.ToString();
-                        TBtelefono.Text = row.Cells["tel_em"].Value.ToString();
-                        TBdireccion.Text = row.Cells["dire_em"].Value.ToString();
-                        if (CBtipoUsuario.SelectedIndex != -1)
-                        {
-                            CBusuarioTipo.SelectedItem = row.Cells["perfil_em"].Value.ToString();
-                        }
-                    }
+                    imagenBytes = new byte[fs.Length];
+                    fs.Read(imagenBytes, 0, Convert.ToInt32(fs.Length));
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al convertir la imagen a bytes: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-                if (e.RowIndex >= 0 && e.ColumnIndex == DGlistaUsuarios.Columns["eliminar_em"].Index)
+            return imagenBytes;
+        }
+
+        private bool EsArchivoImagen(string rutaArchivo)
+        {
+            try
+            {
+                using (Image img = Image.FromFile(rutaArchivo))
                 {
-                    var msg = MessageBox.Show("Desea eliminar el empleado?", "Confirmar eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (msg == DialogResult.Yes)
-                    {
-                        row.Cells["estado_em"].Value = "Inactivo";
-                    }
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        private void BexaminarImUs_Click_1(object sender, EventArgs e)
+        {
+            // Crear un cuadro de diálogo para seleccionar archivos
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            // Configurar el cuadro de diálogo para aceptar solo imágenes
+            openFileDialog.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.gif;*.bmp|Todos los archivos|*.*";
+            openFileDialog.Title = "Seleccionar una imagen";
+
+            // Mostrar el cuadro de diálogo
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Obtener la ruta del archivo seleccionado
+                string rutaImagen = openFileDialog.FileName;
+
+                // Verificar si el archivo es una imagen
+                if (EsArchivoImagen(rutaImagen))
+                {
+                    // Cargar la imagen en el PictureBox
+                    PBusuario.Image = Image.FromFile(rutaImagen);
+
+                    rutaImagenSeleccionada = rutaImagen;
+
+
+                }
+                else
+                {
+                    MessageBox.Show("El archivo seleccionado no es una imagen válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+
+
+
+        
     }
 }
