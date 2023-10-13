@@ -123,7 +123,7 @@ namespace SaborAcielo
 
         private void BlistarVendedores_Click(object sender, EventArgs e)
         {
-            abrirFormularioHijo(new FlistaUsuarios());
+            abrirFormularioHijo(new Fusuarios());
         }
 
         private void BcerrarSesion_Click(object sender, EventArgs e)

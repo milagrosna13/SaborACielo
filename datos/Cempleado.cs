@@ -8,11 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing;
+using System.Security.Cryptography;
 
 namespace SaborAcielo.datos
 {
+   
     internal class Cempleado
     {
+        
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString;
         private readonly SqlDataAdapter dataAdapter;
         private readonly DataTable dataTable;
@@ -35,11 +39,13 @@ namespace SaborAcielo.datos
                 // Crear un DataTable local para almacenar los datos
                 DataTable localDataTable = new DataTable();
 
-                // Configurar el SqlDataAdapter
+                // Configurar el SqlDataAdapter con la consulta SQL modificada
                 using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT e.dni_empleado AS ID, e.nombre AS Nombre," +
-                    "e.apellido AS Apellido, e.mail AS Email, e.telefono As Teléfono, e.direccion as Dirección, e.fecha_ingreso AS 'Fecha de ingreso', e.foto_emp as Foto ,CAST(e.estado AS INT) AS Estado,Tipo_usuario.desc_tipoUs as 'Tipo de Usuario' " +
+                    "e.apellido AS Apellido, e.mail AS Email, e.telefono As Teléfono, e.direccion as Dirección, e.fecha_ingreso AS 'Fecha de ingreso', e.foto_emp as Foto, " +
+                    "CASE WHEN e.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado, " +
+                    "COALESCE(Tipo_usuario.desc_tipoUs, 'Usuario no asignado') as 'Tipo de Usuario' " +
                     "FROM Empleado e " + "LEFT JOIN Usuario ON e.dni_empleado = Usuario.dni_empleado " +
-               "LEFT JOIN Tipo_usuario ON Usuario.id_tipoUsuario = Tipo_usuario.id_tipoUsuario", new SqlConnection(connectionString)))
+                    "LEFT JOIN Tipo_usuario ON Usuario.id_tipoUsuario = Tipo_usuario.id_tipoUsuario", new SqlConnection(connectionString)))
                 {
                     // Llenar el DataTable con los datos
                     localDataAdapter.Fill(localDataTable);
@@ -64,7 +70,13 @@ namespace SaborAcielo.datos
             bool estado = true;
             try
             {
-                // Resto del código para insertar en la base de datos
+                // Verifica si el DNI ya existe en la base de datos
+                if (DNIExistente(dni))
+                {
+                    MessageBox.Show("El DNI ya existe en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                // código para insertar en la base de datos
                 using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
                 {
                     connection.Open();
@@ -100,24 +112,161 @@ namespace SaborAcielo.datos
 
         }
 
-        private byte[] ConvertirImagenABytes(string rutaImagen)
+        public static bool DNIExistente(int dni)
         {
-            byte[] imagenBytes = null;
+            // Realiza una consulta para verificar si el DNI ya existe en la base de datos
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+            {
+                connection.Open();
 
+                string query = "SELECT COUNT(*) FROM Empleado WHERE dni_empleado = @dni_empleado";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@dni_empleado", dni);
+
+                int count = (int)command.ExecuteScalar();
+
+                connection.Close();
+
+                return count > 0;
+            }
+        }
+        public static void AgregarColumnasBoton(DataGridView dataGridView)
+        {
+            // Agregar las columnas "Editar" y "Eliminar" al final
+            DataGridViewButtonColumn columnaEditar = new DataGridViewButtonColumn();
+            columnaEditar.Name = "Editar";
+            columnaEditar.Text = "Editar";
+            columnaEditar.UseColumnTextForButtonValue = true;
+            dataGridView.Columns.Add(columnaEditar);
+
+
+            DataGridViewButtonColumn columnaEliminar = new DataGridViewButtonColumn();
+            columnaEliminar.Name = "Eliminar";
+            columnaEliminar.Text = "Eliminar";
+            columnaEliminar.UseColumnTextForButtonValue = true;
+            dataGridView.Columns.Add(columnaEliminar);
+            dataGridView.CellPainting += (sender, e) =>
+            {
+                if (e.RowIndex >= 0)
+                {
+                    if (e.ColumnIndex == dataGridView.Columns["Editar"].Index || e.ColumnIndex == dataGridView.Columns["Eliminar"].Index)
+                    {
+                        // Obtener la imagen y ajustar su tamaño
+                        Image image = null;
+                        int newWidth = 20; // Ancho deseado
+                        int newHeight = 20; // Alto deseado
+
+                        if (e.ColumnIndex == dataGridView.Columns["Editar"].Index)
+                        {
+                            // Personalizar la imagen para la columna "Editar"
+                            image = Properties.Resources.editaricon;
+                        }
+                        else if (e.ColumnIndex == dataGridView.Columns["Eliminar"].Index)
+                        {
+                            // Personalizar la imagen para la columna "Eliminar"
+                            image = Properties.Resources.eliminaricon;
+                        }
+
+                        // Ajustar el tamaño de la imagen
+                        Image smallImage = new Bitmap(image, new Size(newWidth, newHeight));
+
+                        // Calcular la posición para centrar la imagen en la celda
+                        int x = e.CellBounds.Left + (e.CellBounds.Width - smallImage.Width) / 2;
+                        int y = e.CellBounds.Top + (e.CellBounds.Height - smallImage.Height) / 2;
+
+                        // Dibujar la imagen en el centro de la celda
+                        e.PaintBackground(e.CellBounds, true);
+                        e.Graphics.DrawImage(smallImage, x, y);
+                        e.Handled = true;
+                    }
+                }
+            };
+
+        }
+
+
+
+        public static bool CrearUsuario(int dniEmpleado, string nombreUsuario, string contrasenia, int idTipoUsuario)
+        {
             try
             {
-                using (FileStream fs = new FileStream(rutaImagen, FileMode.Open, FileAccess.Read))
+                // Genera un salt aleatorio
+                byte[] salt = GenerarSaltAleatorio(16); // Tamaño del salt en bytes
+
+                // Aplica una función hash a la contraseña y el salt
+                byte[] hash = AplicarHashAContraseña(contrasenia, salt);
+
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
                 {
-                    imagenBytes = new byte[fs.Length];
-                    fs.Read(imagenBytes, 0, Convert.ToInt32(fs.Length));
+                    connection.Open();
+
+                    string query = "INSERT INTO Usuario (dni_empleado, nom_usuario, contrasenia, id_tipoUsuario) VALUES (@dni_empleado, @nom_usuario, @contrasenia, @id_tipoUsuario)";
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Usa parámetros para evitar la inyección de SQL
+                    command.Parameters.AddWithValue("@dni_empleado", dniEmpleado);
+                    command.Parameters.AddWithValue("@nom_usuario", nombreUsuario);
+                    command.Parameters.AddWithValue("@contrasenia", hash); // Inserta el hash en lugar del salt
+                    command.Parameters.AddWithValue("@id_tipoUsuario", idTipoUsuario);
+
+                    command.ExecuteNonQuery();
+
+                    connection.Close();
                 }
+                return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al convertir la imagen a bytes: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
+                MessageBox.Show("Error en la inserción de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
+        }
 
-            return imagenBytes;
+        // Genera un salt aleatorio
+        private static byte[] GenerarSaltAleatorio(int saltSize)
+        {
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                byte[] salt = new byte[saltSize];
+                rng.GetBytes(salt);
+                return salt;
+            }
+        }
+
+        // Aplica una función hash a la contraseña y el salt
+        private static byte[] AplicarHashAContraseña(string contraseña, byte[] salt)
+        {
+            using (var deriveBytes = new Rfc2898DeriveBytes(contraseña, salt, 10000, HashAlgorithmName.SHA256))
+            {
+                return deriveBytes.GetBytes(32); // El hash tiene un tamaño de 32 bytes
+            }
+        }
+
+        public bool CargarUsuarios(DataGridView dataGridView)
+        {
+            try
+            {
+                // Crear un DataTable local para almacenar los datos de usuarios
+                DataTable localDataTable = new DataTable();
+
+                // Configurar el SqlDataAdapter con la consulta SQL para usuarios
+                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT dni_empleado, nom_usuario, id_tipoUsuario FROM Usuario", new SqlConnection(connectionString)))
+                {
+                    // Llenar el DataTable con los datos de usuarios
+                    localDataAdapter.Fill(localDataTable);
+                }
+
+                // Asignar el DataTable como origen de datos del DataGridView
+                dataGridView.DataSource = localDataTable;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al cargar los datos de usuarios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
     }

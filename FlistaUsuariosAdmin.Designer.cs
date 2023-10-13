@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GBfiltroUsuarios = new System.Windows.Forms.GroupBox();
             this.BbuscarUsuario = new System.Windows.Forms.Button();
             this.TBdni = new System.Windows.Forms.TextBox();
@@ -253,7 +253,7 @@
             this.PBusuario.ErrorImage = null;
             this.PBusuario.Image = global::SaborAcielo.Properties.Resources.EmpleadosInicio;
             this.PBusuario.InitialImage = null;
-            this.PBusuario.Location = new System.Drawing.Point(347, 25);
+            this.PBusuario.Location = new System.Drawing.Point(350, 25);
             this.PBusuario.Name = "PBusuario";
             this.PBusuario.Size = new System.Drawing.Size(123, 110);
             this.PBusuario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -268,6 +268,7 @@
             this.TBusuario.Name = "TBusuario";
             this.TBusuario.Size = new System.Drawing.Size(137, 26);
             this.TBusuario.TabIndex = 30;
+//            this.TBusuario.TextChanged += new System.EventHandler(this.TBusuario_TextChanged);
             // 
             // usuario
             // 
@@ -415,7 +416,7 @@
             this.BeditarUs.Text = "Editar";
             this.BeditarUs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BeditarUs.UseVisualStyleBackColor = true;
-            this.BeditarUs.Click += new System.EventHandler(this.BeditarUs_Click);
+           // this.BeditarUs.Click += new System.EventHandler(this.BeditarUs_Click);
             // 
             // LusuarioTipo
             // 
@@ -507,27 +508,29 @@
             // 
             // DGlistaUsuarios
             // 
-            this.DGlistaUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.DGlistaUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGlistaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGlistaUsuarios.BackgroundColor = System.Drawing.Color.RosyBrown;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGlistaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGlistaUsuarios.Location = new System.Drawing.Point(22, 376);
+            this.DGlistaUsuarios.Location = new System.Drawing.Point(22, 345);
             this.DGlistaUsuarios.Margin = new System.Windows.Forms.Padding(2);
             this.DGlistaUsuarios.Name = "DGlistaUsuarios";
             this.DGlistaUsuarios.RowHeadersWidth = 62;
             this.DGlistaUsuarios.RowTemplate.Height = 28;
-            this.DGlistaUsuarios.Size = new System.Drawing.Size(971, 125);
+            this.DGlistaUsuarios.Size = new System.Drawing.Size(971, 156);
             this.DGlistaUsuarios.TabIndex = 9;
-            this.DGlistaUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaUsuarios_CellClick);
+            //this.DGlistaUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaUsuarios_CellClick);
+            //this.DGlistaUsuarios.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGlistaUsuarios_CellFormatting);
             // 
             // FlistaUsuariosAdmin
             // 
