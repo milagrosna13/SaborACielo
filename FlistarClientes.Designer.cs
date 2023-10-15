@@ -43,15 +43,6 @@
             this.CBnomCliente = new System.Windows.Forms.CheckBox();
             this.CBapeCliente = new System.Windows.Forms.CheckBox();
             this.CBtodosClientes = new System.Windows.Forms.CheckBox();
-            this.dni_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellido_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.direc_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tel_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fecha_registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.baja = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaCliente)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -72,16 +63,6 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGlistaCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGlistaCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGlistaCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dni_cliente,
-            this.nombre_cliente,
-            this.apellido_cliente,
-            this.email_cliente,
-            this.direc_cliente,
-            this.tel_cliente,
-            this.fecha_registro,
-            this.estado,
-            this.baja});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -106,7 +87,7 @@
             this.DGlistaCliente.RowTemplate.Height = 28;
             this.DGlistaCliente.Size = new System.Drawing.Size(1131, 314);
             this.DGlistaCliente.TabIndex = 0;
-            this.DGlistaCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaCliente_CellClick);
+            this.DGlistaCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaCliente_CellContentClick);
             // 
             // groupBox1
             // 
@@ -204,69 +185,6 @@
             this.CBtodosClientes.Text = "Todos los clientes";
             this.CBtodosClientes.UseVisualStyleBackColor = true;
             // 
-            // dni_cliente
-            // 
-            this.dni_cliente.HeaderText = "Dni";
-            this.dni_cliente.MinimumWidth = 8;
-            this.dni_cliente.Name = "dni_cliente";
-            this.dni_cliente.ReadOnly = true;
-            // 
-            // nombre_cliente
-            // 
-            this.nombre_cliente.HeaderText = "Nombre";
-            this.nombre_cliente.MinimumWidth = 8;
-            this.nombre_cliente.Name = "nombre_cliente";
-            this.nombre_cliente.ReadOnly = true;
-            // 
-            // apellido_cliente
-            // 
-            this.apellido_cliente.HeaderText = "Apellido";
-            this.apellido_cliente.MinimumWidth = 8;
-            this.apellido_cliente.Name = "apellido_cliente";
-            this.apellido_cliente.ReadOnly = true;
-            // 
-            // email_cliente
-            // 
-            this.email_cliente.HeaderText = "Email";
-            this.email_cliente.MinimumWidth = 8;
-            this.email_cliente.Name = "email_cliente";
-            this.email_cliente.ReadOnly = true;
-            // 
-            // direc_cliente
-            // 
-            this.direc_cliente.HeaderText = "Direccion";
-            this.direc_cliente.MinimumWidth = 8;
-            this.direc_cliente.Name = "direc_cliente";
-            this.direc_cliente.ReadOnly = true;
-            // 
-            // tel_cliente
-            // 
-            this.tel_cliente.HeaderText = "Telefono";
-            this.tel_cliente.MinimumWidth = 8;
-            this.tel_cliente.Name = "tel_cliente";
-            this.tel_cliente.ReadOnly = true;
-            // 
-            // fecha_registro
-            // 
-            this.fecha_registro.HeaderText = "Fecha de registro";
-            this.fecha_registro.MinimumWidth = 8;
-            this.fecha_registro.Name = "fecha_registro";
-            this.fecha_registro.ReadOnly = true;
-            // 
-            // estado
-            // 
-            this.estado.HeaderText = "Estado";
-            this.estado.MinimumWidth = 8;
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
-            // 
-            // baja
-            // 
-            this.baja.HeaderText = "Editar estado";
-            this.baja.MinimumWidth = 8;
-            this.baja.Name = "baja";
-            this.baja.Text = "";
-            // 
             // FlistarClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -298,14 +216,5 @@
         private System.Windows.Forms.CheckBox CBnomCliente;
         private System.Windows.Forms.CheckBox CBapeCliente;
         private System.Windows.Forms.Button BbuscarCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dni_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellido_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn email_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn direc_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tel_cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fecha_registro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
-        private System.Windows.Forms.DataGridViewButtonColumn baja;
     }
 }

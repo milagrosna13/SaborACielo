@@ -31,8 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.PmenuLateral = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.PsubmClientes = new System.Windows.Forms.Panel();
-            this.BbajaCliente = new System.Windows.Forms.Button();
             this.BlistarClientes = new System.Windows.Forms.Button();
             this.Bclientes = new System.Windows.Forms.Button();
             this.PsubmVentas = new System.Windows.Forms.Panel();
@@ -52,18 +55,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PchildAdmin = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.PmenuLateral.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.PsubmClientes.SuspendLayout();
             this.PsubmVentas.SuspendLayout();
             this.PsubmProductos.SuspendLayout();
             this.PsubmUsuarios.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // PmenuLateral
@@ -88,32 +87,72 @@
             this.PmenuLateral.Size = new System.Drawing.Size(364, 886);
             this.PmenuLateral.TabIndex = 4;
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.button2);
+            this.panel3.Controls.Add(this.button4);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 889);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(338, 81);
+            this.panel3.TabIndex = 10;
+            this.panel3.Visible = false;
+            // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(0, 42);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(338, 42);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Restablecer BD";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(0, 0);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(338, 42);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "Crear Backup";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.SaddleBrown;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.RosyBrown;
+            this.button1.Location = new System.Drawing.Point(0, 831);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(338, 58);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Back up";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // PsubmClientes
             // 
-            this.PsubmClientes.Controls.Add(this.BbajaCliente);
             this.PsubmClientes.Controls.Add(this.BlistarClientes);
             this.PsubmClientes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PsubmClientes.Location = new System.Drawing.Point(0, 699);
+            this.PsubmClientes.Location = new System.Drawing.Point(0, 779);
             this.PsubmClientes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PsubmClientes.Name = "PsubmClientes";
-            this.PsubmClientes.Size = new System.Drawing.Size(338, 82);
+            this.PsubmClientes.Size = new System.Drawing.Size(338, 52);
             this.PsubmClientes.TabIndex = 8;
             this.PsubmClientes.Visible = false;
-            // 
-            // BbajaCliente
-            // 
-            this.BbajaCliente.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BbajaCliente.FlatAppearance.BorderSize = 0;
-            this.BbajaCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BbajaCliente.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BbajaCliente.Location = new System.Drawing.Point(0, 45);
-            this.BbajaCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.BbajaCliente.Name = "BbajaCliente";
-            this.BbajaCliente.Size = new System.Drawing.Size(338, 42);
-            this.BbajaCliente.TabIndex = 1;
-            this.BbajaCliente.Text = "Baja Clientes";
-            this.BbajaCliente.UseVisualStyleBackColor = true;
-            this.BbajaCliente.Click += new System.EventHandler(this.BbajaCliente_Click);
             // 
             // BlistarClientes
             // 
@@ -138,7 +177,7 @@
             this.Bclientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Bclientes.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bclientes.ForeColor = System.Drawing.Color.RosyBrown;
-            this.Bclientes.Location = new System.Drawing.Point(0, 641);
+            this.Bclientes.Location = new System.Drawing.Point(0, 721);
             this.Bclientes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Bclientes.Name = "Bclientes";
             this.Bclientes.Size = new System.Drawing.Size(338, 58);
@@ -151,10 +190,10 @@
             // 
             this.PsubmVentas.Controls.Add(this.BlistarVentas);
             this.PsubmVentas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PsubmVentas.Location = new System.Drawing.Point(0, 614);
+            this.PsubmVentas.Location = new System.Drawing.Point(0, 668);
             this.PsubmVentas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PsubmVentas.Name = "PsubmVentas";
-            this.PsubmVentas.Size = new System.Drawing.Size(338, 27);
+            this.PsubmVentas.Size = new System.Drawing.Size(338, 53);
             this.PsubmVentas.TabIndex = 6;
             this.PsubmVentas.Visible = false;
             // 
@@ -181,7 +220,7 @@
             this.Bventas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Bventas.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bventas.ForeColor = System.Drawing.Color.RosyBrown;
-            this.Bventas.Location = new System.Drawing.Point(0, 556);
+            this.Bventas.Location = new System.Drawing.Point(0, 610);
             this.Bventas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Bventas.Name = "Bventas";
             this.Bventas.Size = new System.Drawing.Size(338, 58);
@@ -195,7 +234,7 @@
             this.PsubmProductos.Controls.Add(this.BagregarProdu);
             this.PsubmProductos.Controls.Add(this.BlistarProductos);
             this.PsubmProductos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PsubmProductos.Location = new System.Drawing.Point(0, 512);
+            this.PsubmProductos.Location = new System.Drawing.Point(0, 566);
             this.PsubmProductos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PsubmProductos.Name = "PsubmProductos";
             this.PsubmProductos.Size = new System.Drawing.Size(338, 44);
@@ -240,7 +279,7 @@
             this.Bproductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Bproductos.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bproductos.ForeColor = System.Drawing.Color.RosyBrown;
-            this.Bproductos.Location = new System.Drawing.Point(0, 464);
+            this.Bproductos.Location = new System.Drawing.Point(0, 518);
             this.Bproductos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Bproductos.Name = "Bproductos";
             this.Bproductos.Size = new System.Drawing.Size(338, 48);
@@ -258,7 +297,7 @@
             this.PsubmUsuarios.Location = new System.Drawing.Point(0, 423);
             this.PsubmUsuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PsubmUsuarios.Name = "PsubmUsuarios";
-            this.PsubmUsuarios.Size = new System.Drawing.Size(338, 41);
+            this.PsubmUsuarios.Size = new System.Drawing.Size(338, 95);
             this.PsubmUsuarios.TabIndex = 2;
             this.PsubmUsuarios.Visible = false;
             // 
@@ -383,62 +422,6 @@
             this.PchildAdmin.Size = new System.Drawing.Size(776, 886);
             this.PchildAdmin.TabIndex = 6;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.SaddleBrown;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.RosyBrown;
-            this.button1.Location = new System.Drawing.Point(0, 781);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(338, 58);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Back up";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.button4);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 839);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(338, 81);
-            this.panel3.TabIndex = 10;
-            this.panel3.Visible = false;
-            // 
-            // button4
-            // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(0, 0);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(338, 42);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Crear Backup";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(0, 42);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(338, 42);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Restablecer BD";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // MDIadmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -452,6 +435,7 @@
             this.Name = "MDIadmin";
             this.Text = "Administrador";
             this.PmenuLateral.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.PsubmClientes.ResumeLayout(false);
             this.PsubmVentas.ResumeLayout(false);
             this.PsubmProductos.ResumeLayout(false);
@@ -459,7 +443,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -486,7 +469,6 @@
         private System.Windows.Forms.Button BcerrarSesion;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button BbajaCliente;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button1;

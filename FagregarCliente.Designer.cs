@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PagregarCliente = new System.Windows.Forms.Panel();
+            this.TBcorreo = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.Beditar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.RBhombre = new System.Windows.Forms.RadioButton();
@@ -59,6 +61,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PagregarCliente.AutoScroll = true;
             this.PagregarCliente.BackColor = System.Drawing.Color.RosyBrown;
+            this.PagregarCliente.Controls.Add(this.TBcorreo);
+            this.PagregarCliente.Controls.Add(this.label7);
             this.PagregarCliente.Controls.Add(this.Beditar);
             this.PagregarCliente.Controls.Add(this.label6);
             this.PagregarCliente.Controls.Add(this.RBhombre);
@@ -80,6 +84,24 @@
             this.PagregarCliente.Name = "PagregarCliente";
             this.PagregarCliente.Size = new System.Drawing.Size(902, 385);
             this.PagregarCliente.TabIndex = 0;
+            // 
+            // TBcorreo
+            // 
+            this.TBcorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.TBcorreo.Location = new System.Drawing.Point(164, 281);
+            this.TBcorreo.Name = "TBcorreo";
+            this.TBcorreo.Size = new System.Drawing.Size(390, 35);
+            this.TBcorreo.TabIndex = 17;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(45, 281);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(76, 29);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Correo";
             // 
             // Beditar
             // 
@@ -252,36 +274,36 @@
             // 
             // DGclientes
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.DGclientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.DGclientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DGclientes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGclientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGclientes.BackgroundColor = System.Drawing.Color.RosyBrown;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGclientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGclientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DGclientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGclientes.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGclientes.DefaultCellStyle = dataGridViewCellStyle6;
             this.DGclientes.Location = new System.Drawing.Point(31, 455);
             this.DGclientes.Name = "DGclientes";
             this.DGclientes.RowHeadersWidth = 62;
             this.DGclientes.RowTemplate.Height = 28;
             this.DGclientes.Size = new System.Drawing.Size(1048, 208);
             this.DGclientes.TabIndex = 1;
-            this.DGclientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGclientes_CellClick);
+            this.DGclientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGclientes_CellContentClick);
             // 
             // FagregarCliente
             // 
@@ -321,5 +343,7 @@
         private System.Windows.Forms.RadioButton RBmujer;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button Beditar;
+        private System.Windows.Forms.TextBox TBcorreo;
+        private System.Windows.Forms.Label label7;
     }
 }

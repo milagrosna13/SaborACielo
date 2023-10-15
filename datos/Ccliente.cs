@@ -45,23 +45,50 @@ namespace SaborAcielo.datos
                 return false;
             }
         }
-        public static void AgregarColumnasBoton(DataGridView dataGridView)
+        public static void AgregarBotonEditar(DataGridView dataGridView)
         {
-            // Agregar las columnas "Editar" y "Eliminar" al final
+            // Agregar la columna "Editar" al final
             DataGridViewButtonColumn columnaEditar = new DataGridViewButtonColumn();
-            columnaEditar.Name = "Editar";
+            columnaEditar.Name = "editar_cliente";
             columnaEditar.Text = "Editar";
             columnaEditar.UseColumnTextForButtonValue = true;
             dataGridView.Columns.Add(columnaEditar);
 
+        }
+        public static void AgregarBotonesAdm(DataGridView dataGridView)
+        {
+            // Agregar la columna "Eliminar" al final           
             DataGridViewButtonColumn columnaEliminar = new DataGridViewButtonColumn();
-            columnaEliminar.Name = "Eliminar";
-            columnaEliminar.Text = "Eliminar";
+            columnaEliminar.Name = "eliminar_cliente";
+            columnaEliminar.Text = "Editar Estado";
             columnaEliminar.UseColumnTextForButtonValue = true;
             dataGridView.Columns.Add(columnaEliminar);
         }
+        public static bool clienteExiste(int dni)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+            {
+                connection.Open();
 
-        public static bool AgregarCliente(string nombrec, string apellidoc, string direcc, string telc, string emailc, string estado, DateTime fecha)
+                string query = "SELECT * FROM Cliente WHERE dni_cliente = @dni";
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@dni", dni);
+
+
+                    object count = cmd.ExecuteScalar();
+                    connection.Close();
+
+                    if (count != null && (int)count > 0)
+                    {
+                        return true;
+                    } else return false;
+                }
+
+            }
+        }
+
+        public static bool AgregarCliente(int dni,string nombrec, string apellidoc, string direcc, string telc, string emailc, string sexoc, string estado)
         {
             try
             {
@@ -70,16 +97,21 @@ namespace SaborAcielo.datos
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO Producto (nombre_cliente, apellido_cliente, dire_cliente, tel_cliente, email_cliente, estado, f_registro_cli) VALUES (@nombre, @apellido, @direcc, @tel, @email, @estado, @fecha,@imagen)";
+                    string query = "INSERT INTO Cliente (dni_cliente, nombre_cliente, apellido_cliente, dire_cliente, tel_cliente, email_cliente, estado_cliente, sexo_cliente, fechaRegistro_cliente) " +
+                        "VALUES (@dni, @nombre, @apellido, @dire, @tel, @email, @estado, @sexo, @fecha)";
                     SqlCommand command = new SqlCommand(query, connection);
 
                     // Usa parámetros para evitar la inyección de SQL
+                    command.Parameters.AddWithValue("@dni", dni);
                     command.Parameters.AddWithValue("@nombre",nombrec);
                     command.Parameters.AddWithValue("@apellido",apellidoc);
                     command.Parameters.AddWithValue("@dire", direcc);
                     command.Parameters.AddWithValue("@tel", telc);
                     command.Parameters.AddWithValue("@email", emailc);
+                    command.Parameters.AddWithValue("@sexo", sexoc);
                     command.Parameters.AddWithValue("@estado", estado);
+                    command.Parameters.AddWithValue("@fecha", DateTime.Now);
+
 
                     command.ExecuteNonQuery();
 
@@ -91,6 +123,116 @@ namespace SaborAcielo.datos
             {
                 Console.WriteLine("Ocurrió un error: " + ex.Message);
                 MessageBox.Show("Error en la inserción de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+        }
+
+        public DataRow obtenerCliente(int dni)
+        {
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM Cliente WHERE dni_cliente = @dni";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@dni", dni);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataTable);
+
+                connection.Close();
+            }
+
+            if (dataTable.Rows.Count > 0)
+            {
+                return dataTable.Rows[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static bool EditarCliente(int dni, string nuevoNombre, string nuevoApellido, string nuevaDirec, string nuevoTel, string estado, string nuevoEmail)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = "UPDATE Cliente " +
+                        "SET dni_cliente = @dni, nombre_cliente = @nuevoNombre, apellido_cliente = @nuevoApellido, dire_cliente = @nuevaDirec, tel_cliente = @nuevoTel, estado_cliente = @estado, email_cliente = @nuevoEmail " +
+                        "WHERE dni_cliente = @dni";
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    command.Parameters.AddWithValue("@dni", dni);
+                    command.Parameters.AddWithValue("@nuevoNombre", nuevoNombre);
+                    command.Parameters.AddWithValue("@nuevoApellido", nuevoApellido);
+                    command.Parameters.AddWithValue("@nuevaDirec", nuevaDirec);
+                    command.Parameters.AddWithValue("@nuevoTel", nuevoTel);
+                    command.Parameters.AddWithValue("@estado", estado);
+                    command.Parameters.AddWithValue("@nuevoEmail", nuevoEmail);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    connection.Close();
+
+                    return rowsAffected > 0; // Verificar si se actualizaron filas
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
+                MessageBox.Show("Error en la actualización de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public static bool EditarEstado(int dni)
+        {
+            string estadoActual;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+                {
+                    connection.Open();
+
+                    string query_select = "SELECT estado_cliente FROM Cliente WHERE dni_cliente = @dni";
+                    using (SqlCommand cmd = new SqlCommand(query_select, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@dni", dni);
+                        estadoActual = (string)cmd.ExecuteScalar(); // Obtener el estado actual
+                    }
+
+                    if (estadoActual == "activo")
+                    {
+                        string query_update = "UPDATE Cliente SET estado_cliente = 'inactivo' WHERE dni_cliente = @dni";
+                        using (SqlCommand cmd = new SqlCommand(query_update, connection))
+                        {
+                            cmd.Parameters.AddWithValue("@dni", dni);
+                            cmd.ExecuteNonQuery(); // Ejecutar la actualización
+                        }
+                        return true;
+                    }
+                    else
+                    {
+                        string query_update = "UPDATE Cliente SET estado_cliente = 'activo' WHERE dni_cliente = @dni";
+                        using (SqlCommand cmd = new SqlCommand(query_update, connection))
+                        {
+                            cmd.Parameters.AddWithValue("@dni", dni);
+                            cmd.ExecuteNonQuery(); // Ejecutar la actualización
+                        }
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar cualquier excepción que pueda ocurrir (por ejemplo, problemas de conexión)
+                Console.WriteLine("Error: " + ex.Message);
                 return false;
             }
 

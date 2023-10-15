@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,11 +19,12 @@ namespace SaborAcielo
             InitializeComponent();
             Ccliente clientes = new Ccliente();
             bool res = clientes.MostrarClientes(DGclientes);
-            Ccliente.AgregarColumnasBoton(DGclientes);
+            Ccliente.AgregarBotonEditar(DGclientes);
         }
 
         private void BguardarCliente_Click(object sender, EventArgs e)
         {
+            Ccliente cliente = new Ccliente();
             if (string.IsNullOrWhiteSpace(TBnomCliente.Text) || string.IsNullOrEmpty(TBapeCliente.Text) ||
                 string.IsNullOrEmpty(TBdniCliente.Text))
             {
@@ -34,12 +36,26 @@ namespace SaborAcielo
                 {
                     string sexo = RBmujer.Checked == true ? RBmujer.Text : RBhombre.Text;
 
-                    //mostrar en datagrid
-                    DGclientes.Rows.Add(TBnomCliente.Text, TBapeCliente.Text, TBdniCliente.Text, sexo, TBtelCliente.Text, TBdireCliente.Text, "Activo");
+                    if (Ccliente.clienteExiste(Convert.ToInt32(TBdniCliente.Text)))
+                    {
+                        MessageBox.Show("El cliente ya está registrado", "Advertencia", MessageBoxButtons.OK);
+                        limpiarTextBox();
+                        
+                        cliente.MostrarClientes(DGclientes);
+                    }
+                    else
+                    {
+                        bool insert = Ccliente.AgregarCliente(Convert.ToInt32(TBdniCliente.Text), TBnomCliente.Text, TBapeCliente.Text, TBdireCliente.Text, TBtelCliente.Text, TBcorreo.Text, sexo, "activo");
 
-                    MessageBox.Show("Cliente guardado con éxito", "Guardar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (insert)
+                        {
+                            MessageBox.Show("Cliente guardado con éxito", "Guardar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    limpiarTextBox();
+                            cliente.MostrarClientes(DGclientes);
+                            limpiarTextBox();
+                        }
+                        limpiarTextBox();
+                    }
                 } else
                 {
                     limpiarTextBox();
@@ -50,11 +66,13 @@ namespace SaborAcielo
 
         private void limpiarTextBox()
         {
-            TBnomCliente.Text = "";
-            TBapeCliente.Text = "";
-            TBdireCliente.Text = "";
-            TBdniCliente.Text = "";
-            TBtelCliente.Text = "";
+            TBnomCliente.Clear();
+            TBapeCliente.Clear();
+            TBdireCliente.Clear();
+            TBdniCliente.Clear();
+            TBtelCliente.Clear();
+            TBcorreo.Clear();
+
         }
 
         private void TBnomCliente_KeyPress(object sender, KeyPressEventArgs e)
@@ -108,54 +126,37 @@ namespace SaborAcielo
 
         }
 
-        private void DGclientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DGclientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = DGclientes.Rows[e.RowIndex];
-            DataGridViewCell estadoCell = row.Cells["estado_cliente"];
-            DataGridViewCell editar = row.Cells["editar_cliente"];
-            DataGridViewCell nombreCell = row.Cells["nombre_cliente"];
-
-
-            if (string.IsNullOrWhiteSpace(Convert.ToString(nombreCell.Value)))
+            if (e.ColumnIndex == DGclientes.Columns["editar_cliente"].Index && e.RowIndex >= 0)
             {
-                editar.ReadOnly = true;
-            }
-            else
-            {   
-                editar.ReadOnly = false;
-                var res = MessageBox.Show("Desea editar los datos del cliente?", "Editar", MessageBoxButtons.YesNo);
-                if (res == DialogResult.Yes)
+                int dni = Convert.ToInt32(DGclientes.Rows[e.RowIndex].Cells["dni_cliente"].Value);
+
+                //se cargan los campos del cliente
+                Ccliente cliente = new Ccliente();
+                DataRow datosCliente = cliente.obtenerCliente(dni);
+
+                if (datosCliente != null)
                 {
+                    TBdniCliente.Text = datosCliente["dni_cliente"].ToString();
+                    TBnomCliente.Text = datosCliente["nombre_cliente"].ToString();
+                    TBapeCliente.Text = datosCliente["apellido_cliente"].ToString();
+                    TBdireCliente.Text = datosCliente["dire_cliente"].ToString();
+                    TBtelCliente.Text = datosCliente["tel_cliente"].ToString();
+                    TBcorreo.Text = datosCliente["email_cliente"].ToString();
+
                     Beditar.Visible = true;
-                    
-                    string sexo = row.Cells["sexo_cliente"].Value.ToString();
-                    switch (sexo)
-                    {
-                        case "Hombre":
-                            RBhombre.Checked = true; break;
-                        default:
-                            RBmujer.Checked = true; break;
-                    }
-
-                    
-                    TBnomCliente.Text = row.Cells["nombre_cliente"].Value.ToString();
-                    TBapeCliente.Text = row.Cells["apellido_cliente"].Value.ToString();
-                    TBdniCliente.Text = row.Cells["dni_cliente"].Value.ToString();
-                    TBtelCliente.Text = row.Cells["tel_cliente"].Value.ToString();
-                    TBdireCliente.Text = row.Cells["direc_cliente"].Value.ToString();
-
-
+                    BguardarCliente.Visible = false;
                 }
-                else limpiarTextBox();
-                
-               
+
             }
-            
         }
 
         private void Beditar_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(TBnomCliente.Text) || string.IsNullOrEmpty(TBapeCliente.Text) || string.IsNullOrEmpty(TBdniCliente.Text))
+            Ccliente cliente = new Ccliente();
+
+            if (string.IsNullOrEmpty(TBnomCliente.Text) || string.IsNullOrEmpty(TBapeCliente.Text) || string.IsNullOrEmpty(TBdniCliente.Text))
             {
                 MessageBox.Show("Debe completar los campos obligatorios");
             } else
@@ -164,22 +165,24 @@ namespace SaborAcielo
                 if (msg == DialogResult.Yes)
                 {
                     string sexo = RBmujer.Checked == true ? RBmujer.Text : RBhombre.Text;
+                    DataRow datosCliente = cliente.obtenerCliente(Convert.ToInt32(TBdniCliente.Text));
+                    string estado = datosCliente["estado_cliente"].ToString();
 
-                    DataGridViewRow row = DGclientes.Rows[DGclientes.CurrentCell.RowIndex];
-                    row.Cells["nombre_cliente"].Value = TBnomCliente.Text;
-                    row.Cells["apellido_cliente"].Value = TBapeCliente.Text;
-                    row.Cells["dni_cliente"].Value = TBdniCliente.Text;
-                    row.Cells["tel_cliente"].Value = TBtelCliente.Text;
-                    row.Cells["direc_cliente"].Value = TBdireCliente.Text;
-                    row.Cells["sexo_cliente"].Value = sexo;
+                    //editar
+                    bool exito = Ccliente.EditarCliente(Convert.ToInt32(TBdniCliente.Text),TBnomCliente.Text,TBapeCliente.Text,TBdireCliente.Text,TBtelCliente.Text,estado,TBcorreo.Text);
+                    if (exito)
+                    {
+                        MessageBox.Show("Los datos del cliente se actualizaron exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        cliente.MostrarClientes(DGclientes);
+                    }
                     
                     limpiarTextBox();
-
+                    BguardarCliente.Visible = true;
                     Beditar.Visible = false;
                 }
                 else limpiarTextBox();
             }
         }
-        
+
     }
 }
