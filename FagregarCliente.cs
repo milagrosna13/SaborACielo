@@ -29,10 +29,11 @@ namespace SaborAcielo
                 string.IsNullOrEmpty(TBdniCliente.Text))
             {
                 MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            } else
+            }
+            else
             {
                 var res = MessageBox.Show("¿Desea guardar los datos del cliente: " + TBnomCliente.Text + " " + TBapeCliente.Text, "Guardar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if(res == DialogResult.Yes)
+                if (res == DialogResult.Yes)
                 {
                     string sexo = RBmujer.Checked == true ? RBmujer.Text : RBhombre.Text;
 
@@ -40,7 +41,7 @@ namespace SaborAcielo
                     {
                         MessageBox.Show("El cliente ya está registrado", "Advertencia", MessageBoxButtons.OK);
                         limpiarTextBox();
-                        
+
                         cliente.MostrarClientes(DGclientes);
                     }
                     else
@@ -56,7 +57,8 @@ namespace SaborAcielo
                         }
                         limpiarTextBox();
                     }
-                } else
+                }
+                else
                 {
                     limpiarTextBox();
                 }
@@ -97,7 +99,7 @@ namespace SaborAcielo
 
         private void BcancelCliente_Click(object sender, EventArgs e)
         {
-            if(Beditar.Visible) { Beditar.Visible = false; }    
+            if (Beditar.Visible) { Beditar.Visible = false; }
             limpiarTextBox();
         }
 
@@ -159,7 +161,8 @@ namespace SaborAcielo
             if (string.IsNullOrEmpty(TBnomCliente.Text) || string.IsNullOrEmpty(TBapeCliente.Text) || string.IsNullOrEmpty(TBdniCliente.Text))
             {
                 MessageBox.Show("Debe completar los campos obligatorios");
-            } else
+            }
+            else
             {
                 var msg = MessageBox.Show("Se editarán los datos del cliente: " + TBnomCliente.Text, "Confirmar editar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (msg == DialogResult.Yes)
@@ -169,13 +172,13 @@ namespace SaborAcielo
                     string estado = datosCliente["estado_cliente"].ToString();
 
                     //editar
-                    bool exito = Ccliente.EditarCliente(Convert.ToInt32(TBdniCliente.Text),TBnomCliente.Text,TBapeCliente.Text,TBdireCliente.Text,TBtelCliente.Text,estado,TBcorreo.Text);
+                    bool exito = Ccliente.EditarCliente(Convert.ToInt32(TBdniCliente.Text), TBnomCliente.Text, TBapeCliente.Text, TBdireCliente.Text, TBtelCliente.Text, estado, TBcorreo.Text);
                     if (exito)
                     {
                         MessageBox.Show("Los datos del cliente se actualizaron exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         cliente.MostrarClientes(DGclientes);
                     }
-                    
+
                     limpiarTextBox();
                     BguardarCliente.Visible = true;
                     Beditar.Visible = false;

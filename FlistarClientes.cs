@@ -67,7 +67,7 @@ namespace SaborAcielo
             if (e.RowIndex >= 0 && e.ColumnIndex == DGlistaCliente.Columns["eliminar_cliente"].Index)
             {
                 dni_seleccionado = Convert.ToInt32(DGlistaCliente.Rows[e.RowIndex].Cells["dni_cliente"].Value);
-                    if (estado.Value.ToString() == "inactivo")
+                if (estado.Value.ToString() == "inactivo")
                 {
                     var msg = MessageBox.Show("Desea dar de alta al cliente?", "Confirmar alta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (msg == DialogResult.Yes)

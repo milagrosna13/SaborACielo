@@ -57,7 +57,7 @@
             // 
             // PagregarCliente
             // 
-            this.PagregarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.PagregarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PagregarCliente.AutoScroll = true;
             this.PagregarCliente.BackColor = System.Drawing.Color.RosyBrown;
@@ -276,7 +276,7 @@
             // 
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             this.DGclientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.DGclientes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.DGclientes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGclientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGclientes.BackgroundColor = System.Drawing.Color.RosyBrown;
