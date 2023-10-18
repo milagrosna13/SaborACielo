@@ -268,7 +268,6 @@
             this.TBusuario.Name = "TBusuario";
             this.TBusuario.Size = new System.Drawing.Size(137, 26);
             this.TBusuario.TabIndex = 30;
-//            this.TBusuario.TextChanged += new System.EventHandler(this.TBusuario_TextChanged);
             // 
             // usuario
             // 
@@ -416,7 +415,6 @@
             this.BeditarUs.Text = "Editar";
             this.BeditarUs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BeditarUs.UseVisualStyleBackColor = true;
-           // this.BeditarUs.Click += new System.EventHandler(this.BeditarUs_Click);
             // 
             // LusuarioTipo
             // 
@@ -437,6 +435,7 @@
             this.TBapeUsuario.Name = "TBapeUsuario";
             this.TBapeUsuario.Size = new System.Drawing.Size(190, 26);
             this.TBapeUsuario.TabIndex = 9;
+            this.TBapeUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBapeUsuario_TextChanged);
             // 
             // LnombreUsuario
             // 
@@ -529,8 +528,6 @@
             this.DGlistaUsuarios.RowTemplate.Height = 28;
             this.DGlistaUsuarios.Size = new System.Drawing.Size(971, 156);
             this.DGlistaUsuarios.TabIndex = 9;
-            //this.DGlistaUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaUsuarios_CellClick);
-            //this.DGlistaUsuarios.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGlistaUsuarios_CellFormatting);
             // 
             // FlistaUsuariosAdmin
             // 

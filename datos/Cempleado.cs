@@ -190,6 +190,19 @@ namespace SaborAcielo.datos
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(nombreUsuario) || string.IsNullOrWhiteSpace(contrasenia))
+                {
+                    // Manejar el caso en el que el nombre de usuario o la contraseña están vacíos
+                    MessageBox.Show("Tanto el nombre de usuario como la contraseña son obligatorios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                // Verifica si el nombre de usuario ya existe
+                if (NombreUsuarioExistente(nombreUsuario))
+                {
+                    MessageBox.Show("El nombre de usuario ya existe. Por favor, elija otro nombre de usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
                 // Genera un salt aleatorio
                 byte[] salt = GenerarSaltAleatorio(16); // Tamaño del salt en bytes
 
@@ -200,13 +213,15 @@ namespace SaborAcielo.datos
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO Usuario (dni_empleado, nom_usuario, contrasenia, id_tipoUsuario) VALUES (@dni_empleado, @nom_usuario, @contrasenia, @id_tipoUsuario)";
+                    string query = "INSERT INTO Usuario (dni_empleado, nom_usuario, contrasenia, salt, id_tipoUsuario) " +
+                                   "VALUES (@dni_empleado, @nom_usuario, @contrasenia, @salt, @id_tipoUsuario)";
                     SqlCommand command = new SqlCommand(query, connection);
 
                     // Usa parámetros para evitar la inyección de SQL
                     command.Parameters.AddWithValue("@dni_empleado", dniEmpleado);
                     command.Parameters.AddWithValue("@nom_usuario", nombreUsuario);
-                    command.Parameters.AddWithValue("@contrasenia", hash); // Inserta el hash en lugar del salt
+                    command.Parameters.AddWithValue("@contrasenia", hash); // Inserta el hash en lugar de la contraseña
+                    command.Parameters.AddWithValue("@salt", salt); // Inserta el salt
                     command.Parameters.AddWithValue("@id_tipoUsuario", idTipoUsuario);
 
                     command.ExecuteNonQuery();
@@ -222,6 +237,24 @@ namespace SaborAcielo.datos
                 return false;
             }
         }
+        private static bool NombreUsuarioExistente(string nombreUsuario)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM Usuario WHERE nom_usuario = @nombreUsuario";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
+
+                int count = (int)command.ExecuteScalar();
+
+                return count > 0;
+            }
+        }
+
+        // Genera un salt aleatorio
+
 
         // Genera un salt aleatorio
         private static byte[] GenerarSaltAleatorio(int saltSize)

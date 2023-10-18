@@ -22,7 +22,7 @@ namespace SaborAcielo.datos
 
         public void MostrarResumen(int id)
         {
-            string query = "SELECT * FROM venta WHERE ID = @id_venta"; // 
+            string query = "SELECT * FROM venta WHERE ID = @id_venta"; // Reemplaza TuTabla y ID con los nombres reales
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -37,9 +37,9 @@ namespace SaborAcielo.datos
                         {
                             string detalles = $"ID: {reader["ID"]}\n";
                             detalles += $"Producto: {reader["producto"]}\n";
-                            detalles += $"Precio: {reader["precio"]}\n"; 
-                            detalles += $"Cantidad: {reader["cantidad"]}\n"; 
-                            detalles += $"Total: {reader["total"]}\n"; 
+                            detalles += $"Precio: {reader["precio"]}\n";
+                            detalles += $"Cantidad: {reader["cantidad"]}\n";
+                            detalles += $"Total: {reader["total"]}\n";
 
                             MessageBox.Show(detalles, "Detalles de la compra");
                         }
@@ -61,7 +61,7 @@ namespace SaborAcielo.datos
                 using (SqlConnection conexion = new SqlConnection(connectionString))
                 {
 
-                    SqlDataAdapter adapter = new SqlDataAdapter(filtro, conexion);                    
+                    SqlDataAdapter adapter = new SqlDataAdapter(filtro, conexion);
                     adapter.Fill(dataTable);
 
                 }
@@ -69,7 +69,7 @@ namespace SaborAcielo.datos
             }
             catch
             {
-                resultado = null;  
+                resultado = null;
                 return false;
             }
         }

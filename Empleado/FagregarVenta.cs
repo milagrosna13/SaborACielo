@@ -28,8 +28,8 @@ namespace SaborAcielo
             TBprecioProd.Text = Convert.ToString(precio);
             TBsubtotal.Text = Convert.ToString(Ncant.Value * precio);
         }
-        
-       
+
+
         private void limpiar()
         {
             TBprecioProd.Clear();
@@ -42,13 +42,13 @@ namespace SaborAcielo
 
         private void BagregarCompra_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(Fproducto.Text) || string.IsNullOrEmpty(CtipoProd.Text) || Ncant.Value == 0 || string.IsNullOrWhiteSpace(TBdnicliente.Text))
+            if (string.IsNullOrWhiteSpace(Fproducto.Text) || string.IsNullOrEmpty(CtipoProd.Text) || Ncant.Value == 0)
             {
                 MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                var res = MessageBox.Show("¿Desea guardar los datos del producto: " + Fproducto.Text + " ?", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var res = MessageBox.Show("¿Desea guardar los datos del producto: " + Fproducto.Text + "", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == System.Windows.Forms.DialogResult.Yes)
                 {
                     float total = Convert.ToInt32(TBsubtotal.Text);
@@ -73,21 +73,22 @@ namespace SaborAcielo
             {
                 MessageBox.Show("Debe agregar productos a la compra", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (compra == venta - 1) 
-            { 
+            else if (compra == venta - 1)
+            {
                 var res = MessageBox.Show("Seguro quiere finalizar la compra?", "Finalizar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == System.Windows.Forms.DialogResult.Yes)
                 {
                     venta++;
                     MessageBox.Show("Compra realizada con éxito", "Compra realizada", MessageBoxButtons.OK);
                 }
-            } else
+            }
+            else
             {
 
             }
         }
         private void Fproducto_TextChanged(object sender, EventArgs e)
-        {}
+        { }
 
         private void Fproducto_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -116,19 +117,15 @@ namespace SaborAcielo
             }
             else
             {
-                if (e.RowIndex >= 0 && e.ColumnIndex == DGcarrito.Columns["baja"].Index)
+                eliminarCell.ReadOnly = false;
+                var msg = MessageBox.Show("Desea eliminar el producto del carrito?", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (msg == DialogResult.Yes)
                 {
-                    eliminarCell.ReadOnly = false;
-                    var msg = MessageBox.Show("Desea eliminar el producto del carrito?", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (msg == DialogResult.Yes)
+                    if (e.RowIndex >= 0 && e.ColumnIndex == DGcarrito.Columns["baja"].Index)
                     {
                         DGcarrito.Rows.RemoveAt(e.RowIndex);
-                        MessageBox.Show("Producto eliminado", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    } else
-                    {
-
                     }
+                    MessageBox.Show("Producto eliminado", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
