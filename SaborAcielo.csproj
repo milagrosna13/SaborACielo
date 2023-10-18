@@ -76,6 +76,7 @@
     <Compile Include="datos\Ccliente.cs" />
     <Compile Include="datos\Cempleado.cs" />
     <Compile Include="datos\Cproducto.cs" />
+    <Compile Include="datos\Creporte.cs" />
     <Compile Include="datos\Cusuarios.cs" />
     <Compile Include="datos\Cventas.cs" />
     <Compile Include="FagregarCliente.cs">
