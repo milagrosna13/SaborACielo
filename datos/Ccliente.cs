@@ -82,13 +82,14 @@ namespace SaborAcielo.datos
                     if (count != null && (int)count > 0)
                     {
                         return true;
-                    } else return false;
+                    }
+                    else return false;
                 }
 
             }
         }
 
-        public static bool AgregarCliente(int dni,string nombrec, string apellidoc, string direcc, string telc, string emailc, string sexoc, string estado)
+        public static bool AgregarCliente(int dni, string nombrec, string apellidoc, string direcc, string telc, string emailc, string sexoc, string estado)
         {
             try
             {
@@ -103,8 +104,8 @@ namespace SaborAcielo.datos
 
                     // Usa parámetros para evitar la inyección de SQL
                     command.Parameters.AddWithValue("@dni", dni);
-                    command.Parameters.AddWithValue("@nombre",nombrec);
-                    command.Parameters.AddWithValue("@apellido",apellidoc);
+                    command.Parameters.AddWithValue("@nombre", nombrec);
+                    command.Parameters.AddWithValue("@apellido", apellidoc);
                     command.Parameters.AddWithValue("@dire", direcc);
                     command.Parameters.AddWithValue("@tel", telc);
                     command.Parameters.AddWithValue("@email", emailc);
@@ -234,6 +235,35 @@ namespace SaborAcielo.datos
                 // Manejar cualquier excepción que pueda ocurrir (por ejemplo, problemas de conexión)
                 Console.WriteLine("Error: " + ex.Message);
                 return false;
+            }
+
+        }
+
+        public DataTable BuscarClientePorDNI(int dni)
+        {
+            try
+            {
+                DataTable dataTable = new DataTable();
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Cliente WHERE dni_cliente = @dni";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@dni", dni);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+
+                    return dataTable;
+                }
+            }
+
+
+            catch (Exception ex)
+            {
+                // Manejar cualquier excepción que pueda ocurrir (por ejemplo, problemas de conexión)
+                Console.WriteLine("Error: " + ex.Message);
+                return null;
             }
 
         }

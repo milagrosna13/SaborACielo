@@ -13,6 +13,7 @@ using System.Data.Common;
 using System.Collections;
 using System.IO;
 using System.Drawing;
+using System.Net;
 
 namespace SaborAcielo.datos
 {
@@ -292,7 +293,57 @@ namespace SaborAcielo.datos
             }
         }
 
-       
+        public DataTable BuscarProductoPorTipo(int id)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Producto WHERE id_tipoProdu = @id";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@id", id);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dt);
+
+                    return dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
+                return null;
+            }
+        }
+        public DataTable BuscarProductoPorNombreYTipo(string nombre, int tipo)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Producto WHERE nombre_produ = @nombre AND id_tipoProdu = @tipo";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@nombre", nombre);
+                    command.Parameters.AddWithValue("@tipo", tipo);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dt);
+
+                    return dt;
+                }
+            }catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
+                return null;
+            }
+            
+        }
+
+
 
     }
 }

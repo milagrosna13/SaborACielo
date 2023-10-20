@@ -33,7 +33,6 @@ namespace SaborAcielo
         private void limpiar()
         {
             TBprecioProd.Clear();
-            Fproducto.Clear();
             Ncant.Value = 0;
             TBsubtotal.Clear();
             TBprecioProd.Clear();
@@ -42,20 +41,20 @@ namespace SaborAcielo
 
         private void BagregarCompra_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(Fproducto.Text) || string.IsNullOrEmpty(CtipoProd.Text) || Ncant.Value == 0)
+            if (string.IsNullOrWhiteSpace(CBproducto.SelectedItem.ToString()) || string.IsNullOrEmpty(CtipoProd.Text) || Ncant.Value == 0)
             {
                 MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                var res = MessageBox.Show("¿Desea guardar los datos del producto: " + Fproducto.Text + "", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var res = MessageBox.Show("¿Desea guardar los datos del producto: " + CBproducto.SelectedItem.ToString() + "", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == System.Windows.Forms.DialogResult.Yes)
                 {
                     float total = Convert.ToInt32(TBsubtotal.Text);
                     DataGridViewRow fila = new DataGridViewRow();
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = venta });
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = CtipoProd.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = Fproducto.Text });
+                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = CBproducto.SelectedItem.ToString() });
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = Ncant.Value });
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = total });
 
@@ -127,6 +126,62 @@ namespace SaborAcielo
                     }
                     MessageBox.Show("Producto eliminado", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+        }
+
+        private void TBdnicliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void Bbuscardni_Click(object sender, EventArgs e)
+        {
+            Ccliente clienteDatos = new Ccliente();
+            DataTable dt = clienteDatos.BuscarClientePorDNI(Convert.ToInt32(TBdnicliente.Text));
+
+            if (dt.Rows != null)
+            {
+                DataRow row = dt.Rows[0];
+                nCliente.Text = row["nombre_cliente"].ToString();
+                aCliente.Text = row["apellido_cliente"].ToString();
+                tCliente.Text = row["tel_cliente"].ToString();
+                direCliente.Text = row["dire_cliente"].ToString();
+                emCliente.Text = row["email_cliente"].ToString();
+
+            }
+        }
+
+        private void CtipoProd_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Cproducto cproducto = new Cproducto();
+            int tipoProducto = CtipoProd.SelectedIndex + 1;
+
+            DataTable dataTable = cproducto.BuscarProductoPorTipo(tipoProducto);
+            if (dataTable.Rows.Count > 0)
+            {
+                CBproducto.DataSource = dataTable;
+                CBproducto.DisplayMember = "nombre_produ";
+            }
+        }
+
+        private void CBproducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Cproducto cproducto = new Cproducto();
+            string nombreProducto = CBproducto.SelectedItem.ToString();
+            int tipoProducto = CtipoProd.SelectedIndex+1;
+
+            DataTable dataTable = cproducto.BuscarProductoPorNombreYTipo(nombreProducto, tipoProducto);
+
+            if (dataTable.Rows.Count > 0)
+            {
+                DataRow row = dataTable.Rows[0];
+                CBDetalle.DataSource = dataTable;
+                CBDetalle.DisplayMember = "detalle";
             }
         }
     }
