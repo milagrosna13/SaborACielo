@@ -1,7 +1,10 @@
-﻿using System;
+﻿using SaborAcielo.datos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -9,12 +12,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace SaborAcielo
 {
     public partial class Finicio : Form
     {
-        string user = "v01";
-        string pass = "1234";
+
         public Finicio()
         {
             InitializeComponent();
@@ -27,11 +30,46 @@ namespace SaborAcielo
 
         private void Bingresar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            string nombreUsuario = TBusuario.Text;
+            string contrasenia = TBcontraseña.Text;
 
-            // Crea un nuevo formulario MDI
-            MDIempleado nuevoFormularioMDI = new MDIempleado();
-            nuevoFormularioMDI.Show();
+            int tipoUsuario = Cusuarios.AutenticarUsuario(nombreUsuario, contrasenia);
+
+            if (tipoUsuario != -1)
+            {
+                switch (tipoUsuario)
+                {
+                    case 1:
+                        // Redirige al formulario para el tipo de usuario 1 (Administrador)
+                        MDIadmin formAdmin = new MDIadmin();
+                        formAdmin.Show();
+                      
+                        break;
+
+                    case 2:
+                        // Redirige al formulario para el tipo de usuario 2 (Gerente)
+                        MDIgerente formGerente = new MDIgerente();
+                        formGerente.Show();
+                        
+                        break;
+
+                    case 3:
+                        // Redirige al formulario para el tipo de usuario 3 (Empleado)
+                        MDIempleado formEmpleado = new MDIempleado();
+                        formEmpleado.Show();
+                        
+                        break;
+
+                    default:
+                        MessageBox.Show("Tipo de usuario desconocido.");
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nombre de usuario o contraseña incorrectos.");
+            }
+
         }
     }
 }

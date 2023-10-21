@@ -285,5 +285,11 @@
   <ItemGroup>
     <None Include="Resources\eliminaricon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vegano.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sin-tacc1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

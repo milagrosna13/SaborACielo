@@ -124,6 +124,9 @@
   <data name="ProductosInicio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProductosInicio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="editaricon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\editaricon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ClientesInicio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ClientesInicio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -136,6 +139,9 @@
   <data name="cruz" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cruz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="eliminaricon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eliminaricon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="fondoSACinicio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fondoSACinicio.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -145,11 +151,11 @@
   <data name="saboracielo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\saboracielo2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="vegano" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vegano.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="salir" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\salir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="editaricon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\editaricon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="VentasInicio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\VentasInicio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,7 +172,7 @@
   <data name="botonpildora" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\botonpildora.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="eliminaricon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\eliminaricon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sin-tacc1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sin-tacc1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

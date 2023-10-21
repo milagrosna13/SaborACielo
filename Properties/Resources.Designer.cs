@@ -213,9 +213,29 @@ namespace SaborAcielo.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sin_tacc1 {
+            get {
+                object obj = ResourceManager.GetObject("sin-tacc1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap teamwork_2502447 {
             get {
                 object obj = ResourceManager.GetObject("teamwork_2502447", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vegano {
+            get {
+                object obj = ResourceManager.GetObject("vegano", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

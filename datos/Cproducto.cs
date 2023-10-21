@@ -22,15 +22,7 @@ namespace SaborAcielo.datos
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString;
         private readonly SqlDataAdapter dataAdapter;
         private readonly DataTable dataTable;
-        public int ID { get; set; }
-        public string Nombre { get; set; }
-        public int Tipo { get; set; }
-        public string Detalle { get; set; }
-        public decimal Precio { get; set; }
-        public int Stock { get; set; }
-        public bool Estado { get; set; }
-        public DateTime Fecha { get; set; }
-        public byte[] Imagen { get; set; }
+        
         // Método para actualizar la tabla 
         public bool CargarProductos(DataGridView dataGridView)
         {
