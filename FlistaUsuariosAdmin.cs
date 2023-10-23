@@ -20,6 +20,7 @@ namespace SaborAcielo
             InitializeComponent();
 
             BeditarUs.Visible = false;
+
             Cempleado empleado = new Cempleado();
             bool resultado = empleado.CargarEmpleados(DGlistaUsuarios);
             Cproducto.AgregarColumnasBoton(DGlistaUsuarios);

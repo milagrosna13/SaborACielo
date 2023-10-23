@@ -32,10 +32,12 @@ namespace SaborAcielo.datos
                 DataTable localDataTable = new DataTable();
 
                 // Configurar el SqlDataAdapter
-                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT p.id_produ AS ID, p.nombre_produ AS Producto," +
-                    "p.detalle AS Detalle, p.precio AS Precio, p.stock, p.fecha AS Fecha, p.imagen, t.desc_tipoProd AS Tipo, CAST(p.estado AS INT) AS Estado " +
-                    "FROM Producto p " +
-                    "INNER JOIN Tipo_produ t ON p.id_tipoProdu = t.id_tipoProdu", new SqlConnection(connectionString)))
+                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT p.id_produ AS ID, p.nombre_produ AS Producto, " +
+               "p.detalle AS Detalle, p.precio AS Precio, p.stock, p.fecha AS Fecha, p.imagen, " +
+               "t.desc_tipoProd AS Tipo, " +
+               "CASE WHEN p.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
+               "FROM Producto p " +
+               "INNER JOIN Tipo_produ t ON p.id_tipoProdu = t.id_tipoProdu", new SqlConnection(connectionString)))
                 {
                     // Llenar el DataTable con los datos
                     localDataAdapter.Fill(localDataTable);
@@ -94,6 +96,130 @@ namespace SaborAcielo.datos
                 return false;
             }
 
+        }
+        //Metodo para buscar productos
+        public static DataTable ObtenerProductos(string nombre, string tipo, DateTime? fecha)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+            {
+                connection.Open();
+
+                string consultaSQL = "SELECT p.id_produ AS ID, p.nombre_produ AS Producto, " +
+                    "p.detalle AS Detalle, p.precio AS Precio, p.stock, p.fecha AS Fecha, p.imagen, " +
+                    "t.desc_tipoProd AS Tipo, " +
+                    "CASE WHEN p.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
+                    "FROM Producto p " +
+                    "INNER JOIN Tipo_produ t ON p.id_tipoProdu = t.id_tipoProdu " +
+                    "WHERE 1=1";
+
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    consultaSQL += " AND p.nombre_produ = @nombre";
+                }
+
+                if (!string.IsNullOrEmpty(tipo))
+                {
+                    consultaSQL += " AND t.desc_tipoProd = @tipo";
+                }
+
+                if (fecha != null)
+                {
+                    consultaSQL += " AND CONVERT(date, p.fecha) = CONVERT(date, @fecha)";
+                }
+
+                using (SqlCommand command = new SqlCommand(consultaSQL, connection))
+                {
+                    if (!string.IsNullOrEmpty(nombre))
+                    {
+                        command.Parameters.AddWithValue("@nombre", nombre);
+                    }
+
+                    if (!string.IsNullOrEmpty(tipo))
+                    {
+                        command.Parameters.AddWithValue("@tipo", tipo);
+                    }
+
+                    if (fecha != null)
+                    {
+                        command.Parameters.AddWithValue("@fecha", fecha.Value);
+                    }
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
+        }
+
+
+
+
+        public List<DateTime> ObtenerFechasDisponibles()
+        {
+            List<DateTime> fechasDisponibles = new List<DateTime>();
+
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+            {
+                connection.Open();
+
+                // Define tu consulta SQL para obtener fechas únicas desde tu tabla de productos
+                string consultaSQL = "SELECT DISTINCT fecha FROM Producto";
+
+                using (SqlCommand command = new SqlCommand(consultaSQL, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Lee las fechas únicas y agrégalas a la lista
+                            fechasDisponibles.Add(reader.GetDateTime(0));
+                        }
+                    }
+                }
+            }
+
+            return fechasDisponibles;
+        }
+        public List<string> ObtenerNombresUnicos()
+        {
+            List<string> nombresUnicos = new List<string>();
+
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                conexion.Open();
+                string consultaSQL = "SELECT DISTINCT nombre_produ FROM Producto"; // Consulta para obtener nombres únicos
+                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
+                using (SqlDataReader reader = comando.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        nombresUnicos.Add(reader["nombre_produ"].ToString());
+                    }
+                }
+            }
+
+            return nombresUnicos;
+        }
+        public List<string> ObtenerTipos()
+        {
+            List<string> tiposUnicos = new List<string>();
+
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                conexion.Open();
+                string consultaSQL = "SELECT DISTINCT desc_tipoProd FROM Tipo_produ"; // Consulta para obtener tipos únicos
+                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
+                using (SqlDataReader reader = comando.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        tiposUnicos.Add(reader["desc_tipoProd"].ToString());
+                    }
+                }
+            }
+
+            return tiposUnicos;
         }
 
         public static void AgregarColumnasBoton(DataGridView dataGridView)
@@ -284,6 +410,9 @@ namespace SaborAcielo.datos
                 return false;
             }
         }
+        
+
+
 
         public DataTable BuscarProductoPorTipo(int id)
         {

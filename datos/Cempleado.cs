@@ -20,17 +20,7 @@ namespace SaborAcielo.datos
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString;
         private readonly SqlDataAdapter dataAdapter;
         private readonly DataTable dataTable;
-        public int DNI { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Mail { get; set; }
-        public int Telefono { get; set; }
-        public string Direccion { get; set; }
-        
-        public DateTime Fecha_ingreso { get; set; }
-
-        public byte[] Imagen { get; set; }
-        public bool Estado { get; set; }
+       
         // Método para actualizar la tabla 
         public bool CargarEmpleados(DataGridView dataGridView)
         {
@@ -40,7 +30,7 @@ namespace SaborAcielo.datos
                 DataTable localDataTable = new DataTable();
 
                 // Configurar el SqlDataAdapter con la consulta SQL modificada
-                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT e.dni_empleado AS ID, e.nombre AS Nombre," +
+                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT e.dni_empleado AS DNI, e.nombre AS Nombre," +
                     "e.apellido AS Apellido, e.mail AS Email, e.telefono As Teléfono, e.direccion as Dirección, e.fecha_ingreso AS 'Fecha de ingreso', e.foto_emp as Foto, " +
                     "CASE WHEN e.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado, " +
                     "COALESCE(Tipo_usuario.desc_tipoUs, 'Usuario no asignado') as 'Tipo de Usuario' " +
