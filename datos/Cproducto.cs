@@ -22,7 +22,13 @@ namespace SaborAcielo.datos
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString;
         private readonly SqlDataAdapter dataAdapter;
         private readonly DataTable dataTable;
-        
+
+        public int Id { get; set; }
+        public int Idtipo { get; set; }
+        public string Nombre { get; set; }
+        public string detalle { get; set; }
+        public decimal Precio { get; set; }
+
         // Método para actualizar la tabla 
         public bool CargarProductos(DataGridView dataGridView)
         {
@@ -412,60 +418,171 @@ namespace SaborAcielo.datos
         }
         
 
+        //métodos para filtrar productos
 
-
-        public DataTable BuscarProductoPorTipo(int id)
+        public List<Cproducto> BuscarPorTipo(string tipo)
         {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string query = "SELECT * FROM Producto WHERE id_tipoProdu = @id";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@id", id);
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    adapter.Fill(dt);
-
-                    return dt;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ocurrió un error: " + ex.Message);
-                return null;
-            }
-        }
-        public DataTable BuscarProductoPorNombreYTipo(string nombre, int tipo)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string query = "SELECT * FROM Producto WHERE nombre_produ = @nombre AND id_tipoProdu = @tipo";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@nombre", nombre);
-                    command.Parameters.AddWithValue("@tipo", tipo);
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    adapter.Fill(dt);
-
-                    return dt;
-                }
-            }catch (Exception ex)
-            {
-                Console.WriteLine("Ocurrió un error: " + ex.Message);
-                return null;
-            }
+            List<Cproducto> productosEncontrados = new List<Cproducto>();
             
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT p.* FROM Producto p INNER JOIN Tipo_produ t ON t.id_tipoProdu = p.id_tipoProdu WHERE t.desc_tipoProd LIKE @tipo";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@tipo", "%" + tipo + "%");
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Cproducto producto = new Cproducto
+                        {
+                            Idtipo = Convert.ToInt32(reader["id_tipoProdu"]),
+                            Id = Convert.ToInt32(reader["id_produ"]),
+                            Precio = Convert.ToDecimal(reader["precio"]),
+                            Nombre = Convert.ToString(reader["nombre_produ"]),
+                            detalle = Convert.ToString(reader["detalle"])
+                            
+                        };
+
+                        productosEncontrados.Add(producto);
+                    }
+                }
+            }
+
+            return productosEncontrados;
         }
 
+        public List<Cproducto> BuscarPorNombre(string nombre)
+        {
+            List<Cproducto> productosEncontrados = new List<Cproducto>();
 
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM Producto WHERE nombre_produ LIKE @nombre";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Cproducto producto = new Cproducto
+                        {
+                            Idtipo = Convert.ToInt32(reader["id_tipoProdu"]),
+                            Id = Convert.ToInt32(reader["id_produ"]),
+                            Precio = Convert.ToDecimal(reader["precio"]),
+                            Nombre = Convert.ToString(reader["nombre_produ"]),
+                            detalle = Convert.ToString(reader["detalle"])
+
+                        };
+
+                        productosEncontrados.Add(producto);
+                    }
+                }
+            }
+
+            return productosEncontrados;
+        }
+
+        public List<Cproducto> BuscarPorDetalle(string det)
+        {
+            List<Cproducto> productosEncontrados = new List<Cproducto>();
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM Producto WHERE detalle LIKE @detalle";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@detalle", "%" + det + "%");
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Cproducto producto = new Cproducto
+                        {
+                            Idtipo = Convert.ToInt32(reader["id_tipoProdu"]),
+                            Id = Convert.ToInt32(reader["id_produ"]),
+                            Precio = Convert.ToDecimal(reader["precio"]),
+                            Nombre = Convert.ToString(reader["nombre_produ"]),
+                            detalle = Convert.ToString(reader["detalle"])
+
+                        };
+
+                        productosEncontrados.Add(producto);
+                    }
+                }
+            }
+            return productosEncontrados;
+        }
+        public static void botonAgregar(DataGridView dg)
+        {
+            DataGridViewButtonColumn columnaAgregar = new DataGridViewButtonColumn();
+            columnaAgregar.Name = "Agregar";
+            columnaAgregar.Text = "Agregar";
+            columnaAgregar.UseColumnTextForButtonValue = true;
+
+            // Asegúrate de que no se agregue más de una vez
+            bool columnaAgregada = false;
+            foreach (DataGridViewColumn columna in dg.Columns)
+            {
+                if (columna.Name == "Agregar")
+                {
+                    columnaAgregada = true;
+                    break;
+                }
+            }
+
+            if (!columnaAgregada)
+            {
+                dg.Columns.Add(columnaAgregar);
+            }
+        }
+
+        /*public void BuscarYMostrarDetalle(string detalle,DataGridView dt)
+        {
+            List<Cproducto> productosEncontrados = BuscarPorDetalle(detalle);
+
+            // Llena el DataGridView con los resultados
+            dt.DataSource = productosEncontrados;
+            if (productosEncontrados.Count > 0)
+            {
+                // Agrega la columna de botón solo si hay resultados
+                botonAgregar(dt);
+            }           
+        }*/
+        public void BuscarYMostrarNombre(string nombre, DataGridView dt)
+        {
+            List<Cproducto> productosEncontrados = BuscarPorNombre(nombre);
+
+            // Llena el DataGridView con los resultados
+            dt.DataSource = productosEncontrados;
+            if (productosEncontrados.Count > 0)
+            {
+                // Agrega la columna de botón solo si hay resultados
+                botonAgregar(dt);
+            }
+        }
+        public void BuscarYMostrarDetalle(string detalle, DataGridView dt)
+        {
+            List<Cproducto> productosEncontrados = BuscarPorDetalle(detalle);
+
+            // Llena el DataGridView con los resultados
+            dt.DataSource = productosEncontrados;
+            if (productosEncontrados.Count > 0)
+            {
+                // Agrega la columna de botón solo si hay resultados
+                botonAgregar(dt);
+            }
+        }
     }
 }
 

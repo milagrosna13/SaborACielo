@@ -18,30 +18,20 @@ namespace SaborAcielo
         public FagregarVenta()
         {
             InitializeComponent();
+            CtipoProd.DisplayMember = "Nombre";
         }
 
         private int precio = 2000;
         private int venta = 1;
         private int compra;
-        private void Ncant_ValueChanged(object sender, EventArgs e)
-        {
-            TBprecioProd.Text = Convert.ToString(precio);
-            TBsubtotal.Text = Convert.ToString(Ncant.Value * precio);
-        }
-
 
         private void limpiar()
         {
-            TBprecioProd.Clear();
-            Ncant.Value = 0;
-            TBsubtotal.Clear();
-            TBprecioProd.Clear();
-            CtipoProd.SelectedIndex = -1;
         }
 
         private void BagregarCompra_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(CBproducto.SelectedItem.ToString()) || string.IsNullOrEmpty(CtipoProd.Text) || Ncant.Value == 0)
+            if (string.IsNullOrWhiteSpace(CBproducto.SelectedItem.ToString()) || string.IsNullOrEmpty(CtipoProd.Text))
             {
                 MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -50,13 +40,13 @@ namespace SaborAcielo
                 var res = MessageBox.Show("¿Desea guardar los datos del producto: " + CBproducto.SelectedItem.ToString() + "", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == System.Windows.Forms.DialogResult.Yes)
                 {
-                    float total = Convert.ToInt32(TBsubtotal.Text);
+                    //float total = Convert.ToInt32(TBsubtotal.Text);
                     DataGridViewRow fila = new DataGridViewRow();
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = venta });
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = CtipoProd.Text });
                     fila.Cells.Add(new DataGridViewTextBoxCell { Value = CBproducto.SelectedItem.ToString() });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = Ncant.Value });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = total });
+                    //fila.Cells.Add(new DataGridViewTextBoxCell { Value = Ncant.Value });
+                    //fila.Cells.Add(new DataGridViewTextBoxCell { Value = total });
 
                     DGcarrito.Rows.Add(fila);
                     compra = venta - 1;
@@ -156,32 +146,42 @@ namespace SaborAcielo
             }
         }
 
-        private void CtipoProd_SelectedIndexChanged(object sender, EventArgs e)
+        private void CtipoProd_TextChanged(object sender, EventArgs e)
         {
+            string tipo = CtipoProd.Text;
             Cproducto cproducto = new Cproducto();
-            int tipoProducto = CtipoProd.SelectedIndex + 1;
 
-            DataTable dataTable = cproducto.BuscarProductoPorTipo(tipoProducto);
-            if (dataTable.Rows.Count > 0)
+            if (!string.IsNullOrEmpty(tipo))
             {
-                CBproducto.DataSource = dataTable;
-                CBproducto.DisplayMember = "nombre_produ";
+                List<Cproducto> productosEncontrados = cproducto.BuscarPorTipo(tipo);
+
+                DGprodu.DataSource = productosEncontrados;
             }
         }
 
-        private void CBproducto_SelectedIndexChanged(object sender, EventArgs e)
+        private void CBproducto_TextChanged(object sender, EventArgs e)
         {
+            string nombre = CBproducto.Text;
             Cproducto cproducto = new Cproducto();
-            string nombreProducto = CBproducto.SelectedItem.ToString();
-            int tipoProducto = CtipoProd.SelectedIndex+1;
 
-            DataTable dataTable = cproducto.BuscarProductoPorNombreYTipo(nombreProducto, tipoProducto);
-
-            if (dataTable.Rows.Count > 0)
+            if (!string.IsNullOrEmpty(nombre))
             {
-                DataRow row = dataTable.Rows[0];
-                CBDetalle.DataSource = dataTable;
-                CBDetalle.DisplayMember = "detalle";
+                cproducto.BuscarYMostrarNombre(nombre, DGprodu);
+
+            }
+        }
+
+
+
+        private void CBDetalle_TextChanged(object sender, EventArgs e)
+        {
+            string detalle = CBDetalle.Text;
+            Cproducto cproducto = new Cproducto();
+
+            if (!string.IsNullOrEmpty(detalle))
+            {
+                cproducto.BuscarYMostrarDetalle(detalle, DGprodu);
+
             }
         }
     }
