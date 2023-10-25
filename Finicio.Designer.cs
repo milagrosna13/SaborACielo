@@ -44,7 +44,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Script MT Bold", 30F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(120, 101);
+            this.label1.Location = new System.Drawing.Point(208, 105);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 48);
             this.label1.TabIndex = 0;
@@ -55,7 +55,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Script MT Bold", 30F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(241, 101);
+            this.label2.Location = new System.Drawing.Point(329, 105);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 48);
             this.label2.TabIndex = 1;
@@ -66,7 +66,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Script MT Bold", 30F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(162, 140);
+            this.label3.Location = new System.Drawing.Point(250, 144);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 48);
             this.label3.TabIndex = 2;
@@ -96,6 +96,7 @@
             // 
             // TBusuario
             // 
+            this.TBusuario.BackColor = System.Drawing.Color.MistyRose;
             this.TBusuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.TBusuario.Location = new System.Drawing.Point(246, 216);
             this.TBusuario.Name = "TBusuario";
@@ -104,9 +105,11 @@
             // 
             // TBcontraseña
             // 
+            this.TBcontraseña.BackColor = System.Drawing.Color.MistyRose;
             this.TBcontraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.TBcontraseña.Location = new System.Drawing.Point(246, 261);
             this.TBcontraseña.Name = "TBcontraseña";
+            this.TBcontraseña.PasswordChar = '*';
             this.TBcontraseña.Size = new System.Drawing.Size(210, 30);
             this.TBcontraseña.TabIndex = 6;
             // 

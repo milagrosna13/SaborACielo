@@ -111,6 +111,8 @@ namespace SaborAcielo
         private void BcerrarSesion_Click(object sender, EventArgs e)
         {
             this.Close();
+            Finicio loginForm = new Finicio();
+            loginForm.Show();
         }
 
         private void BbajaCliente_Click(object sender, EventArgs e)

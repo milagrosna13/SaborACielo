@@ -293,6 +293,8 @@ namespace SaborAcielo
                     TBdetalle.Text = detalle["detalle"].ToString();
                     CtipoProd.SelectedIndex = Convert.ToInt32(detalle["id_tipoProdu"].ToString())-1;
                     TBcantidadProdu.Text = detalle["stock"].ToString();
+                    DateTime fechaProducto = (DateTime)detalle["fecha"];
+                    dtFecha.Value = fechaProducto;
                     producto.MostrarImagenEnPictureBox(idprodu, PBproducto);
 
                     BagregarProdu.Visible = false;
@@ -359,7 +361,7 @@ namespace SaborAcielo
         {
             Cproducto cProducto = new Cproducto(); // Crea una instancia de la clase Cproducto
 
-            // Obtén los nombres y tipos de productos desde tu base de datos utilizando la instancia cProducto
+            // Obtiene los nombres y tipos de productos desde la base de datos utilizando la instancia cProducto
             List<string> nombres = cProducto.ObtenerNombresUnicos();
             List<string> tipos = cProducto.ObtenerTipos();
 

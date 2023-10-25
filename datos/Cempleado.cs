@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
 using System.Security.Cryptography;
+using System.Data.SqlTypes;
 
 namespace SaborAcielo.datos
 {
@@ -291,6 +292,151 @@ namespace SaborAcielo.datos
                 return false;
             }
         }
+        public static bool EditarEmpleado(int dniEmpleado, string nombre, string apellido, string correo, int telefono, DateTime fechaIngreso, byte[] fotoEmp, string nombreUsuario, string contrasenia, int idTipoUsuario)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+                {
+                    connection.Open();
 
-    }
+                    // Verificar si el empleado ya tiene un usuario
+                    bool tieneUsuario = TieneUsuario(dniEmpleado, connection);
+
+                    // Actualizar los datos del empleado
+                    string queryEmpleado = "UPDATE Empleado SET nombre = @nombre, apellido = @apellido, correo = @correo, telefono = @telefono, fecha_ingreso = @fechaIngreso, foto_emp = @fotoEmp WHERE dni_empleado = @dniEmpleado";
+                    SqlCommand commandEmpleado = new SqlCommand(queryEmpleado, connection);
+                    commandEmpleado.Parameters.AddWithValue("@nombre", nombre);
+                    commandEmpleado.Parameters.AddWithValue("@apellido", apellido);
+                    commandEmpleado.Parameters.AddWithValue("@correo", correo);
+                    commandEmpleado.Parameters.AddWithValue("@telefono", telefono);
+                    commandEmpleado.Parameters.AddWithValue("@fechaIngreso", fechaIngreso);
+                    commandEmpleado.Parameters.AddWithValue("@fotoEmp", fotoEmp);
+                    commandEmpleado.Parameters.AddWithValue("@dniEmpleado", dniEmpleado);
+                    commandEmpleado.ExecuteNonQuery();
+
+                    // Si el empleado tiene usuario
+                    if (tieneUsuario)
+                    {
+                        // Actualiza los datos del usuario
+                        string queryUsuario = "UPDATE Usuario SET nom_usuario = @nombreUsuario, contrasenia = @contrasenia, id_tipoUsuario = @idTipoUsuario WHERE dni_empleado = @dniEmpleado";
+                        SqlCommand commandUsuario = new SqlCommand(queryUsuario, connection);
+                        commandUsuario.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
+                        commandUsuario.Parameters.AddWithValue("@contrasenia", contrasenia);
+                        commandUsuario.Parameters.AddWithValue("@idTipoUsuario", idTipoUsuario);
+                        commandUsuario.Parameters.AddWithValue("@dniEmpleado", dniEmpleado);
+                        commandUsuario.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        // El empleado no tiene usuario, crea uno nuevo
+                        CrearUsuario(dniEmpleado, nombreUsuario, contrasenia, idTipoUsuario);
+                    }
+
+                    connection.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
+                MessageBox.Show("Error en la actualización de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public static bool TieneUsuario(int dniEmpleado, SqlConnection connection)
+        {
+            // Verifica si el empleado ya tiene un usuario
+            string query = "SELECT COUNT(*) FROM Usuario WHERE dni_empleado = @dni_empleado";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@dni_empleado", dniEmpleado);
+            int count = Convert.ToInt32(command.ExecuteScalar());
+            return count > 0;
+        }
+        public DataTable ObtenerEmpleadoYUsuario(int empleadoID)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT e.*, u.nom_usuario, t.desc_tipoUs, u.contrasenia, u.salt " +
+   "FROM Empleado e " +
+   "LEFT JOIN Usuario u ON e.dni_empleado = u.dni_empleado " +
+   "LEFT JOIN Tipo_usuario t ON u.id_tipoUsuario = t.id_tipoUsuario " +
+   "WHERE e.dni_empleado = @IDEmpleado";
+
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IDEmpleado", empleadoID);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+
+            return dt;
+        }
+
+
+        public byte[] ObtenerImagenDesdeBaseDeDatos(int id)
+        {
+            byte[] imagenBytes = null;
+
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                conexion.Open();
+
+                string consulta = "SELECT foto_emp FROM usuario WHERE dni_empleado = @id";
+                using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                {
+                    comando.Parameters.AddWithValue("@id", id);
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            imagenBytes = (byte[])reader["foto_emp"];
+                        }
+                    }
+                }
+            }
+
+            return imagenBytes;
+        }
+        public void MostrarImagenEnPictureBox(int id, PictureBox pictureBox)
+        {
+            byte[] imagenBytes = ObtenerImagenDesdeBaseDeDatos(id);
+
+            if (imagenBytes != null && imagenBytes.Length > 0)
+            {
+                using (MemoryStream ms = new MemoryStream(imagenBytes))
+                {
+                    Image imagen = Image.FromStream(ms);
+                    pictureBox.Image = imagen;
+                }
+            }
+            else
+            {
+                pictureBox.Image = null;
+            }
+        }
+        public string DesencriptarContraseña(byte[] encryptedPassword, byte[] salt, string userProvidedPassword)
+        {
+            using (var deriveBytes = new Rfc2898DeriveBytes(userProvidedPassword, salt, 10000, HashAlgorithmName.SHA256))
+            {
+                byte[] decryptedPassword = deriveBytes.GetBytes(32);
+                string password = Encoding.UTF8.GetString(decryptedPassword);
+                return password;
+            }
+        }
+
+
+
+
+}
 }

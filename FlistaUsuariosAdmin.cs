@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+
 
 namespace SaborAcielo
 {
@@ -259,8 +261,67 @@ namespace SaborAcielo
             }
         }
 
+        private void DGlistaUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == DGlistaUsuarios.Columns["Editar"].Index && e.RowIndex >= 0)
+            {
+                // Obtiene el ID del empleado seleccionado desde la fila en la que se hizo clic
+                int empleadoID = int.Parse(DGlistaUsuarios.Rows[e.RowIndex].Cells["DNI"].Value.ToString());
+
+                // Llama a la clase Cempleado para cargar los datos en el formulario de edición
+                Cempleado empleadoHandler = new Cempleado();
+                DataTable empleadoYUsuarioData = empleadoHandler.ObtenerEmpleadoYUsuario(empleadoID);
+
+                if (empleadoYUsuarioData.Rows.Count > 0)
+                {
+                    DataRow row = empleadoYUsuarioData.Rows[0];
+
+                    // Rellena los campos del formulario con los datos obtenidos
+                    TBdniUsuario.Text = row["dni_empleado"].ToString();
+                    TBnomUsuario.Text = row["nombre"].ToString();
+                    TBapeUsuario.Text = row["apellido"].ToString();
+                    TBemail.Text = row["mail"].ToString();
+                    TBdireccion.Text = row["direccion"].ToString();
+                    TBtelefono.Text = row["telefono"].ToString();
+
+                    // Rellena otros campos
+
+                    if (row["nom_usuario"] != DBNull.Value)
+                    {
+                        // Si el usuario existe, muestra y rellena los campos de usuario
+
+                        TBusuario.Text = row["nom_usuario"].ToString();
+                        if (row["contrasenia"] != DBNull.Value)
+                        {
+                            byte[] encryptedPassword = (byte[])row["contrasenia"];
+                            byte[] salt = (byte[])row["salt"];
+
+                            // Pasar la contraseña proporcionada por el usuario como argumento
+                            string password = empleadoHandler.DesencriptarContraseña(encryptedPassword, salt, TBcontrasenia.Text);
+
+                            if (!string.IsNullOrEmpty(password))
+                            {
+                                TBcontrasenia.Text = password;
+                            }
+                            else
+                            {
+                                // No se pudo desencriptar correctamente la contraseña, manejar el error o mostrar un mensaje.
+                            }
+                        }
 
 
-        
+
+
+                        // Asigna la descripción del tipo de usuario al ComboBox
+                        CBtipoUsuario.Visible = false;
+                        CBtipoEditar.Text = row["desc_tipoUs"].ToString();
+                    }
+                }
+            }
+        }
+
+
+
+
     }
 }

@@ -43,27 +43,27 @@ namespace SaborAcielo
                         // Redirige al formulario para el tipo de usuario 1 (Administrador)
                         MDIadmin formAdmin = new MDIadmin();
                         formAdmin.Show();
-                      
                         break;
 
                     case 2:
                         // Redirige al formulario para el tipo de usuario 2 (Gerente)
                         MDIgerente formGerente = new MDIgerente();
                         formGerente.Show();
-                        
                         break;
 
                     case 3:
                         // Redirige al formulario para el tipo de usuario 3 (Empleado)
                         MDIempleado formEmpleado = new MDIempleado();
                         formEmpleado.Show();
-                        
                         break;
 
                     default:
                         MessageBox.Show("Tipo de usuario desconocido.");
                         break;
                 }
+
+                // Oculta el formulario de inicio de sesión (Finicio)
+                this.Hide();
             }
             else
             {

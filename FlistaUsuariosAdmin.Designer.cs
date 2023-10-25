@@ -66,8 +66,10 @@
             this.LapellidoUsuario = new System.Windows.Forms.Label();
             this.TBdniUsuario = new System.Windows.Forms.TextBox();
             this.LdniUsuario = new System.Windows.Forms.Label();
-            this.BcancelProdu = new System.Windows.Forms.Button();
+            this.BcancelUs = new System.Windows.Forms.Button();
             this.DGlistaUsuarios = new System.Windows.Forms.DataGridView();
+            this.BcancelarEditar = new System.Windows.Forms.Button();
+            this.CBtipoEditar = new System.Windows.Forms.ComboBox();
             this.GBfiltroUsuarios.SuspendLayout();
             this.PagregarProdu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBusuario)).BeginInit();
@@ -185,6 +187,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PagregarProdu.AutoScroll = true;
             this.PagregarProdu.BackColor = System.Drawing.Color.RosyBrown;
+            this.PagregarProdu.Controls.Add(this.CBtipoEditar);
+            this.PagregarProdu.Controls.Add(this.BcancelarEditar);
             this.PagregarProdu.Controls.Add(this.dtFecha);
             this.PagregarProdu.Controls.Add(this.label6);
             this.PagregarProdu.Controls.Add(this.BexaminarImUs);
@@ -210,7 +214,7 @@
             this.PagregarProdu.Controls.Add(this.LapellidoUsuario);
             this.PagregarProdu.Controls.Add(this.TBdniUsuario);
             this.PagregarProdu.Controls.Add(this.LdniUsuario);
-            this.PagregarProdu.Controls.Add(this.BcancelProdu);
+            this.PagregarProdu.Controls.Add(this.BcancelUs);
             this.PagregarProdu.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PagregarProdu.Location = new System.Drawing.Point(270, 12);
             this.PagregarProdu.Margin = new System.Windows.Forms.Padding(2);
@@ -397,7 +401,7 @@
             "Administrador",
             "Gerente",
             "Empleado"});
-            this.CBusuarioTipo.Location = new System.Drawing.Point(619, 74);
+            this.CBusuarioTipo.Location = new System.Drawing.Point(621, 68);
             this.CBusuarioTipo.Name = "CBusuarioTipo";
             this.CBusuarioTipo.Size = new System.Drawing.Size(148, 23);
             this.CBusuarioTipo.TabIndex = 18;
@@ -490,20 +494,20 @@
             this.LdniUsuario.TabIndex = 2;
             this.LdniUsuario.Text = "DNI";
             // 
-            // BcancelProdu
+            // BcancelUs
             // 
-            this.BcancelProdu.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BcancelProdu.Image = global::SaborAcielo.Properties.Resources.cancelar2;
-            this.BcancelProdu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BcancelProdu.Location = new System.Drawing.Point(604, 272);
-            this.BcancelProdu.Margin = new System.Windows.Forms.Padding(2);
-            this.BcancelProdu.Name = "BcancelProdu";
-            this.BcancelProdu.Size = new System.Drawing.Size(119, 32);
-            this.BcancelProdu.TabIndex = 1;
-            this.BcancelProdu.Text = "Cancelar";
-            this.BcancelProdu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BcancelProdu.UseVisualStyleBackColor = true;
-            this.BcancelProdu.Click += new System.EventHandler(this.BcancelProdu_Click);
+            this.BcancelUs.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BcancelUs.Image = global::SaborAcielo.Properties.Resources.cancelar2;
+            this.BcancelUs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BcancelUs.Location = new System.Drawing.Point(576, 272);
+            this.BcancelUs.Margin = new System.Windows.Forms.Padding(2);
+            this.BcancelUs.Name = "BcancelUs";
+            this.BcancelUs.Size = new System.Drawing.Size(119, 32);
+            this.BcancelUs.TabIndex = 1;
+            this.BcancelUs.Text = "Cancelar";
+            this.BcancelUs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BcancelUs.UseVisualStyleBackColor = true;
+            this.BcancelUs.Click += new System.EventHandler(this.BcancelProdu_Click);
             // 
             // DGlistaUsuarios
             // 
@@ -528,6 +532,34 @@
             this.DGlistaUsuarios.RowTemplate.Height = 28;
             this.DGlistaUsuarios.Size = new System.Drawing.Size(971, 156);
             this.DGlistaUsuarios.TabIndex = 9;
+            this.DGlistaUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaUsuarios_CellContentClick);
+            // 
+            // BcancelarEditar
+            // 
+            this.BcancelarEditar.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BcancelarEditar.Image = global::SaborAcielo.Properties.Resources.cancelar2;
+            this.BcancelarEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BcancelarEditar.Location = new System.Drawing.Point(576, 272);
+            this.BcancelarEditar.Margin = new System.Windows.Forms.Padding(2);
+            this.BcancelarEditar.Name = "BcancelarEditar";
+            this.BcancelarEditar.Size = new System.Drawing.Size(119, 32);
+            this.BcancelarEditar.TabIndex = 35;
+            this.BcancelarEditar.Text = "Cancelar";
+            this.BcancelarEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BcancelarEditar.UseVisualStyleBackColor = true;
+            // 
+            // CBtipoEditar
+            // 
+            this.CBtipoEditar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBtipoEditar.FormattingEnabled = true;
+            this.CBtipoEditar.Items.AddRange(new object[] {
+            "Administrador",
+            "Gerente",
+            "Empleado"});
+            this.CBtipoEditar.Location = new System.Drawing.Point(621, 68);
+            this.CBtipoEditar.Name = "CBtipoEditar";
+            this.CBtipoEditar.Size = new System.Drawing.Size(148, 23);
+            this.CBtipoEditar.TabIndex = 36;
             // 
             // FlistaUsuariosAdmin
             // 
@@ -573,7 +605,7 @@
         private System.Windows.Forms.Label LapellidoUsuario;
         private System.Windows.Forms.TextBox TBdniUsuario;
         private System.Windows.Forms.Label LdniUsuario;
-        private System.Windows.Forms.Button BcancelProdu;
+        private System.Windows.Forms.Button BcancelUs;
         private System.Windows.Forms.DataGridView DGlistaUsuarios;
         private System.Windows.Forms.ComboBox CBusuarioTipo;
         private System.Windows.Forms.TextBox TBtelefono;
@@ -592,5 +624,7 @@
         private System.Windows.Forms.Button BexaminarImUs;
         private System.Windows.Forms.DateTimePicker dtFecha;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button BcancelarEditar;
+        private System.Windows.Forms.ComboBox CBtipoEditar;
     }
 }
