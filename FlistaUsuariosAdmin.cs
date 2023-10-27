@@ -22,12 +22,16 @@ namespace SaborAcielo
             InitializeComponent();
 
             BeditarUs.Visible = false;
-
+            CBeditarContrasenia.Visible = false;
+            CBtipoEditar.Visible = false;
             Cempleado empleado = new Cempleado();
             bool resultado = empleado.CargarEmpleados(DGlistaUsuarios);
             Cproducto.AgregarColumnasBoton(DGlistaUsuarios);
+            CBoxNombre.AutoCompleteCustomSource = empleado.ObtenerSugerenciasNombre();
+            CBoxApellido.AutoCompleteCustomSource = empleado.ObtenerSugerenciasApellido();
+            InicializarDateTimePicker();
         }
-
+       
         private void TBdniUsuario_TextChanged(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
@@ -78,16 +82,19 @@ namespace SaborAcielo
         private void limpiar()
         {
             TBapeUsuario.Clear();
-            TBapellidoUsuario.Clear();
+            
             TBnomUsuario.Clear();
-            TBnombreUsuario.Clear();
+            
             TBdireccion.Clear();
             TBtelefono.Clear();
             TBdniUsuario.Clear();
-            TBdni.Clear();
+            
             CBusuarioTipo.SelectedIndex = -1;
-            CBtipoUsuario.SelectedIndex = -1;
+            TBusuario.Clear();
+            TBcontrasenia.Clear();
+            CBasignaUsuario.Checked = false;
             TBemail.Clear();
+
         }
 
         private void BcancelProdu_Click(object sender, EventArgs e)
@@ -118,6 +125,7 @@ namespace SaborAcielo
                         // Si no se ha seleccionado una imagen, carga la imagen por defecto en forma de bytes
                         imagenBytes = ImageToByteArray((Bitmap)PBusuario.Image);
                     }
+                    
 
                     // Agregar el empleado
                     bool exitoEmpleado = Cempleado.AgregarEmpleado(Convert.ToInt32(TBdniUsuario.Text), TBnomUsuario.Text, TBapeUsuario.Text, TBemail.Text, Convert.ToInt32(TBtelefono.Text), TBdireccion.Text, Convert.ToDateTime(dtFecha.Text), imagenBytes, DGlistaUsuarios);
@@ -127,18 +135,26 @@ namespace SaborAcielo
                         // Si se agregó el empleado con éxito, verifica si se debe agregar un usuario
                         if (CBasignaUsuario.Checked)
                         {
-                            bool exitoUsuario = Cempleado.CrearUsuario(Convert.ToInt32(TBdniUsuario.Text), TBusuario.Text, TBcontrasenia.Text, CBusuarioTipo.SelectedIndex + 1);
-
-                            if (exitoUsuario)
+                            if (CBusuarioTipo.SelectedIndex == -1)
                             {
-                                // Actualizar la tabla con el registro de usuarios
-                                Cempleado empleado = new Cempleado();
-                                bool resultado = empleado.CargarEmpleados(DGlistaUsuarios);
-                                MessageBox.Show("Empleado y usuario agregados con éxito", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             }
                             else
                             {
-                                MessageBox.Show("Error al agregar el usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                bool exitoUsuario = Cempleado.CrearUsuario(Convert.ToInt32(TBdniUsuario.Text), TBusuario.Text, TBcontrasenia.Text, CBusuarioTipo.SelectedIndex + 1);
+
+                                if (exitoUsuario)
+                                {
+                                    // Actualizar la tabla con el registro de usuarios
+                                    Cempleado empleado = new Cempleado();
+                                    bool resultado = empleado.CargarEmpleados(DGlistaUsuarios);
+                                    MessageBox.Show("Empleado y usuario agregados con éxito", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error al agregar el usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                         }
                         else
@@ -260,11 +276,14 @@ namespace SaborAcielo
                 }
             }
         }
+        private int dniEmpleadoSeleccionado;
 
         private void DGlistaUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == DGlistaUsuarios.Columns["Editar"].Index && e.RowIndex >= 0)
             {
+                BagregarUs.Visible = false;
+                BeditarUs.Visible = true;
                 // Obtiene el ID del empleado seleccionado desde la fila en la que se hizo clic
                 int empleadoID = int.Parse(DGlistaUsuarios.Rows[e.RowIndex].Cells["DNI"].Value.ToString());
 
@@ -274,6 +293,7 @@ namespace SaborAcielo
 
                 if (empleadoYUsuarioData.Rows.Count > 0)
                 {
+                   
                     DataRow row = empleadoYUsuarioData.Rows[0];
 
                     // Rellena los campos del formulario con los datos obtenidos
@@ -283,45 +303,196 @@ namespace SaborAcielo
                     TBemail.Text = row["mail"].ToString();
                     TBdireccion.Text = row["direccion"].ToString();
                     TBtelefono.Text = row["telefono"].ToString();
+                    DateTime fechaProducto = (DateTime)row["fecha_ingreso"];
+                    dtFecha.Value = fechaProducto;
+                    empleadoHandler.MostrarImagenEnPictureBox(empleadoID, PBusuario);
 
-                    // Rellena otros campos
+                    
 
                     if (row["nom_usuario"] != DBNull.Value)
                     {
                         // Si el usuario existe, muestra y rellena los campos de usuario
-
+                        CBasignaUsuario.Visible = false;
+                        CBtipoEditar.Visible = true;
+                        TBusuario.Enabled = true;
+                        
                         TBusuario.Text = row["nom_usuario"].ToString();
                         if (row["contrasenia"] != DBNull.Value)
                         {
-                            byte[] encryptedPassword = (byte[])row["contrasenia"];
-                            byte[] salt = (byte[])row["salt"];
+                            CBeditarContrasenia.Visible = true;
+                           
 
-                            // Pasar la contraseña proporcionada por el usuario como argumento
-                            string password = empleadoHandler.DesencriptarContraseña(encryptedPassword, salt, TBcontrasenia.Text);
-
-                            if (!string.IsNullOrEmpty(password))
-                            {
-                                TBcontrasenia.Text = password;
                             }
-                            else
-                            {
-                                // No se pudo desencriptar correctamente la contraseña, manejar el error o mostrar un mensaje.
-                            }
-                        }
+                    }
+                    else
+                    {
+                        CBasignaUsuario.Visible = true;
+                        CBtipoEditar.Visible = false;
+                        TBusuario.Enabled = false;
+                        TBusuario.Clear();
+                        CBeditarContrasenia.Visible = false;
+                    }
 
 
 
 
                         // Asigna la descripción del tipo de usuario al ComboBox
-                        CBtipoUsuario.Visible = false;
+                       
                         CBtipoEditar.Text = row["desc_tipoUs"].ToString();
                     }
                 }
             }
+        
+
+     
+
+
+      
+
+        private void TBoxDni_TextChanged(object sender, EventArgs e)
+        {
+            Cempleado empleado = new Cempleado();
+            int dniBusqueda;
+
+            if (int.TryParse(TBoxDni.Text, out dniBusqueda))
+            {
+                LBdni.Visible = true;
+
+                DataTable resultados = empleado.BuscarDni(dniBusqueda);
+
+                LBdni.Items.Clear();
+                foreach (DataRow row in resultados.Rows)
+                {
+                    LBdni.Items.Add(row["dni_empleado"].ToString());
+                }
+            }
+            else
+            {
+                LBdni.Items.Clear();
+                LBdni.Visible = false;
+            }
         }
 
+        private void LBdni_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (LBdni.SelectedIndex >= 0)
+            {
+                TBoxDni.Text =LBdni.SelectedItem.ToString();
+            }
+            LBdni.Visible = false;
+        }
 
+        private List<DateTime> fechasDisponibles; // Debes declarar fechasDisponibles en el ámbito de la clase.
 
+        private void InicializarDateTimePicker()
+        {
+            Cempleado empleado = new Cempleado();
+            fechasDisponibles = empleado.ObtenerFechasDisponibles();
 
+            // Configura el DateTimePicker para mostrar la primera fecha disponible.
+            if (fechasDisponibles.Count > 0)
+            {
+                DTfechaIng.Value = fechasDisponibles[0];
+            }
+
+            // Asocia el evento ValueChanged para controlar las fechas seleccionadas.
+            DTfechaIng.ValueChanged += new System.EventHandler(this.dateTimePickerFechaIngreso_ValueChanged);
+        }
+
+        private void dateTimePickerFechaIngreso_ValueChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void BeditarUs_Click(object sender, EventArgs e)
+        {
+            Cempleado empleado = new Cempleado();
+            int idEmpleadoSeleccionado = dniEmpleadoSeleccionado;
+            byte[] nuevaImagen;
+
+            bool cambiarContrasenia = CBeditarContrasenia.Checked;
+            if (idEmpleadoSeleccionado != -1)
+            {
+                DateTime nuevaFecha = dtFecha.Value;
+
+                // Lógica para obtener la imagen editada
+                if (!string.IsNullOrEmpty(rutaImagenSeleccionada))
+                {
+                    nuevaImagen = ConvertirImagenABytes(rutaImagenSeleccionada);
+                    rutaImagenSeleccionada = string.Empty;
+                }
+                else
+                {
+                    nuevaImagen = empleado.ObtenerImagenDesdeBaseDeDatos(idEmpleadoSeleccionado);
+                }
+
+                bool exito = false;
+
+                // Actualiza el producto en la base de datos
+                if (string.IsNullOrWhiteSpace(TBnomUsuario.Text) || string.IsNullOrWhiteSpace(TBapeUsuario.Text) || string.IsNullOrEmpty(TBemail.Text) || string.IsNullOrWhiteSpace(TBdireccion.Text) || string.IsNullOrWhiteSpace(TBtelefono.Text))
+                {
+                    MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    bool tieneUsuario = Cempleado.TieneUsuario(dniEmpleadoSeleccionado);
+
+                    if (tieneUsuario)
+                    {
+                        // El empleado ya tiene un usuario, entonces editamos sus datos
+                        string contrasenia = null;
+                        if (CBeditarContrasenia.Checked)
+                        {
+                            // Verifica si se debe cambiar la contraseña y toma el valor del campo de contraseña
+                            contrasenia = TBcontrasenia.Text;
+                        }
+                        exito = Cempleado.EditarEmpleado(idEmpleadoSeleccionado, TBnomUsuario.Text, TBapeUsuario.Text, TBemail.Text, Convert.ToInt32(TBtelefono.Text), nuevaFecha, nuevaImagen, TBusuario.Text, TBcontrasenia.Text, CBusuarioTipo.SelectedIndex + 1, cambiarContrasenia);
+                    }
+                    else
+                    {
+                        // El empleado no tiene un usuario, podemos crear uno nuevo si se cumplen ciertas condiciones
+                        if (CBasignaUsuario.Checked)
+                        {
+                            // Verifica si se deben agregar los datos del usuario
+                            if (!string.IsNullOrEmpty(TBusuario.Text) && !string.IsNullOrEmpty(TBcontrasenia.Text))
+                            {
+                                exito = Cempleado.CrearUsuario(idEmpleadoSeleccionado, TBusuario.Text, TBcontrasenia.Text, CBusuarioTipo.SelectedIndex + 1);
+                            }
+                        }
+                        else
+                        {
+                            exito = true; // No se requiere agregar un usuario
+                        }
+                    }
+                }
+
+                if (exito)
+                {
+                    // Actualización exitosa, mostrar un mensaje de éxito
+                    MessageBox.Show("Empleado y usuario actualizados o creados con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Vuelve a cargar los datos en el DataGridView después de la edición
+                    bool resultado = empleado.CargarEmpleados(DGlistaUsuarios);
+
+                    // Restablece el formulario al modo de inserción
+                    BeditarUs.Visible = false;
+                    BcancelarEditar.Visible = false;
+                    BagregarUs.Visible = true;
+                    BcancelUs.Visible = true;
+
+                    limpiar(); // Limpia los campos del formulario
+                }
+                else
+                {
+                    // Hubo un error en la actualización, muestra un mensaje de error
+                    MessageBox.Show("Error al actualizar el empleado o el usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error " + idEmpleadoSeleccionado, "");
+            }
+
+        }
     }
 }

@@ -67,6 +67,12 @@ namespace SaborAcielo.datos
                     MessageBox.Show("El DNI ya existe en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
+                //
+                if (fecha_ingreso == default(DateTime))
+                {
+                    // Si la fecha de ingreso no se seleccionó, establece la fecha actual por defecto.
+                    fecha_ingreso = DateTime.Now;
+                }
                 // código para insertar en la base de datos
                 using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
                 {
@@ -82,7 +88,7 @@ namespace SaborAcielo.datos
                     command.Parameters.AddWithValue("@mail", mail);
                     command.Parameters.AddWithValue("@telefono", telefono);
                     command.Parameters.AddWithValue("@direccion", direccion);
-                    command.Parameters.AddWithValue("@fecha_ingreso", estado);
+                    command.Parameters.AddWithValue("@fecha_ingreso", fecha_ingreso);
                     command.Parameters.AddWithValue("@imagen", imagen);
                     command.Parameters.AddWithValue("@estado", estado);
 
@@ -292,7 +298,7 @@ namespace SaborAcielo.datos
                 return false;
             }
         }
-        public static bool EditarEmpleado(int dniEmpleado, string nombre, string apellido, string correo, int telefono, DateTime fechaIngreso, byte[] fotoEmp, string nombreUsuario, string contrasenia, int idTipoUsuario)
+        public static bool EditarEmpleado(int dniEmpleado, string nombre, string apellido, string correo, int telefono, DateTime fechaIngreso, byte[] fotoEmp, string nombreUsuario, string contrasenia, int idTipoUsuario, bool cambiarContrasenia)
         {
             try
             {
@@ -301,7 +307,7 @@ namespace SaborAcielo.datos
                     connection.Open();
 
                     // Verificar si el empleado ya tiene un usuario
-                    bool tieneUsuario = TieneUsuario(dniEmpleado, connection);
+                    bool tieneUsuario = TieneUsuario(dniEmpleado);
 
                     // Actualizar los datos del empleado
                     string queryEmpleado = "UPDATE Empleado SET nombre = @nombre, apellido = @apellido, correo = @correo, telefono = @telefono, fecha_ingreso = @fechaIngreso, foto_emp = @fotoEmp WHERE dni_empleado = @dniEmpleado";
@@ -319,10 +325,22 @@ namespace SaborAcielo.datos
                     if (tieneUsuario)
                     {
                         // Actualiza los datos del usuario
-                        string queryUsuario = "UPDATE Usuario SET nom_usuario = @nombreUsuario, contrasenia = @contrasenia, id_tipoUsuario = @idTipoUsuario WHERE dni_empleado = @dniEmpleado";
-                        SqlCommand commandUsuario = new SqlCommand(queryUsuario, connection);
+                        string queryUsuario;
+                        SqlCommand commandUsuario;
+                        if (cambiarContrasenia)
+                        {
+                            queryUsuario = "UPDATE Usuario SET nom_usuario = @nombreUsuario, contrasenia = @contrasenia, id_tipoUsuario = @idTipoUsuario WHERE dni_empleado = @dniEmpleado";
+                        }
+                        else
+                        {
+                            queryUsuario = "UPDATE Usuario SET nom_usuario = @nombreUsuario, id_tipoUsuario = @idTipoUsuario WHERE dni_empleado = @dniEmpleado";
+                        }
+                        commandUsuario = new SqlCommand(queryUsuario, connection);
                         commandUsuario.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
-                        commandUsuario.Parameters.AddWithValue("@contrasenia", contrasenia);
+                        if (cambiarContrasenia)
+                        {
+                            commandUsuario.Parameters.AddWithValue("@contrasenia", contrasenia);
+                        }
                         commandUsuario.Parameters.AddWithValue("@idTipoUsuario", idTipoUsuario);
                         commandUsuario.Parameters.AddWithValue("@dniEmpleado", dniEmpleado);
                         commandUsuario.ExecuteNonQuery();
@@ -345,15 +363,20 @@ namespace SaborAcielo.datos
             }
         }
 
-        public static bool TieneUsuario(int dniEmpleado, SqlConnection connection)
+        public static bool TieneUsuario(int dniEmpleado)
         {
-            // Verifica si el empleado ya tiene un usuario
-            string query = "SELECT COUNT(*) FROM Usuario WHERE dni_empleado = @dni_empleado";
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@dni_empleado", dniEmpleado);
-            int count = Convert.ToInt32(command.ExecuteScalar());
-            return count > 0;
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+            {
+                connection.Open();
+                // Verifica si el empleado ya tiene un usuario
+                string query = "SELECT COUNT(*) FROM Usuario WHERE dni_empleado = @dni_empleado";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@dni_empleado", dniEmpleado);
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                return count > 0;
+            }
         }
+
         public DataTable ObtenerEmpleadoYUsuario(int empleadoID)
         {
             DataTable dt = new DataTable();
@@ -382,8 +405,6 @@ namespace SaborAcielo.datos
 
             return dt;
         }
-
-
         public byte[] ObtenerImagenDesdeBaseDeDatos(int id)
         {
             byte[] imagenBytes = null;
@@ -392,7 +413,7 @@ namespace SaborAcielo.datos
             {
                 conexion.Open();
 
-                string consulta = "SELECT foto_emp FROM usuario WHERE dni_empleado = @id";
+                string consulta = "SELECT foto_emp FROM Empleado WHERE dni_empleado = @id";
                 using (SqlCommand comando = new SqlCommand(consulta, conexion))
                 {
                     comando.Parameters.AddWithValue("@id", id);
@@ -408,6 +429,7 @@ namespace SaborAcielo.datos
 
             return imagenBytes;
         }
+
         public void MostrarImagenEnPictureBox(int id, PictureBox pictureBox)
         {
             byte[] imagenBytes = ObtenerImagenDesdeBaseDeDatos(id);
@@ -425,6 +447,9 @@ namespace SaborAcielo.datos
                 pictureBox.Image = null;
             }
         }
+
+
+      
         public string DesencriptarContraseña(byte[] encryptedPassword, byte[] salt, string userProvidedPassword)
         {
             using (var deriveBytes = new Rfc2898DeriveBytes(userProvidedPassword, salt, 10000, HashAlgorithmName.SHA256))
@@ -435,8 +460,95 @@ namespace SaborAcielo.datos
             }
         }
 
+        //Metodo para buscar empleados
+        public DataTable BuscarDni( int dniBusqueda)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT dni_empleado FROM Empleado WHERE CAST(dni_empleado AS NVARCHAR(20)) LIKE @dniBusqueda";
+
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@dniBusqueda", "%" + dniBusqueda + "%");
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                return dataTable;
+            }
+
+        }
+        public AutoCompleteStringCollection ObtenerSugerenciasNombre()
+        {
+            AutoCompleteStringCollection sugerencias = new AutoCompleteStringCollection();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT nombre FROM Empleado";
+                SqlCommand cmd = new SqlCommand(query, connection);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        sugerencias.Add(reader["nombre"].ToString());
+                    }
+                }
+            }
+
+            return sugerencias;
+        }
+
+        public AutoCompleteStringCollection ObtenerSugerenciasApellido()
+        {
+            AutoCompleteStringCollection sugerencias = new AutoCompleteStringCollection();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT apellido FROM Empleado";
+                SqlCommand cmd = new SqlCommand(query, connection);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        sugerencias.Add(reader["apellido"].ToString());
+                    }
+                }
+            }
+
+            return sugerencias;
+        }
 
 
+        public List<DateTime> ObtenerFechasDisponibles()
+        {
+            List<DateTime> fechasDisponibles = new List<DateTime>();
 
-}
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT fecha_ingreso FROM Empleado WHERE estado = 1"; 
+                SqlCommand cmd = new SqlCommand(query, connection);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        DateTime fecha = reader.GetDateTime(reader.GetOrdinal("fecha_ingreso"));
+                       
+                        fechasDisponibles.Add(fecha);
+                    }
+                }
+            }
+
+            return fechasDisponibles;
+        }
+
+    }
 }

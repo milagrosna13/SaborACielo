@@ -29,13 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FlistaProductosAdmin));
             this.DGlistaProductos = new System.Windows.Forms.DataGridView();
             this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GBfiltroProductos = new System.Windows.Forms.GroupBox();
+            this.CBtipo = new System.Windows.Forms.CheckBox();
+            this.CBnombre = new System.Windows.Forms.CheckBox();
             this.DTfechaIng = new System.Windows.Forms.DateTimePicker();
             this.CBfecha = new System.Windows.Forms.CheckBox();
             this.CfiltroTipo = new System.Windows.Forms.ComboBox();
@@ -61,8 +63,6 @@
             this.TBnomProdu = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.BcancelProdu = new System.Windows.Forms.Button();
-            this.CBnombre = new System.Windows.Forms.CheckBox();
-            this.CBtipo = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGlistaProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).BeginInit();
             this.GBfiltroProductos.SuspendLayout();
@@ -77,34 +77,34 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGlistaProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGlistaProductos.BackgroundColor = System.Drawing.Color.RosyBrown;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DGlistaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGlistaProductos.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGlistaProductos.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGlistaProductos.Location = new System.Drawing.Point(38, 347);
             this.DGlistaProductos.Margin = new System.Windows.Forms.Padding(2);
             this.DGlistaProductos.Name = "DGlistaProductos";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.DGlistaProductos.RowHeadersWidth = 62;
             this.DGlistaProductos.RowTemplate.Height = 28;
             this.DGlistaProductos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -132,6 +132,28 @@
             this.GBfiltroProductos.TabStop = false;
             this.GBfiltroProductos.Text = "Filtrar por";
             // 
+            // CBtipo
+            // 
+            this.CBtipo.AutoSize = true;
+            this.CBtipo.Location = new System.Drawing.Point(19, 106);
+            this.CBtipo.Name = "CBtipo";
+            this.CBtipo.Size = new System.Drawing.Size(59, 23);
+            this.CBtipo.TabIndex = 25;
+            this.CBtipo.Text = "Tipo";
+            this.CBtipo.UseVisualStyleBackColor = true;
+            this.CBtipo.CheckedChanged += new System.EventHandler(this.CBtipo_CheckedChanged);
+            // 
+            // CBnombre
+            // 
+            this.CBnombre.AutoSize = true;
+            this.CBnombre.Location = new System.Drawing.Point(19, 53);
+            this.CBnombre.Name = "CBnombre";
+            this.CBnombre.Size = new System.Drawing.Size(80, 23);
+            this.CBnombre.TabIndex = 24;
+            this.CBnombre.Text = "Nombre";
+            this.CBnombre.UseVisualStyleBackColor = true;
+            this.CBnombre.CheckedChanged += new System.EventHandler(this.CBnombre_CheckedChanged);
+            // 
             // DTfechaIng
             // 
             this.DTfechaIng.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -152,6 +174,8 @@
             // 
             // CfiltroTipo
             // 
+            this.CfiltroTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CfiltroTipo.Enabled = false;
             this.CfiltroTipo.FormattingEnabled = true;
             this.CfiltroTipo.Location = new System.Drawing.Point(26, 132);
             this.CfiltroTipo.Margin = new System.Windows.Forms.Padding(2);
@@ -161,6 +185,8 @@
             // 
             // CnombreProd
             // 
+            this.CnombreProd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CnombreProd.Enabled = false;
             this.CnombreProd.FormattingEnabled = true;
             this.CnombreProd.Location = new System.Drawing.Point(26, 81);
             this.CnombreProd.Margin = new System.Windows.Forms.Padding(2);
@@ -435,28 +461,6 @@
             this.BcancelProdu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BcancelProdu.UseVisualStyleBackColor = false;
             this.BcancelProdu.Click += new System.EventHandler(this.BcancelProdu_Click);
-            // 
-            // CBnombre
-            // 
-            this.CBnombre.AutoSize = true;
-            this.CBnombre.Location = new System.Drawing.Point(19, 53);
-            this.CBnombre.Name = "CBnombre";
-            this.CBnombre.Size = new System.Drawing.Size(80, 23);
-            this.CBnombre.TabIndex = 24;
-            this.CBnombre.Text = "Nombre";
-            this.CBnombre.UseVisualStyleBackColor = true;
-            this.CBnombre.CheckedChanged += new System.EventHandler(this.CBnombre_CheckedChanged);
-            // 
-            // CBtipo
-            // 
-            this.CBtipo.AutoSize = true;
-            this.CBtipo.Location = new System.Drawing.Point(19, 106);
-            this.CBtipo.Name = "CBtipo";
-            this.CBtipo.Size = new System.Drawing.Size(59, 23);
-            this.CBtipo.TabIndex = 25;
-            this.CBtipo.Text = "Tipo";
-            this.CBtipo.UseVisualStyleBackColor = true;
-            this.CBtipo.CheckedChanged += new System.EventHandler(this.CBtipo_CheckedChanged);
             // 
             // FlistaProductosAdmin
             // 
