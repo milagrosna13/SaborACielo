@@ -31,7 +31,9 @@ namespace SaborAcielo
             CBoxApellido.AutoCompleteCustomSource = empleado.ObtenerSugerenciasApellido();
             InicializarDateTimePicker();
         }
-       
+
+        private Cempleado empleado = new Cempleado();
+
         private void TBdniUsuario_TextChanged(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
@@ -160,7 +162,7 @@ namespace SaborAcielo
                         else
                         {
                             // Actualizar la tabla solo con el registro de empleados
-                            Cempleado empleado = new Cempleado();
+                            
                             bool resultado = empleado.CargarEmpleados(DGlistaUsuarios);
                             MessageBox.Show("Empleado agregado con éxito", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
@@ -406,11 +408,14 @@ namespace SaborAcielo
 
         private void BeditarUs_Click(object sender, EventArgs e)
         {
-            Cempleado empleado = new Cempleado();
+            //SIN EDITAR IMAGEN
+            //SI AGREGA USUARIO
+            //SI EDITA USUARIO
+            
             int idEmpleadoSeleccionado = dniEmpleadoSeleccionado;
             byte[] nuevaImagen;
 
-            bool cambiarContrasenia = CBeditarContrasenia.Checked;
+            //bool cambiarContrasenia = CBeditarContrasenia.Checked;
             if (idEmpleadoSeleccionado != -1)
             {
                 DateTime nuevaFecha = dtFecha.Value;
@@ -428,71 +433,24 @@ namespace SaborAcielo
 
                 bool exito = false;
 
-                // Actualiza el producto en la base de datos
-                if (string.IsNullOrWhiteSpace(TBnomUsuario.Text) || string.IsNullOrWhiteSpace(TBapeUsuario.Text) || string.IsNullOrEmpty(TBemail.Text) || string.IsNullOrWhiteSpace(TBdireccion.Text) || string.IsNullOrWhiteSpace(TBtelefono.Text))
+                if (string.IsNullOrEmpty(TBnomUsuario.Text) || string.IsNullOrEmpty(Convert.ToString(TBdniUsuario.Text)))
                 {
-                    MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("debe completar los campos obligatorios", "Error", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    bool tieneUsuario = Cempleado.TieneUsuario(dniEmpleadoSeleccionado);
-
-                    if (tieneUsuario)
-                    {
-                        // El empleado ya tiene un usuario, entonces editamos sus datos
-                        string contrasenia = null;
-                        if (CBeditarContrasenia.Checked)
-                        {
-                            // Verifica si se debe cambiar la contraseña y toma el valor del campo de contraseña
-                            contrasenia = TBcontrasenia.Text;
-                        }
-                        exito = Cempleado.EditarEmpleado(idEmpleadoSeleccionado, TBnomUsuario.Text, TBapeUsuario.Text, TBemail.Text, Convert.ToInt32(TBtelefono.Text), nuevaFecha, nuevaImagen, TBusuario.Text, TBcontrasenia.Text, CBusuarioTipo.SelectedIndex + 1, cambiarContrasenia);
-                    }
-                    else
-                    {
-                        // El empleado no tiene un usuario, podemos crear uno nuevo si se cumplen ciertas condiciones
-                        if (CBasignaUsuario.Checked)
-                        {
-                            // Verifica si se deben agregar los datos del usuario
-                            if (!string.IsNullOrEmpty(TBusuario.Text) && !string.IsNullOrEmpty(TBcontrasenia.Text))
-                            {
-                                exito = Cempleado.CrearUsuario(idEmpleadoSeleccionado, TBusuario.Text, TBcontrasenia.Text, CBusuarioTipo.SelectedIndex + 1);
-                            }
-                        }
-                        else
-                        {
-                            exito = true; // No se requiere agregar un usuario
-                        }
-                    }
+                    bool cambiarContraseña = true;
+                    exito = Cempleado.EditarEmpleado(Convert.ToInt32(TBdniUsuario.Text), TBnomUsuario.Text, TBapeUsuario.Text, TBemail.Text, Convert.ToInt32(TBtelefono.Text), nuevaFecha, nuevaImagen, TBusuario.Text, TBcontrasenia.Text, CBtipoEditar.SelectedIndex + 1, cambiarContraseña );
                 }
 
                 if (exito)
                 {
-                    // Actualización exitosa, mostrar un mensaje de éxito
-                    MessageBox.Show("Empleado y usuario actualizados o creados con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Vuelve a cargar los datos en el DataGridView después de la edición
-                    bool resultado = empleado.CargarEmpleados(DGlistaUsuarios);
-
-                    // Restablece el formulario al modo de inserción
-                    BeditarUs.Visible = false;
-                    BcancelarEditar.Visible = false;
-                    BagregarUs.Visible = true;
-                    BcancelUs.Visible = true;
-
-                    limpiar(); // Limpia los campos del formulario
+                    bool res = empleado.CargarEmpleados(DGlistaUsuarios);
+                    MessageBox.Show("editado");
                 }
-                else
-                {
-                    // Hubo un error en la actualización, muestra un mensaje de error
-                    MessageBox.Show("Error al actualizar el empleado o el usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Error " + idEmpleadoSeleccionado, "");
-            }
 
+            }
         }
+
     }
 }

@@ -27,9 +27,8 @@ namespace SaborAcielo
             agregarColumnasCarrito();
         }
 
-        private int precio = 2000;
-        public int venta = 1;
-        private int compra;
+        public int venta = 2;
+        
 
         private Ccliente clienteDatos = new Ccliente();
         private Cventas cventas = new Cventas();
@@ -48,6 +47,7 @@ namespace SaborAcielo
         }
         private void limpiar()
         {
+
         }
 
 
@@ -61,13 +61,18 @@ namespace SaborAcielo
                     decimal total = calcularTotal();
                     int empleado = 1234;
                     bool ventaExitosa = cventas.agregarCabecera(Convert.ToInt32(TBdnicliente.Text), venta, empleado, DateTime.Now, total);
+                    cventas.agregarDetalle(venta, DGcarrito);
+                    
                     //actualizarStock();
                     //limpiarCarrito();
                 }
             }
-            else
+            else if(DGcarrito.Rows.Count < 0)
             {
                 MessageBox.Show("Debe agregar productos al carrito", "Error", MessageBoxButtons.OK);
+            } else
+            {
+                MessageBox.Show("Debe ingresar los datos del cliente", "Error", MessageBoxButtons.OK);
             }
 
         }
@@ -198,7 +203,7 @@ namespace SaborAcielo
             FiltrarProducto();
         }
 
-        private void agregarColumnasCarrito()
+        public void agregarColumnasCarrito()
         {
             DataGridViewTextBoxColumn colNombre = new DataGridViewTextBoxColumn();
             colNombre.HeaderText = "Producto";
@@ -219,15 +224,15 @@ namespace SaborAcielo
             colCant.HeaderText = "Cantidad";
             colCant.Name = "Cantidad";
 
+
+            DataGridViewTextBoxColumn colSubTotal = new DataGridViewTextBoxColumn();
+            colSubTotal.HeaderText = "SubTotal";
+            colSubTotal.Name = "Subtotal";
+
             DataGridViewButtonColumn columnaQuitar = new DataGridViewButtonColumn();
             columnaQuitar.Name = "Quitar";
             columnaQuitar.Text = "Quitar";
             columnaQuitar.UseColumnTextForButtonValue = true;
-
-            DataGridViewButtonColumn columnaEditar = new DataGridViewButtonColumn();
-            columnaEditar.Name = "Editar";
-            columnaEditar.Text = "Editar";
-            columnaEditar.UseColumnTextForButtonValue = true;
 
             DGcarrito.Columns.Add(colId);
             DGcarrito.Columns.Add(colNombre);
@@ -235,8 +240,8 @@ namespace SaborAcielo
             DGcarrito.Columns.Add(colDet);
             DGcarrito.Columns.Add(colPrecio);
             DGcarrito.Columns.Add(colCant);
+            DGcarrito.Columns.Add(colSubTotal);
             DGcarrito.Columns.Add(columnaQuitar);
-            DGcarrito.Columns.Add(columnaEditar);
 
         }
 
@@ -269,14 +274,40 @@ namespace SaborAcielo
                 }
             }
 
-            if (e.ColumnIndex == DGcarrito.Columns["Editar"].Index && e.RowIndex >= 0)
+        }
+
+        private void DGcarrito_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewColumn columnaValorDeEntrada = DGcarrito.Columns["Cantidad"];
+            DataGridViewColumn columnaPrecio = DGcarrito.Columns["Precio"];
+            DataGridViewColumn columnaSubtotal = DGcarrito.Columns["Subtotal"];
+
+            if (e.ColumnIndex == columnaValorDeEntrada.Index)
             {
-                DialogResult res = MessageBox.Show("Quiere editar el producto", "confirmar", MessageBoxButtons.YesNo);
-                if (res == DialogResult.Yes)
+                if (DGcarrito.Rows[e.RowIndex].Cells[columnaValorDeEntrada.Index].Value != null)
                 {
-                    
+                    double valorEntrada = Convert.ToDouble(DGcarrito.Rows[e.RowIndex].Cells[columnaValorDeEntrada.Index].Value);
+                    int stockDisponible = Convert.ToInt32(DGprodu.Rows[e.RowIndex].Cells["Stock"].Value);
+
+                    if (valorEntrada <= stockDisponible)
+                    {
+                        // Obtiene el valor de la otra columna que se utilizará en la multiplicación (por ejemplo, columna2)
+                        double valorPrecio = Convert.ToDouble(DGcarrito.Rows[e.RowIndex].Cells[columnaPrecio.Index].Value);
+
+                        // Realiza la multiplicación
+                        double resultado = valorEntrada * valorPrecio;
+
+                        // Actualiza la celda de resultado
+                        DGcarrito.Rows[e.RowIndex].Cells[columnaSubtotal.Index].Value = resultado;
+                    } else
+                    {
+                        MessageBox.Show("Valor ingresado supera el stock disponible", "error", MessageBoxButtons.OK);
+                    }
                 }
             }
+            
         }
+
+
     }
 }

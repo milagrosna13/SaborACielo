@@ -93,12 +93,12 @@ namespace SaborAcielo.datos
                     SqlCommand command = new SqlCommand(query, connection);
 
                     // Usa parámetros para evitar la inyección de SQL
-                    command.Parameters.AddWithValue("@nro", nro); 
-                    command.Parameters.AddWithValue("@empleado", empl); 
-                    command.Parameters.AddWithValue("@cliente", dni_c); 
-                    command.Parameters.AddWithValue("@fecha", fecha); 
-                    command.Parameters.AddWithValue("@total", total); 
-                    
+                    command.Parameters.AddWithValue("@nro", nro);
+                    command.Parameters.AddWithValue("@empleado", empl);
+                    command.Parameters.AddWithValue("@cliente", dni_c);
+                    command.Parameters.AddWithValue("@fecha", fecha);
+                    command.Parameters.AddWithValue("@total", total);
+
                     command.ExecuteNonQuery();
 
                     connection.Close();
@@ -113,6 +113,44 @@ namespace SaborAcielo.datos
             }
         }
 
+        
+
+        public bool agregarDetalle(int venta, DataGridView dg)
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString);
+                string consultaInsertar = "INSERT INTO Venta_detalle (id_venta, id_produ, cantidad, precio_total) VALUES (@idventa, @idprodu, @cantidad, @total";
+                foreach (DataGridViewRow fila in dg.Rows)
+                {
+                        // Obtiene los valores de las celdas del DataGridView
+                        //int idventa = 
+                        int idProdu = Convert.ToInt32(fila.Cells["ID"].Value);
+                        int cantidad = Convert.ToInt32(fila.Cells["Cantidad"].Value);
+                        decimal total = Convert.ToDecimal(fila.Cells["Subtotal"].Value);
+
+                        // Crea y ejecuta la consulta SQL
+                        using (SqlCommand comando = new SqlCommand(consultaInsertar, connection))
+                        {
+                            comando.Parameters.AddWithValue("@idventa", venta);
+                            comando.Parameters.AddWithValue("@idprodu", idProdu);
+                            comando.Parameters.AddWithValue("@cantidad", cantidad);
+                            comando.Parameters.AddWithValue("@total", total);
+
+                            comando.ExecuteNonQuery();
+                        }
+                    
+                }
+
+
+                return true;
+            } catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
 
+    
+    

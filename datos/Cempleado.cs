@@ -310,7 +310,7 @@ namespace SaborAcielo.datos
                     bool tieneUsuario = TieneUsuario(dniEmpleado);
 
                     // Actualizar los datos del empleado
-                    string queryEmpleado = "UPDATE Empleado SET nombre = @nombre, apellido = @apellido, correo = @correo, telefono = @telefono, fecha_ingreso = @fechaIngreso, foto_emp = @fotoEmp WHERE dni_empleado = @dniEmpleado";
+                    string queryEmpleado = "UPDATE Empleado SET nombre = @nombre, apellido = @apellido, mail = @correo, telefono = @telefono, fecha_ingreso = @fechaIngreso, foto_emp = @fotoEmp WHERE dni_empleado = @dni";
                     SqlCommand commandEmpleado = new SqlCommand(queryEmpleado, connection);
                     commandEmpleado.Parameters.AddWithValue("@nombre", nombre);
                     commandEmpleado.Parameters.AddWithValue("@apellido", apellido);
@@ -318,10 +318,10 @@ namespace SaborAcielo.datos
                     commandEmpleado.Parameters.AddWithValue("@telefono", telefono);
                     commandEmpleado.Parameters.AddWithValue("@fechaIngreso", fechaIngreso);
                     commandEmpleado.Parameters.AddWithValue("@fotoEmp", fotoEmp);
-                    commandEmpleado.Parameters.AddWithValue("@dniEmpleado", dniEmpleado);
+                    commandEmpleado.Parameters.AddWithValue("@dni", dniEmpleado);
                     commandEmpleado.ExecuteNonQuery();
 
-                    // Si el empleado tiene usuario
+                    /* Si el empleado tiene usuario
                     if (tieneUsuario)
                     {
                         // Actualiza los datos del usuario
@@ -349,7 +349,7 @@ namespace SaborAcielo.datos
                     {
                         // El empleado no tiene usuario, crea uno nuevo
                         CrearUsuario(dniEmpleado, nombreUsuario, contrasenia, idTipoUsuario);
-                    }
+                    }*/
 
                     connection.Close();
                 }

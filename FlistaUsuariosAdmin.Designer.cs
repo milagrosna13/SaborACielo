@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GBfiltroUsuarios = new System.Windows.Forms.GroupBox();
+            this.LBdni = new System.Windows.Forms.ListBox();
+            this.TBoxDni = new System.Windows.Forms.TextBox();
             this.CBoxNombre = new System.Windows.Forms.ComboBox();
             this.CBoxApellido = new System.Windows.Forms.ComboBox();
             this.CBnombre = new System.Windows.Forms.CheckBox();
@@ -40,6 +42,7 @@
             this.BbuscarUsuario = new System.Windows.Forms.Button();
             this.CBtodosUsuarios = new System.Windows.Forms.CheckBox();
             this.PagregarProdu = new System.Windows.Forms.Panel();
+            this.CBeditarContrasenia = new System.Windows.Forms.CheckBox();
             this.CBtipoEditar = new System.Windows.Forms.ComboBox();
             this.BcancelarEditar = new System.Windows.Forms.Button();
             this.dtFecha = new System.Windows.Forms.DateTimePicker();
@@ -69,9 +72,6 @@
             this.LdniUsuario = new System.Windows.Forms.Label();
             this.BcancelUs = new System.Windows.Forms.Button();
             this.DGlistaUsuarios = new System.Windows.Forms.DataGridView();
-            this.TBoxDni = new System.Windows.Forms.TextBox();
-            this.LBdni = new System.Windows.Forms.ListBox();
-            this.CBeditarContrasenia = new System.Windows.Forms.CheckBox();
             this.GBfiltroUsuarios.SuspendLayout();
             this.PagregarProdu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBusuario)).BeginInit();
@@ -99,6 +99,26 @@
             this.GBfiltroUsuarios.TabIndex = 3;
             this.GBfiltroUsuarios.TabStop = false;
             this.GBfiltroUsuarios.Text = "Filtrar por";
+            // 
+            // LBdni
+            // 
+            this.LBdni.FormattingEnabled = true;
+            this.LBdni.ItemHeight = 19;
+            this.LBdni.Location = new System.Drawing.Point(121, 80);
+            this.LBdni.Name = "LBdni";
+            this.LBdni.Size = new System.Drawing.Size(120, 42);
+            this.LBdni.TabIndex = 34;
+            this.LBdni.Visible = false;
+            this.LBdni.SelectedIndexChanged += new System.EventHandler(this.LBdni_SelectedIndexChanged);
+            // 
+            // TBoxDni
+            // 
+            this.TBoxDni.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.TBoxDni.Location = new System.Drawing.Point(121, 55);
+            this.TBoxDni.Name = "TBoxDni";
+            this.TBoxDni.Size = new System.Drawing.Size(120, 27);
+            this.TBoxDni.TabIndex = 33;
+            this.TBoxDni.TextChanged += new System.EventHandler(this.TBoxDni_TextChanged);
             // 
             // CBoxNombre
             // 
@@ -176,7 +196,6 @@
             this.BbuscarUsuario.TabIndex = 9;
             this.BbuscarUsuario.Text = "Buscar";
             this.BbuscarUsuario.UseVisualStyleBackColor = true;
-//            this.BbuscarUsuario.Click += new System.EventHandler(this.BbuscarUsuario_Click);
             // 
             // CBtodosUsuarios
             // 
@@ -229,6 +248,17 @@
             this.PagregarProdu.Name = "PagregarProdu";
             this.PagregarProdu.Size = new System.Drawing.Size(780, 318);
             this.PagregarProdu.TabIndex = 8;
+            // 
+            // CBeditarContrasenia
+            // 
+            this.CBeditarContrasenia.AutoSize = true;
+            this.CBeditarContrasenia.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
+            this.CBeditarContrasenia.Location = new System.Drawing.Point(498, 152);
+            this.CBeditarContrasenia.Name = "CBeditarContrasenia";
+            this.CBeditarContrasenia.Size = new System.Drawing.Size(140, 23);
+            this.CBeditarContrasenia.TabIndex = 37;
+            this.CBeditarContrasenia.Text = "Editar Contraseña";
+            this.CBeditarContrasenia.UseVisualStyleBackColor = true;
             // 
             // CBtipoEditar
             // 
@@ -555,14 +585,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGlistaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGlistaUsuarios.BackgroundColor = System.Drawing.Color.RosyBrown;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGlistaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGlistaUsuarios.Location = new System.Drawing.Point(12, 348);
             this.DGlistaUsuarios.Margin = new System.Windows.Forms.Padding(2);
@@ -572,37 +602,6 @@
             this.DGlistaUsuarios.Size = new System.Drawing.Size(971, 153);
             this.DGlistaUsuarios.TabIndex = 9;
             this.DGlistaUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaUsuarios_CellContentClick);
-            // 
-            // TBoxDni
-            // 
-            this.TBoxDni.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.TBoxDni.Location = new System.Drawing.Point(121, 55);
-            this.TBoxDni.Name = "TBoxDni";
-            this.TBoxDni.Size = new System.Drawing.Size(120, 27);
-            this.TBoxDni.TabIndex = 33;
-            this.TBoxDni.TextChanged += new System.EventHandler(this.TBoxDni_TextChanged);
-            // 
-            // LBdni
-            // 
-            this.LBdni.FormattingEnabled = true;
-            this.LBdni.ItemHeight = 19;
-            this.LBdni.Location = new System.Drawing.Point(121, 80);
-            this.LBdni.Name = "LBdni";
-            this.LBdni.Size = new System.Drawing.Size(120, 42);
-            this.LBdni.TabIndex = 34;
-            this.LBdni.Visible = false;
-            this.LBdni.SelectedIndexChanged += new System.EventHandler(this.LBdni_SelectedIndexChanged);
-            // 
-            // CBeditarContrasenia
-            // 
-            this.CBeditarContrasenia.AutoSize = true;
-            this.CBeditarContrasenia.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
-            this.CBeditarContrasenia.Location = new System.Drawing.Point(498, 152);
-            this.CBeditarContrasenia.Name = "CBeditarContrasenia";
-            this.CBeditarContrasenia.Size = new System.Drawing.Size(140, 23);
-            this.CBeditarContrasenia.TabIndex = 37;
-            this.CBeditarContrasenia.Text = "Editar Contraseña";
-            this.CBeditarContrasenia.UseVisualStyleBackColor = true;
             // 
             // FlistaUsuariosAdmin
             // 

@@ -536,11 +536,7 @@ namespace SaborAcielo.datos
             }
         }
 
-        //agregar producto en el carrito
-        public void agregarColumnasCarrito(DataGridView dg)
-        {
-            
-        }
+       
 
     }
 }
