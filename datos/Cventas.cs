@@ -52,7 +52,6 @@ namespace SaborAcielo.datos
             }
         }
 
-
         public bool Filtrar(string filtro, out DataTable resultado)
         {
             resultado = new DataTable();
@@ -80,6 +79,40 @@ namespace SaborAcielo.datos
             Filtrar(consulta, out resultado);
             return resultado;
         }
+
+        public bool agregarCabecera(int dni_c, int nro, int empl, DateTime fecha, decimal total)
+        {
+            try
+            {
+                // Resto del código para insertar en la base de datos
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = "INSERT INTO Venta_cabecera (id_venta, dni_empleado, dni_cliente, fecha_venta, total ) VALUES (@nro, @empleado, @cliente, @fecha, @total)";
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    // Usa parámetros para evitar la inyección de SQL
+                    command.Parameters.AddWithValue("@nro", nro); 
+                    command.Parameters.AddWithValue("@empleado", empl); 
+                    command.Parameters.AddWithValue("@cliente", dni_c); 
+                    command.Parameters.AddWithValue("@fecha", fecha); 
+                    command.Parameters.AddWithValue("@total", total); 
+                    
+                    command.ExecuteNonQuery();
+
+                    connection.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
+                MessageBox.Show("Error en la inserción de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
     }
 }
 

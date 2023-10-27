@@ -19,66 +19,72 @@ namespace SaborAcielo
         {
             InitializeComponent();
             CtipoProd.DisplayMember = "Nombre";
+
+            bool datos = cproducto.ObtenerProductosActivos(string.Empty, string.Empty, string.Empty, DGprodu);
+            Cproducto.botonAgregar(DGprodu);
+            InicializarComboBoxes();
+
+            agregarColumnasCarrito();
         }
 
         private int precio = 2000;
-        private int venta = 1;
+        public int venta = 1;
         private int compra;
 
+        private Ccliente clienteDatos = new Ccliente();
+        private Cventas cventas = new Cventas();
+        private Cproducto cproducto = new Cproducto();
+
+        private void InicializarComboBoxes()
+        {
+            List<string> nombres = cproducto.ObtenerNombresUnicos();
+            List<string> tipos = cproducto.ObtenerTipos();
+            List<string> detalles = cproducto.ObtenerDetalles();
+
+            // Llena los ComboBox con los valores obtenidos
+            CBproducto.Items.AddRange(nombres.ToArray());
+            CtipoProd.Items.AddRange(tipos.ToArray());
+            CBDetalle.Items.AddRange(detalles.ToArray());
+        }
         private void limpiar()
         {
-        }
-
-        private void BagregarCompra_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(CBproducto.SelectedItem.ToString()) || string.IsNullOrEmpty(CtipoProd.Text))
-            {
-                MessageBox.Show("Debe completar los campos obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                var res = MessageBox.Show("¿Desea guardar los datos del producto: " + CBproducto.SelectedItem.ToString() + "", "Guardar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (res == System.Windows.Forms.DialogResult.Yes)
-                {
-                    //float total = Convert.ToInt32(TBsubtotal.Text);
-                    DataGridViewRow fila = new DataGridViewRow();
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = venta });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = CtipoProd.Text });
-                    fila.Cells.Add(new DataGridViewTextBoxCell { Value = CBproducto.SelectedItem.ToString() });
-                    //fila.Cells.Add(new DataGridViewTextBoxCell { Value = Ncant.Value });
-                    //fila.Cells.Add(new DataGridViewTextBoxCell { Value = total });
-
-                    DGcarrito.Rows.Add(fila);
-                    compra = venta - 1;
-                    limpiar();
-                }
-            }
         }
 
 
         private void Bcompra_Click(object sender, EventArgs e)
         {
-            if (DGcarrito.Rows.Count == 0)
+            if (DGcarrito.Rows.Count > 0 && !string.IsNullOrEmpty(TBdnicliente.Text))
             {
-                MessageBox.Show("Debe agregar productos a la compra", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (compra == venta - 1)
-            {
-                var res = MessageBox.Show("Seguro quiere finalizar la compra?", "Finalizar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (res == System.Windows.Forms.DialogResult.Yes)
+                DialogResult res = MessageBox.Show("Desea finalizar la compra?", "Confirmar compra", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == DialogResult.Yes)
                 {
-                    venta++;
-                    MessageBox.Show("Compra realizada con éxito", "Compra realizada", MessageBoxButtons.OK);
+                    decimal total = calcularTotal();
+                    int empleado = 1234;
+                    bool ventaExitosa = cventas.agregarCabecera(Convert.ToInt32(TBdnicliente.Text), venta, empleado, DateTime.Now, total);
+                    //actualizarStock();
+                    //limpiarCarrito();
                 }
             }
             else
             {
-
+                MessageBox.Show("Debe agregar productos al carrito", "Error", MessageBoxButtons.OK);
             }
-        }
-        private void Fproducto_TextChanged(object sender, EventArgs e)
-        { }
 
+        }
+        private decimal calcularTotal()
+        {
+            decimal suma = 0; // Suponiendo que la columna es de tipo decimal
+
+            foreach (DataGridViewRow row in DGcarrito.Rows)
+            {
+                if (row.Cells["Precio"].Value != null)
+                {
+                    suma += Convert.ToDecimal(row.Cells["Precio"].Value);
+                }
+            }
+            return suma;
+
+        }
         private void Fproducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
@@ -91,32 +97,14 @@ namespace SaborAcielo
 
         private void BcancelarCompra_Click(object sender, EventArgs e)
         {
-            limpiar();
+            CBDetalle.SelectedIndex = -1;
+            CBproducto.SelectedIndex = -1;
+            CtipoProd.SelectedIndex = -1;
         }
 
         private void DGcarrito_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = DGcarrito.Rows[e.RowIndex];
-            DataGridViewCell nombreCell = row.Cells["id_venta"];
-            DataGridViewCell eliminarCell = row.Cells["baja"];
 
-            if (string.IsNullOrWhiteSpace(Convert.ToString(nombreCell.Value)))
-            {
-                eliminarCell.ReadOnly = true;
-            }
-            else
-            {
-                eliminarCell.ReadOnly = false;
-                var msg = MessageBox.Show("Desea eliminar el producto del carrito?", "Confirmar Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (msg == DialogResult.Yes)
-                {
-                    if (e.RowIndex >= 0 && e.ColumnIndex == DGcarrito.Columns["baja"].Index)
-                    {
-                        DGcarrito.Rows.RemoveAt(e.RowIndex);
-                    }
-                    MessageBox.Show("Producto eliminado", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
         }
 
         private void TBdnicliente_KeyPress(object sender, KeyPressEventArgs e)
@@ -131,10 +119,10 @@ namespace SaborAcielo
 
         private void Bbuscardni_Click(object sender, EventArgs e)
         {
-            Ccliente clienteDatos = new Ccliente();
+
             DataTable dt = clienteDatos.BuscarClientePorDNI(Convert.ToInt32(TBdnicliente.Text));
 
-            if (dt.Rows != null)
+            if (dt.Rows != null && dt.Rows.Count > 0)
             {
                 DataRow row = dt.Rows[0];
                 nCliente.Text = row["nombre_cliente"].ToString();
@@ -144,44 +132,150 @@ namespace SaborAcielo
                 emCliente.Text = row["email_cliente"].ToString();
 
             }
+            else
+            {
+                DialogResult res = MessageBox.Show("El cliente no se encuentra. ¿Desea registrarlo?", "Error", MessageBoxButtons.YesNoCancel);
+                switch (res)
+                {
+                    case DialogResult.Yes:
+                        FagregarCliente fagregarCliente = new FagregarCliente();
+                        fagregarCliente.Show();
+                        break;
+                    case DialogResult.No:
+                        limpiar();
+                        break;
+
+                }
+
+            }
+
+        }
+
+        private void FiltrarProducto()
+        {
+            string nombre;
+            string tipo;
+            string detalle;
+
+            if (CBproducto.SelectedIndex > -1)
+            {
+                nombre = CBproducto.SelectedItem.ToString();
+            }
+            else nombre = string.Empty; ;
+            if (CtipoProd.SelectedIndex > -1)
+            {
+                tipo = CtipoProd.SelectedItem.ToString();
+            }
+            else tipo = string.Empty;
+            if (CBDetalle.SelectedIndex > -1)
+            {
+                detalle = CBDetalle.SelectedItem.ToString();
+            }
+            else detalle = string.Empty;
+
+            bool datos = cproducto.ObtenerProductosActivos(nombre, tipo, detalle, DGprodu);
+
+
+        }
+
+        private void CtipoProd_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FiltrarProducto();
+        }
+
+        private void CBproducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FiltrarProducto();
         }
 
         private void CtipoProd_TextChanged(object sender, EventArgs e)
         {
-            string tipo = CtipoProd.Text;
-            Cproducto cproducto = new Cproducto();
 
-            if (!string.IsNullOrEmpty(tipo))
-            {
-                List<Cproducto> productosEncontrados = cproducto.BuscarPorTipo(tipo);
-
-                DGprodu.DataSource = productosEncontrados;
-            }
         }
 
-        private void CBproducto_TextChanged(object sender, EventArgs e)
+        private void CBDetalle_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string nombre = CBproducto.Text;
-            Cproducto cproducto = new Cproducto();
-
-            if (!string.IsNullOrEmpty(nombre))
-            {
-                cproducto.BuscarYMostrarNombre(nombre, DGprodu);
-
-            }
+            FiltrarProducto();
         }
 
-
-
-        private void CBDetalle_TextChanged(object sender, EventArgs e)
+        private void agregarColumnasCarrito()
         {
-            string detalle = CBDetalle.Text;
-            Cproducto cproducto = new Cproducto();
+            DataGridViewTextBoxColumn colNombre = new DataGridViewTextBoxColumn();
+            colNombre.HeaderText = "Producto";
+            colNombre.Name = "Nombre";
+            DataGridViewTextBoxColumn coltipo = new DataGridViewTextBoxColumn();
+            coltipo.HeaderText = "Tipo";
+            coltipo.Name = "Tipo";
+            DataGridViewTextBoxColumn colDet = new DataGridViewTextBoxColumn();
+            colDet.HeaderText = "Detalle";
+            colDet.Name = "Detalle";
+            DataGridViewTextBoxColumn colId = new DataGridViewTextBoxColumn();
+            colId.HeaderText = "ID";
+            colId.Name = "ID";
+            DataGridViewTextBoxColumn colPrecio = new DataGridViewTextBoxColumn();
+            colPrecio.HeaderText = "Precio";
+            colPrecio.Name = "Precio";
+            DataGridViewTextBoxColumn colCant = new DataGridViewTextBoxColumn();
+            colCant.HeaderText = "Cantidad";
+            colCant.Name = "Cantidad";
 
-            if (!string.IsNullOrEmpty(detalle))
+            DataGridViewButtonColumn columnaQuitar = new DataGridViewButtonColumn();
+            columnaQuitar.Name = "Quitar";
+            columnaQuitar.Text = "Quitar";
+            columnaQuitar.UseColumnTextForButtonValue = true;
+
+            DataGridViewButtonColumn columnaEditar = new DataGridViewButtonColumn();
+            columnaEditar.Name = "Editar";
+            columnaEditar.Text = "Editar";
+            columnaEditar.UseColumnTextForButtonValue = true;
+
+            DGcarrito.Columns.Add(colId);
+            DGcarrito.Columns.Add(colNombre);
+            DGcarrito.Columns.Add(coltipo);
+            DGcarrito.Columns.Add(colDet);
+            DGcarrito.Columns.Add(colPrecio);
+            DGcarrito.Columns.Add(colCant);
+            DGcarrito.Columns.Add(columnaQuitar);
+            DGcarrito.Columns.Add(columnaEditar);
+
+        }
+
+        private void DGprodu_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == DGprodu.Columns["Agregar"].Index && e.RowIndex >= 0)
             {
-                cproducto.BuscarYMostrarDetalle(detalle, DGprodu);
+                int id = Convert.ToInt32(DGprodu.Rows[e.RowIndex].Cells["ID"].Value);
 
+                DataRow datosProdu = cproducto.obtenerProducto(id);
+
+                if (datosProdu != null)
+                {
+                    DGcarrito.Rows.Add(datosProdu["id_produ"], datosProdu["nombre_produ"], datosProdu["id_tipoProdu"], datosProdu["detalle"], datosProdu["precio"]);
+
+                }
+
+            }
+
+        }
+
+        private void DGcarrito_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == DGprodu.Columns["Quitar"].Index && e.RowIndex >= 0)
+            {
+                DialogResult res = MessageBox.Show("Se eliminará el producto del carrito", "confirmar", MessageBoxButtons.YesNo);
+                if (res == DialogResult.Yes)
+                {
+                    DGcarrito.Rows.RemoveAt(DGcarrito.SelectedRows[0].Index);
+                }
+            }
+
+            if (e.ColumnIndex == DGcarrito.Columns["Editar"].Index && e.RowIndex >= 0)
+            {
+                DialogResult res = MessageBox.Show("Quiere editar el producto", "confirmar", MessageBoxButtons.YesNo);
+                if (res == DialogResult.Yes)
+                {
+                    
+                }
             }
         }
     }
