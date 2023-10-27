@@ -23,11 +23,6 @@ namespace SaborAcielo.datos
         private readonly SqlDataAdapter dataAdapter;
         private readonly DataTable dataTable;
 
-        public int Id { get; set; }
-        public int Idtipo { get; set; }
-        public string Nombre { get; set; }
-        public string detalle { get; set; }
-        public decimal Precio { get; set; }
 
         // Método para actualizar la tabla 
         public bool CargarProductos(DataGridView dataGridView)
@@ -39,8 +34,7 @@ namespace SaborAcielo.datos
 
                 // Configurar el SqlDataAdapter
                 using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT p.id_produ AS ID, p.nombre_produ AS Producto, " +
-               "p.detalle AS Detalle, p.precio AS Precio, p.stock, p.fecha AS Fecha, p.imagen, " +
-               "t.desc_tipoProd AS Tipo, " +
+                "t.desc_tipoProd AS Tipo, p.detalle AS Detalle, p.precio AS Precio, p.stock, p.fecha AS Fecha, p.imagen, " +               
                "CASE WHEN p.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
                "FROM Producto p " +
                "INNER JOIN Tipo_produ t ON p.id_tipoProdu = t.id_tipoProdu", new SqlConnection(connectionString)))
@@ -158,9 +152,90 @@ namespace SaborAcielo.datos
             }
         }
 
+        //Productos disponibles para compra: Estado = ACTIVO
+        public bool ObtenerProductosActivos(string nombre, string tipo, string detalle, DataGridView dg)
+        {
+            if (!string.IsNullOrEmpty(nombre) || !string.IsNullOrEmpty(tipo) || !string.IsNullOrEmpty(detalle))
+            {
+                try
+                {
 
+                    using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+                    {
+                        connection.Open();
 
+                        string consultaSQL = "SELECT p.id_produ AS ID, p.nombre_produ AS Producto, t.desc_tipoProd AS Tipo, " +
+                            "p.detalle AS Detalle, p.precio AS Precio, p.stock AS Stock " +
+                            "FROM Producto p " +
+                            "INNER JOIN Tipo_produ t ON p.id_tipoProdu = t.id_tipoProdu " +
+                            "WHERE p.estado = 1 AND 1=1";
 
+                        if (!string.IsNullOrEmpty(nombre))
+                        {
+                            consultaSQL += " AND p.nombre_produ LIKE @nombre";
+                        }
+
+                        if (!string.IsNullOrEmpty(tipo))
+                        {
+                            consultaSQL += " AND t.desc_tipoProd LIKE @tipo";
+                        }
+                        if (!string.IsNullOrEmpty(detalle))
+                        {
+                            consultaSQL += " AND p.detalle LIKE @detalle";
+                        }
+                        using (SqlCommand command = new SqlCommand(consultaSQL, connection))
+                        {
+                            if (!string.IsNullOrEmpty(nombre))
+                            {
+                                command.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
+                            }
+
+                            if (!string.IsNullOrEmpty(tipo))
+                            {
+                                command.Parameters.AddWithValue("@tipo", "%" + tipo + "%");
+                            }
+                            if (!string.IsNullOrEmpty(detalle))
+                            {
+                                command.Parameters.AddWithValue("@detalle", "%" + detalle + "%");
+                            }
+                            SqlDataAdapter adapter = new SqlDataAdapter(command);
+                            DataTable table = new DataTable();
+                            adapter.Fill(table);
+
+                            dg.DataSource = table;
+                        }
+                        return true;
+                    }
+                }
+                catch (Exception ex) { return false; }
+            } else
+            {
+                try
+                {
+                    DataTable localDataTable = new DataTable();
+
+                    using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT p.id_produ AS ID, p.nombre_produ AS Producto, " +
+                    "t.desc_tipoProd AS Tipo, p.detalle AS Detalle, p.precio AS Precio, p.stock AS Stock " +
+                   "FROM Producto p " +
+                   "INNER JOIN Tipo_produ t ON p.id_tipoProdu = t.id_tipoProdu " +
+                   "WHERE p.estado = 1", new SqlConnection(connectionString)))
+                    {
+                        localDataAdapter.Fill(localDataTable);
+                    }
+                    dg.DataSource = localDataTable;
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+        }
+        public bool CargarProductosActivos(DataGridView dataGridView)
+        {
+            return true;
+        }
         public List<DateTime> ObtenerFechasDisponibles()
         {
             List<DateTime> fechasDisponibles = new List<DateTime>();
@@ -169,7 +244,6 @@ namespace SaborAcielo.datos
             {
                 connection.Open();
 
-                // Define tu consulta SQL para obtener fechas únicas desde tu tabla de productos
                 string consultaSQL = "SELECT DISTINCT fecha FROM Producto";
 
                 using (SqlCommand command = new SqlCommand(consultaSQL, connection))
@@ -178,7 +252,6 @@ namespace SaborAcielo.datos
                     {
                         while (reader.Read())
                         {
-                            // Lee las fechas únicas y agrégalas a la lista
                             fechasDisponibles.Add(reader.GetDateTime(0));
                         }
                     }
@@ -228,6 +301,27 @@ namespace SaborAcielo.datos
             return tiposUnicos;
         }
 
+        public List<string> ObtenerDetalles()
+        {
+            List<string> nombresUnicos = new List<string>();
+
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                conexion.Open();
+                string consultaSQL = "SELECT DISTINCT detalle FROM Producto"; 
+                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
+                using (SqlDataReader reader = comando.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        nombresUnicos.Add(reader["detalle"].ToString());
+                    }
+                }
+            }
+
+            return nombresUnicos;
+        }
+
         public static void AgregarColumnasBoton(DataGridView dataGridView)
         {
             // Agregar las columnas "Editar" y "Eliminar" al final
@@ -257,12 +351,12 @@ namespace SaborAcielo.datos
                         if (e.ColumnIndex == dataGridView.Columns["Editar"].Index)
                         {
                             // Personalizar la imagen para la columna "Editar"
-                            image = Properties.Resources.editaricon; 
+                            image = Properties.Resources.editaricon;
                         }
                         else if (e.ColumnIndex == dataGridView.Columns["Eliminar"].Index)
                         {
                             // Personalizar la imagen para la columna "Eliminar"
-                            image = Properties.Resources.eliminaricon; 
+                            image = Properties.Resources.eliminaricon;
                         }
 
                         // Ajustar el tamaño de la imagen
@@ -280,6 +374,31 @@ namespace SaborAcielo.datos
                 }
             };
 
+        }
+
+        public static void botonAgregar(DataGridView dg)
+        {
+            DataGridViewButtonColumn columnaAgregar = new DataGridViewButtonColumn();
+            columnaAgregar.Name = "Agregar";
+            columnaAgregar.Text = "Agregar";
+            columnaAgregar.UseColumnTextForButtonValue = true;
+
+            bool columnaAgregada = false;
+            foreach (DataGridViewColumn columna in dg.Columns)
+            {
+                if (columna.Name == "Agregar" && columna.DisplayIndex != dg.ColumnCount - 1)
+                {
+                    columnaAgregada = true;
+                    break;
+                }
+            }
+            
+            if (!columnaAgregada)
+            {
+                dg.Columns.Add(columnaAgregar);
+                columnaAgregar.DisplayIndex = dg.ColumnCount - 1;
+            }
+            
         }
 
         //Método para actualizar producto
@@ -319,7 +438,7 @@ namespace SaborAcielo.datos
             }
         }
 
-        //Método para acceder a los registros del producto a editar
+        //Método para acceder a los registros del producto seleccionado
         public DataRow obtenerProducto(int idProducto)
         {
             DataTable dataTable = new DataTable();
@@ -416,173 +535,13 @@ namespace SaborAcielo.datos
                 return false;
             }
         }
-        
 
-        //métodos para filtrar productos
-
-        public List<Cproducto> BuscarPorTipo(string tipo)
+        //agregar producto en el carrito
+        public void agregarColumnasCarrito(DataGridView dg)
         {
-            List<Cproducto> productosEncontrados = new List<Cproducto>();
             
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "SELECT p.* FROM Producto p INNER JOIN Tipo_produ t ON t.id_tipoProdu = p.id_tipoProdu WHERE t.desc_tipoProd LIKE @tipo";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@tipo", "%" + tipo + "%");
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Cproducto producto = new Cproducto
-                        {
-                            Idtipo = Convert.ToInt32(reader["id_tipoProdu"]),
-                            Id = Convert.ToInt32(reader["id_produ"]),
-                            Precio = Convert.ToDecimal(reader["precio"]),
-                            Nombre = Convert.ToString(reader["nombre_produ"]),
-                            detalle = Convert.ToString(reader["detalle"])
-                            
-                        };
-
-                        productosEncontrados.Add(producto);
-                    }
-                }
-            }
-
-            return productosEncontrados;
         }
 
-        public List<Cproducto> BuscarPorNombre(string nombre)
-        {
-            List<Cproducto> productosEncontrados = new List<Cproducto>();
-
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "SELECT * FROM Producto WHERE nombre_produ LIKE @nombre";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Cproducto producto = new Cproducto
-                        {
-                            Idtipo = Convert.ToInt32(reader["id_tipoProdu"]),
-                            Id = Convert.ToInt32(reader["id_produ"]),
-                            Precio = Convert.ToDecimal(reader["precio"]),
-                            Nombre = Convert.ToString(reader["nombre_produ"]),
-                            detalle = Convert.ToString(reader["detalle"])
-
-                        };
-
-                        productosEncontrados.Add(producto);
-                    }
-                }
-            }
-
-            return productosEncontrados;
-        }
-
-        public List<Cproducto> BuscarPorDetalle(string det)
-        {
-            List<Cproducto> productosEncontrados = new List<Cproducto>();
-
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "SELECT * FROM Producto WHERE detalle LIKE @detalle";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@detalle", "%" + det + "%");
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Cproducto producto = new Cproducto
-                        {
-                            Idtipo = Convert.ToInt32(reader["id_tipoProdu"]),
-                            Id = Convert.ToInt32(reader["id_produ"]),
-                            Precio = Convert.ToDecimal(reader["precio"]),
-                            Nombre = Convert.ToString(reader["nombre_produ"]),
-                            detalle = Convert.ToString(reader["detalle"])
-
-                        };
-
-                        productosEncontrados.Add(producto);
-                    }
-                }
-            }
-            return productosEncontrados;
-        }
-        public static void botonAgregar(DataGridView dg)
-        {
-            DataGridViewButtonColumn columnaAgregar = new DataGridViewButtonColumn();
-            columnaAgregar.Name = "Agregar";
-            columnaAgregar.Text = "Agregar";
-            columnaAgregar.UseColumnTextForButtonValue = true;
-
-            // Asegúrate de que no se agregue más de una vez
-            bool columnaAgregada = false;
-            foreach (DataGridViewColumn columna in dg.Columns)
-            {
-                if (columna.Name == "Agregar")
-                {
-                    columnaAgregada = true;
-                    break;
-                }
-            }
-
-            if (!columnaAgregada)
-            {
-                dg.Columns.Add(columnaAgregar);
-            }
-        }
-
-        /*public void BuscarYMostrarDetalle(string detalle,DataGridView dt)
-        {
-            List<Cproducto> productosEncontrados = BuscarPorDetalle(detalle);
-
-            // Llena el DataGridView con los resultados
-            dt.DataSource = productosEncontrados;
-            if (productosEncontrados.Count > 0)
-            {
-                // Agrega la columna de botón solo si hay resultados
-                botonAgregar(dt);
-            }           
-        }*/
-        public void BuscarYMostrarNombre(string nombre, DataGridView dt)
-        {
-            List<Cproducto> productosEncontrados = BuscarPorNombre(nombre);
-
-            // Llena el DataGridView con los resultados
-            dt.DataSource = productosEncontrados;
-            if (productosEncontrados.Count > 0)
-            {
-                // Agrega la columna de botón solo si hay resultados
-                botonAgregar(dt);
-            }
-        }
-        public void BuscarYMostrarDetalle(string detalle, DataGridView dt)
-        {
-            List<Cproducto> productosEncontrados = BuscarPorDetalle(detalle);
-
-            // Llena el DataGridView con los resultados
-            dt.DataSource = productosEncontrados;
-            if (productosEncontrados.Count > 0)
-            {
-                // Agrega la columna de botón solo si hay resultados
-                botonAgregar(dt);
-            }
-        }
     }
 }
 
