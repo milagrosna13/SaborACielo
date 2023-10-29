@@ -27,8 +27,8 @@ namespace SaborAcielo
             agregarColumnasCarrito();
         }
 
-        public int venta = 2;
-        
+        public int venta;
+
 
         private Ccliente clienteDatos = new Ccliente();
         private Cventas cventas = new Cventas();
@@ -47,7 +47,13 @@ namespace SaborAcielo
         }
         private void limpiar()
         {
-
+            TBdnicliente.Clear();
+            nomCliente.Clear();
+            aCliente.Clear();
+            direCliente.Clear();
+            tCliente.Clear();
+            emCliente.Clear();
+            
         }
 
 
@@ -58,13 +64,29 @@ namespace SaborAcielo
                 DialogResult res = MessageBox.Show("Desea finalizar la compra?", "Confirmar compra", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == DialogResult.Yes)
                 {
+                    int ventaMax = cventas.obtenerMaxVenta();
+                    venta = ventaMax + 1;
                     decimal total = calcularTotal();
                     int empleado = 1234;
-                    bool ventaExitosa = cventas.agregarCabecera(Convert.ToInt32(TBdnicliente.Text), venta, empleado, DateTime.Now, total);
-                    cventas.agregarDetalle(venta, DGcarrito);
-                    
-                    //actualizarStock();
-                    //limpiarCarrito();
+                    if (total > 0)
+                    {
+                        bool ventaExitosa = cventas.agregarCabecera(Convert.ToInt32(TBdnicliente.Text), venta, empleado, DateTime.Now, total);
+                        bool detalleExitoso = cventas.agregarDetalle(venta, DGcarrito);
+
+                        if (ventaExitosa && detalleExitoso)
+                        {
+                            cproducto.actualizarStock(DGcarrito,DGprodu);
+                            cproducto.ObtenerProductosActivos(string.Empty, string.Empty, string.Empty, DGprodu);
+                            
+                            limpiar();
+                            DGcarrito.Rows.Clear();
+
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe ingresar la cantidad de producto a comprar", "Error", MessageBoxButtons.OK);
+                    }
                 }
             }
             else if(DGcarrito.Rows.Count < 0)
@@ -78,27 +100,19 @@ namespace SaborAcielo
         }
         private decimal calcularTotal()
         {
-            decimal suma = 0; // Suponiendo que la columna es de tipo decimal
+            decimal suma = 0; 
 
             foreach (DataGridViewRow row in DGcarrito.Rows)
             {
-                if (row.Cells["Precio"].Value != null)
+                if (row.Cells["Subtotal"].Value != null)
                 {
-                    suma += Convert.ToDecimal(row.Cells["Precio"].Value);
+                    suma += Convert.ToDecimal(row.Cells["Subtotal"].Value);
                 }
             }
             return suma;
 
         }
-        private void Fproducto_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
-            {
-                MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
-            }
-        }
+
 
         private void BcancelarCompra_Click(object sender, EventArgs e)
         {
@@ -130,7 +144,7 @@ namespace SaborAcielo
             if (dt.Rows != null && dt.Rows.Count > 0)
             {
                 DataRow row = dt.Rows[0];
-                nCliente.Text = row["nombre_cliente"].ToString();
+                nomCliente.Text = row["nombre_cliente"].ToString();
                 aCliente.Text = row["apellido_cliente"].ToString();
                 tCliente.Text = row["tel_cliente"].ToString();
                 direCliente.Text = row["dire_cliente"].ToString();
@@ -193,11 +207,6 @@ namespace SaborAcielo
             FiltrarProducto();
         }
 
-        private void CtipoProd_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void CBDetalle_SelectedIndexChanged(object sender, EventArgs e)
         {
             FiltrarProducto();
@@ -245,6 +254,7 @@ namespace SaborAcielo
 
         }
 
+        //agregar producto al carrito
         private void DGprodu_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == DGprodu.Columns["Agregar"].Index && e.RowIndex >= 0)
@@ -263,51 +273,62 @@ namespace SaborAcielo
 
         }
 
+        //quitar producto del carrito
         private void DGcarrito_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == DGprodu.Columns["Quitar"].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == DGcarrito.Columns["Quitar"].Index && e.RowIndex >= 0)
             {
-                DialogResult res = MessageBox.Show("Se eliminará el producto del carrito", "confirmar", MessageBoxButtons.YesNo);
+                DialogResult res = MessageBox.Show("Se eliminará el producto del carrito", "Confirmar", MessageBoxButtons.YesNo);
                 if (res == DialogResult.Yes)
                 {
-                    DGcarrito.Rows.RemoveAt(DGcarrito.SelectedRows[0].Index);
+                    DGcarrito.Rows.RemoveAt(e.RowIndex);
                 }
             }
 
         }
 
+        //definir la cantidad del produ a comprar
         private void DGcarrito_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewColumn columnaValorDeEntrada = DGcarrito.Columns["Cantidad"];
+            DataGridViewColumn columnaCantidad = DGcarrito.Columns["Cantidad"];
             DataGridViewColumn columnaPrecio = DGcarrito.Columns["Precio"];
             DataGridViewColumn columnaSubtotal = DGcarrito.Columns["Subtotal"];
 
-            if (e.ColumnIndex == columnaValorDeEntrada.Index)
+            if (e.ColumnIndex == columnaCantidad.Index)
             {
-                if (DGcarrito.Rows[e.RowIndex].Cells[columnaValorDeEntrada.Index].Value != null)
-                {
-                    double valorEntrada = Convert.ToDouble(DGcarrito.Rows[e.RowIndex].Cells[columnaValorDeEntrada.Index].Value);
-                    int stockDisponible = Convert.ToInt32(DGprodu.Rows[e.RowIndex].Cells["Stock"].Value);
+                int idProductoSeleccionado = Convert.ToInt32(DGcarrito.Rows[e.RowIndex].Cells["ID"].Value);
+                int stockDisponible = 0;
 
+                foreach (DataGridViewRow row in DGprodu.Rows)
+                {
+                    if (Convert.ToInt32(row.Cells["ID"].Value) == idProductoSeleccionado)
+                    {                        
+                        stockDisponible = Convert.ToInt32(row.Cells["Stock"].Value);
+                    }
+                }
+
+                if (Convert.ToInt32(DGcarrito.Rows[e.RowIndex].Cells[columnaCantidad.Index].Value) > 0)
+                {
+                    double valorEntrada = Convert.ToDouble(DGcarrito.Rows[e.RowIndex].Cells[columnaCantidad.Index].Value);
+                    
                     if (valorEntrada <= stockDisponible)
-                    {
-                        // Obtiene el valor de la otra columna que se utilizará en la multiplicación (por ejemplo, columna2)
+                    {                        
                         double valorPrecio = Convert.ToDouble(DGcarrito.Rows[e.RowIndex].Cells[columnaPrecio.Index].Value);
 
-                        // Realiza la multiplicación
                         double resultado = valorEntrada * valorPrecio;
 
-                        // Actualiza la celda de resultado
                         DGcarrito.Rows[e.RowIndex].Cells[columnaSubtotal.Index].Value = resultado;
+
                     } else
                     {
                         MessageBox.Show("Valor ingresado supera el stock disponible", "error", MessageBoxButtons.OK);
                     }
                 }
+            } else
+            {
+
             }
             
         }
-
-
     }
 }

@@ -14,6 +14,7 @@ using System.Collections;
 using System.IO;
 using System.Drawing;
 using System.Net;
+using static System.Net.WebRequestMethods;
 
 namespace SaborAcielo.datos
 {
@@ -97,7 +98,7 @@ namespace SaborAcielo.datos
             }
 
         }
-        //Metodo para buscar productos
+        //Metodo para buscar productos (vista: listar)
         public static DataTable ObtenerProductos(string nombre, string tipo, DateTime? fecha)
         {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
@@ -159,7 +160,6 @@ namespace SaborAcielo.datos
             {
                 try
                 {
-
                     using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
                     {
                         connection.Open();
@@ -207,7 +207,11 @@ namespace SaborAcielo.datos
                         return true;
                     }
                 }
-                catch (Exception ex) { return false; }
+                catch (Exception ex) {
+                    MessageBox.Show("Se produjo un error: " + ex.Message, "Error", MessageBoxButtons.OK);
+                    return false;
+                }
+
             } else
             {
                 try
@@ -232,10 +236,7 @@ namespace SaborAcielo.datos
                 }
             }
         }
-        public bool CargarProductosActivos(DataGridView dataGridView)
-        {
-            return true;
-        }
+
         public List<DateTime> ObtenerFechasDisponibles()
         {
             List<DateTime> fechasDisponibles = new List<DateTime>();
@@ -297,7 +298,6 @@ namespace SaborAcielo.datos
                     }
                 }
             }
-
             return tiposUnicos;
         }
 
@@ -536,7 +536,59 @@ namespace SaborAcielo.datos
             }
         }
 
-       
+       //actualizar el stock de productos despues de confirmar una compra
+        public bool actualizarStock(DataGridView carrito, DataGridView productos)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+                {
+                    connection.Open();
+                    string consulta = "UPDATE Producto SET stock = @nuevoStock WHERE id_produ = @idProducto";
+
+                    using (SqlCommand command = new SqlCommand(consulta, connection))
+                    {
+                        int nuevoStock;
+                        int actualStock = 0;
+                        foreach (DataGridViewRow fila in carrito.Rows)
+                        {
+                            command.Parameters.Clear();
+
+                            int id = Convert.ToInt32(fila.Cells["ID"].Value);
+
+                            foreach (DataGridViewRow row in productos.Rows)
+                            {
+                                if (Convert.ToInt32(row.Cells["ID"].Value) == id)
+                                {
+                                    actualStock = Convert.ToInt32(row.Cells["Stock"].Value);
+                                }
+                            }
+
+                            nuevoStock = actualStock - Convert.ToInt32(fila.Cells["Cantidad"].Value);
+
+                            command.Parameters.AddWithValue("@nuevoStock", nuevoStock);
+                            command.Parameters.AddWithValue("@idProducto", id);
+                            int rowsAffected = command.ExecuteNonQuery();
+
+                            if (nuevoStock == 0)
+                            {
+                                Cproducto.EliminarProducto(id);
+
+                            }
+                        }
+
+
+                        connection.Close();
+
+                        return true;
+                    }
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return false;
+            }
+        }
 
     }
 }
