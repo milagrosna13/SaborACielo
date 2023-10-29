@@ -25,6 +25,8 @@ namespace SaborAcielo
             InicializarComboBoxes();
 
             agregarColumnasCarrito();
+
+            inicializarDatos();
         }
 
         public int venta;
@@ -33,6 +35,7 @@ namespace SaborAcielo
         private Ccliente clienteDatos = new Ccliente();
         private Cventas cventas = new Cventas();
         private Cproducto cproducto = new Cproducto();
+        private Cusuarios cusuario = new Cusuarios();
 
         private void InicializarComboBoxes()
         {
@@ -44,6 +47,14 @@ namespace SaborAcielo
             CBproducto.Items.AddRange(nombres.ToArray());
             CtipoProd.Items.AddRange(tipos.ToArray());
             CBDetalle.Items.AddRange(detalles.ToArray());
+        }
+
+        private void inicializarDatos()
+        {
+            TBNem.Text = UserLogin.NombreUsuario;
+            string user = TBNem.Text;
+            TBDemp.Text = Convert.ToString(cusuario.ObtenerDniUsuario(user));
+            TBfactura.Text = Convert.ToString(cventas.obtenerMaxVenta() + 1);
         }
         private void limpiar()
         {
@@ -59,6 +70,7 @@ namespace SaborAcielo
 
         private void Bcompra_Click(object sender, EventArgs e)
         {
+            string user = UserLogin.NombreUsuario;
             if (DGcarrito.Rows.Count > 0 && !string.IsNullOrEmpty(TBdnicliente.Text))
             {
                 DialogResult res = MessageBox.Show("Desea finalizar la compra?", "Confirmar compra", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -67,7 +79,8 @@ namespace SaborAcielo
                     int ventaMax = cventas.obtenerMaxVenta();
                     venta = ventaMax + 1;
                     decimal total = calcularTotal();
-                    int empleado = 1234;
+                    int empleado = cusuario.ObtenerDniUsuario(user);
+                                        
                     if (total > 0)
                     {
                         bool ventaExitosa = cventas.agregarCabecera(Convert.ToInt32(TBdnicliente.Text), venta, empleado, DateTime.Now, total);
@@ -268,7 +281,7 @@ namespace SaborAcielo
                     DGcarrito.Rows.Add(datosProdu["id_produ"], datosProdu["nombre_produ"], datosProdu["id_tipoProdu"], datosProdu["detalle"], datosProdu["precio"]);
 
                 }
-
+                
             }
 
         }
@@ -319,6 +332,8 @@ namespace SaborAcielo
 
                         DGcarrito.Rows[e.RowIndex].Cells[columnaSubtotal.Index].Value = resultado;
 
+                        TBfactura.Text = "$ " + calcularTotal();
+
                     } else
                     {
                         MessageBox.Show("Valor ingresado supera el stock disponible", "error", MessageBoxButtons.OK);
@@ -329,6 +344,32 @@ namespace SaborAcielo
 
             }
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            limpiar();
+        }
+
+        private void DGcarrito_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (DGcarrito.CurrentCell.ColumnIndex == DGcarrito.Columns["Cantidad"].Index)
+            {
+                System.Windows.Forms.TextBox tb = e.Control as System.Windows.Forms.TextBox;
+                if (tb != null)
+                {
+                    // Agrega un controlador de eventos KeyPress
+                    tb.KeyPress += new KeyPressEventHandler(cantidad_KeyPress);
+                }
+            }
+        }
+        private void cantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permite solo caracteres numéricos
+            if (!Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
