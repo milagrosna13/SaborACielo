@@ -14,6 +14,7 @@ namespace SaborAcielo.datos
 {
     internal class Cusuarios
     {
+        
         public static int AutenticarUsuario(string nombreUsuario, string contrasenia)
         {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
@@ -78,9 +79,41 @@ namespace SaborAcielo.datos
         }
 
         
-       
+        public static string ObtenerUser()
+        {
+            return UserLogin.NombreUsuario;
+        }
         
+        public int ObtenerDniUsuario(string user)
+        {
+            int dni = -1;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+                {
+                    connection.Open();
 
+                    string consulta = "SELECT dni_empleado FROM Usuario WHERE nom_usuario = @user";
+                    using (SqlCommand comando = new SqlCommand(consulta, connection))
+                    {
+                        comando.Parameters.AddWithValue("@user", user);
+                        using (SqlDataReader reader = comando.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                dni = Convert.ToInt32( reader["dni_empleado"]);
+                            }
+                        }
+                    }
+                }
+                return dni;
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Error: "+ex.Message);
+                return dni;
+            }
+            
+        }
         
 
 

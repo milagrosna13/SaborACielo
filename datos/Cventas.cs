@@ -80,6 +80,35 @@ namespace SaborAcielo.datos
             return resultado;
         }
 
+        public int obtenerMaxVenta()
+        {
+            try
+            {
+                int ventaActual = -1;
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+                {
+                    connection.Open();
+
+                    string consulta = "SELECT MAX(id_venta) FROM Venta_cabecera";
+                    using (SqlCommand comando = new SqlCommand(consulta, connection))
+                    {
+                        object resultado = comando.ExecuteScalar();
+
+                        if (resultado != null && resultado != DBNull.Value)
+                        {
+                            ventaActual = Convert.ToInt32(resultado);
+                        }
+                    }
+                    connection.Close();
+                }
+                return ventaActual;
+            } catch(Exception ex)
+            {
+                MessageBox.Show(""+ex.Message);
+                return -1;
+            }
+        }
+
         public bool agregarCabecera(int dni_c, int nro, int empl, DateTime fecha, decimal total)
         {
             try
@@ -119,36 +148,40 @@ namespace SaborAcielo.datos
         {
             try
             {
-                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString);
-                string consultaInsertar = "INSERT INTO Venta_detalle (id_venta, id_produ, cantidad, precio_total) VALUES (@idventa, @idprodu, @cantidad, @total";
-                foreach (DataGridViewRow fila in dg.Rows)
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
                 {
-                        // Obtiene los valores de las celdas del DataGridView
-                        //int idventa = 
+                    connection.Open();
+                    string consultaInsertar = "INSERT INTO Venta_detalle (id_venta, id_produ, cantidad, subtotal) VALUES (@idventa, @idprodu, @cantidad, @total)";
+
+                    foreach (DataGridViewRow fila in dg.Rows)
+                    {
                         int idProdu = Convert.ToInt32(fila.Cells["ID"].Value);
                         int cantidad = Convert.ToInt32(fila.Cells["Cantidad"].Value);
                         decimal total = Convert.ToDecimal(fila.Cells["Subtotal"].Value);
 
-                        // Crea y ejecuta la consulta SQL
-                        using (SqlCommand comando = new SqlCommand(consultaInsertar, connection))
+                        if (idProdu > 0)
                         {
-                            comando.Parameters.AddWithValue("@idventa", venta);
-                            comando.Parameters.AddWithValue("@idprodu", idProdu);
-                            comando.Parameters.AddWithValue("@cantidad", cantidad);
-                            comando.Parameters.AddWithValue("@total", total);
+                            using (SqlCommand comando = new SqlCommand(consultaInsertar, connection))
+                            {
+                                comando.Parameters.AddWithValue("@idventa", venta);
+                                comando.Parameters.AddWithValue("@idprodu", idProdu);
+                                comando.Parameters.AddWithValue("@cantidad", cantidad);
+                                comando.Parameters.AddWithValue("@total", total);
 
-                            comando.ExecuteNonQuery();
+                                comando.ExecuteNonQuery();
+                            }
                         }
-                    
+                    }
+
                 }
-
-
                 return true;
             } catch (Exception ex)
             {
+                MessageBox.Show("Se produjo un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
+
     }
 }
 

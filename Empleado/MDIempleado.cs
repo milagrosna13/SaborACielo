@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaborAcielo.datos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,10 @@ namespace SaborAcielo
         public MDIempleado()
         {
             InitializeComponent();
+            Lemp.Text = UserLogin.NombreUsuario;
+        }
+        private void MDIempleado_Load(object sender, EventArgs e)
+        {
         }
 
         private void esconderSubMenu()
@@ -101,5 +106,7 @@ namespace SaborAcielo
             Finicio loginForm = new Finicio();
             loginForm.Show();
         }
+
+        
     }
 }

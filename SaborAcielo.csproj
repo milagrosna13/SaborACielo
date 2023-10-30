@@ -79,6 +79,7 @@
     <Compile Include="datos\Creporte.cs" />
     <Compile Include="datos\Cusuarios.cs" />
     <Compile Include="datos\Cventas.cs" />
+    <Compile Include="datos\UserLogin.cs" />
     <Compile Include="FagregarCliente.cs">
       <SubType>Form</SubType>
     </Compile>

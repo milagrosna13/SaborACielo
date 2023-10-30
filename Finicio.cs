@@ -37,6 +37,9 @@ namespace SaborAcielo
 
             if (tipoUsuario != -1)
             {
+                UserLogin.NombreUsuario = nombreUsuario;
+                UserLogin.TipoUsuario = tipoUsuario;
+
                 switch (tipoUsuario)
                 {
                     case 1:
@@ -69,6 +72,7 @@ namespace SaborAcielo
             {
                 MessageBox.Show("Nombre de usuario o contraseña incorrectos.");
             }
+
 
         }
     }
