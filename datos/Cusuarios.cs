@@ -21,8 +21,10 @@ namespace SaborAcielo.datos
                 connection.Open();
 
                 // Realiza la consulta SQL para buscar el usuario en la base de datos
-                string consulta = "SELECT contrasenia, salt, id_tipoUsuario FROM Usuario WHERE nom_usuario = @nombreUsuario";
-
+                string consulta = "SELECT U.contrasenia, U.salt, U.id_tipoUsuario, E.estado " +
+                          "FROM Usuario U " +
+                          "INNER JOIN Empleado E ON U.dni_empleado = E.dni_empleado " +
+                          "WHERE U.nom_usuario = @nombreUsuario";
                 using (SqlCommand command = new SqlCommand(consulta, connection))
                 {
                     command.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
@@ -37,8 +39,12 @@ namespace SaborAcielo.datos
 
                             if (ByteArrayEquals(hashAlmacenado, AplicarHashAContraseña(contraseniaBytes, salt)))
                             {
-                                // Las credenciales son válidas, devuelve el tipo de usuario
-                                return (int)reader["id_tipoUsuario"];
+                                bool estado = (bool)reader["estado"];
+                                if (estado)
+                                {
+                                    // Las credenciales son válidas y el empleado no está desactivado (estado = 1)
+                                    return (int)reader["id_tipoUsuario"];
+                                }
                             }
                         }
                     }
