@@ -55,6 +55,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PchildAdmin = new System.Windows.Forms.Panel();
+            this.btnUsuarios = new System.Windows.Forms.Button();
             this.PmenuLateral.SuspendLayout();
             this.panel3.SuspendLayout();
             this.PsubmClientes.SuspendLayout();
@@ -91,7 +92,7 @@
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.button4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 579);
+            this.panel3.Location = new System.Drawing.Point(0, 604);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(226, 53);
             this.panel3.TabIndex = 10;
@@ -131,7 +132,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.RosyBrown;
-            this.button1.Location = new System.Drawing.Point(0, 541);
+            this.button1.Location = new System.Drawing.Point(0, 566);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(226, 38);
             this.button1.TabIndex = 9;
@@ -142,7 +143,7 @@
             // 
             this.PsubmClientes.Controls.Add(this.BlistarClientes);
             this.PsubmClientes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PsubmClientes.Location = new System.Drawing.Point(0, 507);
+            this.PsubmClientes.Location = new System.Drawing.Point(0, 532);
             this.PsubmClientes.Name = "PsubmClientes";
             this.PsubmClientes.Size = new System.Drawing.Size(226, 34);
             this.PsubmClientes.TabIndex = 8;
@@ -170,7 +171,7 @@
             this.Bclientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Bclientes.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bclientes.ForeColor = System.Drawing.Color.RosyBrown;
-            this.Bclientes.Location = new System.Drawing.Point(0, 469);
+            this.Bclientes.Location = new System.Drawing.Point(0, 494);
             this.Bclientes.Name = "Bclientes";
             this.Bclientes.Size = new System.Drawing.Size(226, 38);
             this.Bclientes.TabIndex = 7;
@@ -182,7 +183,7 @@
             // 
             this.PsubmVentas.Controls.Add(this.BlistarVentas);
             this.PsubmVentas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PsubmVentas.Location = new System.Drawing.Point(0, 435);
+            this.PsubmVentas.Location = new System.Drawing.Point(0, 460);
             this.PsubmVentas.Name = "PsubmVentas";
             this.PsubmVentas.Size = new System.Drawing.Size(226, 34);
             this.PsubmVentas.TabIndex = 6;
@@ -210,7 +211,7 @@
             this.Bventas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Bventas.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bventas.ForeColor = System.Drawing.Color.RosyBrown;
-            this.Bventas.Location = new System.Drawing.Point(0, 397);
+            this.Bventas.Location = new System.Drawing.Point(0, 422);
             this.Bventas.Name = "Bventas";
             this.Bventas.Size = new System.Drawing.Size(226, 38);
             this.Bventas.TabIndex = 5;
@@ -223,7 +224,7 @@
             this.PsubmProductos.Controls.Add(this.BagregarProdu);
             this.PsubmProductos.Controls.Add(this.BlistarProductos);
             this.PsubmProductos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PsubmProductos.Location = new System.Drawing.Point(0, 368);
+            this.PsubmProductos.Location = new System.Drawing.Point(0, 393);
             this.PsubmProductos.Name = "PsubmProductos";
             this.PsubmProductos.Size = new System.Drawing.Size(226, 29);
             this.PsubmProductos.TabIndex = 4;
@@ -265,7 +266,7 @@
             this.Bproductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Bproductos.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bproductos.ForeColor = System.Drawing.Color.RosyBrown;
-            this.Bproductos.Location = new System.Drawing.Point(0, 337);
+            this.Bproductos.Location = new System.Drawing.Point(0, 362);
             this.Bproductos.Name = "Bproductos";
             this.Bproductos.Size = new System.Drawing.Size(226, 31);
             this.Bproductos.TabIndex = 3;
@@ -276,12 +277,13 @@
             // PsubmUsuarios
             // 
             this.PsubmUsuarios.BackColor = System.Drawing.Color.Transparent;
+            this.PsubmUsuarios.Controls.Add(this.btnUsuarios);
             this.PsubmUsuarios.Controls.Add(this.BagregarUsuarios);
             this.PsubmUsuarios.Controls.Add(this.BlistaUsuarios);
             this.PsubmUsuarios.Dock = System.Windows.Forms.DockStyle.Top;
             this.PsubmUsuarios.Location = new System.Drawing.Point(0, 275);
             this.PsubmUsuarios.Name = "PsubmUsuarios";
-            this.PsubmUsuarios.Size = new System.Drawing.Size(226, 62);
+            this.PsubmUsuarios.Size = new System.Drawing.Size(226, 87);
             this.PsubmUsuarios.TabIndex = 2;
             this.PsubmUsuarios.Visible = false;
             // 
@@ -401,6 +403,22 @@
             this.PchildAdmin.Size = new System.Drawing.Size(517, 487);
             this.PchildAdmin.TabIndex = 6;
             // 
+            // btnUsuarios
+            // 
+            this.btnUsuarios.BackColor = System.Drawing.Color.Transparent;
+            this.btnUsuarios.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUsuarios.FlatAppearance.BorderSize = 0;
+            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuarios.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuarios.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnUsuarios.Location = new System.Drawing.Point(0, 54);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(226, 27);
+            this.btnUsuarios.TabIndex = 2;
+            this.btnUsuarios.Text = "Listar usuarios";
+            this.btnUsuarios.UseVisualStyleBackColor = false;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
+            // 
             // MDIadmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -451,6 +469,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnUsuarios;
     }
 }
 

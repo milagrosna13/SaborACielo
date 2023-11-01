@@ -153,7 +153,7 @@ namespace SaborAcielo.datos
             }
         }
 
-        //Productos disponibles para compra: Estado = ACTIVO
+        //Productos disponibles para compra: Estado = ACTIVO y STOCK > 0
         public bool ObtenerProductosActivos(string nombre, string tipo, string detalle, DataGridView dg)
         {
             if (!string.IsNullOrEmpty(nombre) || !string.IsNullOrEmpty(tipo) || !string.IsNullOrEmpty(detalle))
@@ -168,7 +168,7 @@ namespace SaborAcielo.datos
                             "p.detalle AS Detalle, p.precio AS Precio, p.stock AS Stock " +
                             "FROM Producto p " +
                             "INNER JOIN Tipo_produ t ON p.id_tipoProdu = t.id_tipoProdu " +
-                            "WHERE p.estado = 1 AND 1=1";
+                            "WHERE p.estado = 1 AND p.stock > 0 AND 1=1";
 
                         if (!string.IsNullOrEmpty(nombre))
                         {
@@ -222,7 +222,7 @@ namespace SaborAcielo.datos
                     "t.desc_tipoProd AS Tipo, p.detalle AS Detalle, p.precio AS Precio, p.stock AS Stock " +
                    "FROM Producto p " +
                    "INNER JOIN Tipo_produ t ON p.id_tipoProdu = t.id_tipoProdu " +
-                   "WHERE p.estado = 1", new SqlConnection(connectionString)))
+                   "WHERE p.estado = 1 AND p.stock > 0", new SqlConnection(connectionString)))
                     {
                         localDataAdapter.Fill(localDataTable);
                     }
@@ -570,11 +570,7 @@ namespace SaborAcielo.datos
                             command.Parameters.AddWithValue("@idProducto", id);
                             int rowsAffected = command.ExecuteNonQuery();
 
-                            if (nuevoStock == 0)
-                            {
-                                Cproducto.EliminarProducto(id);
-
-                            }
+                           
                         }
 
 

@@ -274,31 +274,7 @@ namespace SaborAcielo.datos
             }
         }
 
-        public bool CargarUsuarios(DataGridView dataGridView)
-        {
-            try
-            {
-                // Crear un DataTable local para almacenar los datos de usuarios
-                DataTable localDataTable = new DataTable();
-
-                // Configurar el SqlDataAdapter con la consulta SQL para usuarios
-                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT dni_empleado, nom_usuario, id_tipoUsuario FROM Usuario", new SqlConnection(connectionString)))
-                {
-                    // Llenar el DataTable con los datos de usuarios
-                    localDataAdapter.Fill(localDataTable);
-                }
-
-                // Asignar el DataTable como origen de datos del DataGridView
-                dataGridView.DataSource = localDataTable;
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocurrió un error al cargar los datos de usuarios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
+      
 
         public bool EditarEmpleado(int dniEmpleado, string nombre, string apellido, string correo, int telefono, string direccion, DateTime fechaIngreso, byte[] fotoEmp)
         {
