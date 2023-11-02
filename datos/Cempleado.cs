@@ -11,6 +11,7 @@ using System.IO;
 using System.Drawing;
 using System.Security.Cryptography;
 using System.Data.SqlTypes;
+using System.Net;
 
 namespace SaborAcielo.datos
 {
@@ -273,107 +274,122 @@ namespace SaborAcielo.datos
             }
         }
 
-        public bool CargarUsuarios(DataGridView dataGridView)
+      
+
+        public bool EditarEmpleado(int dniEmpleado, string nombre, string apellido, string correo, int telefono, string direccion, DateTime fechaIngreso, byte[] fotoEmp)
         {
             try
             {
-                // Crear un DataTable local para almacenar los datos de usuarios
-                DataTable localDataTable = new DataTable();
-
-                // Configurar el SqlDataAdapter con la consulta SQL para usuarios
-                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT dni_empleado, nom_usuario, id_tipoUsuario FROM Usuario", new SqlConnection(connectionString)))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    // Llenar el DataTable con los datos de usuarios
-                    localDataAdapter.Fill(localDataTable);
+                    connection.Open();
+                    string consultaSQLEmpleado = "UPDATE Empleado SET nombre = @Nombre, apellido = @Apellido, mail = @Mail, telefono = @Telefono, direccion = @Direccion, fecha_ingreso = @FechaIngreso, foto_emp = @FotoEmpleado WHERE dni_empleado = @DNI";
+
+                    using (SqlCommand comandoEmpleado = new SqlCommand(consultaSQLEmpleado, connection))
+                    {
+                        comandoEmpleado.Parameters.AddWithValue("@Nombre", nombre);
+                        comandoEmpleado.Parameters.AddWithValue("@Apellido", apellido);
+                        comandoEmpleado.Parameters.AddWithValue("@Mail", correo);
+                        comandoEmpleado.Parameters.AddWithValue("@Telefono", telefono);
+                        comandoEmpleado.Parameters.AddWithValue("@Direccion", direccion);
+                        comandoEmpleado.Parameters.AddWithValue("@FechaIngreso", fechaIngreso);
+                        comandoEmpleado.Parameters.AddWithValue("@FotoEmpleado", fotoEmp);
+                        comandoEmpleado.Parameters.AddWithValue("@DNI", dniEmpleado);
+
+                        comandoEmpleado.ExecuteNonQuery();
+                    }
                 }
 
-                // Asignar el DataTable como origen de datos del DataGridView
-                dataGridView.DataSource = localDataTable;
-
-                return true;
+                return true; // Se realizó la actualización correctamente
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error al cargar los datos de usuarios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                // Manejo de excepciones
+                // ...
+                return false; // Hubo un error al realizar la actualización
             }
         }
-        public static bool EditarEmpleado(int dniEmpleado, string nombre, string apellido, string correo, int telefono, DateTime fechaIngreso, byte[] fotoEmp, string nombreUsuario, string contrasenia, int idTipoUsuario, bool cambiarContrasenia)
+
+        public bool EditarUsuario(int dniEmpleado, string nombreUsuario, int idTipoUsuario, bool cambiarContrasenia, byte[] nuevaContrasenia)
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
+                    string consultaSQLUsuario = "UPDATE Usuario SET nom_usuario = @NombreUsuario, id_tipoUsuario = @IdTipoUsuario";
 
-                    // Verificar si el empleado ya tiene un usuario
-                    bool tieneUsuario = TieneUsuario(dniEmpleado);
-
-                    // Actualizar los datos del empleado
-                    string queryEmpleado = "UPDATE Empleado SET nombre = @nombre, apellido = @apellido, mail = @correo, telefono = @telefono, fecha_ingreso = @fechaIngreso, foto_emp = @fotoEmp WHERE dni_empleado = @dni";
-                    SqlCommand commandEmpleado = new SqlCommand(queryEmpleado, connection);
-                    commandEmpleado.Parameters.AddWithValue("@nombre", nombre);
-                    commandEmpleado.Parameters.AddWithValue("@apellido", apellido);
-                    commandEmpleado.Parameters.AddWithValue("@correo", correo);
-                    commandEmpleado.Parameters.AddWithValue("@telefono", telefono);
-                    commandEmpleado.Parameters.AddWithValue("@fechaIngreso", fechaIngreso);
-                    commandEmpleado.Parameters.AddWithValue("@fotoEmp", fotoEmp);
-                    commandEmpleado.Parameters.AddWithValue("@dni", dniEmpleado);
-                    commandEmpleado.ExecuteNonQuery();
-
-                    /* Si el empleado tiene usuario
-                    if (tieneUsuario)
+                    if (cambiarContrasenia)
                     {
-                        // Actualiza los datos del usuario
-                        string queryUsuario;
-                        SqlCommand commandUsuario;
-                        if (cambiarContrasenia)
+                        byte[] nuevoSalt = GenerarSaltAleatorio(16); // Generar un nuevo salt
+                        byte[] nuevoHash = AplicarHashAContraseña(Encoding.UTF8.GetString(nuevaContrasenia), nuevoSalt); // Generar un nuevo hash
+
+                        consultaSQLUsuario += ", contrasenia = @Contrasenia, salt = @Salt";
+
+                        using (SqlCommand comando = new SqlCommand(consultaSQLUsuario + " WHERE dni_empleado = @DNI", connection))
                         {
-                            queryUsuario = "UPDATE Usuario SET nom_usuario = @nombreUsuario, contrasenia = @contrasenia, id_tipoUsuario = @idTipoUsuario WHERE dni_empleado = @dniEmpleado";
+                            comando.Parameters.AddWithValue("@Contrasenia", nuevoHash);
+                            comando.Parameters.AddWithValue("@Salt", nuevoSalt); // Agrega el salt
+                            comando.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
+                            comando.Parameters.AddWithValue("@IdTipoUsuario", idTipoUsuario);
+                            comando.Parameters.AddWithValue("@DNI", dniEmpleado);
+
+                            comando.ExecuteNonQuery();
                         }
-                        else
-                        {
-                            queryUsuario = "UPDATE Usuario SET nom_usuario = @nombreUsuario, id_tipoUsuario = @idTipoUsuario WHERE dni_empleado = @dniEmpleado";
-                        }
-                        commandUsuario = new SqlCommand(queryUsuario, connection);
-                        commandUsuario.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
-                        if (cambiarContrasenia)
-                        {
-                            commandUsuario.Parameters.AddWithValue("@contrasenia", contrasenia);
-                        }
-                        commandUsuario.Parameters.AddWithValue("@idTipoUsuario", idTipoUsuario);
-                        commandUsuario.Parameters.AddWithValue("@dniEmpleado", dniEmpleado);
-                        commandUsuario.ExecuteNonQuery();
                     }
                     else
                     {
-                        // El empleado no tiene usuario, crea uno nuevo
-                        CrearUsuario(dniEmpleado, nombreUsuario, contrasenia, idTipoUsuario);
-                    }*/
+                        // No se cambió la contraseña
+                        using (SqlCommand comando = new SqlCommand(consultaSQLUsuario + " WHERE dni_empleado = @DNI", connection))
+                        {
+                            comando.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
+                            comando.Parameters.AddWithValue("@IdTipoUsuario", idTipoUsuario);
+                            comando.Parameters.AddWithValue("@DNI", dniEmpleado);
 
-                    connection.Close();
+                            comando.ExecuteNonQuery();
+                        }
+                    }
                 }
-                return true;
+
+                return true; // Se realizó la actualización correctamente
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ocurrió un error: " + ex.Message);
-                MessageBox.Show("Error en la actualización de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                // Manejo de excepciones
+                // ...
+                return false; // Hubo un error al realizar la actualización
             }
         }
 
-        public static bool TieneUsuario(int dniEmpleado)
+
+
+
+
+
+
+        public bool EmpleadoTieneUsuario(int dniEmpleado)
         {
-            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+            try
             {
-                connection.Open();
-                // Verifica si el empleado ya tiene un usuario
-                string query = "SELECT COUNT(*) FROM Usuario WHERE dni_empleado = @dni_empleado";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@dni_empleado", dniEmpleado);
-                int count = Convert.ToInt32(command.ExecuteScalar());
-                return count > 0;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string consultaSQL = "SELECT COUNT(*) FROM Usuario WHERE dni_empleado = @DNI";
+
+                    using (SqlCommand comando = new SqlCommand(consultaSQL, connection))
+                    {
+                        comando.Parameters.AddWithValue("@DNI", dniEmpleado);
+                        int cantidadUsuarios = (int)comando.ExecuteScalar();
+
+                        return cantidadUsuarios > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                // ...
+                return false; // En caso de error, devuelve falso por precaución
             }
         }
 
@@ -549,6 +565,101 @@ namespace SaborAcielo.datos
 
             return fechasDisponibles;
         }
+        public static DataTable ObtenerEmpleados(string nombre, string apellido, int dni, DateTime? fecha)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+            {
+                connection.Open();
+
+                string consultaSQL = "SELECT e.dni_empleado AS DNI, e.nombre AS Nombre, " +
+                    "e.apellido AS Apellido, e.mail AS Email, e.telefono As Teléfono, e.direccion as Dirección, e.fecha_ingreso AS 'Fecha de ingreso', e.foto_emp as Foto, " +
+                    "CASE WHEN e.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado, " +
+                    "COALESCE(Tipo_usuario.desc_tipoUs, 'Usuario no asignado') as 'Tipo de Usuario' " +
+                    "FROM Empleado e " +
+                    "LEFT JOIN Usuario ON e.dni_empleado = Usuario.dni_empleado " +
+                    "LEFT JOIN Tipo_usuario ON Usuario.id_tipoUsuario = Tipo_usuario.id_tipoUsuario " +
+                    "WHERE 1 = 1"; // Inicializa un "true" lógico
+
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    consultaSQL += " AND e.nombre LIKE @nombre";
+                }
+
+                if (!string.IsNullOrEmpty(apellido))
+                {
+                    consultaSQL += " AND e.apellido LIKE @apellido";
+                }
+
+                if (dni !=0)
+                {
+                    consultaSQL += " AND e.dni_empleado LIKE @dni";
+                }
+
+                if (fecha != null)
+                {
+                    consultaSQL += " AND CONVERT(date, e.fecha_ingreso) = CONVERT(date, @fecha)";
+                }
+
+                using (SqlCommand command = new SqlCommand(consultaSQL, connection))
+                {
+                    if (!string.IsNullOrEmpty(nombre))
+                    {
+                        command.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
+                    }
+
+                    if (!string.IsNullOrEmpty(apellido))
+                    {
+                        command.Parameters.AddWithValue("@apellido", "%" + apellido + "%");
+                    }
+
+                    if (dni !=0)
+                    {
+                        command.Parameters.AddWithValue("@dni", "%" + dni + "%");
+                    }
+
+                    if (fecha != null)
+                    {
+                        command.Parameters.AddWithValue("@fecha", fecha.Value);
+                    }
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
+        }
+
+
+
+
+
+        public static bool EliminarEmpleado(int idemp)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = "UPDATE Empleado SET estado = 0 WHERE dni_empleado = @idemp";
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    command.Parameters.AddWithValue("@idemp", idemp);
+
+                    command.ExecuteNonQuery();
+
+                    connection.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrió un error: " + ex.Message);
+                return false;
+            }
+        }
+
 
     }
 }

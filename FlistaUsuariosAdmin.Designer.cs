@@ -32,7 +32,7 @@
             this.GBfiltroUsuarios = new System.Windows.Forms.GroupBox();
             this.LBdni = new System.Windows.Forms.ListBox();
             this.TBoxDni = new System.Windows.Forms.TextBox();
-            this.CBoxNombre = new System.Windows.Forms.ComboBox();
+            this.ComboBoxNombre = new System.Windows.Forms.ComboBox();
             this.CBoxApellido = new System.Windows.Forms.ComboBox();
             this.CBnombre = new System.Windows.Forms.CheckBox();
             this.CBapellido = new System.Windows.Forms.CheckBox();
@@ -42,6 +42,7 @@
             this.BbuscarUsuario = new System.Windows.Forms.Button();
             this.CBtodosUsuarios = new System.Windows.Forms.CheckBox();
             this.PagregarProdu = new System.Windows.Forms.Panel();
+            this.CBeditarUs = new System.Windows.Forms.CheckBox();
             this.CBeditarContrasenia = new System.Windows.Forms.CheckBox();
             this.CBtipoEditar = new System.Windows.Forms.ComboBox();
             this.BcancelarEditar = new System.Windows.Forms.Button();
@@ -83,7 +84,7 @@
             this.GBfiltroUsuarios.BackColor = System.Drawing.Color.Transparent;
             this.GBfiltroUsuarios.Controls.Add(this.LBdni);
             this.GBfiltroUsuarios.Controls.Add(this.TBoxDni);
-            this.GBfiltroUsuarios.Controls.Add(this.CBoxNombre);
+            this.GBfiltroUsuarios.Controls.Add(this.ComboBoxNombre);
             this.GBfiltroUsuarios.Controls.Add(this.CBoxApellido);
             this.GBfiltroUsuarios.Controls.Add(this.CBnombre);
             this.GBfiltroUsuarios.Controls.Add(this.CBapellido);
@@ -120,22 +121,22 @@
             this.TBoxDni.TabIndex = 33;
             this.TBoxDni.TextChanged += new System.EventHandler(this.TBoxDni_TextChanged);
             // 
-            // CBoxNombre
+            // ComboBoxNombre
             // 
-            this.CBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.CBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.CBoxNombre.FormattingEnabled = true;
-            this.CBoxNombre.Location = new System.Drawing.Point(121, 101);
-            this.CBoxNombre.Name = "CBoxNombre";
-            this.CBoxNombre.Size = new System.Drawing.Size(121, 27);
-            this.CBoxNombre.TabIndex = 32;
+            this.ComboBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ComboBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.ComboBoxNombre.FormattingEnabled = true;
+            this.ComboBoxNombre.Location = new System.Drawing.Point(120, 128);
+            this.ComboBoxNombre.Name = "ComboBoxNombre";
+            this.ComboBoxNombre.Size = new System.Drawing.Size(121, 27);
+            this.ComboBoxNombre.TabIndex = 32;
             // 
             // CBoxApellido
             // 
-            this.CBoxApellido.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CBoxApellido.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CBoxApellido.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.CBoxApellido.FormattingEnabled = true;
-            this.CBoxApellido.Location = new System.Drawing.Point(121, 138);
+            this.CBoxApellido.Location = new System.Drawing.Point(120, 161);
             this.CBoxApellido.Name = "CBoxApellido";
             this.CBoxApellido.Size = new System.Drawing.Size(121, 27);
             this.CBoxApellido.TabIndex = 31;
@@ -196,15 +197,16 @@
             this.BbuscarUsuario.TabIndex = 9;
             this.BbuscarUsuario.Text = "Buscar";
             this.BbuscarUsuario.UseVisualStyleBackColor = true;
+            this.BbuscarUsuario.Click += new System.EventHandler(this.BbuscarUsuario_Click);
             // 
             // CBtodosUsuarios
             // 
             this.CBtodosUsuarios.AutoSize = true;
             this.CBtodosUsuarios.Location = new System.Drawing.Point(50, 26);
             this.CBtodosUsuarios.Name = "CBtodosUsuarios";
-            this.CBtodosUsuarios.Size = new System.Drawing.Size(146, 23);
+            this.CBtodosUsuarios.Size = new System.Drawing.Size(160, 23);
             this.CBtodosUsuarios.TabIndex = 2;
-            this.CBtodosUsuarios.Text = "Todos los usuarios";
+            this.CBtodosUsuarios.Text = "Todos los empleados";
             this.CBtodosUsuarios.UseVisualStyleBackColor = true;
             // 
             // PagregarProdu
@@ -213,6 +215,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PagregarProdu.AutoScroll = true;
             this.PagregarProdu.BackColor = System.Drawing.Color.RosyBrown;
+            this.PagregarProdu.Controls.Add(this.CBeditarUs);
             this.PagregarProdu.Controls.Add(this.CBeditarContrasenia);
             this.PagregarProdu.Controls.Add(this.CBtipoEditar);
             this.PagregarProdu.Controls.Add(this.BcancelarEditar);
@@ -249,6 +252,18 @@
             this.PagregarProdu.Size = new System.Drawing.Size(780, 318);
             this.PagregarProdu.TabIndex = 8;
             // 
+            // CBeditarUs
+            // 
+            this.CBeditarUs.AutoSize = true;
+            this.CBeditarUs.Font = new System.Drawing.Font("Sans Serif Collection", 7.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CBeditarUs.Location = new System.Drawing.Point(508, 42);
+            this.CBeditarUs.Name = "CBeditarUs";
+            this.CBeditarUs.Size = new System.Drawing.Size(157, 31);
+            this.CBeditarUs.TabIndex = 38;
+            this.CBeditarUs.Text = "Editar Usuario";
+            this.CBeditarUs.UseVisualStyleBackColor = true;
+            this.CBeditarUs.CheckedChanged += new System.EventHandler(this.CBeditarUs_CheckedChanged);
+            // 
             // CBeditarContrasenia
             // 
             this.CBeditarContrasenia.AutoSize = true;
@@ -259,10 +274,12 @@
             this.CBeditarContrasenia.TabIndex = 37;
             this.CBeditarContrasenia.Text = "Editar Contraseña";
             this.CBeditarContrasenia.UseVisualStyleBackColor = true;
+            this.CBeditarContrasenia.CheckedChanged += new System.EventHandler(this.CBeditarContrasenia_CheckedChanged);
             // 
             // CBtipoEditar
             // 
             this.CBtipoEditar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBtipoEditar.Enabled = false;
             this.CBtipoEditar.FormattingEnabled = true;
             this.CBtipoEditar.Items.AddRange(new object[] {
             "Administrador",
@@ -333,7 +350,7 @@
             // 
             this.TBusuario.Enabled = false;
             this.TBusuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBusuario.Location = new System.Drawing.Point(621, 116);
+            this.TBusuario.Location = new System.Drawing.Point(621, 112);
             this.TBusuario.Margin = new System.Windows.Forms.Padding(2);
             this.TBusuario.Name = "TBusuario";
             this.TBusuario.Size = new System.Drawing.Size(137, 26);
@@ -665,10 +682,11 @@
         private System.Windows.Forms.CheckBox CBnombre;
         private System.Windows.Forms.CheckBox CBapellido;
         private System.Windows.Forms.CheckBox CBdni;
-        private System.Windows.Forms.ComboBox CBoxNombre;
+        private System.Windows.Forms.ComboBox ComboBoxNombre;
         private System.Windows.Forms.ComboBox CBoxApellido;
         private System.Windows.Forms.ListBox LBdni;
         private System.Windows.Forms.TextBox TBoxDni;
         private System.Windows.Forms.CheckBox CBeditarContrasenia;
+        private System.Windows.Forms.CheckBox CBeditarUs;
     }
 }

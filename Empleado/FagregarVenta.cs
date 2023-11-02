@@ -88,12 +88,15 @@ namespace SaborAcielo
 
                         if (ventaExitosa && detalleExitoso)
                         {
+                            MessageBox.Show("Compra realizada", "Compra", MessageBoxButtons.OK);
                             cproducto.actualizarStock(DGcarrito,DGprodu);
                             cproducto.ObtenerProductosActivos(string.Empty, string.Empty, string.Empty, DGprodu);
                             
                             limpiar();
                             DGcarrito.Rows.Clear();
-
+                            int proxF = Convert.ToInt32(TBfactura.Text) + 1;
+                            TBfactura.Text = Convert.ToString(proxF);
+                            TBtotal.Clear();
                         }
                     }
                     else
@@ -105,9 +108,13 @@ namespace SaborAcielo
             else if(DGcarrito.Rows.Count < 0)
             {
                 MessageBox.Show("Debe agregar productos al carrito", "Error", MessageBoxButtons.OK);
-            } else
+            } else if(string.IsNullOrEmpty(TBdnicliente.Text))
             {
                 MessageBox.Show("Debe ingresar los datos del cliente", "Error", MessageBoxButtons.OK);
+            } else
+            {
+                MessageBox.Show("Debe ingresar cantidad de producto a comprar", "Error", MessageBoxButtons.OK);
+
             }
 
         }
@@ -124,6 +131,19 @@ namespace SaborAcielo
             }
             return suma;
 
+        }
+
+        private bool cantidades()
+        {
+            int c = 0;
+            foreach (DataGridViewRow row in DGcarrito.Rows)
+            {
+                if (row.Cells["Cantidad"].Value != null)
+                {
+                    c += 1;
+                }
+            }
+            return c == DGcarrito.Rows.Count;
         }
 
 
@@ -295,6 +315,7 @@ namespace SaborAcielo
                 if (res == DialogResult.Yes)
                 {
                     DGcarrito.Rows.RemoveAt(e.RowIndex);
+                    TBtotal.Text = "$ " + calcularTotal();
                 }
             }
 
@@ -332,11 +353,12 @@ namespace SaborAcielo
 
                         DGcarrito.Rows[e.RowIndex].Cells[columnaSubtotal.Index].Value = resultado;
 
-                        TBfactura.Text = "$ " + calcularTotal();
+                        TBtotal.Text = "$ " + calcularTotal();
 
                     } else
                     {
                         MessageBox.Show("Valor ingresado supera el stock disponible", "error", MessageBoxButtons.OK);
+                        DGcarrito.Rows[e.RowIndex].Cells[columnaCantidad.Index].Value = 0;
                     }
                 }
             } else

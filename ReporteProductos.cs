@@ -52,22 +52,7 @@ namespace SaborAcielo
                     labelST.Text = totalesPorTipo.ContainsKey("Sin T.A.C.C") ? totalesPorTipo["Sin T.A.C.C"].ToString() : "0";
                 }
             }
-            /* Dictionary<string, int> productosMasComunes = reporte.ObtenerProductosMasComunes();
-
-             // Obtener los productos más comunes y su cantidad en stock desde tu clase Creporte.
-             CmasProducido.Series.Clear();
-             CmasProducido.Titles.Add("Productos Más Comunes");
-
-             // Agregar los datos a la serie (asegúrate de que el nombre de la serie sea correcto).
-             foreach (var producto in productosMasComunes)
-             {
-                 CmasProducido.Series["Series1"].Points.AddXY(producto.Key, producto.Value);
-             }
-
-             // Personalizar el gráfico (e.g., colores, leyendas, etc.).
-
-             // Dibujar el gráfico.
-             CmasProducido.DataBind();*/
+           
         }
     }
 }

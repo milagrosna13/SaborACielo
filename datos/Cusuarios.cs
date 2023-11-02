@@ -14,7 +14,10 @@ namespace SaborAcielo.datos
 {
     internal class Cusuarios
     {
-        
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString;
+        private readonly SqlDataAdapter dataAdapter;
+        private readonly DataTable dataTable;
+
         public static int AutenticarUsuario(string nombreUsuario, string contrasenia)
         {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
@@ -22,8 +25,10 @@ namespace SaborAcielo.datos
                 connection.Open();
 
                 // Realiza la consulta SQL para buscar el usuario en la base de datos
-                string consulta = "SELECT contrasenia, salt, id_tipoUsuario FROM Usuario WHERE nom_usuario = @nombreUsuario";
-
+                string consulta = "SELECT U.contrasenia, U.salt, U.id_tipoUsuario, E.estado " +
+                          "FROM Usuario U " +
+                          "INNER JOIN Empleado E ON U.dni_empleado = E.dni_empleado " +
+                          "WHERE U.nom_usuario = @nombreUsuario";
                 using (SqlCommand command = new SqlCommand(consulta, connection))
                 {
                     command.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
@@ -38,8 +43,12 @@ namespace SaborAcielo.datos
 
                             if (ByteArrayEquals(hashAlmacenado, AplicarHashAContraseña(contraseniaBytes, salt)))
                             {
-                                // Las credenciales son válidas, devuelve el tipo de usuario
-                                return (int)reader["id_tipoUsuario"];
+                                bool estado = (bool)reader["estado"];
+                                if (estado)
+                                {
+                                    // Las credenciales son válidas y el empleado no está desactivado (estado = 1)
+                                    return (int)reader["id_tipoUsuario"];
+                                }
                             }
                         }
                     }
@@ -108,7 +117,120 @@ namespace SaborAcielo.datos
             }
             
         }
-        
+
+        public bool CargarUsuarios(DataGridView dataGridView)
+        {
+            try
+            {
+                // Crear un DataTable local para almacenar los datos de usuarios
+                DataTable localDataTable = new DataTable();
+
+                // Configurar el SqlDataAdapter con la consulta SQL para usuarios
+                string query = "SELECT U.nom_usuario AS Nombre, TU.desc_tipoUs AS Tipo, U.dni_empleado AS DNI,  " +
+                       "CASE WHEN E.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
+                       "FROM Usuario U " +
+                       "INNER JOIN Empleado E ON U.dni_empleado = E.dni_empleado " +
+                       "INNER JOIN Tipo_usuario TU ON U.id_tipoUsuario = TU.id_tipoUsuario";
+
+                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter(query, new SqlConnection(connectionString)))
+                {
+                    // Llenar el DataTable con los datos de usuarios
+                    localDataAdapter.Fill(localDataTable);
+                }
+
+                // Asignar el DataTable como origen de datos del DataGridView
+                dataGridView.DataSource = localDataTable;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al cargar los datos de usuarios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public AutoCompleteStringCollection ObtenerSugerenciasNombre()
+        {
+            AutoCompleteStringCollection sugerencias = new AutoCompleteStringCollection();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT nom_usuario FROM Usuario";
+                SqlCommand cmd = new SqlCommand(query, connection);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        sugerencias.Add(reader["nom_usuario"].ToString());
+                    }
+                }
+            }
+
+            return sugerencias;
+        }
+        public static DataTable ObtenerUsuarios(string nombre, string tipo, int dni, bool mostrarActivos, bool mostrarInactivos)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+            {
+                connection.Open();
+
+                string consultaSQL = "SELECT U.nom_usuario AS Nombre, TU.desc_tipoUs AS Tipo, U.dni_empleado AS DNI, " +
+                    "CASE WHEN E.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
+                    "FROM Usuario U " +
+                    "INNER JOIN Empleado E ON U.dni_empleado = E.dni_empleado " +
+                    "INNER JOIN Tipo_usuario TU ON U.id_tipoUsuario = TU.id_tipoUsuario" +
+                    " WHERE 1 = 1"; // Inicialización para simplificar la concatenación de condiciones en el WHERE
+
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    consultaSQL += " AND U.nom_usuario LIKE @nombre";
+                }
+
+                if (!string.IsNullOrEmpty(tipo))
+                {
+                    consultaSQL += " AND TU.desc_tipoUs LIKE @tipo";
+                }
+
+                if (dni != 0)
+                {
+                    consultaSQL += " AND E.dni_empleado = @dni";
+                }
+
+                if (mostrarActivos && !mostrarInactivos)
+                {
+                    consultaSQL += " AND E.estado = 1"; // Mostrar solo usuarios activos
+                }
+                else if (!mostrarActivos && mostrarInactivos)
+                {
+                    consultaSQL += " AND E.estado = 0"; // Mostrar solo usuarios inactivos
+                }
+
+                using (SqlCommand command = new SqlCommand(consultaSQL, connection))
+                {
+                    if (!string.IsNullOrEmpty(nombre))
+                    {
+                        command.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
+                    }
+
+                    if (!string.IsNullOrEmpty(tipo))
+                    {
+                        command.Parameters.AddWithValue("@tipo", "%" + tipo + "%");
+                    }
+
+                    if (dni != 0)
+                    {
+                        command.Parameters.AddWithValue("@dni", dni);
+                    }
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
+        }
 
 
 
