@@ -11,6 +11,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Data.Common;
 using System.Collections;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace SaborAcielo.datos
 {
@@ -20,66 +21,109 @@ namespace SaborAcielo.datos
         private readonly SqlDataAdapter dataAdapter;
         private readonly DataTable dataTable;
 
-        public void MostrarResumen(int id)
+        public static bool cargarVentas(DataGridView dg)
         {
-            string query = "SELECT * FROM venta WHERE ID = @id_venta"; // Reemplaza TuTabla y ID con los nombres reales
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@id_venta", id);
-                    connection.Open();
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            string detalles = $"ID: {reader["ID"]}\n";
-                            detalles += $"Producto: {reader["producto"]}\n";
-                            detalles += $"Precio: {reader["precio"]}\n";
-                            detalles += $"Cantidad: {reader["cantidad"]}\n";
-                            detalles += $"Total: {reader["total"]}\n";
-
-                            MessageBox.Show(detalles, "Detalles de la compra");
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se encontraron detalles para el ID proporcionado", "Error");
-                        }
-                    }
-                }
-            }
-        }
-
-        public bool Filtrar(string filtro, out DataTable resultado)
-        {
-            resultado = new DataTable();
             try
             {
-                using (SqlConnection conexion = new SqlConnection(connectionString))
-                {
+                DataTable localDataTable = new DataTable();
 
-                    SqlDataAdapter adapter = new SqlDataAdapter(filtro, conexion);
-                    adapter.Fill(dataTable);
-
+                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT vc.id_venta AS ID, vc.dni_empleado AS Empleado, " +
+                    "vc.dni_cliente AS Cliente, c.nombre_cliente AS Nombre, vc.fecha_venta AS Fecha, vc.total AS Total, " +
+               "CASE WHEN vc.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
+               "FROM Venta_cabecera vc " +
+               "INNER JOIN Cliente c ON vc.dni_cliente = c.dni_cliente", new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString)))
+                {                    
+                    localDataAdapter.Fill(localDataTable);
                 }
+
+                dg.DataSource = localDataTable;
+
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
-                resultado = null;
+                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
-        public DataTable FiltrarPorTexto(string texto)
+
+        public static void botonDetalle(DataGridView dg)
         {
-            string consulta = $"SELECT * FROM Producto WHERE nombre_produ LIKE '%{texto}%'";
-            DataTable resultado;
-            Filtrar(consulta, out resultado);
-            return resultado;
+            DataGridViewButtonColumn columnaDetalle = new DataGridViewButtonColumn();
+            columnaDetalle.Name = "Detalle";
+            columnaDetalle.Text = "Ver detalle";
+            columnaDetalle.UseColumnTextForButtonValue = true;
+            dg.Columns.Add(columnaDetalle);
         }
 
+        public static bool MostrarResumen(int id, DataGridView dg)
+        {
+            try
+            {
+                DataTable localDataTable = new DataTable();
+
+                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT vd.id_venta AS ID, p.nombre_produ AS Producto, " +
+                    "vd.cantidad AS Cantidad, vd.subtotal AS Subtotal " +                    
+                    "FROM Venta_detalle vd " +
+                    "INNER JOIN Producto p ON vd.id_produ = p.id_produ " +
+                    "WHERE vd.id_venta = @id_venta", 
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString)))
+                {
+                    localDataAdapter.SelectCommand.Parameters.AddWithValue("@id_venta", id);
+                    localDataAdapter.Fill(localDataTable);
+                }
+                dg.DataSource = localDataTable;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public DataSet FiltrarVentaPorCliente(int dni)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = "SELECT * FROM Venta_cabecera WHERE dni_cliente LIKE @dni";
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    adapter.SelectCommand.Parameters.Add("@dni", SqlDbType.NVarChar).Value = "%" + dni + "%";
+
+                    DataSet dataSet = new DataSet();
+                    adapter.Fill(dataSet, "Venta_cabecera");
+
+                    return dataSet;
+                }
+            }catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return null;
+            }
+        }
+        public DataSet FiltrarVentaDniEmpleado(int dni)
+        { try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = "SELECT * FROM Venta_cabecera WHERE dni_cliente LIKE @dni";
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    adapter.SelectCommand.Parameters.Add("@dni", SqlDbType.NVarChar).Value = "%" + dni + "%";
+
+                    DataSet dataSet = new DataSet();
+                    adapter.Fill(dataSet, "Venta_cabecera");
+
+                    return dataSet;
+                }
+            } 
+            catch (Exception ex){
+                MessageBox.Show("Error: " + ex.Message);
+                return null;
+            }
+
+        }
         public int obtenerMaxVenta()
         {
             try
@@ -179,6 +223,35 @@ namespace SaborAcielo.datos
             {
                 MessageBox.Show("Se produjo un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+        }
+
+
+        public void buscarFecha(DateTime desde, DateTime hasta, DataGridView dataGridView)
+        {
+            try
+            {
+                string consultaSQL = "SELECT * FROM Venta_cabecera " +
+                    "WHERE fecha_venta BETWEEN @desde AND @hasta ";
+                using (SqlConnection conexion = new SqlConnection("tu_cadena_de_conexion"))
+                {
+                    conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@desde", desde);
+                        comando.Parameters.AddWithValue("@hasta", hasta);
+
+                        DataTable dt = new DataTable();
+                        dt.Load(comando.ExecuteReader());
+
+                        dataGridView.DataSource = dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+               
             }
         }
 

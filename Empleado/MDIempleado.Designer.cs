@@ -315,6 +315,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MDIempleado";
             this.Text = "Empleado";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MDIempleado_Load);
             this.PmenuEmpleado.ResumeLayout(false);
             this.PsubmnVentas.ResumeLayout(false);

@@ -22,6 +22,7 @@ namespace SaborAcielo
         }
         private void MDIempleado_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void esconderSubMenu()
