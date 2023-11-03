@@ -14,12 +14,14 @@ namespace SaborAcielo
 {
     public partial class FagregarCliente : Form
     {
-        public FagregarCliente()
+        private FagregarVenta formVentas;
+        public FagregarCliente(FagregarVenta formVentas)
         {
             InitializeComponent();
             Ccliente clientes = new Ccliente();
             bool res = clientes.MostrarClientes(DGclientes);
             Ccliente.AgregarBotonEditar(DGclientes);
+            this.formVentas = formVentas;
         }
 
         private void BguardarCliente_Click(object sender, EventArgs e)
@@ -56,6 +58,11 @@ namespace SaborAcielo
                             limpiarTextBox();
                         }
                         limpiarTextBox();
+
+                        if(formVentas != null && !formVentas.IsDisposed && formVentas.Visible)
+                            {
+                                this.Close(); // Cierra el formulario cliente
+                            }
                     }
                 }
                 else

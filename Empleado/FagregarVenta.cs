@@ -199,7 +199,7 @@ namespace SaborAcielo
                 switch (res)
                 {
                     case DialogResult.Yes:
-                        FagregarCliente fagregarCliente = new FagregarCliente();
+                        FagregarCliente fagregarCliente = new FagregarCliente(this);
                         fagregarCliente.Show();
                         break;
                     case DialogResult.No:

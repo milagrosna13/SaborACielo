@@ -59,7 +59,7 @@ namespace SaborAcielo
 
         private void BagregarC_Click(object sender, EventArgs e)
         {
-            abrirFormularioHijo(new FagregarCliente());
+            abrirFormularioHijo(new FagregarCliente(null));
         }
 
         private void Bproducto_Click(object sender, EventArgs e)
