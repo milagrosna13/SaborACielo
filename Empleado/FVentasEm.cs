@@ -15,14 +15,43 @@ namespace SaborAcielo
     public partial class FVentasEm : Form
     {
         Cventas filtroVenta = new Cventas();
+        Cusuarios cusuarios = new Cusuarios();
         public FVentasEm()
         {
             InitializeComponent();
+
+            EstablecerUsuario();
+
             bool exito = Cventas.cargarVentas(DGventas);
             if(exito)
             {
                 Cventas.botonDetalle(DGventas);
             }
+        }
+
+        private void EstablecerUsuario()
+        {
+            string usuario = UserLogin.NombreUsuario;
+            int dni = cusuarios.ObtenerDniUsuario(usuario);
+            int tipoUs = UserLogin.TipoUsuario;
+
+            //es administrador
+            if (tipoUs == 1)
+            {
+                Lusuario.Text = usuario;
+            } else if(tipoUs == 3)//es vendedor
+            {
+                CBem.Visible = false;
+                LdniE.Visible = false;
+                LnomE.Visible = false;
+                TBnomE.Visible = false;
+                TBdniE.Visible = false;
+                Lusuario.Text = usuario;
+            } else
+            {
+                this.Close();
+            }
+
         }
 
         private void Fcliente_KeyPress(object sender, KeyPressEventArgs e)
@@ -99,6 +128,17 @@ namespace SaborAcielo
         private void DThasta_ValueChanged(object sender, EventArgs e)
         {
             filtroVenta.buscarFecha(DTdesde.Value, DThasta.Value, DGventas);
+        }
+
+
+        private void CBestado_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CBestado.Checked == true) {
+                Cestado.Enabled = false;
+                List<string> estados = new List<string> { "Activo", "Inactivo"};
+                Cestado.Items.AddRange(estados.ToArray());
+            }
+
         }
     }
 }

@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGventas = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
+            this.Lusuario = new System.Windows.Forms.Label();
             this.Pventas = new System.Windows.Forms.Panel();
             this.GBfiltroVenta = new System.Windows.Forms.GroupBox();
-            this.TBnomE = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.Cestado = new System.Windows.Forms.ComboBox();
+            this.LnomE = new System.Windows.Forms.Label();
+            this.TBnomE = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.TBnomC = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.LdniE = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.TBdniE = new System.Windows.Forms.TextBox();
             this.CBem = new System.Windows.Forms.CheckBox();
-            this.CBalta = new System.Windows.Forms.CheckBox();
+            this.CBestado = new System.Windows.Forms.CheckBox();
             this.TBdniC = new System.Windows.Forms.TextBox();
             this.CBcliente = new System.Windows.Forms.CheckBox();
             this.CBfecha = new System.Windows.Forms.CheckBox();
@@ -62,14 +63,14 @@
             // 
             this.DGventas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.DGventas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGventas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGventas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGventas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGventas.Location = new System.Drawing.Point(1, 332);
             this.DGventas.Name = "DGventas";
@@ -79,20 +80,20 @@
             this.DGventas.TabIndex = 0;
             this.DGventas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGventas_CellContentClick);
             // 
-            // label2
+            // Lusuario
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 27);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Empleado";
+            this.Lusuario.AutoSize = true;
+            this.Lusuario.Location = new System.Drawing.Point(30, 12);
+            this.Lusuario.Name = "Lusuario";
+            this.Lusuario.Size = new System.Drawing.Size(98, 27);
+            this.Lusuario.TabIndex = 2;
+            this.Lusuario.Text = "Empleado";
             // 
             // Pventas
             // 
             this.Pventas.BackColor = System.Drawing.Color.RosyBrown;
             this.Pventas.Controls.Add(this.GBfiltroVenta);
-            this.Pventas.Controls.Add(this.label2);
+            this.Pventas.Controls.Add(this.Lusuario);
             this.Pventas.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Pventas.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Pventas.Location = new System.Drawing.Point(86, 50);
@@ -102,15 +103,16 @@
             // 
             // GBfiltroVenta
             // 
+            this.GBfiltroVenta.Controls.Add(this.Cestado);
+            this.GBfiltroVenta.Controls.Add(this.LnomE);
             this.GBfiltroVenta.Controls.Add(this.TBnomE);
-            this.GBfiltroVenta.Controls.Add(this.textBox2);
             this.GBfiltroVenta.Controls.Add(this.label7);
             this.GBfiltroVenta.Controls.Add(this.TBnomC);
-            this.GBfiltroVenta.Controls.Add(this.label6);
+            this.GBfiltroVenta.Controls.Add(this.LdniE);
             this.GBfiltroVenta.Controls.Add(this.label3);
             this.GBfiltroVenta.Controls.Add(this.TBdniE);
             this.GBfiltroVenta.Controls.Add(this.CBem);
-            this.GBfiltroVenta.Controls.Add(this.CBalta);
+            this.GBfiltroVenta.Controls.Add(this.CBestado);
             this.GBfiltroVenta.Controls.Add(this.TBdniC);
             this.GBfiltroVenta.Controls.Add(this.CBcliente);
             this.GBfiltroVenta.Controls.Add(this.CBfecha);
@@ -118,28 +120,36 @@
             this.GBfiltroVenta.Controls.Add(this.label5);
             this.GBfiltroVenta.Controls.Add(this.DTdesde);
             this.GBfiltroVenta.Controls.Add(this.label4);
-            this.GBfiltroVenta.Location = new System.Drawing.Point(35, 42);
+            this.GBfiltroVenta.Location = new System.Drawing.Point(12, 42);
             this.GBfiltroVenta.Name = "GBfiltroVenta";
-            this.GBfiltroVenta.Size = new System.Drawing.Size(908, 198);
+            this.GBfiltroVenta.Size = new System.Drawing.Size(970, 198);
             this.GBfiltroVenta.TabIndex = 8;
             this.GBfiltroVenta.TabStop = false;
             this.GBfiltroVenta.Text = "Filtrar por";
             // 
+            // Cestado
+            // 
+            this.Cestado.FormattingEnabled = true;
+            this.Cestado.Location = new System.Drawing.Point(801, 28);
+            this.Cestado.Name = "Cestado";
+            this.Cestado.Size = new System.Drawing.Size(121, 35);
+            this.Cestado.TabIndex = 24;
+            // 
+            // LnomE
+            // 
+            this.LnomE.AutoSize = true;
+            this.LnomE.Location = new System.Drawing.Point(500, 148);
+            this.LnomE.Name = "LnomE";
+            this.LnomE.Size = new System.Drawing.Size(83, 27);
+            this.LnomE.TabIndex = 23;
+            this.LnomE.Text = "Nombre";
+            // 
             // TBnomE
             // 
-            this.TBnomE.AutoSize = true;
-            this.TBnomE.Location = new System.Drawing.Point(506, 148);
+            this.TBnomE.Location = new System.Drawing.Point(589, 141);
             this.TBnomE.Name = "TBnomE";
-            this.TBnomE.Size = new System.Drawing.Size(83, 27);
-            this.TBnomE.TabIndex = 23;
-            this.TBnomE.Text = "Nombre";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(589, 145);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(268, 34);
-            this.textBox2.TabIndex = 22;
+            this.TBnomE.Size = new System.Drawing.Size(268, 34);
+            this.TBnomE.TabIndex = 22;
             // 
             // label7
             // 
@@ -157,14 +167,14 @@
             this.TBnomC.Size = new System.Drawing.Size(268, 34);
             this.TBnomC.TabIndex = 20;
             // 
-            // label6
+            // LdniE
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(143, 148);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 27);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "Dni";
+            this.LdniE.AutoSize = true;
+            this.LdniE.Location = new System.Drawing.Point(143, 148);
+            this.LdniE.Name = "LdniE";
+            this.LdniE.Size = new System.Drawing.Size(45, 27);
+            this.LdniE.TabIndex = 19;
+            this.LdniE.Text = "Dni";
             // 
             // label3
             // 
@@ -195,16 +205,17 @@
             this.CBem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.CBem.UseVisualStyleBackColor = true;
             // 
-            // CBalta
+            // CBestado
             // 
-            this.CBalta.AutoSize = true;
-            this.CBalta.Location = new System.Drawing.Point(761, 32);
-            this.CBalta.Name = "CBalta";
-            this.CBalta.Size = new System.Drawing.Size(96, 31);
-            this.CBalta.TabIndex = 15;
-            this.CBalta.Text = "Estado";
-            this.CBalta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBalta.UseVisualStyleBackColor = true;
+            this.CBestado.AutoSize = true;
+            this.CBestado.Location = new System.Drawing.Point(686, 30);
+            this.CBestado.Name = "CBestado";
+            this.CBestado.Size = new System.Drawing.Size(96, 31);
+            this.CBestado.TabIndex = 15;
+            this.CBestado.Text = "Estado";
+            this.CBestado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBestado.UseVisualStyleBackColor = true;
+            this.CBestado.CheckedChanged += new System.EventHandler(this.CBestado_CheckedChanged);
             // 
             // TBdniC
             // 
@@ -299,14 +310,14 @@
             // 
             this.DGdetalle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.DGdetalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGdetalle.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGdetalle.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGdetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGdetalle.Location = new System.Drawing.Point(666, 332);
             this.DGdetalle.Name = "DGdetalle";
@@ -342,7 +353,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView DGventas;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Lusuario;
         private System.Windows.Forms.Panel Pventas;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker DThasta;
@@ -353,15 +364,16 @@
         private System.Windows.Forms.CheckBox CBfecha;
         private System.Windows.Forms.CheckBox CBcliente;
         private System.Windows.Forms.TextBox TBdniC;
-        private System.Windows.Forms.CheckBox CBalta;
+        private System.Windows.Forms.CheckBox CBestado;
         private System.Windows.Forms.TextBox TBdniE;
         private System.Windows.Forms.CheckBox CBem;
-        private System.Windows.Forms.Label TBnomE;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label LnomE;
+        private System.Windows.Forms.TextBox TBnomE;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox TBnomC;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label LdniE;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView DGdetalle;
+        private System.Windows.Forms.ComboBox Cestado;
     }
 }

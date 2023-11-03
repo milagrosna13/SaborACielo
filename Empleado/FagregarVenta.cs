@@ -88,7 +88,7 @@ namespace SaborAcielo
 
                         if (ventaExitosa && detalleExitoso)
                         {
-                            MessageBox.Show("Compra realizada", "Compra", MessageBoxButtons.OK);
+                            
                             cproducto.actualizarStock(DGcarrito,DGprodu);
                             cproducto.ObtenerProductosActivos(string.Empty, string.Empty, string.Empty, DGprodu);
                             
@@ -97,6 +97,12 @@ namespace SaborAcielo
                             int proxF = Convert.ToInt32(TBfactura.Text) + 1;
                             TBfactura.Text = Convert.ToString(proxF);
                             TBtotal.Clear();
+
+                            DialogResult resp = MessageBox.Show("Compra realizada. ¿Desea ver la factura?", "Compra", MessageBoxButtons.YesNo);
+                            if(resp == DialogResult.Yes)
+                            {
+                                cventas.verFactura(venta);
+                            }
                         }
                     }
                     else
@@ -133,17 +139,20 @@ namespace SaborAcielo
 
         }
 
-        private bool cantidades()
+        private bool existeEnCarrito(int id)
         {
-            int c = 0;
+            bool existe = false;
             foreach (DataGridViewRow row in DGcarrito.Rows)
             {
-                if (row.Cells["Cantidad"].Value != null)
+                if (Convert.ToInt32(row.Cells["ID"].Value) == id)
                 {
-                    c += 1;
-                }
+                    MessageBox.Show("El producto ya se encuentra en el carrito");
+                    existe = true;
+                    break;
+                } 
             }
-            return c == DGcarrito.Rows.Count;
+            
+            return existe;
         }
 
 
@@ -294,12 +303,14 @@ namespace SaborAcielo
             {
                 int id = Convert.ToInt32(DGprodu.Rows[e.RowIndex].Cells["ID"].Value);
 
-                DataRow datosProdu = cproducto.obtenerProducto(id);
-
-                if (datosProdu != null)
+                if (!existeEnCarrito(id))
                 {
-                    DGcarrito.Rows.Add(datosProdu["id_produ"], datosProdu["nombre_produ"], datosProdu["id_tipoProdu"], datosProdu["detalle"], datosProdu["precio"]);
+                    DataRow datosProdu = cproducto.obtenerProdu(id);
 
+                    if (datosProdu != null)
+                    {
+                        DGcarrito.Rows.Add(datosProdu["id_produ"], datosProdu["nombre_produ"], datosProdu["desc_tipoProd"], datosProdu["detalle"], datosProdu["precio"]);
+                    }
                 }
                 
             }

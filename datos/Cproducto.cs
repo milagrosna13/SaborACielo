@@ -465,6 +465,35 @@ namespace SaborAcielo.datos
             }
             
         }
+        public DataRow obtenerProdu(int idProducto)
+        {
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT p.id_produ, p.nombre_produ, t.desc_tipoProd, p.detalle, p.precio " +
+                    "FROM Producto p " +
+                    "INNER JOIN Tipo_produ t ON p.id_tipoProdu = t.id_tipoProdu " +
+                    "WHERE p.id_produ = @id";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", idProducto);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataTable);
+            }
+
+            if (dataTable.Rows.Count > 0)
+            {
+                return dataTable.Rows[0];
+            }
+            else
+            {
+                return null;
+            }
+
+        }
         public byte[] ObtenerImagenDesdeBaseDeDatos(int id)
         {
             byte[] imagenBytes = null;

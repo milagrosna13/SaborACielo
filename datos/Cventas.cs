@@ -12,6 +12,9 @@ using System.Data.Common;
 using System.Collections;
 using System.Threading.Tasks;
 using System.Net;
+using System.Drawing.Printing;
+using System.Drawing;
+using SaborAcielo.Empleado;
 
 namespace SaborAcielo.datos
 {
@@ -254,6 +257,14 @@ namespace SaborAcielo.datos
                
             }
         }
+
+        //ver factura de la compra
+        public void verFactura(int id)
+        {
+            Ffactura formularioFactura = new Ffactura();
+            formularioFactura.ShowDialog();
+        }
+
 
     }
 }
