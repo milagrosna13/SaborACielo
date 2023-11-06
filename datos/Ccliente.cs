@@ -11,6 +11,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Data.Common;
 using System.Collections;
+using System.Net;
 
 namespace SaborAcielo.datos
 {
@@ -60,7 +61,7 @@ namespace SaborAcielo.datos
             // Agregar la columna "Eliminar" al final           
             DataGridViewButtonColumn columnaEliminar = new DataGridViewButtonColumn();
             columnaEliminar.Name = "eliminar_cliente";
-            columnaEliminar.Text = "Editar Estado";
+            columnaEliminar.Text = "Baja";
             columnaEliminar.UseColumnTextForButtonValue = true;
             dataGridView.Columns.Add(columnaEliminar);
         }
@@ -129,34 +130,7 @@ namespace SaborAcielo.datos
 
         }
 
-        public DataRow obtenerCliente(int dni)
-        {
-            DataTable dataTable = new DataTable();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "SELECT * FROM Cliente WHERE dni_cliente = @dni";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@dni", dni);
-
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
-                adapter.Fill(dataTable);
-
-                connection.Close();
-            }
-
-            if (dataTable.Rows.Count > 0)
-            {
-                return dataTable.Rows[0];
-            }
-            else
-            {
-                return null;
-            }
-        }
-
+        
         public static bool EditarCliente(int dni, string nuevoNombre, string nuevoApellido, string nuevaDirec, string nuevoTel, string estado, string nuevoEmail)
         {
             try
@@ -224,7 +198,7 @@ namespace SaborAcielo.datos
                         using (SqlCommand cmd = new SqlCommand(query_update, connection))
                         {
                             cmd.Parameters.AddWithValue("@dni", dni);
-                            cmd.ExecuteNonQuery(); // Ejecutar la actualización
+                            cmd.ExecuteNonQuery(); 
                         }
                         return true;
                     }
@@ -232,7 +206,6 @@ namespace SaborAcielo.datos
             }
             catch (Exception ex)
             {
-                // Manejar cualquier excepción que pueda ocurrir (por ejemplo, problemas de conexión)
                 Console.WriteLine("Error: " + ex.Message);
                 return false;
             }
@@ -266,6 +239,100 @@ namespace SaborAcielo.datos
                 return null;
             }
 
+        }
+
+        //filtros 
+        public bool FiltrarCliente(int dni, string nombre, string apellido, DateTime? fecha, DataGridView dt)
+        {
+            if (!string.IsNullOrEmpty(nombre) || !string.IsNullOrEmpty(apellido) || dni > 0)
+            {
+                try
+                {
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+
+                        string consultaSQL = "SELECT c.* FROM Cliente c " +
+                            "WHERE 1 = 1 "; // Inicializa un "true" lógico
+
+                        if (!string.IsNullOrEmpty(nombre))
+                        {
+                            consultaSQL += " AND c.nombre_cliente LIKE @nombre";
+                        }
+
+                        if (!string.IsNullOrEmpty(apellido))
+                        {
+                            consultaSQL += " AND c.apellido_cliente LIKE @apellido";
+                        }
+
+                        if (dni != 0)
+                        {
+                            consultaSQL += " AND c.dni_cliente LIKE @dni";
+                        }
+
+                        if (fecha != null)
+                        {
+                            consultaSQL += " AND CONVERT(date, c.fechaRegistro_cliente) = CONVERT(date, @fecha)";
+                        }
+
+                        using (SqlCommand command = new SqlCommand(consultaSQL, connection))
+                        {
+                            if (!string.IsNullOrEmpty(nombre))
+                            {
+                                command.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
+                            }
+
+                            if (!string.IsNullOrEmpty(apellido))
+                            {
+                                command.Parameters.AddWithValue("@apellido", "%" + apellido + "%");
+                            }
+
+                            if (dni != 0)
+                            {
+                                command.Parameters.AddWithValue("@dni", "%" + dni + "%");
+                            }
+
+                            if (fecha != null)
+                            {
+                                command.Parameters.AddWithValue("@fecha", fecha.Value);
+                            }
+                            SqlDataAdapter adapter = new SqlDataAdapter(command);
+                            DataTable table = new DataTable();
+                            adapter.Fill(table);
+
+                            dt.DataSource = table;
+
+                        }
+                        return true;
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(" EROR" + ex.Message);
+                    return false;
+                }
+            }else
+            {
+                try
+                {
+                    DataTable localDataTable = new DataTable();
+
+                    using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT c.*" +
+                   "FROM Cliente c ", new SqlConnection(connectionString)))
+                    {
+                        localDataAdapter.Fill(localDataTable);
+                    }
+                    dt.DataSource = localDataTable;
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
         }
     }
 }
