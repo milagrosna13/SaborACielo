@@ -25,26 +25,22 @@ namespace SaborAcielo.datos
         private readonly DataTable dataTable;
 
 
-        // Método para actualizar la tabla 
+        // Método para mostrar todos los productos
         public bool CargarProductos(DataGridView dataGridView)
         {
             try
             {
-                // Crear un DataTable local para almacenar los datos
                 DataTable localDataTable = new DataTable();
 
-                // Configurar el SqlDataAdapter
                 using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT p.id_produ AS ID, p.nombre_produ AS Producto, " +
                 "t.desc_tipoProd AS Tipo, p.detalle AS Detalle, p.precio AS Precio, p.stock, p.fecha AS Fecha, p.imagen, " +               
                "CASE WHEN p.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
                "FROM Producto p " +
                "INNER JOIN Tipo_produ t ON p.id_tipoProdu = t.id_tipoProdu", new SqlConnection(connectionString)))
                 {
-                    // Llenar el DataTable con los datos
                     localDataAdapter.Fill(localDataTable);
                 }
 
-                // Asignar el DataTable como origen de datos del DataGridView
                 dataGridView.DataSource = localDataTable;
 
                 return true;
@@ -98,6 +94,7 @@ namespace SaborAcielo.datos
             }
 
         }
+
         //Metodo para buscar productos (vista: listar)
         public static DataTable ObtenerProductos(string nombre, string tipo, DateTime? fecha)
         {
@@ -281,6 +278,26 @@ namespace SaborAcielo.datos
 
             return nombresUnicos;
         }
+        public List<string> ObtenerModoPago()
+        {
+            List<string> nombresUnicos = new List<string>();
+
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                conexion.Open();
+                string consultaSQL = "SELECT desc_tipomedio FROM medio_pago"; 
+                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
+                using (SqlDataReader reader = comando.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        nombresUnicos.Add(reader["desc_tipomedio"].ToString());
+                    }
+                }
+            }
+
+            return nombresUnicos;
+        }
         public List<string> ObtenerTipos()
         {
             List<string> tiposUnicos = new List<string>();
@@ -438,7 +455,7 @@ namespace SaborAcielo.datos
             }
         }
 
-        //Método para acceder a los registros del producto seleccionado
+        //Método para acceder a los datos del producto seleccionado
         public DataRow obtenerProducto(int idProducto)
         {
             DataTable dataTable = new DataTable();
@@ -465,6 +482,8 @@ namespace SaborAcielo.datos
             }
             
         }
+
+        //obtener el nombre del tipo producto
         public DataRow obtenerProdu(int idProducto)
         {
             DataTable dataTable = new DataTable();

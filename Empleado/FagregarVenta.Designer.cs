@@ -30,7 +30,12 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.TBfactura = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.BcancelFiltro = new System.Windows.Forms.Button();
             this.CtipoProd = new System.Windows.Forms.ComboBox();
             this.CBproducto = new System.Windows.Forms.ComboBox();
@@ -54,20 +59,17 @@
             this.Lcliente = new System.Windows.Forms.Label();
             this.DGcarrito = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.TBDemp = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.TBNem = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.TBfactura = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.TBtotal = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.CBpago = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGprodu)).BeginInit();
@@ -90,6 +92,28 @@
             this.panel1.Size = new System.Drawing.Size(1013, 578);
             this.panel1.TabIndex = 0;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(456, 12);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(183, 27);
+            this.label11.TabIndex = 35;
+            this.label11.Text = "Número de Factura";
+            // 
+            // TBfactura
+            // 
+            this.TBfactura.Enabled = false;
+            this.TBfactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.TBfactura.Location = new System.Drawing.Point(647, 9);
+            this.TBfactura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TBfactura.Name = "TBfactura";
+            this.TBfactura.ReadOnly = true;
+            this.TBfactura.Size = new System.Drawing.Size(229, 35);
+            this.TBfactura.TabIndex = 36;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label3);
@@ -107,6 +131,36 @@
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtrar por";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(682, 25);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 24);
+            this.label3.TabIndex = 32;
+            this.label3.Text = "Detalle";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(378, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 24);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "Producto";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(57, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 24);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Tipo";
             // 
             // BcancelFiltro
             // 
@@ -364,7 +418,7 @@
             this.DGcarrito.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGcarrito_CellClick);
             this.DGcarrito.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGcarrito_CellContentClick);
             this.DGcarrito.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGcarrito_CellValueChanged);
-            this.DGcarrito.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGcarrito_EditingControlShowing);
+            this.DGcarrito.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DGcarrito_KeyPress);
             // 
             // panel2
             // 
@@ -388,36 +442,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(419, 362);
             this.panel2.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(57, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 24);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Tipo";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(378, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 24);
-            this.label2.TabIndex = 31;
-            this.label2.Text = "Producto";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(682, 25);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 24);
-            this.label3.TabIndex = 32;
-            this.label3.Text = "Detalle";
             // 
             // button1
             // 
@@ -444,16 +468,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(419, 132);
             this.panel3.TabIndex = 5;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(76, 10);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(127, 34);
-            this.label5.TabIndex = 35;
-            this.label5.Text = "Empleado";
             // 
             // label6
             // 
@@ -499,27 +513,15 @@
             this.TBNem.Size = new System.Drawing.Size(229, 35);
             this.TBNem.TabIndex = 39;
             // 
-            // label11
+            // label5
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(456, 12);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(183, 27);
-            this.label11.TabIndex = 35;
-            this.label11.Text = "Número de Factura";
-            // 
-            // TBfactura
-            // 
-            this.TBfactura.Enabled = false;
-            this.TBfactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBfactura.Location = new System.Drawing.Point(647, 9);
-            this.TBfactura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TBfactura.Name = "TBfactura";
-            this.TBfactura.ReadOnly = true;
-            this.TBfactura.Size = new System.Drawing.Size(229, 35);
-            this.TBfactura.TabIndex = 36;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold);
+            this.label5.Location = new System.Drawing.Point(76, 10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(127, 34);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Empleado";
             // 
             // label12
             // 
@@ -543,6 +545,28 @@
             this.TBtotal.Size = new System.Drawing.Size(229, 35);
             this.TBtotal.TabIndex = 38;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(29, 626);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(159, 29);
+            this.label13.TabIndex = 34;
+            this.label13.Text = "Medio de pago";
+            // 
+            // CBpago
+            // 
+            this.CBpago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBpago.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CBpago.FormattingEnabled = true;
+            this.CBpago.Location = new System.Drawing.Point(196, 622);
+            this.CBpago.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CBpago.Name = "CBpago";
+            this.CBpago.Size = new System.Drawing.Size(312, 37);
+            this.CBpago.TabIndex = 33;
+            this.CBpago.SelectedIndexChanged += new System.EventHandler(this.CBpago_SelectedIndexChanged);
+            // 
             // FagregarVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -551,7 +575,9 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
             this.ClientSize = new System.Drawing.Size(1502, 1038);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.panel3);
+            this.Controls.Add(this.CBpago);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.DGcarrito);
@@ -617,5 +643,7 @@
         private System.Windows.Forms.TextBox TBfactura;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox TBtotal;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox CBpago;
     }
 }

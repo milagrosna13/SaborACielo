@@ -80,9 +80,9 @@
             this.PsubmnVentas.Dock = System.Windows.Forms.DockStyle.Top;
             this.PsubmnVentas.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PsubmnVentas.ForeColor = System.Drawing.Color.Transparent;
-            this.PsubmnVentas.Location = new System.Drawing.Point(0, 722);
+            this.PsubmnVentas.Location = new System.Drawing.Point(0, 689);
             this.PsubmnVentas.Name = "PsubmnVentas";
-            this.PsubmnVentas.Size = new System.Drawing.Size(338, 115);
+            this.PsubmnVentas.Size = new System.Drawing.Size(338, 122);
             this.PsubmnVentas.TabIndex = 6;
             this.PsubmnVentas.Visible = false;
             // 
@@ -97,7 +97,7 @@
             this.BlistarVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BlistarVenta.Location = new System.Drawing.Point(0, 52);
             this.BlistarVenta.Name = "BlistarVenta";
-            this.BlistarVenta.Size = new System.Drawing.Size(338, 52);
+            this.BlistarVenta.Size = new System.Drawing.Size(338, 51);
             this.BlistarVenta.TabIndex = 3;
             this.BlistarVenta.Text = "Listar";
             this.BlistarVenta.UseVisualStyleBackColor = false;
@@ -128,7 +128,7 @@
             this.Bventa.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bventa.ForeColor = System.Drawing.Color.RosyBrown;
             this.Bventa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Bventa.Location = new System.Drawing.Point(0, 670);
+            this.Bventa.Location = new System.Drawing.Point(0, 637);
             this.Bventa.Name = "Bventa";
             this.Bventa.Size = new System.Drawing.Size(338, 52);
             this.Bventa.TabIndex = 5;
@@ -143,7 +143,7 @@
             this.PsubmnProductos.Dock = System.Windows.Forms.DockStyle.Top;
             this.PsubmnProductos.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PsubmnProductos.ForeColor = System.Drawing.Color.LightCoral;
-            this.PsubmnProductos.Location = new System.Drawing.Point(0, 608);
+            this.PsubmnProductos.Location = new System.Drawing.Point(0, 575);
             this.PsubmnProductos.Name = "PsubmnProductos";
             this.PsubmnProductos.Size = new System.Drawing.Size(338, 62);
             this.PsubmnProductos.TabIndex = 4;
@@ -175,7 +175,7 @@
             this.Bproducto.Font = new System.Drawing.Font("Script MT Bold", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bproducto.ForeColor = System.Drawing.Color.RosyBrown;
             this.Bproducto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Bproducto.Location = new System.Drawing.Point(0, 556);
+            this.Bproducto.Location = new System.Drawing.Point(0, 523);
             this.Bproducto.Name = "Bproducto";
             this.Bproducto.Size = new System.Drawing.Size(338, 52);
             this.Bproducto.TabIndex = 3;
@@ -192,7 +192,7 @@
             this.PsubmnClientes.ForeColor = System.Drawing.Color.LightCoral;
             this.PsubmnClientes.Location = new System.Drawing.Point(0, 444);
             this.PsubmnClientes.Name = "PsubmnClientes";
-            this.PsubmnClientes.Size = new System.Drawing.Size(338, 112);
+            this.PsubmnClientes.Size = new System.Drawing.Size(338, 79);
             this.PsubmnClientes.TabIndex = 2;
             this.PsubmnClientes.Visible = false;
             // 
@@ -298,7 +298,7 @@
             this.PchildForm.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.PchildForm.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
             this.PchildForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PchildForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PchildForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PchildForm.Location = new System.Drawing.Point(364, 0);
             this.PchildForm.Name = "PchildForm";
             this.PchildForm.Size = new System.Drawing.Size(776, 749);

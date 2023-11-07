@@ -23,21 +23,51 @@ namespace SaborAcielo.datos
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString;
         private readonly SqlDataAdapter dataAdapter;
         private readonly DataTable dataTable;
+        private Cusuarios cusuarios = new Cusuarios();
 
-        public static bool cargarVentas(DataGridView dg)
+
+        public bool cargarVentas(DataGridView dg, int tipous)
         {
             try
             {
                 DataTable localDataTable = new DataTable();
-
-                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT vc.id_venta AS ID, vc.dni_empleado AS Empleado, " +
-                    "vc.dni_cliente AS Cliente, c.nombre_cliente AS Nombre, vc.fecha_venta AS Fecha, vc.total AS Total, " +
-               "CASE WHEN vc.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
-               "FROM Venta_cabecera vc " +
-               "INNER JOIN Cliente c ON vc.dni_cliente = c.dni_cliente", new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString)))
-                {                    
-                    localDataAdapter.Fill(localDataTable);
+                if (tipous == 1)
+                {
+                    string consulta = "SELECT vc.id_venta AS ID, vc.dni_empleado AS Empleado, " +
+                   "vc.dni_cliente AS Cliente, c.nombre_cliente AS Nombre, vc.fecha_venta AS Fecha, vc.total AS Total, " +
+                   "mp.desc_tipomedio AS MedioDePago, " +
+                   "CASE WHEN vc.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +                   
+                   "FROM Venta_cabecera vc " +
+                   "INNER JOIN Cliente c ON vc.dni_cliente = c.dni_cliente " +
+                   "INNER JOIN medio_pago mp ON vc.tipo_pago = mp.tipo_medio";
+                    
+                    using(SqlDataAdapter localDataAdapter = new SqlDataAdapter(consulta, new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString)))
+                    {
+                        localDataAdapter.Fill(localDataTable);
+                    }
                 }
+                else if(tipous == 3) 
+                {
+                    int dniEmpleado = cusuarios.ObtenerDniUsuario(UserLogin.NombreUsuario);
+
+                    string consultaSql = "SELECT vc.id_venta AS ID, " +
+                     "vc.dni_cliente AS Cliente, c.nombre_cliente AS Nombre, vc.fecha_venta AS Fecha, vc.total AS Total, " +
+                     "mp.desc_tipomedio AS MedioDePago, " +
+                     "CASE WHEN vc.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
+                     "FROM Venta_cabecera vc " +
+                     "INNER JOIN Cliente c ON vc.dni_cliente = c.dni_cliente " +
+                     "INNER JOIN medio_pago mp ON vc.tipo_pago = mp.tipo_medio " +
+                     "WHERE vc.dni_empleado = @dniEmpleado";
+
+                    using (SqlDataAdapter localDataAdapter = new SqlDataAdapter(consultaSql, new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString)))
+                    {
+                        localDataAdapter.SelectCommand.Parameters.AddWithValue("@dniEmpleado", dniEmpleado);
+
+                        localDataAdapter.Fill(localDataTable);
+                    }
+
+                }
+
 
                 dg.DataSource = localDataTable;
 
@@ -56,7 +86,22 @@ namespace SaborAcielo.datos
             columnaDetalle.Name = "Detalle";
             columnaDetalle.Text = "Ver detalle";
             columnaDetalle.UseColumnTextForButtonValue = true;
-            dg.Columns.Add(columnaDetalle);
+            
+            bool columnaAgregada = false;
+            foreach (DataGridViewColumn columna in dg.Columns)
+            {
+                if (columna.Name == "Detalle" && columna.DisplayIndex != dg.ColumnCount - 1)
+                {
+                    columnaAgregada = true;
+                    break;
+                }
+            }
+
+            if (!columnaAgregada)
+            {
+                dg.Columns.Add(columnaDetalle);
+                columnaDetalle.DisplayIndex = dg.ColumnCount - 1;
+            }
         }
 
         public static bool MostrarResumen(int id, DataGridView dg)
@@ -85,20 +130,43 @@ namespace SaborAcielo.datos
                 return false;
             }
         }
-        public DataSet FiltrarVentaPorCliente(int dni)
+        public DataSet FiltrarVentaPorCliente(int dni, int tipoUs)
         {
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT * FROM Venta_cabecera WHERE dni_cliente LIKE @dni";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                    adapter.SelectCommand.Parameters.Add("@dni", SqlDbType.NVarChar).Value = "%" + dni + "%";
-
                     DataSet dataSet = new DataSet();
-                    adapter.Fill(dataSet, "Venta_cabecera");
+                    if (tipoUs == 1)
+                    {
+                        string query = "SELECT vc.id_venta AS ID, vc.dni_empleado AS Empleado, " +
+                            "vc.dni_cliente AS Cliente, c.nombre_cliente AS Nombre, vc.fecha_venta AS Fecha, vc.total AS Total, " +
+                            "CASE WHEN vc.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
+                            "FROM Venta_cabecera vc " +
+                            "INNER JOIN Cliente c ON vc.dni_cliente = c.dni_cliente";
+                        SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                        adapter.SelectCommand.Parameters.Add("@dni", SqlDbType.NVarChar).Value = "%" + dni + "%";
 
-                    return dataSet;
+                        
+                        adapter.Fill(dataSet, "Venta_cabecera");
+                    } else if(tipoUs == 3)
+                    {
+                        int dniEmpleado = cusuarios.ObtenerDniUsuario(UserLogin.NombreUsuario);
+                        string query = "SELECT vc.id_venta AS ID, @dniE AS Empleado, " +
+                            "vc.dni_cliente AS Cliente, c.nombre_cliente AS Nombre, vc.fecha_venta AS Fecha, vc.total AS Total, " +
+                            "CASE WHEN vc.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
+                            "FROM Venta_cabecera vc " +
+                            "INNER JOIN Cliente c ON vc.dni_cliente = c.dni_cliente " +
+                            "WHERE vc.dni_cliente LIKE @dni AND vc.dni_empleado = @dniE";
+                        SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                        adapter.SelectCommand.Parameters.Add("@dniE", SqlDbType.NVarChar).Value = dniEmpleado;
+                        adapter.SelectCommand.Parameters.Add("@dni", SqlDbType.NVarChar).Value = "%" + dni + "%";
+
+
+                        adapter.Fill(dataSet, "Venta_cabecera");
+                    }
+                        return dataSet;
+                    
                 }
             }catch (Exception ex)
             {
@@ -106,27 +174,7 @@ namespace SaborAcielo.datos
                 return null;
             }
         }
-        public DataSet FiltrarVentaDniEmpleado(int dni)
-        { try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    string query = "SELECT * FROM Venta_cabecera WHERE dni_cliente LIKE @dni";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                    adapter.SelectCommand.Parameters.Add("@dni", SqlDbType.NVarChar).Value = "%" + dni + "%";
-
-                    DataSet dataSet = new DataSet();
-                    adapter.Fill(dataSet, "Venta_cabecera");
-
-                    return dataSet;
-                }
-            } 
-            catch (Exception ex){
-                MessageBox.Show("Error: " + ex.Message);
-                return null;
-            }
-
-        }
+        
         public int obtenerMaxVenta()
         {
             try
@@ -156,16 +204,15 @@ namespace SaborAcielo.datos
             }
         }
 
-        public bool agregarCabecera(int dni_c, int nro, int empl, DateTime fecha, decimal total)
+        public bool agregarCabecera(int dni_c, int nro, int empl, DateTime fecha, decimal total, int idpago)
         {
             try
             {
-                // Resto del código para insertar en la base de datos
                 using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO Venta_cabecera (id_venta, dni_empleado, dni_cliente, fecha_venta, total ) VALUES (@nro, @empleado, @cliente, @fecha, @total)";
+                    string query = "INSERT INTO Venta_cabecera (id_venta, dni_empleado, dni_cliente, fecha_venta, total, tipo_pago) VALUES (@nro, @empleado, @cliente, @fecha, @total, @idpago)";
                     SqlCommand command = new SqlCommand(query, connection);
 
                     // Usa parámetros para evitar la inyección de SQL
@@ -174,6 +221,7 @@ namespace SaborAcielo.datos
                     command.Parameters.AddWithValue("@cliente", dni_c);
                     command.Parameters.AddWithValue("@fecha", fecha);
                     command.Parameters.AddWithValue("@total", total);
+                    command.Parameters.AddWithValue("@idpago", idpago);
 
                     command.ExecuteNonQuery();
 
@@ -259,12 +307,180 @@ namespace SaborAcielo.datos
         }
 
         //ver factura de la compra
-        public void verFactura(int id)
+        public void verFactura(int id, DataGridView dg)
         {
-            Ffactura formularioFactura = new Ffactura();
+            Ffactura formularioFactura = new Ffactura(dg);
             formularioFactura.ShowDialog();
         }
 
+
+        //filtro con todos los check 
+        public bool filtrarVenta(int dni_c, string nom_c, int dni_e, string nom_e, int estado, int tipo_pago, DateTime? f_desde, DateTime? f_hasta, int tipo_us, DataGridView dt)
+        {
+            if(tipo_us == 1)//es un administrador, puede filtrar por empleado
+            {
+                if(!string.IsNullOrEmpty(nom_c) || !string.IsNullOrEmpty(nom_e) || dni_c > 0 || dni_e > 0 || estado != -1 || tipo_pago != -1)
+                {
+                    try
+                    {
+                        using (SqlConnection connection = new SqlConnection(connectionString))
+                        {
+                            connection.Open();
+                            string consulta = "SELECT vc.id_venta AS ID, vc.dni_empleado AS Empleado, " +
+                                "vc.dni_cliente AS Cliente, c.nombre_cliente AS Nombre, vc.fecha_venta AS Fecha, vc.total AS Total, " +
+                                "mp.desc_tipomedio AS MedioDePago, " +
+                                "CASE WHEN vc.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
+                                "FROM Venta_cabecera vc " +
+                                "INNER JOIN Cliente c ON vc.dni_cliente = c.dni_cliente " +
+                                "INNER JOIN Empleado e ON vc.dni_empleado = e.dni_empleado " +
+                                "INNER JOIN medio_pago mp ON vc.tipo_pago = mp.tipo_medio " +
+                                "WHERE 1 = 1 ";
+
+                            if (!string.IsNullOrEmpty(nom_c))
+                            {
+                                consulta += " AND c.nombre_cliente LIKE @nombrec";
+                            }
+                            if (!string.IsNullOrEmpty(nom_e))
+                            {
+                                consulta += " AND e.nombre LIKE @nombre";
+                            }
+                            if (dni_c > 0)
+                            {
+                                consulta += " AND c.dni_cliente LIKE @dnic";
+                            }
+                            if (dni_e > 0)
+                            {
+                                consulta += " AND e.dni_empleado LIKE @dnie";
+                            }
+                            if (estado != -1)
+                            {
+                                consulta += " AND vc.estado = @estado";
+                            }
+                            if (tipo_pago != -1)
+                            {
+                                consulta += " AND vc.tipo_pago = @tipo";
+                            }
+
+                            using(SqlCommand command = new SqlCommand(consulta, connection))
+                            {
+                                if (!string.IsNullOrEmpty(nom_c))
+                                {
+                                    command.Parameters.AddWithValue("@nombrec", "%" + nom_c + "%");
+                                }
+                                if (!string.IsNullOrEmpty(nom_e))
+                                {
+                                    command.Parameters.AddWithValue("@nombre", "%" + nom_e + "%");
+                                }
+                                if (dni_e > 0)
+                                {
+                                    command.Parameters.AddWithValue("@dnie", "%" + dni_e + "%");
+                                }
+                                if (dni_c > 0)
+                                {
+                                    command.Parameters.AddWithValue("@dnic", "%" + dni_c + "%");
+                                }
+                                if (estado != -1)
+                                {
+                                    command.Parameters.AddWithValue("@estado", estado);
+                                }
+                                if (tipo_pago > 0)
+                                {
+                                    command.Parameters.AddWithValue("@tipo", tipo_pago);
+                                }
+                                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                                DataTable table = new DataTable();
+                                adapter.Fill(table);
+
+                                dt.DataSource = table;
+                            }
+                            return true;
+                        }
+                    } 
+                    catch (Exception ex){
+                        MessageBox.Show("Error: " + ex.Message);
+                        return false;
+                    }
+
+                }else { return false; }
+            } else //es vendedor, solo puede filtrar sus ventas
+            {
+                if (!string.IsNullOrEmpty(nom_c) || dni_c > 0 || estado != -1 || tipo_pago != -1)
+                {
+                    try
+                    {
+                        using (SqlConnection connection = new SqlConnection(connectionString))
+                        {
+                            connection.Open();
+
+                            int dniEmpleado = cusuarios.ObtenerDniUsuario(UserLogin.NombreUsuario);
+                            string consulta = "SELECT vc.id_venta AS ID, " +
+                                "vc.dni_cliente AS Cliente, c.nombre_cliente AS Nombre, vc.fecha_venta AS Fecha, vc.total AS Total, " +
+                                "mp.desc_tipomedio AS MedioDePago, " +
+                                "CASE WHEN vc.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
+                                "FROM Venta_cabecera vc " +
+                                "INNER JOIN Cliente c ON vc.dni_cliente = c.dni_cliente " +
+                                "INNER JOIN Empleado e ON vc.dni_empleado = e.dni_empleado " +
+                                "INNER JOIN medio_pago mp ON vc.tipo_pago = mp.tipo_medio " +
+                                "WHERE 1 = 1 AND vc.dni_empleado = @dni ";
+
+                            if (!string.IsNullOrEmpty(nom_c))
+                            {
+                                consulta += " AND c.nombre_cliente LIKE @nombrec";
+                            }
+                            
+                            if (dni_c > 0)
+                            {
+                                consulta += " AND c.dni_cliente LIKE @dnic";
+                            }
+                            
+                            if (estado != -1)
+                            {
+                                consulta += " AND vc.estado = @estado";
+                            }
+                            if (tipo_pago != -1)
+                            {
+                                consulta += " AND vc.tipo_pago = @tipo";
+                            }
+
+                            using (SqlCommand command = new SqlCommand(consulta, connection))
+                            {
+                                command.Parameters.AddWithValue("@dni", dniEmpleado);
+                                if (!string.IsNullOrEmpty(nom_c))
+                                {
+                                    command.Parameters.AddWithValue("@nombrec", "%" + nom_c + "%");
+                                }           
+                                if (dni_c > 0)
+                                {
+                                    command.Parameters.AddWithValue("@dnic", "%" + dni_c + "%");
+                                }
+                                if (estado != -1)
+                                {
+                                    command.Parameters.AddWithValue("@estado", estado);
+                                }
+                                if (tipo_pago > 0)
+                                {
+                                    command.Parameters.AddWithValue("@tipo", tipo_pago);
+                                }
+
+                                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                                DataTable table = new DataTable();
+                                adapter.Fill(table);
+
+                                dt.DataSource = table;
+                            }
+                            return true;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                        return false;
+                    }
+
+                }
+                else { return false; }
+            }
+        }
 
     }
 }
