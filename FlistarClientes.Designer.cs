@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGlistaCliente = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.BbuscarCliente = new System.Windows.Forms.Button();
             this.Tdni_cliente = new System.Windows.Forms.TextBox();
             this.Tnom_cliente = new System.Windows.Forms.TextBox();
             this.Tape_cliente = new System.Windows.Forms.TextBox();
@@ -49,50 +48,49 @@
             // 
             // DGlistaCliente
             // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DGlistaCliente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DGlistaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DGlistaCliente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            this.DGlistaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGlistaCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.DGlistaCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGlistaCliente.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGlistaCliente.DefaultCellStyle = dataGridViewCellStyle18;
             this.DGlistaCliente.Location = new System.Drawing.Point(14, 349);
             this.DGlistaCliente.Name = "DGlistaCliente";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.DGlistaCliente.RowHeadersWidth = 62;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DGlistaCliente.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DGlistaCliente.RowsDefaultCellStyle = dataGridViewCellStyle20;
             this.DGlistaCliente.RowTemplate.Height = 28;
-            this.DGlistaCliente.Size = new System.Drawing.Size(1131, 314);
+            this.DGlistaCliente.Size = new System.Drawing.Size(1056, 314);
             this.DGlistaCliente.TabIndex = 0;
             this.DGlistaCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGlistaCliente_CellContentClick);
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.groupBox1.Controls.Add(this.BbuscarCliente);
             this.groupBox1.Controls.Add(this.Tdni_cliente);
             this.groupBox1.Controls.Add(this.Tnom_cliente);
             this.groupBox1.Controls.Add(this.Tape_cliente);
@@ -108,48 +106,41 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtrar por";
             // 
-            // BbuscarCliente
-            // 
-            this.BbuscarCliente.Location = new System.Drawing.Point(677, 150);
-            this.BbuscarCliente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.BbuscarCliente.Name = "BbuscarCliente";
-            this.BbuscarCliente.Size = new System.Drawing.Size(123, 50);
-            this.BbuscarCliente.TabIndex = 10;
-            this.BbuscarCliente.Text = "Buscar";
-            this.BbuscarCliente.UseVisualStyleBackColor = true;
-            // 
             // Tdni_cliente
             // 
+            this.Tdni_cliente.Enabled = false;
             this.Tdni_cliente.Location = new System.Drawing.Point(197, 166);
             this.Tdni_cliente.Name = "Tdni_cliente";
-            this.Tdni_cliente.ReadOnly = true;
             this.Tdni_cliente.Size = new System.Drawing.Size(336, 36);
             this.Tdni_cliente.TabIndex = 6;
+            this.Tdni_cliente.TextChanged += new System.EventHandler(this.Tdni_cliente_TextChanged);
             // 
             // Tnom_cliente
             // 
+            this.Tnom_cliente.Enabled = false;
             this.Tnom_cliente.Location = new System.Drawing.Point(197, 105);
             this.Tnom_cliente.Name = "Tnom_cliente";
-            this.Tnom_cliente.ReadOnly = true;
             this.Tnom_cliente.Size = new System.Drawing.Size(336, 36);
             this.Tnom_cliente.TabIndex = 5;
+            this.Tnom_cliente.TextChanged += new System.EventHandler(this.Tnom_cliente_TextChanged);
             // 
             // Tape_cliente
             // 
-            this.Tape_cliente.Location = new System.Drawing.Point(197, 49);
+            this.Tape_cliente.Enabled = false;
+            this.Tape_cliente.Location = new System.Drawing.Point(197, 51);
             this.Tape_cliente.Name = "Tape_cliente";
-            this.Tape_cliente.ReadOnly = true;
             this.Tape_cliente.Size = new System.Drawing.Size(336, 36);
             this.Tape_cliente.TabIndex = 4;
+            this.Tape_cliente.TextChanged += new System.EventHandler(this.Tape_cliente_TextChanged);
             // 
             // CBdni
             // 
             this.CBdni.AutoSize = true;
             this.CBdni.Location = new System.Drawing.Point(6, 167);
             this.CBdni.Name = "CBdni";
-            this.CBdni.Size = new System.Drawing.Size(92, 33);
+            this.CBdni.Size = new System.Drawing.Size(74, 33);
             this.CBdni.TabIndex = 3;
-            this.CBdni.Text = "DNI";
+            this.CBdni.Text = "Dni";
             this.CBdni.UseVisualStyleBackColor = true;
             this.CBdni.CheckedChanged += new System.EventHandler(this.CBdni_CheckedChanged);
             // 
@@ -184,6 +175,7 @@
             this.CBtodosClientes.TabIndex = 0;
             this.CBtodosClientes.Text = "Todos los clientes";
             this.CBtodosClientes.UseVisualStyleBackColor = true;
+            this.CBtodosClientes.CheckedChanged += new System.EventHandler(this.CBtodosClientes_CheckedChanged);
             // 
             // FlistarClientes
             // 
@@ -215,6 +207,5 @@
         private System.Windows.Forms.CheckBox CBdni;
         private System.Windows.Forms.CheckBox CBnomCliente;
         private System.Windows.Forms.CheckBox CBapeCliente;
-        private System.Windows.Forms.Button BbuscarCliente;
     }
 }

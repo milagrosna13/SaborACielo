@@ -1,4 +1,5 @@
-﻿using SaborAcielo.datos;
+﻿using iText.Kernel.Events;
+using SaborAcielo.datos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,22 +15,26 @@ namespace SaborAcielo
     public partial class FlistarClientes : Form
     {
         private Ccliente clientes = new Ccliente();
+
         public FlistarClientes()
         {
             InitializeComponent();
             bool res = clientes.MostrarClientes(DGlistaCliente);
-            Ccliente.AgregarBotonesAdm(DGlistaCliente);
+            if (UserLogin.TipoUsuario == 1)
+            {
+                Ccliente.AgregarBotonesAdm(DGlistaCliente);
+            }
         }
 
         private void CBapeCliente_CheckedChanged(object sender, EventArgs e)
         {
             if (CBapeCliente.Checked)
             {
-                Tape_cliente.ReadOnly = false;
+                Tape_cliente.Enabled = true;
             }
             else
             {
-                Tape_cliente.ReadOnly = true;
+                Tape_cliente.Enabled = false;
             }
         }
 
@@ -37,11 +42,11 @@ namespace SaborAcielo
         {
             if (CBnomCliente.Checked)
             {
-                Tnom_cliente.ReadOnly = false;
+                Tnom_cliente.Enabled = true;
             }
             else
             {
-                Tnom_cliente.ReadOnly = true;
+                Tnom_cliente.Enabled = false;
             }
         }
 
@@ -49,11 +54,11 @@ namespace SaborAcielo
         {
             if (CBdni.Checked)
             {
-                Tdni_cliente.ReadOnly = false;
+                Tdni_cliente.Enabled = true;
             }
             else
             {
-                Tdni_cliente.ReadOnly = true;
+                Tdni_cliente.Enabled = false;
             }
         }
 
@@ -88,6 +93,56 @@ namespace SaborAcielo
                     }
                 }
             }
+        }
+
+        private void CBtodosClientes_CheckedChanged(object sender, EventArgs e)
+        {
+            if(CBtodosClientes.Checked == true) {
+                CBnomCliente.Checked = false;
+                CBdni.Checked = false;
+                CBapeCliente.Checked = false;
+
+                bool res = clientes.MostrarClientes(DGlistaCliente);
+            }
+        }
+
+        private void Tape_cliente_TextChanged(object sender, EventArgs e)
+        {
+            filtrarClientes();
+        }
+
+        private void Tdni_cliente_TextChanged(object sender, EventArgs e)
+        {
+            filtrarClientes();
+        }
+
+        private void filtrarClientes()
+        {
+            int dni;
+            string nombre;
+            string apellido;
+
+            if (CBdni.Checked == true && !string.IsNullOrEmpty(Tdni_cliente.Text))
+            {
+                dni = Convert.ToInt32(Tdni_cliente.Text);
+            }
+            else dni = 0;
+            if (CBnomCliente.Checked == true)
+            {
+                nombre = Tnom_cliente.Text;
+            }
+            else nombre = string.Empty;
+            if(CBapeCliente.Checked == true)
+            { 
+                apellido = Tape_cliente.Text;
+            } else apellido = string.Empty;
+
+            bool filtro = clientes.FiltrarCliente(dni, nombre, apellido, null, DGlistaCliente);
+        }
+
+        private void Tnom_cliente_TextChanged(object sender, EventArgs e)
+        {
+            filtrarClientes();
         }
     }
 }

@@ -143,16 +143,17 @@ namespace SaborAcielo
 
                 //se cargan los campos del cliente
                 Ccliente cliente = new Ccliente();
-                DataRow datosCliente = cliente.obtenerCliente(dni);
+                DataTable datosCliente = cliente.BuscarClientePorDNI(dni);
 
                 if (datosCliente != null)
                 {
-                    TBdniCliente.Text = datosCliente["dni_cliente"].ToString();
-                    TBnomCliente.Text = datosCliente["nombre_cliente"].ToString();
-                    TBapeCliente.Text = datosCliente["apellido_cliente"].ToString();
-                    TBdireCliente.Text = datosCliente["dire_cliente"].ToString();
-                    TBtelCliente.Text = datosCliente["tel_cliente"].ToString();
-                    TBcorreo.Text = datosCliente["email_cliente"].ToString();
+                    DataRow row = datosCliente.Rows[0];
+                    TBdniCliente.Text = row["dni_cliente"].ToString();
+                    TBnomCliente.Text = row["nombre_cliente"].ToString();
+                    TBapeCliente.Text = row["apellido_cliente"].ToString();
+                    TBdireCliente.Text = row["dire_cliente"].ToString();
+                    TBtelCliente.Text = row["tel_cliente"].ToString();
+                    TBcorreo.Text = row["email_cliente"].ToString();
 
                     Beditar.Visible = true;
                     BguardarCliente.Visible = false;
@@ -174,10 +175,14 @@ namespace SaborAcielo
                 var msg = MessageBox.Show("Se editarán los datos del cliente: " + TBnomCliente.Text, "Confirmar editar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (msg == DialogResult.Yes)
                 {
+                    string estado = "";
                     string sexo = RBmujer.Checked == true ? RBmujer.Text : RBhombre.Text;
-                    DataRow datosCliente = cliente.obtenerCliente(Convert.ToInt32(TBdniCliente.Text));
-                    string estado = datosCliente["estado_cliente"].ToString();
-
+                    DataTable datosCliente = cliente.BuscarClientePorDNI(Convert.ToInt32(TBdniCliente.Text));
+                    if (datosCliente != null)
+                    {
+                        DataRow row = datosCliente.Rows[0];
+                        estado = row["estado_cliente"].ToString();
+                    }
                     //editar
                     bool exito = Ccliente.EditarCliente(Convert.ToInt32(TBdniCliente.Text), TBnomCliente.Text, TBapeCliente.Text, TBdireCliente.Text, TBtelCliente.Text, estado, TBcorreo.Text);
                     if (exito)
