@@ -382,7 +382,7 @@ namespace SaborAcielo
                 nombre = CnombreProd.SelectedItem.ToString();
             }
 
-            if (CBtipo.Checked)
+            if (CBtipo.Checked && CfiltroTipo.SelectedIndex != -1)
             {
                 tipo = CfiltroTipo.SelectedItem.ToString();
             }
