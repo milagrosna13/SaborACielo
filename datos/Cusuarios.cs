@@ -81,12 +81,6 @@ namespace SaborAcielo.datos
             }
         }
 
-        
-        public static string ObtenerUser()
-        {
-            return UserLogin.NombreUsuario;
-        }
-        
         public int ObtenerDniUsuario(string user)
         {
             int dni = -1;

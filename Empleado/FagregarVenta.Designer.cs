@@ -70,16 +70,21 @@
             this.TBtotal = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.CBpago = new System.Windows.Forms.ComboBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGprodu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGcarrito)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.RosyBrown;
             this.panel1.Controls.Add(this.label11);
@@ -87,9 +92,9 @@
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.DGprodu);
             this.panel1.Controls.Add(this.Lventa);
-            this.panel1.Location = new System.Drawing.Point(451, 12);
+            this.panel1.Location = new System.Drawing.Point(459, 44);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1013, 578);
+            this.panel1.Size = new System.Drawing.Size(917, 540);
             this.panel1.TabIndex = 0;
             // 
             // label11
@@ -124,10 +129,10 @@
             this.groupBox1.Controls.Add(this.CBproducto);
             this.groupBox1.Controls.Add(this.CBDetalle);
             this.groupBox1.Font = new System.Drawing.Font("Script MT Bold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(22, 48);
+            this.groupBox1.Location = new System.Drawing.Point(4, 48);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(934, 161);
+            this.groupBox1.Size = new System.Drawing.Size(909, 161);
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtrar por";
@@ -165,7 +170,7 @@
             // BcancelFiltro
             // 
             this.BcancelFiltro.Font = new System.Drawing.Font("Script MT Bold", 10F, System.Drawing.FontStyle.Bold);
-            this.BcancelFiltro.Location = new System.Drawing.Point(802, 109);
+            this.BcancelFiltro.Location = new System.Drawing.Point(761, 109);
             this.BcancelFiltro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BcancelFiltro.Name = "BcancelFiltro";
             this.BcancelFiltro.Size = new System.Drawing.Size(103, 44);
@@ -180,7 +185,7 @@
             this.CtipoProd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CtipoProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CtipoProd.FormattingEnabled = true;
-            this.CtipoProd.Location = new System.Drawing.Point(17, 56);
+            this.CtipoProd.Location = new System.Drawing.Point(7, 56);
             this.CtipoProd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CtipoProd.Name = "CtipoProd";
             this.CtipoProd.Size = new System.Drawing.Size(312, 34);
@@ -192,7 +197,7 @@
             this.CBproducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBproducto.FormattingEnabled = true;
-            this.CBproducto.Location = new System.Drawing.Point(339, 56);
+            this.CBproducto.Location = new System.Drawing.Point(327, 56);
             this.CBproducto.Name = "CBproducto";
             this.CBproducto.Size = new System.Drawing.Size(280, 34);
             this.CBproducto.TabIndex = 27;
@@ -203,9 +208,9 @@
             this.CBDetalle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBDetalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBDetalle.FormattingEnabled = true;
-            this.CBDetalle.Location = new System.Drawing.Point(625, 56);
+            this.CBDetalle.Location = new System.Drawing.Point(613, 56);
             this.CBDetalle.Name = "CBDetalle";
-            this.CBDetalle.Size = new System.Drawing.Size(280, 34);
+            this.CBDetalle.Size = new System.Drawing.Size(259, 34);
             this.CBDetalle.TabIndex = 29;
             this.CBDetalle.SelectedIndexChanged += new System.EventHandler(this.CBDetalle_SelectedIndexChanged);
             // 
@@ -218,7 +223,7 @@
             this.DGprodu.Name = "DGprodu";
             this.DGprodu.RowHeadersWidth = 62;
             this.DGprodu.RowTemplate.Height = 28;
-            this.DGprodu.Size = new System.Drawing.Size(1005, 352);
+            this.DGprodu.Size = new System.Drawing.Size(893, 306);
             this.DGprodu.TabIndex = 33;
             this.DGprodu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGprodu_CellContentClick);
             // 
@@ -399,6 +404,8 @@
             // 
             // DGcarrito
             // 
+            this.DGcarrito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.DGcarrito.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -409,11 +416,12 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGcarrito.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGcarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGcarrito.Location = new System.Drawing.Point(0, 663);
+            this.DGcarrito.Location = new System.Drawing.Point(20, 665);
             this.DGcarrito.Name = "DGcarrito";
             this.DGcarrito.RowHeadersWidth = 62;
             this.DGcarrito.RowTemplate.Height = 28;
-            this.DGcarrito.Size = new System.Drawing.Size(1476, 534);
+            this.DGcarrito.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.DGcarrito.Size = new System.Drawing.Size(1315, 361);
             this.DGcarrito.TabIndex = 3;
             this.DGcarrito.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGcarrito_CellClick);
             this.DGcarrito.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGcarrito_CellContentClick);
@@ -438,7 +446,7 @@
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.direCliente);
-            this.panel2.Location = new System.Drawing.Point(12, 12);
+            this.panel2.Location = new System.Drawing.Point(20, 44);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(419, 362);
             this.panel2.TabIndex = 4;
@@ -464,7 +472,7 @@
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.TBNem);
             this.panel3.Controls.Add(this.label5);
-            this.panel3.Location = new System.Drawing.Point(12, 407);
+            this.panel3.Location = new System.Drawing.Point(20, 439);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(419, 132);
             this.panel3.TabIndex = 5;
@@ -476,9 +484,9 @@
             this.label6.Location = new System.Drawing.Point(26, 49);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 27);
+            this.label6.Size = new System.Drawing.Size(45, 27);
             this.label6.TabIndex = 36;
-            this.label6.Text = "dni";
+            this.label6.Text = "Dni";
             // 
             // TBDemp
             // 
@@ -495,12 +503,12 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(19, 82);
+            this.label9.Location = new System.Drawing.Point(11, 87);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(75, 27);
+            this.label9.Size = new System.Drawing.Size(83, 27);
             this.label9.TabIndex = 38;
-            this.label9.Text = "nombre";
+            this.label9.Text = "Nombre";
             // 
             // TBNem
             // 
@@ -527,7 +535,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(700, 625);
+            this.label12.Location = new System.Drawing.Point(699, 620);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(134, 27);
@@ -538,7 +546,7 @@
             // 
             this.TBtotal.Enabled = false;
             this.TBtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBtotal.Location = new System.Drawing.Point(842, 620);
+            this.TBtotal.Location = new System.Drawing.Point(841, 615);
             this.TBtotal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TBtotal.Name = "TBtotal";
             this.TBtotal.ReadOnly = true;
@@ -549,7 +557,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(29, 626);
+            this.label13.Location = new System.Drawing.Point(31, 613);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(159, 29);
             this.label13.TabIndex = 34;
@@ -560,12 +568,33 @@
             this.CBpago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBpago.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBpago.FormattingEnabled = true;
-            this.CBpago.Location = new System.Drawing.Point(196, 622);
+            this.CBpago.Location = new System.Drawing.Point(195, 613);
             this.CBpago.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CBpago.Name = "CBpago";
             this.CBpago.Size = new System.Drawing.Size(312, 37);
             this.CBpago.TabIndex = 33;
             this.CBpago.SelectedIndexChanged += new System.EventHandler(this.CBpago_SelectedIndexChanged);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Sienna;
+            this.panel4.Controls.Add(this.label14);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1401, 47);
+            this.panel4.TabIndex = 39;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Font = new System.Drawing.Font("Script MT Bold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(654, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(180, 38);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "Nueva venta";
             // 
             // FagregarVenta
             // 
@@ -574,7 +603,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
-            this.ClientSize = new System.Drawing.Size(1502, 1038);
+            this.ClientSize = new System.Drawing.Size(1401, 1038);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.CBpago);
@@ -587,6 +617,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FagregarVenta";
             this.Text = "FagregarVenta";
+            this.Load += new System.EventHandler(this.FagregarVenta_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -597,6 +628,8 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -645,5 +678,7 @@
         private System.Windows.Forms.TextBox TBtotal;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox CBpago;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label14;
     }
 }

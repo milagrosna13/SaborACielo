@@ -309,7 +309,7 @@ namespace SaborAcielo.datos
         //ver factura de la compra
         public void verFactura(int id, DataGridView dg)
         {
-            Ffactura formularioFactura = new Ffactura(dg);
+            Ffactura formularioFactura = new Ffactura();
             formularioFactura.ShowDialog();
         }
 

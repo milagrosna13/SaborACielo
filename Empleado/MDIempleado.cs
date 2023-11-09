@@ -13,8 +13,6 @@ namespace SaborAcielo
 {
     public partial class MDIempleado : Form
     {
-        //private int childFormNumber = 0;
-
         public MDIempleado()
         {
             InitializeComponent();
@@ -24,7 +22,6 @@ namespace SaborAcielo
         {
             this.WindowState = FormWindowState.Maximized;
         }
-
         private void esconderSubMenu()
         {
             if(PsubmnProductos.Visible == true)
@@ -59,7 +56,7 @@ namespace SaborAcielo
 
         private void BagregarC_Click(object sender, EventArgs e)
         {
-            abrirFormularioHijo(new FagregarCliente(null));
+            abrirFormularioHijo(new FagregarCliente(null, 0));
         }
 
         private void Bproducto_Click(object sender, EventArgs e)
