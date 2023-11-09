@@ -33,7 +33,7 @@ namespace SaborAcielo
             InicializarComboBoxes();
             bool resultado = producto.CargarProductos(DGlistaProductos);
             Cproducto.AgregarColumnasBoton(DGlistaProductos);
-            
+
         }
 
         private void limpiarTextBox()
@@ -95,7 +95,7 @@ namespace SaborAcielo
         private void BagregarProdu_Click_1(object sender, EventArgs e)
         {
             // Cproducto produ = new Cproducto();
-          
+
 
             if (string.IsNullOrWhiteSpace(TBnomProdu.Text) || string.IsNullOrEmpty(TBprecio.Text) || string.IsNullOrWhiteSpace(TBcantidadProdu.Text) || CtipoProd.SelectedIndex == -1)
             {
@@ -117,7 +117,7 @@ namespace SaborAcielo
                     {
                         // Si no se ha seleccionado una imagen, carga la imagen por defecto en forma de bytes
                         imagenBytes = ImageToByteArray(Properties.Resources.ProductosInicio); // Usar la imagen por defecto
-                        
+
                     }
                     rutaImagenSeleccionada = string.Empty;
                     bool exito = Cproducto.AgregarProducto(TBnomProdu.Text, CtipoProd.SelectedIndex + 1, Convert.ToDecimal(TBprecio.Text), TBdetalle.Text, TBcantidadProdu.Text, Convert.ToDateTime(dtFecha.Text), imagenBytes, DGlistaProductos);
@@ -158,7 +158,7 @@ namespace SaborAcielo
             return imagenBytes;
         }
 
-      
+
         private byte[] ImageToByteArray(Bitmap image)
         {
             using (MemoryStream stream = new MemoryStream())
@@ -171,8 +171,8 @@ namespace SaborAcielo
         {
         }
         // En tu formulario
-       
-       
+
+
 
 
 
@@ -208,13 +208,13 @@ namespace SaborAcielo
                 }
             }
         }
-       
+
 
         private void TBnomProdu_TextChanged(object sender, EventArgs e) { }
         int pos;
 
         //editar
-        
+
         private void BeditarProd_Click(object sender, EventArgs e)
         {
             Cproducto producto = new Cproducto();
@@ -222,7 +222,7 @@ namespace SaborAcielo
             byte[] nuevaImagen;
             if (idProductoSeleccionado != -1)
             {
-                
+
                 DateTime nuevaFecha = dtFecha.Value;
                 // Lógica para obtener la imagen editada
                 if (!string.IsNullOrEmpty(rutaImagenSeleccionada))
@@ -250,7 +250,7 @@ namespace SaborAcielo
                     MessageBox.Show("Producto actualizado con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Vuelve a cargar los datos en el DataGridView después de la edición
-                   
+
                     bool resultado = producto.CargarProductos(DGlistaProductos);
                     // Restablece el formulario al modo de inserción
                     BeditarProd.Visible = false;
@@ -266,11 +266,11 @@ namespace SaborAcielo
                     MessageBox.Show("Error al actualizar el producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-               
+
             }
-            else MessageBox.Show("Error "+idProductoSeleccionado, "");
-        }  
-           
+            else MessageBox.Show("Error " + idProductoSeleccionado, "");
+        }
+
         private void BcancelProdu_Click(object sender, EventArgs e)
         {
             this.limpiarTextBox();
@@ -281,17 +281,17 @@ namespace SaborAcielo
             if (e.ColumnIndex == DGlistaProductos.Columns["Editar"].Index && e.RowIndex >= 0)
             {
                 idprodu = Convert.ToInt32(DGlistaProductos.Rows[e.RowIndex].Cells["ID"].Value);
-                
+
                 //se cargan los campos del producto
                 Cproducto producto = new Cproducto();
                 DataRow detalle = producto.obtenerProducto(idprodu);
 
                 if (detalle != null)
-                {                  
+                {
                     TBnomProdu.Text = detalle["nombre_produ"].ToString();
                     TBprecio.Text = detalle["precio"].ToString();
                     TBdetalle.Text = detalle["detalle"].ToString();
-                    CtipoProd.SelectedIndex = Convert.ToInt32(detalle["id_tipoProdu"].ToString())-1;
+                    CtipoProd.SelectedIndex = Convert.ToInt32(detalle["id_tipoProdu"].ToString()) - 1;
                     TBcantidadProdu.Text = detalle["stock"].ToString();
                     DateTime fechaProducto = (DateTime)detalle["fecha"];
                     dtFecha.Value = fechaProducto;
@@ -351,7 +351,7 @@ namespace SaborAcielo
             CtipoProd.SelectedIndex = Convert.ToInt32(detalle["id_tipoProdu"].ToString()) - 1;
             TBcantidadProdu.Text = detalle["stock"].ToString();
             producto.MostrarImagenEnPictureBox(idprodu, PBproducto);
-            
+
         }
 
         private void FlistaProductosAdmin_Load(object sender, EventArgs e)
@@ -369,7 +369,7 @@ namespace SaborAcielo
             CnombreProd.Items.AddRange(nombres.ToArray());
             CfiltroTipo.Items.AddRange(tipos.ToArray());
         }
-            private void BbuscarProducto_Click(object sender, EventArgs e)
+        private void BbuscarProducto_Click(object sender, EventArgs e)
         {
 
             // Obtiene los parámetros de búsqueda desde la interfaz de usuario
@@ -377,7 +377,7 @@ namespace SaborAcielo
             string tipo = string.Empty;
             DateTime? fecha = CBfecha.Checked ? DTfechaIng.Value : (DateTime?)null;
 
-            if (CBnombre.Checked)
+            if (CBnombre.Checked && CnombreProd.SelectedIndex != -1)
             {
                 nombre = CnombreProd.SelectedItem.ToString();
             }
@@ -429,6 +429,16 @@ namespace SaborAcielo
         private void CBtipo_CheckedChanged(object sender, EventArgs e)
         {
             CfiltroTipo.Enabled = CBtipo.Checked;
+        }
+
+        private void CBtodosProductos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CBtodosProductos.Checked == true)
+            {
+                CBnombre.Checked = false;
+                CBtipo.Checked = false;
+                CBfecha.Checked = false;
+            }
         }
     }
 }

@@ -27,16 +27,16 @@ namespace SaborAcielo
             string nombre = string.Empty;
             string tipo = string.Empty;
           
-            if (CBnombre.Checked)
+            if (CBnombre.Checked && !string.IsNullOrEmpty(ComboBoxNombre.Text))
             {
                 nombre = ComboBoxNombre.Text;
             }
 
-            if (CBtipo.Checked)
+            if (CBtipo.Checked && !string.IsNullOrEmpty(CBoxTipo.Text))
             {
                 tipo = CBoxTipo.Text;
             }
-            if (CBdni.Checked) { dni = Convert.ToInt32(TBoxDni.Text); }
+            if (CBdni.Checked && !string.IsNullOrEmpty(TBoxDni.Text)) { dni = Convert.ToInt32(TBoxDni.Text); }
 
             bool mostrarActivos = CBactivos.Checked;
             bool mostrarInactivos = CBinactivos.Checked;
@@ -90,6 +90,29 @@ namespace SaborAcielo
                 TBoxDni.Text = LBdni.SelectedItem.ToString();
             }
             LBdni.Visible = false;
+        }
+
+        private void CBtodosUsuarios_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CBtodosUsuarios.Checked == true)
+            {
+                CBnombre.Checked = false;
+               
+                CBtipo.Checked = false;
+                CBdni.Checked = false;
+                CBactivos.Checked = false;
+                CBinactivos.Checked = false;
+            }
+        }
+
+        private void TBoxDni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
         }
     }
 }

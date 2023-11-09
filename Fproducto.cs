@@ -18,7 +18,7 @@ namespace SaborAcielo
             InitializeComponent();
             Cproducto producto = new Cproducto();
             bool resultado = producto.CargarProductos(DGlistaProductos);
-            CargarFechasDisponibles(); 
+            CargarFechasDisponibles();
             InicializarComboBoxes();
         }
 
@@ -42,12 +42,12 @@ namespace SaborAcielo
             string tipo = string.Empty;
             DateTime? fecha = CBfecha.Checked ? DTfechaIng.Value : (DateTime?)null;
 
-            if (CBnombre.Checked)
+            if (CBnombre.Checked && !string.IsNullOrEmpty(CnombreProd.Text))
             {
                 nombre = CnombreProd.SelectedItem.ToString();
             }
 
-            if (CBtipo.Checked)
+            if (CBtipo.Checked && !string.IsNullOrEmpty(CfiltroTipo.Text))
             {
                 tipo = CfiltroTipo.SelectedItem.ToString();
             }
@@ -94,6 +94,26 @@ namespace SaborAcielo
         private void CBtipo_CheckedChanged(object sender, EventArgs e)
         {
             CfiltroTipo.Enabled = CBtipo.Checked;
+        }
+
+        private void CBtodosProductos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CBtodosProductos.Checked == true)
+            {
+                CBnombre.Checked = false;
+                CBtipo.Checked = false;
+                CBfecha.Checked = false;
+            }
+        }
+
+        private void CnombreProd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
         }
     }
 }

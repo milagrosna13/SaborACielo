@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGlistaProductos = new System.Windows.Forms.DataGridView();
             this.GBfiltroProductos = new System.Windows.Forms.GroupBox();
             this.CBtipo = new System.Windows.Forms.CheckBox();
@@ -49,14 +49,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGlistaProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGlistaProductos.BackgroundColor = System.Drawing.Color.RosyBrown;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGlistaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGlistaProductos.Location = new System.Drawing.Point(29, 169);
             this.DGlistaProductos.Margin = new System.Windows.Forms.Padding(2);
@@ -146,6 +146,7 @@
             this.CnombreProd.Name = "CnombreProd";
             this.CnombreProd.Size = new System.Drawing.Size(159, 27);
             this.CnombreProd.TabIndex = 20;
+            this.CnombreProd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CnombreProd_KeyPress);
             // 
             // BbuscarProducto
             // 
@@ -166,6 +167,7 @@
             this.CBtodosProductos.TabIndex = 2;
             this.CBtodosProductos.Text = "Todos los productos";
             this.CBtodosProductos.UseVisualStyleBackColor = true;
+            this.CBtodosProductos.CheckedChanged += new System.EventHandler(this.CBtodosProductos_CheckedChanged);
             // 
             // Fproducto
             // 

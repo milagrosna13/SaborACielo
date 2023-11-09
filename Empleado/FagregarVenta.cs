@@ -106,7 +106,7 @@ namespace SaborAcielo
                             DialogResult resp = MessageBox.Show("Compra realizada. ¿Desea ver la factura?", "Compra", MessageBoxButtons.YesNo);
                             if(resp == DialogResult.Yes)
                             {
-                                cventas.verFactura(venta, DGcarrito);
+                                //cventas.verFactura(venta, DGcarrito);
                             }
                         }
                     }

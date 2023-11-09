@@ -110,18 +110,22 @@ namespace SaborAcielo
                 Creporte reporte = new Creporte();
 
                 DataTable ventasTipo = reporte.ObtenerVentasTipo(fechaInicio, fechaFin);
+            Color[] colores = new Color[] { Color.Plum, Color.SandyBrown, Color.YellowGreen };
+            int colorIndex = 0;
 
-                CventasTipo.Series["Tipos"].Points.Clear();
+            CventasTipo.Series["Tipos"].Points.Clear();
+            
 
-                
-                foreach (DataRow row in ventasTipo.Rows)
+            foreach (DataRow row in ventasTipo.Rows)
                 {
                     string tipoProducto = row["NombreTipoProducto"].ToString();
                     int totalStock = Convert.ToInt32(row["TotalStock"]);
 
                    
                     CventasTipo.Series["Tipos"].Points.AddXY(tipoProducto, totalStock);
-                }
+                CventasTipo.Series["Tipos"].Points[colorIndex].Color = colores[colorIndex % colores.Length];
+                colorIndex++;
+            }
 
                 DataTable ventasNombre = reporte.ObtenerVentasNombre(fechaInicio, fechaFin);
 
@@ -145,14 +149,13 @@ namespace SaborAcielo
         {
             // Obtener la fecha de hoy
             DateTime fechaHoy = DateTime.Today;
-
-            // Obtener los datos para hoy y mostrarlos en los gráficos
+           
             MostrarDatosParaFecha(fechaHoy, fechaHoy);
         }
 
         private void B7Dias_Click(object sender, EventArgs e)
         {
-            
+
             DateTime fechaInicio = DateTime.Today.AddDays(-6); // 6 días atrás
             DateTime fechaFin = DateTime.Today; 
             MostrarDatosParaFecha(fechaInicio, fechaFin);
@@ -169,12 +172,13 @@ namespace SaborAcielo
         private void MostrarDatosParaFecha(DateTime fechaInicio, DateTime fechaFin)
         {
             Creporte reporte = new Creporte();
-
+           
             DataTable ventasTipo = reporte.ObtenerVentasTipo(fechaInicio, fechaFin);
             DataTable ventasNombre = reporte.ObtenerVentasNombre(fechaInicio, fechaFin);
 
-            LimpiarGraficos(); 
+            LimpiarGraficos();
             MostrarDatosEnGraficos(ventasTipo, ventasNombre);
+          
         }
 
         private void LimpiarGraficos()
@@ -185,11 +189,15 @@ namespace SaborAcielo
 
         private void MostrarDatosEnGraficos(DataTable ventasTipo, DataTable ventasNombre)
         {
+            Color[] colores = new Color[] { Color.Plum, Color.SandyBrown, Color.YellowGreen };
+            int colorIndex = 0;
             foreach (DataRow row in ventasTipo.Rows)
             {
                 string tipoProducto = row["NombreTipoProducto"].ToString();
                 int totalStock = Convert.ToInt32(row["TotalStock"]);
                 CventasTipo.Series["Tipos"].Points.AddXY(tipoProducto, totalStock);
+                CventasTipo.Series["Tipos"].Points[colorIndex].Color = colores[colorIndex % colores.Length];
+                colorIndex++;
             }
 
             foreach (DataRow row in ventasNombre.Rows)
@@ -205,7 +213,7 @@ namespace SaborAcielo
             string nombre = string.Empty;
             string tipo = string.Empty;
 
-            if (CBnombre.Checked)
+            if (CBnombre.Checked && !string.IsNullOrEmpty(CnombreProd.Text))
             {
                 nombre = CnombreProd.SelectedItem.ToString();
             }
@@ -213,7 +221,7 @@ namespace SaborAcielo
             if (CBtodosProductos.Checked)
             {
                 nombre = string.Empty;
-                tipo = string.Empty;
+                
             }
 
             var productos = Creporte.ObtenerProductos(nombre); // Llamar al método a través de la instancia
@@ -223,6 +231,15 @@ namespace SaborAcielo
         private void CBnombre_CheckedChanged(object sender, EventArgs e)
         {
             CnombreProd.Enabled = CBnombre.Checked;
+        }
+
+        private void CBtodosProductos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CBtodosProductos.Checked == true)
+            {
+                CBnombre.Checked = false;
+               
+            }
         }
     }
 }

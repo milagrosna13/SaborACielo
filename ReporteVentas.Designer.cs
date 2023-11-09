@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Bmes = new System.Windows.Forms.Button();
             this.B7Dias = new System.Windows.Forms.Button();
@@ -46,36 +46,37 @@
             this.labelST = new System.Windows.Forms.Label();
             this.LtotalV = new System.Windows.Forms.Label();
             this.PgananciasTotal = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.labelR = new System.Windows.Forms.Label();
             this.LtotalG = new System.Windows.Forms.Label();
             this.LtotalC = new System.Windows.Forms.Label();
             this.labelV = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PclientesTotal = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.GBfiltroProductos = new System.Windows.Forms.GroupBox();
-            this.BbuscarProducto = new System.Windows.Forms.Button();
-            this.DGnombreProdu = new System.Windows.Forms.DataGridView();
-            this.ChartGanancias = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label1 = new System.Windows.Forms.Label();
+            this.CBoxApellido = new System.Windows.Forms.ComboBox();
+            this.CBapellido = new System.Windows.Forms.CheckBox();
             this.LBdni = new System.Windows.Forms.ListBox();
             this.TBoxDni = new System.Windows.Forms.TextBox();
             this.ComboBoxNombre = new System.Windows.Forms.ComboBox();
             this.CBnombre = new System.Windows.Forms.CheckBox();
             this.CBdni = new System.Windows.Forms.CheckBox();
+            this.BbuscarEmpleado = new System.Windows.Forms.Button();
+            this.DGempleados = new System.Windows.Forms.DataGridView();
+            this.ChartGanancias = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.CBoxApellido = new System.Windows.Forms.ComboBox();
-            this.CBapellido = new System.Windows.Forms.CheckBox();
+            this.CBtodosEmpleados = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.PventasTotal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.PgananciasTotal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PclientesTotal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.GBfiltroProductos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGnombreProdu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGempleados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChartGanancias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.SuspendLayout();
@@ -235,6 +236,17 @@
             this.PgananciasTotal.Size = new System.Drawing.Size(321, 58);
             this.PgananciasTotal.TabIndex = 19;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox3.Image = global::SaborAcielo.Properties.Resources.save_money_1611179;
+            this.pictureBox3.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 3;
+            this.pictureBox3.TabStop = false;
+            // 
             // labelR
             // 
             this.labelR.AutoSize = true;
@@ -296,20 +308,10 @@
             this.PclientesTotal.Size = new System.Drawing.Size(321, 58);
             this.PclientesTotal.TabIndex = 20;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox3.Image = global::SaborAcielo.Properties.Resources.save_money_1611179;
-            this.pictureBox3.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
-            // 
             // GBfiltroProductos
             // 
             this.GBfiltroProductos.BackColor = System.Drawing.Color.Transparent;
+            this.GBfiltroProductos.Controls.Add(this.CBtodosEmpleados);
             this.GBfiltroProductos.Controls.Add(this.CBoxApellido);
             this.GBfiltroProductos.Controls.Add(this.CBapellido);
             this.GBfiltroProductos.Controls.Add(this.LBdni);
@@ -317,50 +319,122 @@
             this.GBfiltroProductos.Controls.Add(this.ComboBoxNombre);
             this.GBfiltroProductos.Controls.Add(this.CBnombre);
             this.GBfiltroProductos.Controls.Add(this.CBdni);
-            this.GBfiltroProductos.Controls.Add(this.BbuscarProducto);
+            this.GBfiltroProductos.Controls.Add(this.BbuscarEmpleado);
             this.GBfiltroProductos.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold);
             this.GBfiltroProductos.Location = new System.Drawing.Point(17, 402);
             this.GBfiltroProductos.Name = "GBfiltroProductos";
-            this.GBfiltroProductos.Size = new System.Drawing.Size(230, 221);
+            this.GBfiltroProductos.Size = new System.Drawing.Size(230, 248);
             this.GBfiltroProductos.TabIndex = 23;
             this.GBfiltroProductos.TabStop = false;
             this.GBfiltroProductos.Text = "Filtrar por";
             // 
-            // BbuscarProducto
+            // CBoxApellido
             // 
-            this.BbuscarProducto.Location = new System.Drawing.Point(59, 185);
-            this.BbuscarProducto.Name = "BbuscarProducto";
-            this.BbuscarProducto.Size = new System.Drawing.Size(75, 30);
-            this.BbuscarProducto.TabIndex = 5;
-            this.BbuscarProducto.Text = "Buscar";
-            this.BbuscarProducto.UseVisualStyleBackColor = true;
+            this.CBoxApellido.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CBoxApellido.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.CBoxApellido.FormattingEnabled = true;
+            this.CBoxApellido.Location = new System.Drawing.Point(102, 191);
+            this.CBoxApellido.Name = "CBoxApellido";
+            this.CBoxApellido.Size = new System.Drawing.Size(121, 27);
+            this.CBoxApellido.TabIndex = 41;
             // 
-            // DGnombreProdu
+            // CBapellido
             // 
-            this.DGnombreProdu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DGnombreProdu.BackgroundColor = System.Drawing.Color.RosyBrown;
-            this.DGnombreProdu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGnombreProdu.Location = new System.Drawing.Point(253, 414);
-            this.DGnombreProdu.Name = "DGnombreProdu";
-            this.DGnombreProdu.Size = new System.Drawing.Size(482, 209);
-            this.DGnombreProdu.TabIndex = 22;
+            this.CBapellido.AutoSize = true;
+            this.CBapellido.Location = new System.Drawing.Point(13, 195);
+            this.CBapellido.Name = "CBapellido";
+            this.CBapellido.Size = new System.Drawing.Size(83, 23);
+            this.CBapellido.TabIndex = 40;
+            this.CBapellido.Text = "Apellido";
+            this.CBapellido.UseVisualStyleBackColor = true;
+            // 
+            // LBdni
+            // 
+            this.LBdni.FormattingEnabled = true;
+            this.LBdni.ItemHeight = 19;
+            this.LBdni.Location = new System.Drawing.Point(100, 111);
+            this.LBdni.Name = "LBdni";
+            this.LBdni.Size = new System.Drawing.Size(120, 42);
+            this.LBdni.TabIndex = 39;
+            this.LBdni.Visible = false;
+            this.LBdni.Click += new System.EventHandler(this.LBdni_SelectedIndexChanged);
+            // 
+            // TBoxDni
+            // 
+            this.TBoxDni.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.TBoxDni.Location = new System.Drawing.Point(100, 86);
+            this.TBoxDni.Name = "TBoxDni";
+            this.TBoxDni.Size = new System.Drawing.Size(120, 27);
+            this.TBoxDni.TabIndex = 38;
+            this.TBoxDni.TextChanged += new System.EventHandler(this.TBoxDni_TextChanged);
+            // 
+            // ComboBoxNombre
+            // 
+            this.ComboBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ComboBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.ComboBoxNombre.FormattingEnabled = true;
+            this.ComboBoxNombre.Location = new System.Drawing.Point(99, 155);
+            this.ComboBoxNombre.Name = "ComboBoxNombre";
+            this.ComboBoxNombre.Size = new System.Drawing.Size(121, 27);
+            this.ComboBoxNombre.TabIndex = 37;
+            // 
+            // CBnombre
+            // 
+            this.CBnombre.AutoSize = true;
+            this.CBnombre.Location = new System.Drawing.Point(13, 157);
+            this.CBnombre.Name = "CBnombre";
+            this.CBnombre.Size = new System.Drawing.Size(80, 23);
+            this.CBnombre.TabIndex = 36;
+            this.CBnombre.Text = "Nombre";
+            this.CBnombre.UseVisualStyleBackColor = true;
+            // 
+            // CBdni
+            // 
+            this.CBdni.AutoSize = true;
+            this.CBdni.Location = new System.Drawing.Point(15, 88);
+            this.CBdni.Name = "CBdni";
+            this.CBdni.Size = new System.Drawing.Size(64, 23);
+            this.CBdni.TabIndex = 35;
+            this.CBdni.Text = "DNI";
+            this.CBdni.UseVisualStyleBackColor = true;
+            // 
+            // BbuscarEmpleado
+            // 
+            this.BbuscarEmpleado.Location = new System.Drawing.Point(70, 228);
+            this.BbuscarEmpleado.Name = "BbuscarEmpleado";
+            this.BbuscarEmpleado.Size = new System.Drawing.Size(75, 30);
+            this.BbuscarEmpleado.TabIndex = 5;
+            this.BbuscarEmpleado.Text = "Buscar";
+            this.BbuscarEmpleado.UseVisualStyleBackColor = true;
+            this.BbuscarEmpleado.Click += new System.EventHandler(this.BbuscarEmpleado_Click);
+            // 
+            // DGempleados
+            // 
+            this.DGempleados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGempleados.BackgroundColor = System.Drawing.Color.RosyBrown;
+            this.DGempleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGempleados.Location = new System.Drawing.Point(253, 402);
+            this.DGempleados.Name = "DGempleados";
+            this.DGempleados.Size = new System.Drawing.Size(482, 248);
+            this.DGempleados.TabIndex = 22;
             // 
             // ChartGanancias
             // 
             this.ChartGanancias.BackColor = System.Drawing.Color.Transparent;
-            chartArea3.Name = "ChartArea1";
-            this.ChartGanancias.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.ChartGanancias.Legends.Add(legend3);
+            chartArea5.Name = "ChartArea1";
+            this.ChartGanancias.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.ChartGanancias.Legends.Add(legend5);
             this.ChartGanancias.Location = new System.Drawing.Point(12, 138);
             this.ChartGanancias.Name = "ChartGanancias";
             this.ChartGanancias.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series3.BorderWidth = 8;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "Ganancias";
-            this.ChartGanancias.Series.Add(series3);
+            series5.BorderWidth = 8;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.IsValueShownAsLabel = true;
+            series5.Legend = "Legend1";
+            series5.Name = "Ganancias";
+            this.ChartGanancias.Series.Add(series5);
             this.ChartGanancias.Size = new System.Drawing.Size(993, 258);
             this.ChartGanancias.TabIndex = 24;
             this.ChartGanancias.Text = "chart1";
@@ -376,54 +450,6 @@
             this.label1.TabIndex = 25;
             this.label1.Text = "Ganancia";
             // 
-            // LBdni
-            // 
-            this.LBdni.FormattingEnabled = true;
-            this.LBdni.ItemHeight = 19;
-            this.LBdni.Location = new System.Drawing.Point(97, 53);
-            this.LBdni.Name = "LBdni";
-            this.LBdni.Size = new System.Drawing.Size(120, 42);
-            this.LBdni.TabIndex = 39;
-            this.LBdni.Visible = false;
-            // 
-            // TBoxDni
-            // 
-            this.TBoxDni.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.TBoxDni.Location = new System.Drawing.Point(97, 28);
-            this.TBoxDni.Name = "TBoxDni";
-            this.TBoxDni.Size = new System.Drawing.Size(120, 27);
-            this.TBoxDni.TabIndex = 38;
-            // 
-            // ComboBoxNombre
-            // 
-            this.ComboBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.ComboBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.ComboBoxNombre.FormattingEnabled = true;
-            this.ComboBoxNombre.Location = new System.Drawing.Point(96, 97);
-            this.ComboBoxNombre.Name = "ComboBoxNombre";
-            this.ComboBoxNombre.Size = new System.Drawing.Size(121, 27);
-            this.ComboBoxNombre.TabIndex = 37;
-            // 
-            // CBnombre
-            // 
-            this.CBnombre.AutoSize = true;
-            this.CBnombre.Location = new System.Drawing.Point(10, 99);
-            this.CBnombre.Name = "CBnombre";
-            this.CBnombre.Size = new System.Drawing.Size(80, 23);
-            this.CBnombre.TabIndex = 36;
-            this.CBnombre.Text = "Nombre";
-            this.CBnombre.UseVisualStyleBackColor = true;
-            // 
-            // CBdni
-            // 
-            this.CBdni.AutoSize = true;
-            this.CBdni.Location = new System.Drawing.Point(12, 30);
-            this.CBdni.Name = "CBdni";
-            this.CBdni.Size = new System.Drawing.Size(64, 23);
-            this.CBdni.TabIndex = 35;
-            this.CBdni.Text = "DNI";
-            this.CBdni.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -438,58 +464,49 @@
             // chart2
             // 
             this.chart2.BackColor = System.Drawing.Color.Transparent;
-            chartArea4.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart2.Legends.Add(legend4);
+            chartArea6.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.chart2.Legends.Add(legend6);
             this.chart2.Location = new System.Drawing.Point(741, 414);
             this.chart2.Name = "chart2";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            series4.YValuesPerPoint = 2;
-            this.chart2.Series.Add(series4);
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            series6.YValuesPerPoint = 2;
+            this.chart2.Series.Add(series6);
             this.chart2.Size = new System.Drawing.Size(394, 209);
             this.chart2.TabIndex = 28;
             this.chart2.Text = "chart2";
             // 
-            // CBoxApellido
+            // CBtodosEmpleados
             // 
-            this.CBoxApellido.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.CBoxApellido.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.CBoxApellido.FormattingEnabled = true;
-            this.CBoxApellido.Location = new System.Drawing.Point(99, 133);
-            this.CBoxApellido.Name = "CBoxApellido";
-            this.CBoxApellido.Size = new System.Drawing.Size(121, 27);
-            this.CBoxApellido.TabIndex = 41;
-            // 
-            // CBapellido
-            // 
-            this.CBapellido.AutoSize = true;
-            this.CBapellido.Location = new System.Drawing.Point(10, 137);
-            this.CBapellido.Name = "CBapellido";
-            this.CBapellido.Size = new System.Drawing.Size(83, 23);
-            this.CBapellido.TabIndex = 40;
-            this.CBapellido.Text = "Apellido";
-            this.CBapellido.UseVisualStyleBackColor = true;
+            this.CBtodosEmpleados.AutoSize = true;
+            this.CBtodosEmpleados.Location = new System.Drawing.Point(15, 39);
+            this.CBtodosEmpleados.Name = "CBtodosEmpleados";
+            this.CBtodosEmpleados.Size = new System.Drawing.Size(160, 23);
+            this.CBtodosEmpleados.TabIndex = 42;
+            this.CBtodosEmpleados.Text = "Todos los empleados";
+            this.CBtodosEmpleados.UseVisualStyleBackColor = true;
             // 
             // ReporteVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SaborAcielo.Properties.Resources.fondoSACinicio;
-            this.ClientSize = new System.Drawing.Size(1035, 635);
+            this.ClientSize = new System.Drawing.Size(1035, 662);
             this.Controls.Add(this.chart2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ChartGanancias);
             this.Controls.Add(this.GBfiltroProductos);
-            this.Controls.Add(this.DGnombreProdu);
+            this.Controls.Add(this.DGempleados);
             this.Controls.Add(this.PclientesTotal);
             this.Controls.Add(this.PventasTotal);
             this.Controls.Add(this.PgananciasTotal);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ReporteVentas";
             this.Text = "ReporteVentas";
             this.panel1.ResumeLayout(false);
@@ -498,13 +515,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.PgananciasTotal.ResumeLayout(false);
             this.PgananciasTotal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PclientesTotal.ResumeLayout(false);
             this.PclientesTotal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.GBfiltroProductos.ResumeLayout(false);
             this.GBfiltroProductos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGnombreProdu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGempleados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChartGanancias)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.ResumeLayout(false);
@@ -533,8 +550,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel PclientesTotal;
         private System.Windows.Forms.GroupBox GBfiltroProductos;
-        private System.Windows.Forms.Button BbuscarProducto;
-        private System.Windows.Forms.DataGridView DGnombreProdu;
+        private System.Windows.Forms.Button BbuscarEmpleado;
+        private System.Windows.Forms.DataGridView DGempleados;
         private System.Windows.Forms.DataVisualization.Charting.Chart ChartGanancias;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox LBdni;
@@ -546,5 +563,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.ComboBox CBoxApellido;
         private System.Windows.Forms.CheckBox CBapellido;
+        private System.Windows.Forms.CheckBox CBtodosEmpleados;
     }
 }

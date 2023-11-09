@@ -306,12 +306,12 @@ namespace SaborAcielo.datos
             }
         }
 
-        //ver factura de la compra
+        /*ver factura de la compra
         public void verFactura(int id, DataGridView dg)
         {
             Ffactura formularioFactura = new Ffactura(dg);
             formularioFactura.ShowDialog();
-        }
+        }*/
 
 
         //filtro con todos los check 

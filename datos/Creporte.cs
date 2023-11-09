@@ -130,7 +130,153 @@ namespace SaborAcielo.datos
 
             return totalClientes;
         }
+        //Metodo para buscar empleados (vista: listar)
+        public DataTable BuscarDni(int dniBusqueda)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
 
+                string query = "SELECT dni_empleado FROM Empleado WHERE CAST(dni_empleado AS NVARCHAR(20)) LIKE @dniBusqueda";
+
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@dniBusqueda", "%" + dniBusqueda + "%");
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                return dataTable;
+            }
+
+        }
+        public AutoCompleteStringCollection ObtenerSugerenciasNombre()
+        {
+            AutoCompleteStringCollection sugerencias = new AutoCompleteStringCollection();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT nombre FROM Empleado";
+                SqlCommand cmd = new SqlCommand(query, connection);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        sugerencias.Add(reader["nombre"].ToString());
+                    }
+                }
+            }
+
+            return sugerencias;
+        }
+
+        public AutoCompleteStringCollection ObtenerSugerenciasApellido()
+        {
+            AutoCompleteStringCollection sugerencias = new AutoCompleteStringCollection();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT apellido FROM Empleado";
+                SqlCommand cmd = new SqlCommand(query, connection);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        sugerencias.Add(reader["apellido"].ToString());
+                    }
+                }
+            }
+
+            return sugerencias;
+        }
+        public static DataTable ObtenerEmpleados(string nombre, string apellido, int dni)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+            {
+                connection.Open();
+
+                string consultaSQL = "SELECT E.nombre, E.apellido, E.dni_empleado, COUNT(V.id_venta) AS total_ventas, " +
+        "SUM(V.total) AS total_ganancias FROM Empleado E LEFT JOIN Venta_cabecera V ON E.dni_empleado = V.dni_empleado " +
+        "WHERE V.estado = 1";
+
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    consultaSQL += " AND E.nombre LIKE @nombre";
+                }
+
+                if (!string.IsNullOrEmpty(apellido))
+                {
+                    consultaSQL += " AND E.apellido LIKE @apellido";
+                }
+
+                if (dni != 0)
+                {
+                    consultaSQL += " AND E.dni_empleado = @dni"; 
+                }
+
+                consultaSQL += " GROUP BY E.nombre, E.apellido, E.dni_empleado";
+
+
+
+                using (SqlCommand command = new SqlCommand(consultaSQL, connection))
+                {
+                    if (!string.IsNullOrEmpty(nombre))
+                    {
+                        command.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
+                    }
+
+                    if (!string.IsNullOrEmpty(apellido))
+                    {
+                        command.Parameters.AddWithValue("@apellido", "%" + apellido + "%");
+                    }
+
+                    if (dni != 0)
+                    {
+                        command.Parameters.AddWithValue("@dni", dni);
+                    }
+
+                   
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
+        }
+        //-----------
+        public bool CargarEmpleados(DataGridView dataGridView)
+        {
+            try
+            {
+                // Crear un DataTable local para almacenar los datos
+                DataTable localDataTable = new DataTable();
+
+                // Configurar el SqlDataAdapter
+                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT E.nombre, E.apellido, E.dni_empleado, COUNT(V.id_venta) AS total_ventas," +
+                    "SUM(V.total) AS total_ganancias FROM Empleado E LEFT JOIN Venta_cabecera V ON E.dni_empleado = V.dni_empleado " +
+                    "WHERE V.estado = 1 " +
+                    "GROUP BY E.nombre, E.apellido, E.dni_empleado", new SqlConnection(connectionString)))
+                {
+                    // Llenar el DataTable con los datos
+                    localDataAdapter.Fill(localDataTable);
+                }
+
+                // Asignar el DataTable como origen de datos del DataGridView
+                dataGridView.DataSource = localDataTable;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         //-----------------------------------------------------------------------------------------------------------------------
         //-------------------REPORTE PRODUCTOS--------------------------------------------------------------------------------------------
         public List<string> ObtenerNombresUnicos()
@@ -233,7 +379,7 @@ namespace SaborAcielo.datos
 
                 if (fechaInicio != null && fechaFin != null)
                 {
-                    query += "WHERE vc.fecha_venta BETWEEN @FechaInicio AND @FechaFin ";
+                    query += " WHERE CAST(vc.fecha_venta AS date) BETWEEN @FechaInicio AND @FechaFin ";
                 }
 
                 query += "GROUP BY tp.desc_tipoProd";
@@ -263,14 +409,14 @@ namespace SaborAcielo.datos
             {
                 connection.Open();
 
-                string query = "SELECT TOP 5 tp.nombre_produ, COUNT(vd.id_venta) AS TotalVentas " +
+                string query = "SELECT TOP 3 tp.nombre_produ, COUNT(vd.id_venta) AS TotalVentas " +
                                "FROM Venta_detalle vd " +
                                "INNER JOIN Venta_cabecera vc ON vc.id_venta = vd.id_venta " +
                                "INNER JOIN Producto tp ON tp.id_produ = vd.id_produ ";
 
                 if (fechaInicio != null && fechaFin != null)
                 {
-                    query += "WHERE vc.fecha_venta BETWEEN @FechaInicio AND @FechaFin ";
+                    query += " WHERE CAST(vc.fecha_venta AS date) BETWEEN @FechaInicio AND @FechaFin ";
                 }
 
                 query += "GROUP BY tp.nombre_produ ORDER BY TotalVentas DESC";
@@ -300,7 +446,8 @@ namespace SaborAcielo.datos
                 DataTable localDataTable = new DataTable();
 
                 // Configurar el SqlDataAdapter
-                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT p.nombre_produ, SUM(CASE WHEN p.estado = 1 THEN p.stock ELSE 0 END) \r\nAS TotalStock FROM Producto p group BY nombre_produ", new SqlConnection(connectionString)))
+                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT p.nombre_produ, SUM(CASE WHEN p.estado = 1 THEN p.stock ELSE 0 END) " +
+                    "AS TotalStock FROM Producto p group BY nombre_produ", new SqlConnection(connectionString)))
                 {
                     // Llenar el DataTable con los datos
                     localDataAdapter.Fill(localDataTable);

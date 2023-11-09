@@ -18,6 +18,7 @@ namespace SaborAcielo
         {
             InitializeComponent();
             ActualizarLabels();
+            bool resultado = reporte.CargarEmpleados(DGempleados);
         }
 
         private Creporte reporte = new Creporte();
@@ -137,5 +138,71 @@ namespace SaborAcielo
           
         }
 
+        private void BbuscarEmpleado_Click(object sender, EventArgs e)
+        {
+            // Obtiene los parámetros de búsqueda desde la interfaz de usuario
+            int dni = 0;
+            string nombre = string.Empty;
+            string apellido = string.Empty;
+        
+
+            if (CBnombre.Checked && !string.IsNullOrEmpty(ComboBoxNombre.Text))
+            {
+                nombre = ComboBoxNombre.Text;
+            }
+
+            if (CBapellido.Checked && !string.IsNullOrEmpty(CBoxApellido.Text))
+            {
+                apellido = CBoxApellido.Text;
+            }
+            if (CBdni.Checked && !string.IsNullOrEmpty(TBoxDni.Text)) { dni = Convert.ToInt32(TBoxDni.Text); }
+
+            // Verifica si el checkbox "Todos los productos" está marcado
+            if (CBtodosEmpleados.Checked)
+            {
+                dni = 0;
+                nombre = string.Empty;  // Ignora la búsqueda por nombre
+                apellido = string.Empty;    // Ignora la búsqueda por tipo
+             
+            }
+
+            // Llama al método de la clase CProducto para obtener los resultados
+            var empleados = Creporte.ObtenerEmpleados(nombre, apellido, dni);
+
+            // Muestra los resultados en el DataGridView
+            DGempleados.DataSource = empleados;
+        }
+        private void TBoxDni_TextChanged(object sender, EventArgs e)
+        {
+            Cempleado empleado = new Cempleado();
+            int dniBusqueda;
+
+            if (int.TryParse(TBoxDni.Text, out dniBusqueda))
+            {
+                LBdni.Visible = true;
+
+                DataTable resultados = empleado.BuscarDni(dniBusqueda);
+
+                LBdni.Items.Clear();
+                foreach (DataRow row in resultados.Rows)
+                {
+                    LBdni.Items.Add(row["dni_empleado"].ToString());
+                }
+            }
+            else
+            {
+                LBdni.Items.Clear();
+                LBdni.Visible = false;
+            }
+        }
+
+        private void LBdni_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (LBdni.SelectedIndex >= 0)
+            {
+                TBoxDni.Text = LBdni.SelectedItem.ToString();
+            }
+            LBdni.Visible = false;
+        }
     }
 }

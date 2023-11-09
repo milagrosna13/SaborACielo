@@ -591,16 +591,16 @@ namespace SaborAcielo
             string apellido = string.Empty;
             DateTime? fecha = CBfecha.Checked ? DTfechaIng.Value : (DateTime?)null;
 
-            if (CBnombre.Checked )
+            if (CBnombre.Checked && !string.IsNullOrEmpty(ComboBoxNombre.Text))
             {
                 nombre = ComboBoxNombre.Text;
             }
 
-            if (CBapellido.Checked)
+            if (CBapellido.Checked  && !string.IsNullOrEmpty(CBoxApellido.Text))
             {
                 apellido = CBoxApellido.Text;
             }
-            if (CBdni.Checked) { dni = Convert.ToInt32(TBoxDni.Text); }
+            if (CBdni.Checked && !string.IsNullOrEmpty(TBoxDni.Text)) { dni = Convert.ToInt32(TBoxDni.Text); }
 
             // Verifica si el checkbox "Todos los productos" está marcado
             if (CBtodosUsuarios.Checked)
@@ -616,6 +616,51 @@ namespace SaborAcielo
 
             // Muestra los resultados en el DataGridView
             DGlistaUsuarios.DataSource = empleados;
+        }
+
+        private void CBtodosUsuarios_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CBtodosUsuarios.Checked == true)
+            {
+                CBnombre.Checked = false;
+                CBapellido.Checked = false;
+                CBdni.Checked = false;
+                CBfecha.Checked = false;
+            }
+        }
+
+        private void ComboBoxNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void ComboBoxNombre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void CBoxApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void TBoxDni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
         }
     }
 }
