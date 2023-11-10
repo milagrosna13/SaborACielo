@@ -662,6 +662,36 @@ namespace SaborAcielo.datos
             }
         }
 
+        public string ObtenerNombreEmpleado(int dni)
+        {
+            string nombre = "";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+                {
+                    connection.Open();
 
+                    string consulta = "SELECT nombre FROM Empleado WHERE dni_empleado = @dni";
+                    using (SqlCommand comando = new SqlCommand(consulta, connection))
+                    {
+                        comando.Parameters.AddWithValue("@dni", dni);
+                        using (SqlDataReader reader = comando.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                nombre = Convert.ToString(reader["nombre"]);
+                            }
+                        }
+                    }
+                    return nombre;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return nombre;
+            }
+        }
     }
 }

@@ -55,18 +55,18 @@
             this.DTdesde = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.DGdetalle = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.DGventas)).BeginInit();
             this.Pventas.SuspendLayout();
             this.GBfiltroVenta.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGdetalle)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGventas
             // 
-            this.DGventas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.DGventas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DGventas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -77,12 +77,13 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGventas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGventas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGventas.Location = new System.Drawing.Point(48, 378);
             this.DGventas.Location = new System.Drawing.Point(1, 203);
             this.DGventas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DGventas.Name = "DGventas";
             this.DGventas.RowHeadersWidth = 62;
             this.DGventas.RowTemplate.Height = 28;
-            this.DGventas.Size = new System.Drawing.Size(493, 279);
+            this.DGventas.Size = new System.Drawing.Size(1126, 360);
             this.DGventas.TabIndex = 0;
             this.DGventas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGventas_CellContentClick);
             // 
@@ -124,6 +125,8 @@
             // 
             // GBfiltroVenta
             // 
+            this.GBfiltroVenta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GBfiltroVenta.Controls.Add(this.CBmedios);
             this.GBfiltroVenta.Controls.Add(this.CBpago);
             this.GBfiltroVenta.Controls.Add(this.Cestado);
@@ -381,27 +384,6 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Lista de ventas";
             // 
-            // DGdetalle
-            // 
-            this.DGdetalle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DGdetalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGdetalle.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DGdetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGdetalle.Location = new System.Drawing.Point(409, 203);
-            this.DGdetalle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.DGdetalle.Name = "DGdetalle";
-            this.DGdetalle.RowHeadersWidth = 62;
-            this.DGdetalle.RowTemplate.Height = 28;
-            this.DGdetalle.Size = new System.Drawing.Size(400, 279);
-            this.DGdetalle.TabIndex = 10;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Sienna;
@@ -422,7 +404,6 @@
             this.Controls.Add(this.Pventas);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.DGventas);
-            this.Controls.Add(this.DGdetalle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FVentasEm";
@@ -432,7 +413,6 @@
             this.Pventas.PerformLayout();
             this.GBfiltroVenta.ResumeLayout(false);
             this.GBfiltroVenta.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGdetalle)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -462,7 +442,6 @@
         private System.Windows.Forms.TextBox TBnomC;
         private System.Windows.Forms.Label LdniE;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView DGdetalle;
         private System.Windows.Forms.ComboBox Cestado;
         private System.Windows.Forms.Label LdniEM;
         private System.Windows.Forms.Panel panel1;

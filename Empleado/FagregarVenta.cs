@@ -16,6 +16,12 @@ namespace SaborAcielo
 {
     public partial class FagregarVenta : Form
     {
+        public int venta;
+        private Ccliente clienteDatos = new Ccliente();
+        private Cventas cventas = new Cventas();
+        private Cproducto cproducto = new Cproducto();
+        private Cusuarios cusuario = new Cusuarios();
+        private Cempleado cempleado = new Cempleado();
         public FagregarVenta()
         {
             InitializeComponent();
@@ -29,15 +35,8 @@ namespace SaborAcielo
             agregarColumnasCarrito();
 
             inicializarDatos();
+                        
         }
-
-        public int venta;
-
-
-        private Ccliente clienteDatos = new Ccliente();
-        private Cventas cventas = new Cventas();
-        private Cproducto cproducto = new Cproducto();
-        private Cusuarios cusuario = new Cusuarios();
 
         private void InicializarComboBoxes()
         {
@@ -55,10 +54,26 @@ namespace SaborAcielo
 
         private void inicializarDatos()
         {
-            TBNem.Text = UserLogin.NombreUsuario;
-            string user = TBNem.Text;
-            TBDemp.Text = Convert.ToString(cusuario.ObtenerDniUsuario(user));
+            
+            string user = UserLogin.NombreUsuario;
+            int dni = cusuario.ObtenerDniUsuario(user);
+
+            string nombre = cempleado.ObtenerNombreEmpleado(dni);
+
+            TBNem.Text = nombre;
+            TBDemp.Text = Convert.ToString(dni);
             TBfactura.Text = Convert.ToString(cventas.obtenerMaxVenta() + 1);
+
+            if (!string.IsNullOrEmpty(TBdnicliente.Text))
+            {
+                DataTable dt = clienteDatos.BuscarClientePorDNI(Convert.ToInt32(TBdnicliente.Text));
+                DataRow row = dt.Rows[0];
+                nomCliente.Text = row["nombre_cliente"].ToString();
+                aCliente.Text = row["apellido_cliente"].ToString();
+                tCliente.Text = row["tel_cliente"].ToString();
+                direCliente.Text = row["dire_cliente"].ToString();
+                emCliente.Text = row["email_cliente"].ToString();
+            }
         }
         private void limpiar()
         {
@@ -86,7 +101,8 @@ namespace SaborAcielo
                     decimal total = calcularTotal();
                     int empleado = cusuario.ObtenerDniUsuario(user);
 
-                    if (total > 0)
+                    
+                    if (cantidadesIngresadas())
                     {
                         bool ventaExitosa = cventas.agregarCabecera(Convert.ToInt32(TBdnicliente.Text), venta, empleado, DateTime.Now, total, CBpago.SelectedIndex + 1);
                         bool detalleExitoso = cventas.agregarDetalle(venta, DGcarrito);
@@ -102,11 +118,12 @@ namespace SaborAcielo
                             int proxF = Convert.ToInt32(TBfactura.Text) + 1;
                             TBfactura.Text = Convert.ToString(proxF);
                             TBtotal.Clear();
+                            CBpago.SelectedIndex = -1;
 
                             DialogResult resp = MessageBox.Show("Compra realizada. ¿Desea ver la factura?", "Compra", MessageBoxButtons.YesNo);
                             if(resp == DialogResult.Yes)
                             {
-                                //cventas.verFactura(venta, DGcarrito);
+                                cventas.verFactura(venta);
                             }
                         }
                     }
@@ -129,6 +146,21 @@ namespace SaborAcielo
             }
 
         }
+
+        private bool cantidadesIngresadas()
+        {
+            int cant = 0;
+            foreach (DataGridViewRow row in DGcarrito.Rows)
+            {
+                if (Convert.ToInt16(row.Cells["Cantidad"].Value) > 0)
+                {
+                    cant ++;
+                }
+            }
+            return cant == DGcarrito.Rows.Count-1;
+        }
+
+
         private decimal calcularTotal()
         {
             decimal suma = 0; 
@@ -199,7 +231,8 @@ namespace SaborAcielo
                 switch (res)
                 {
                     case DialogResult.Yes:
-                        FagregarCliente fagregarCliente = new FagregarCliente(this);
+                        int dni = Convert.ToInt32(TBdnicliente.Text);
+                        FagregarCliente fagregarCliente = new FagregarCliente(this, dni);
                         fagregarCliente.Show();
                         break;
                     case DialogResult.No:
@@ -299,7 +332,7 @@ namespace SaborAcielo
         //agregar producto al carrito
         private void DGprodu_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == DGprodu.Columns["Agregar"].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == DGprodu.Columns["Agregar"].Index && e.RowIndex >= 0 && Convert.ToInt32(DGprodu.Rows[e.RowIndex].Cells["ID"].Value) > 0) 
             {
                 int id = Convert.ToInt32(DGprodu.Rows[e.RowIndex].Cells["ID"].Value);
 
@@ -389,12 +422,18 @@ namespace SaborAcielo
 
         private void DGcarrito_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            
 
         }
 
         private void DGcarrito_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+        }
+
+        private void FagregarVenta_Load(object sender, EventArgs e)
+        {
+            inicializarDatos();
         }
     }
 }
