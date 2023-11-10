@@ -157,10 +157,11 @@ namespace SaborAcielo
 
         private void DGventas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == DGventas.Columns["Detalle"].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == DGventas.Columns["Detalle"].Index && e.RowIndex >= 0 && Convert.ToInt32(DGventas.Rows[e.RowIndex].Cells["ID"].Value) > 0)
             {
                 int id = Convert.ToInt32(DGventas.Rows[e.RowIndex].Cells["ID"].Value);
-                Cventas.MostrarResumen(id, DGdetalle);
+                //Cventas.MostrarResumen(id, DGdetalle);
+                cventa.verFactura(id);
             }
         }
 

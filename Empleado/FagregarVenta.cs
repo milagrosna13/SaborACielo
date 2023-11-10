@@ -96,8 +96,6 @@ namespace SaborAcielo
                 DialogResult res = MessageBox.Show("Desea finalizar la compra?", "Confirmar compra", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == DialogResult.Yes)
                 {
-                    int filas = DGcarrito.Rows.Count - 1;
-                    MessageBox.Show("filas= " + filas + "; cantidades= " + cantidad());
                     int ventaMax = cventas.obtenerMaxVenta();
                     venta = ventaMax + 1;
                     decimal total = calcularTotal();
@@ -125,7 +123,7 @@ namespace SaborAcielo
                             DialogResult resp = MessageBox.Show("Compra realizada. ¿Desea ver la factura?", "Compra", MessageBoxButtons.YesNo);
                             if(resp == DialogResult.Yes)
                             {
-                                cventas.verFactura(venta, DGcarrito);
+                                cventas.verFactura(venta);
                             }
                         }
                     }
@@ -160,19 +158,6 @@ namespace SaborAcielo
                 }
             }
             return cant == DGcarrito.Rows.Count-1;
-        }
-
-        private int cantidad()
-        {
-            int cant = 0;
-            foreach (DataGridViewRow row in DGcarrito.Rows)
-            {
-                if (Convert.ToInt16(row.Cells["Cantidad"].Value) > 0)
-                {
-                    cant++;
-                }
-            }
-            return cant;
         }
 
 

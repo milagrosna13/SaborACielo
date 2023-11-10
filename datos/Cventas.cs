@@ -80,6 +80,37 @@ namespace SaborAcielo.datos
             }
         }
 
+        public DataRow CabeceraVenta(int id)
+        {
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT vc.id_venta, e.nombre, e.dni_empleado, c.nombre_cliente, c.dni_cliente, vc.fecha_venta, vc.total, mp.desc_tipomedio " +
+                    "FROM Venta_cabecera vc " +
+                    "INNER JOIN Cliente c ON vc.dni_cliente = c.dni_cliente " +
+                    "INNER JOIN Empleado e ON vc.dni_empleado = e.dni_empleado " +
+                    "INNER JOIN medio_pago mp ON vc.tipo_pago = mp.tipo_medio " +
+                    "WHERE vc.id_venta = @id";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataTable);
+            }
+
+            if (dataTable.Rows.Count > 0)
+            {
+                return dataTable.Rows[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static void botonDetalle(DataGridView dg)
         {
             DataGridViewButtonColumn columnaDetalle = new DataGridViewButtonColumn();
@@ -110,10 +141,12 @@ namespace SaborAcielo.datos
             {
                 DataTable localDataTable = new DataTable();
 
-                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT vd.id_venta AS ID, p.nombre_produ AS Producto, " +
+                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT p.nombre_produ AS Producto, " +
+                    "tp.desc_tipoProd AS Tipo, p.detalle AS Detalle, p.precio AS PrecioUni, " +
                     "vd.cantidad AS Cantidad, vd.subtotal AS Subtotal " +                    
                     "FROM Venta_detalle vd " +
                     "INNER JOIN Producto p ON vd.id_produ = p.id_produ " +
+                    "INNER JOIN Tipo_produ tp ON p.id_tipoProdu = tp.id_tipoProdu " +
                     "WHERE vd.id_venta = @id_venta", 
                     new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString)))
                 {
@@ -130,51 +163,7 @@ namespace SaborAcielo.datos
                 return false;
             }
         }
-        public DataSet FiltrarVentaPorCliente(int dni, int tipoUs)
-        {
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    DataSet dataSet = new DataSet();
-                    if (tipoUs == 1)
-                    {
-                        string query = "SELECT vc.id_venta AS ID, vc.dni_empleado AS Empleado, " +
-                            "vc.dni_cliente AS Cliente, c.nombre_cliente AS Nombre, vc.fecha_venta AS Fecha, vc.total AS Total, " +
-                            "CASE WHEN vc.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
-                            "FROM Venta_cabecera vc " +
-                            "INNER JOIN Cliente c ON vc.dni_cliente = c.dni_cliente";
-                        SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                        adapter.SelectCommand.Parameters.Add("@dni", SqlDbType.NVarChar).Value = "%" + dni + "%";
-
-                        
-                        adapter.Fill(dataSet, "Venta_cabecera");
-                    } else if(tipoUs == 3)
-                    {
-                        int dniEmpleado = cusuarios.ObtenerDniUsuario(UserLogin.NombreUsuario);
-                        string query = "SELECT vc.id_venta AS ID, @dniE AS Empleado, " +
-                            "vc.dni_cliente AS Cliente, c.nombre_cliente AS Nombre, vc.fecha_venta AS Fecha, vc.total AS Total, " +
-                            "CASE WHEN vc.estado = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado " +
-                            "FROM Venta_cabecera vc " +
-                            "INNER JOIN Cliente c ON vc.dni_cliente = c.dni_cliente " +
-                            "WHERE vc.dni_cliente LIKE @dni AND vc.dni_empleado = @dniE";
-                        SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                        adapter.SelectCommand.Parameters.Add("@dniE", SqlDbType.NVarChar).Value = dniEmpleado;
-                        adapter.SelectCommand.Parameters.Add("@dni", SqlDbType.NVarChar).Value = "%" + dni + "%";
-
-
-                        adapter.Fill(dataSet, "Venta_cabecera");
-                    }
-                        return dataSet;
-                    
-                }
-            }catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-                return null;
-            }
-        }
-        
+                
         public int obtenerMaxVenta()
         {
             try
@@ -307,9 +296,9 @@ namespace SaborAcielo.datos
         }
 
         //ver factura de la compra
-        public void verFactura(int id, DataGridView dg)
+        public void verFactura(int id)
         {
-            Ffactura formularioFactura = new Ffactura();
+            Ffactura formularioFactura = new Ffactura(id);
             formularioFactura.ShowDialog();
         }
 

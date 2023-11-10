@@ -15,18 +15,26 @@ namespace SaborAcielo
     public partial class FagregarCliente : Form
     {
         private FagregarVenta formVentas;
-        public FagregarCliente(FagregarVenta formVentas)
+        
+        private Ccliente cliente = new Ccliente();
+        public FagregarCliente(FagregarVenta formVentas, int dni)
         {
             InitializeComponent();
-            Ccliente clientes = new Ccliente();
-            bool res = clientes.MostrarClientes(DGclientes);
+            
+            bool res = cliente.MostrarClientes(DGclientes);
             Ccliente.AgregarBotonEditar(DGclientes);
+            
             this.formVentas = formVentas;
+            
+            if (dni != 0)
+            {
+                TBdniCliente.Text = Convert.ToString(dni);
+            }
         }
 
         private void BguardarCliente_Click(object sender, EventArgs e)
         {
-            Ccliente cliente = new Ccliente();
+            
             if (string.IsNullOrWhiteSpace(TBnomCliente.Text) || string.IsNullOrEmpty(TBapeCliente.Text) ||
                 string.IsNullOrEmpty(TBdniCliente.Text))
             {
@@ -141,8 +149,6 @@ namespace SaborAcielo
             {
                 int dni = Convert.ToInt32(DGclientes.Rows[e.RowIndex].Cells["dni_cliente"].Value);
 
-                //se cargan los campos del cliente
-                Ccliente cliente = new Ccliente();
                 DataTable datosCliente = cliente.BuscarClientePorDNI(dni);
 
                 if (datosCliente != null)
@@ -164,7 +170,6 @@ namespace SaborAcielo
 
         private void Beditar_Click(object sender, EventArgs e)
         {
-            Ccliente cliente = new Ccliente();
 
             if (string.IsNullOrEmpty(TBnomCliente.Text) || string.IsNullOrEmpty(TBapeCliente.Text) || string.IsNullOrEmpty(TBdniCliente.Text))
             {
