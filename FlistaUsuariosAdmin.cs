@@ -24,7 +24,7 @@ namespace SaborAcielo
             BeditarUs.Visible = false;
             CBeditarContrasenia.Visible = false;
             CBtipoEditar.Visible = false;
-            
+            BcancelarEditar.Visible = false;
             Cempleado empleado = new Cempleado();
             bool resultado = empleado.CargarEmpleados(DGlistaUsuarios);
             Cproducto.AgregarColumnasBoton(DGlistaUsuarios);
@@ -98,7 +98,7 @@ namespace SaborAcielo
             TBcontrasenia.Clear();
             CBasignaUsuario.Checked = false;
             TBemail.Clear();
-
+            PBusuario.Image = Properties.Resources.EmpleadosInicio;
 
         }
 
@@ -289,12 +289,14 @@ namespace SaborAcielo
             {
                 BagregarUs.Visible = false;
                 BeditarUs.Visible = true;
+                BcancelarEditar.Visible = true;
+                BcancelUs.Visible = false;
                 // Obtiene el ID del empleado seleccionado desde la fila en la que se hizo clic
-                int empleadoID = int.Parse(DGlistaUsuarios.Rows[e.RowIndex].Cells["DNI"].Value.ToString());
+                dniEmpleadoSeleccionado = int.Parse(DGlistaUsuarios.Rows[e.RowIndex].Cells["DNI"].Value.ToString());
 
                 // Llama a la clase Cempleado para cargar los datos en el formulario de edición
                 Cempleado empleadoHandler = new Cempleado();
-                DataTable empleadoYUsuarioData = empleadoHandler.ObtenerEmpleadoYUsuario(empleadoID);
+                DataTable empleadoYUsuarioData = empleadoHandler.ObtenerEmpleadoYUsuario(dniEmpleadoSeleccionado);
 
                 if (empleadoYUsuarioData.Rows.Count > 0)
                 {
@@ -310,7 +312,7 @@ namespace SaborAcielo
                     TBtelefono.Text = row["telefono"].ToString();
                     DateTime fechaProducto = (DateTime)row["fecha_ingreso"];
                     dtFecha.Value = fechaProducto;
-                    empleadoHandler.MostrarImagenEnPictureBox(empleadoID, PBusuario);
+                    empleadoHandler.MostrarImagenEnPictureBox(dniEmpleadoSeleccionado, PBusuario);
 
 
 
@@ -508,9 +510,12 @@ namespace SaborAcielo
                             {
                                 MessageBox.Show("Empleado y usuario editados con éxito.");
                                 bool resultado = empleadoHandler.CargarEmpleados(DGlistaUsuarios);
-
+                                CBasignaUsuario.Visible = true;
                                 BagregarUs.Visible = true;
                                 BeditarUs.Visible = false;
+                                CBeditarUs.Visible = false;
+                                BcancelarEditar.Visible = false;
+                                BcancelUs.Visible = true;
                                 limpiar();
                             }
                             else
@@ -524,6 +529,10 @@ namespace SaborAcielo
                             bool resultado = empleadoHandler.CargarEmpleados(DGlistaUsuarios);
                             BagregarUs.Visible = true;
                             BeditarUs.Visible = false;
+                            CBeditarUs.Visible = false;
+                            CBasignaUsuario.Visible = true;
+                            BcancelarEditar.Visible = false;
+                            BcancelUs.Visible = true;
                             limpiar();
                         }
                     }
@@ -541,9 +550,12 @@ namespace SaborAcielo
                             {
                                 bool resultado = empleadoHandler.CargarEmpleados(DGlistaUsuarios);
                                 MessageBox.Show("Empleado y usuario agregados con éxito", "Agregar Empleado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                                CBasignaUsuario.Visible = true;
                                 BagregarUs.Visible = true;
                                 BeditarUs.Visible = false;
+                                CBeditarUs.Visible = false;
+                                BcancelarEditar.Visible = false;
+                                BcancelUs.Visible = true;
                                 limpiar();
                             }
                             else
@@ -560,9 +572,13 @@ namespace SaborAcielo
 
                 MessageBox.Show("Empleado editado con éxito.");
                         empleadoHandler.CargarEmpleados(DGlistaUsuarios);
-                        BagregarUs.Visible = true;
+                CBasignaUsuario.Visible = true;
+                BagregarUs.Visible = true;
                         BeditarUs.Visible = false;
-                        limpiar();
+                CBeditarUs.Visible = false;
+                BcancelarEditar.Visible = false;
+                BcancelUs.Visible = true;
+                limpiar();
             }
 
 
@@ -662,5 +678,49 @@ namespace SaborAcielo
                 return;
             }
         }
+
+        private void BcancelarEditar_Click(object sender, EventArgs e)
+        {
+           
+           
+            // Llama a la clase Cempleado para cargar los datos en el formulario de edición
+            Cempleado empleadoHandler = new Cempleado();
+            DataTable empleadoYUsuarioData = empleadoHandler.ObtenerEmpleadoYUsuario(dniEmpleadoSeleccionado);
+
+            if (empleadoYUsuarioData.Rows.Count > 0)
+            {
+
+                DataRow row = empleadoYUsuarioData.Rows[0];
+
+                // Rellena los campos del formulario con los datos obtenidos
+                TBdniUsuario.Text = row["dni_empleado"].ToString();
+                TBnomUsuario.Text = row["nombre"].ToString();
+                TBapeUsuario.Text = row["apellido"].ToString();
+                TBemail.Text = row["mail"].ToString();
+                TBdireccion.Text = row["direccion"].ToString();
+                TBtelefono.Text = row["telefono"].ToString();
+                DateTime fechaProducto = (DateTime)row["fecha_ingreso"];
+                dtFecha.Value = fechaProducto;
+                empleadoHandler.MostrarImagenEnPictureBox(dniEmpleadoSeleccionado, PBusuario);
+
+
+
+                if (row["nom_usuario"] != DBNull.Value)
+                {
+                    // Si el usuario existe, muestra y rellena los campos de usuario
+                    CBasignaUsuario.Visible = false;
+                    CBtipoEditar.Visible = true;
+
+                    CBeditarUs.Visible = true;
+                    TBusuario.Text = row["nom_usuario"].ToString();
+                    if (row["contrasenia"] != DBNull.Value)
+                    {
+                        CBeditarContrasenia.Visible = true;
+
+
+                    }
+                }
+            }
+            }
     }
 }

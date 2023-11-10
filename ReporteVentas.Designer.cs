@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Bmes = new System.Windows.Forms.Button();
             this.B7Dias = new System.Windows.Forms.Button();
@@ -54,6 +54,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PclientesTotal = new System.Windows.Forms.Panel();
             this.GBfiltroProductos = new System.Windows.Forms.GroupBox();
+            this.CBtodosEmpleados = new System.Windows.Forms.CheckBox();
             this.CBoxApellido = new System.Windows.Forms.ComboBox();
             this.CBapellido = new System.Windows.Forms.CheckBox();
             this.LBdni = new System.Windows.Forms.ListBox();
@@ -67,7 +68,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.CBtodosEmpleados = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.PventasTotal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -328,6 +328,16 @@
             this.GBfiltroProductos.TabStop = false;
             this.GBfiltroProductos.Text = "Filtrar por";
             // 
+            // CBtodosEmpleados
+            // 
+            this.CBtodosEmpleados.AutoSize = true;
+            this.CBtodosEmpleados.Location = new System.Drawing.Point(15, 39);
+            this.CBtodosEmpleados.Name = "CBtodosEmpleados";
+            this.CBtodosEmpleados.Size = new System.Drawing.Size(160, 23);
+            this.CBtodosEmpleados.TabIndex = 42;
+            this.CBtodosEmpleados.Text = "Todos los empleados";
+            this.CBtodosEmpleados.UseVisualStyleBackColor = true;
+            // 
             // CBoxApellido
             // 
             this.CBoxApellido.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -337,6 +347,7 @@
             this.CBoxApellido.Name = "CBoxApellido";
             this.CBoxApellido.Size = new System.Drawing.Size(121, 27);
             this.CBoxApellido.TabIndex = 41;
+            this.CBoxApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CBoxApellido_KeyPress);
             // 
             // CBapellido
             // 
@@ -367,6 +378,7 @@
             this.TBoxDni.Size = new System.Drawing.Size(120, 27);
             this.TBoxDni.TabIndex = 38;
             this.TBoxDni.TextChanged += new System.EventHandler(this.TBoxDni_TextChanged);
+            this.TBoxDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBoxDni_KeyPress);
             // 
             // ComboBoxNombre
             // 
@@ -377,6 +389,7 @@
             this.ComboBoxNombre.Name = "ComboBoxNombre";
             this.ComboBoxNombre.Size = new System.Drawing.Size(121, 27);
             this.ComboBoxNombre.TabIndex = 37;
+            this.ComboBoxNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ComboBoxNombre_KeyPress);
             // 
             // CBnombre
             // 
@@ -421,20 +434,20 @@
             // ChartGanancias
             // 
             this.ChartGanancias.BackColor = System.Drawing.Color.Transparent;
-            chartArea5.Name = "ChartArea1";
-            this.ChartGanancias.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.ChartGanancias.Legends.Add(legend5);
+            chartArea1.Name = "ChartArea1";
+            this.ChartGanancias.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.ChartGanancias.Legends.Add(legend1);
             this.ChartGanancias.Location = new System.Drawing.Point(12, 138);
             this.ChartGanancias.Name = "ChartGanancias";
             this.ChartGanancias.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series5.BorderWidth = 8;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.IsValueShownAsLabel = true;
-            series5.Legend = "Legend1";
-            series5.Name = "Ganancias";
-            this.ChartGanancias.Series.Add(series5);
+            series1.BorderWidth = 8;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsValueShownAsLabel = true;
+            series1.Legend = "Legend1";
+            series1.Name = "Ganancias";
+            this.ChartGanancias.Series.Add(series1);
             this.ChartGanancias.Size = new System.Drawing.Size(993, 258);
             this.ChartGanancias.TabIndex = 24;
             this.ChartGanancias.Text = "chart1";
@@ -464,31 +477,21 @@
             // chart2
             // 
             this.chart2.BackColor = System.Drawing.Color.Transparent;
-            chartArea6.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chart2.Legends.Add(legend6);
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart2.Legends.Add(legend2);
             this.chart2.Location = new System.Drawing.Point(741, 414);
             this.chart2.Name = "chart2";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            series6.YValuesPerPoint = 2;
-            this.chart2.Series.Add(series6);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            series2.YValuesPerPoint = 2;
+            this.chart2.Series.Add(series2);
             this.chart2.Size = new System.Drawing.Size(394, 209);
             this.chart2.TabIndex = 28;
             this.chart2.Text = "chart2";
-            // 
-            // CBtodosEmpleados
-            // 
-            this.CBtodosEmpleados.AutoSize = true;
-            this.CBtodosEmpleados.Location = new System.Drawing.Point(15, 39);
-            this.CBtodosEmpleados.Name = "CBtodosEmpleados";
-            this.CBtodosEmpleados.Size = new System.Drawing.Size(160, 23);
-            this.CBtodosEmpleados.TabIndex = 42;
-            this.CBtodosEmpleados.Text = "Todos los empleados";
-            this.CBtodosEmpleados.UseVisualStyleBackColor = true;
             // 
             // ReporteVentas
             // 

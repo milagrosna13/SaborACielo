@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GBfiltroUsuarios = new System.Windows.Forms.GroupBox();
             this.LBdni = new System.Windows.Forms.ListBox();
             this.TBoxDni = new System.Windows.Forms.TextBox();
@@ -127,7 +127,7 @@
             this.ComboBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ComboBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.ComboBoxNombre.FormattingEnabled = true;
-            this.ComboBoxNombre.Location = new System.Drawing.Point(120, 128);
+            this.ComboBoxNombre.Location = new System.Drawing.Point(121, 108);
             this.ComboBoxNombre.Name = "ComboBoxNombre";
             this.ComboBoxNombre.Size = new System.Drawing.Size(121, 27);
             this.ComboBoxNombre.TabIndex = 32;
@@ -139,7 +139,7 @@
             this.CBoxApellido.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CBoxApellido.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.CBoxApellido.FormattingEnabled = true;
-            this.CBoxApellido.Location = new System.Drawing.Point(120, 161);
+            this.CBoxApellido.Location = new System.Drawing.Point(121, 141);
             this.CBoxApellido.Name = "CBoxApellido";
             this.CBoxApellido.Size = new System.Drawing.Size(121, 27);
             this.CBoxApellido.TabIndex = 31;
@@ -290,7 +290,7 @@
             "Administrador",
             "Gerente",
             "Empleado"});
-            this.CBtipoEditar.Location = new System.Drawing.Point(621, 76);
+            this.CBtipoEditar.Location = new System.Drawing.Point(612, 84);
             this.CBtipoEditar.Name = "CBtipoEditar";
             this.CBtipoEditar.Size = new System.Drawing.Size(148, 23);
             this.CBtipoEditar.TabIndex = 36;
@@ -300,14 +300,15 @@
             this.BcancelarEditar.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BcancelarEditar.Image = global::SaborAcielo.Properties.Resources.cancelar2;
             this.BcancelarEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BcancelarEditar.Location = new System.Drawing.Point(576, 272);
+            this.BcancelarEditar.Location = new System.Drawing.Point(594, 272);
             this.BcancelarEditar.Margin = new System.Windows.Forms.Padding(2);
             this.BcancelarEditar.Name = "BcancelarEditar";
             this.BcancelarEditar.Size = new System.Drawing.Size(119, 32);
             this.BcancelarEditar.TabIndex = 35;
-            this.BcancelarEditar.Text = "Cancelar";
+            this.BcancelarEditar.Text = "CancelarE";
             this.BcancelarEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BcancelarEditar.UseVisualStyleBackColor = true;
+            this.BcancelarEditar.Click += new System.EventHandler(this.BcancelarEditar_Click);
             // 
             // dtFecha
             // 
@@ -355,7 +356,7 @@
             // 
             this.TBusuario.Enabled = false;
             this.TBusuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TBusuario.Location = new System.Drawing.Point(621, 112);
+            this.TBusuario.Location = new System.Drawing.Point(621, 121);
             this.TBusuario.Margin = new System.Windows.Forms.Padding(2);
             this.TBusuario.Name = "TBusuario";
             this.TBusuario.Size = new System.Drawing.Size(137, 26);
@@ -365,7 +366,7 @@
             // 
             this.usuario.AutoSize = true;
             this.usuario.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usuario.Location = new System.Drawing.Point(532, 116);
+            this.usuario.Location = new System.Drawing.Point(532, 125);
             this.usuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.usuario.Name = "usuario";
             this.usuario.Size = new System.Drawing.Size(60, 19);
@@ -410,7 +411,7 @@
             this.BagregarUs.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BagregarUs.Image = global::SaborAcielo.Properties.Resources.add_button;
             this.BagregarUs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BagregarUs.Location = new System.Drawing.Point(385, 236);
+            this.BagregarUs.Location = new System.Drawing.Point(333, 272);
             this.BagregarUs.Margin = new System.Windows.Forms.Padding(2);
             this.BagregarUs.Name = "BagregarUs";
             this.BagregarUs.Size = new System.Drawing.Size(115, 32);
@@ -491,7 +492,7 @@
             "Administrador",
             "Gerente",
             "Empleado"});
-            this.CBusuarioTipo.Location = new System.Drawing.Point(621, 76);
+            this.CBusuarioTipo.Location = new System.Drawing.Point(612, 84);
             this.CBusuarioTipo.Name = "CBusuarioTipo";
             this.CBusuarioTipo.Size = new System.Drawing.Size(148, 23);
             this.CBusuarioTipo.TabIndex = 18;
@@ -501,7 +502,7 @@
             this.BeditarUs.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BeditarUs.Image = global::SaborAcielo.Properties.Resources.editar;
             this.BeditarUs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BeditarUs.Location = new System.Drawing.Point(385, 272);
+            this.BeditarUs.Location = new System.Drawing.Point(333, 272);
             this.BeditarUs.Margin = new System.Windows.Forms.Padding(2);
             this.BeditarUs.Name = "BeditarUs";
             this.BeditarUs.Size = new System.Drawing.Size(115, 32);
@@ -515,7 +516,7 @@
             // 
             this.LusuarioTipo.AutoSize = true;
             this.LusuarioTipo.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LusuarioTipo.Location = new System.Drawing.Point(494, 76);
+            this.LusuarioTipo.Location = new System.Drawing.Point(483, 84);
             this.LusuarioTipo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LusuarioTipo.Name = "LusuarioTipo";
             this.LusuarioTipo.Size = new System.Drawing.Size(109, 19);
@@ -590,7 +591,7 @@
             this.BcancelUs.Font = new System.Drawing.Font("Script MT Bold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BcancelUs.Image = global::SaborAcielo.Properties.Resources.cancelar2;
             this.BcancelUs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BcancelUs.Location = new System.Drawing.Point(576, 272);
+            this.BcancelUs.Location = new System.Drawing.Point(594, 272);
             this.BcancelUs.Margin = new System.Windows.Forms.Padding(2);
             this.BcancelUs.Name = "BcancelUs";
             this.BcancelUs.Size = new System.Drawing.Size(119, 32);
@@ -607,14 +608,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGlistaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGlistaUsuarios.BackgroundColor = System.Drawing.Color.RosyBrown;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.DGlistaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGlistaUsuarios.Location = new System.Drawing.Point(12, 348);
             this.DGlistaUsuarios.Margin = new System.Windows.Forms.Padding(2);

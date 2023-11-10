@@ -278,12 +278,13 @@ namespace SaborAcielo.datos
 
         public bool EditarEmpleado(int dniEmpleado, string nombre, string apellido, string correo, int telefono, string direccion, DateTime fechaIngreso, byte[] fotoEmp)
         {
+            bool estado = true;
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string consultaSQLEmpleado = "UPDATE Empleado SET nombre = @Nombre, apellido = @Apellido, mail = @Mail, telefono = @Telefono, direccion = @Direccion, fecha_ingreso = @FechaIngreso, foto_emp = @FotoEmpleado WHERE dni_empleado = @DNI";
+                    string consultaSQLEmpleado = "UPDATE Empleado SET nombre = @Nombre, apellido = @Apellido, mail = @Mail, telefono = @Telefono, direccion = @Direccion, fecha_ingreso = @FechaIngreso, foto_emp = @FotoEmpleado,estado = @estado WHERE dni_empleado = @DNI";
 
                     using (SqlCommand comandoEmpleado = new SqlCommand(consultaSQLEmpleado, connection))
                     {
@@ -294,6 +295,7 @@ namespace SaborAcielo.datos
                         comandoEmpleado.Parameters.AddWithValue("@Direccion", direccion);
                         comandoEmpleado.Parameters.AddWithValue("@FechaIngreso", fechaIngreso);
                         comandoEmpleado.Parameters.AddWithValue("@FotoEmpleado", fotoEmp);
+                        comandoEmpleado.Parameters.AddWithValue("@estado", estado);
                         comandoEmpleado.Parameters.AddWithValue("@DNI", dniEmpleado);
 
                         comandoEmpleado.ExecuteNonQuery();

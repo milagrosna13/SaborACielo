@@ -18,6 +18,8 @@ namespace SaborAcielo
         {
             InitializeComponent();
             ActualizarLabels();
+            ComboBoxNombre.AutoCompleteCustomSource = reporte.ObtenerSugerenciasNombre();
+            CBoxApellido.AutoCompleteCustomSource = reporte.ObtenerSugerenciasApellido();
             bool resultado = reporte.CargarEmpleados(DGempleados);
         }
 
@@ -204,5 +206,37 @@ namespace SaborAcielo
             }
             LBdni.Visible = false;
         }
+
+
+        private void TBoxDni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void ComboBoxNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void CBoxApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
     }
+
 }
