@@ -50,16 +50,16 @@ namespace SaborAcielo
             string apellido = string.Empty;
             DateTime? fecha = CBfecha.Checked ? DTfechaIng.Value : (DateTime?)null;
 
-            if (CBnombre.Checked)
+            if (CBnombre.Checked && !string.IsNullOrEmpty(ComboBoxNombre.Text))
             {
                 nombre = ComboBoxNombre.Text;
             }
 
-            if (CBapellido.Checked)
+            if (CBapellido.Checked && !string.IsNullOrEmpty(CBoxApellido.Text))
             {
                 apellido = CBoxApellido.Text;
             }
-            if (CBdni.Checked) { dni = Convert.ToInt32(TBoxDni.Text); }
+            if (CBdni.Checked && !string.IsNullOrEmpty(TBoxDni.Text)) { dni = Convert.ToInt32(TBoxDni.Text); }
 
             // Verifica si el checkbox "Todos los productos" está marcado
             if (CBtodosEmp.Checked)
@@ -67,7 +67,8 @@ namespace SaborAcielo
                 dni = 0;
                 nombre = string.Empty;  // Ignora la búsqueda por nombre
                 apellido = string.Empty;    // Ignora la búsqueda por tipo
-                fecha = null;           // Ignora la búsqueda por fecha
+                fecha = null;
+                // Ignora la búsqueda por fecha
             }
 
             // Llama al método de la clase CProducto para obtener los resultados
@@ -107,6 +108,47 @@ namespace SaborAcielo
                 TBoxDni.Text = LBdni.SelectedItem.ToString();
             }
             LBdni.Visible = false;
+        }
+
+        private void CBtodosEmp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CBtodosEmp.Checked == true)
+            {
+                CBnombre.Checked = false;
+                CBapellido.Checked = false;
+                CBdni.Checked = false;
+                CBfecha.Checked = false;
+            }
+        }
+
+        private void TBoxDni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void ComboBoxNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void CBoxApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
         }
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GBfiltroUsuarios = new System.Windows.Forms.GroupBox();
             this.LBdni = new System.Windows.Forms.ListBox();
             this.TBoxDni = new System.Windows.Forms.TextBox();
@@ -120,6 +120,7 @@
             this.TBoxDni.Size = new System.Drawing.Size(120, 27);
             this.TBoxDni.TabIndex = 33;
             this.TBoxDni.TextChanged += new System.EventHandler(this.TBoxDni_TextChanged);
+            this.TBoxDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBoxDni_KeyPress);
             // 
             // ComboBoxNombre
             // 
@@ -130,6 +131,8 @@
             this.ComboBoxNombre.Name = "ComboBoxNombre";
             this.ComboBoxNombre.Size = new System.Drawing.Size(121, 27);
             this.ComboBoxNombre.TabIndex = 32;
+            this.ComboBoxNombre.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNombre_SelectedIndexChanged);
+            this.ComboBoxNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ComboBoxNombre_KeyPress);
             // 
             // CBoxApellido
             // 
@@ -140,6 +143,7 @@
             this.CBoxApellido.Name = "CBoxApellido";
             this.CBoxApellido.Size = new System.Drawing.Size(121, 27);
             this.CBoxApellido.TabIndex = 31;
+            this.CBoxApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CBoxApellido_KeyPress);
             // 
             // CBnombre
             // 
@@ -208,6 +212,7 @@
             this.CBtodosUsuarios.TabIndex = 2;
             this.CBtodosUsuarios.Text = "Todos los empleados";
             this.CBtodosUsuarios.UseVisualStyleBackColor = true;
+            this.CBtodosUsuarios.CheckedChanged += new System.EventHandler(this.CBtodosUsuarios_CheckedChanged);
             // 
             // PagregarProdu
             // 
@@ -602,14 +607,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGlistaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGlistaUsuarios.BackgroundColor = System.Drawing.Color.RosyBrown;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGlistaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGlistaUsuarios.Location = new System.Drawing.Point(12, 348);
             this.DGlistaUsuarios.Margin = new System.Windows.Forms.Padding(2);

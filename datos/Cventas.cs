@@ -300,7 +300,7 @@ namespace SaborAcielo.datos
         {
             Ffactura formularioFactura = new Ffactura(id);
             formularioFactura.ShowDialog();
-        }
+        }*/
 
 
         //filtro con todos los check 

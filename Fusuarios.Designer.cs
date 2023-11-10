@@ -31,6 +31,10 @@
             this.DGusuarios = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.GBfiltroUsuarios = new System.Windows.Forms.GroupBox();
+            this.CBinactivos = new System.Windows.Forms.CheckBox();
+            this.CBactivos = new System.Windows.Forms.CheckBox();
+            this.CBoxTipo = new System.Windows.Forms.ComboBox();
+            this.CBtipo = new System.Windows.Forms.CheckBox();
             this.LBdni = new System.Windows.Forms.ListBox();
             this.TBoxDni = new System.Windows.Forms.TextBox();
             this.ComboBoxNombre = new System.Windows.Forms.ComboBox();
@@ -38,10 +42,6 @@
             this.CBdni = new System.Windows.Forms.CheckBox();
             this.BbuscarUsuario = new System.Windows.Forms.Button();
             this.CBtodosUsuarios = new System.Windows.Forms.CheckBox();
-            this.CBoxTipo = new System.Windows.Forms.ComboBox();
-            this.CBtipo = new System.Windows.Forms.CheckBox();
-            this.CBactivos = new System.Windows.Forms.CheckBox();
-            this.CBinactivos = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGusuarios)).BeginInit();
             this.GBfiltroUsuarios.SuspendLayout();
             this.SuspendLayout();
@@ -90,6 +90,50 @@
             this.GBfiltroUsuarios.TabStop = false;
             this.GBfiltroUsuarios.Text = "Filtrar por";
             // 
+            // CBinactivos
+            // 
+            this.CBinactivos.AutoSize = true;
+            this.CBinactivos.Location = new System.Drawing.Point(304, 26);
+            this.CBinactivos.Name = "CBinactivos";
+            this.CBinactivos.Size = new System.Drawing.Size(88, 23);
+            this.CBinactivos.TabIndex = 38;
+            this.CBinactivos.Text = "Inactivos";
+            this.CBinactivos.UseVisualStyleBackColor = true;
+            // 
+            // CBactivos
+            // 
+            this.CBactivos.AutoSize = true;
+            this.CBactivos.Location = new System.Drawing.Point(225, 26);
+            this.CBactivos.Name = "CBactivos";
+            this.CBactivos.Size = new System.Drawing.Size(73, 23);
+            this.CBactivos.TabIndex = 37;
+            this.CBactivos.Text = "Activos";
+            this.CBactivos.UseVisualStyleBackColor = true;
+            // 
+            // CBoxTipo
+            // 
+            this.CBoxTipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.CBoxTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBoxTipo.FormattingEnabled = true;
+            this.CBoxTipo.Items.AddRange(new object[] {
+            "Administrador",
+            "Gerente",
+            "Empleado"});
+            this.CBoxTipo.Location = new System.Drawing.Point(579, 64);
+            this.CBoxTipo.Name = "CBoxTipo";
+            this.CBoxTipo.Size = new System.Drawing.Size(121, 27);
+            this.CBoxTipo.TabIndex = 36;
+            // 
+            // CBtipo
+            // 
+            this.CBtipo.AutoSize = true;
+            this.CBtipo.Location = new System.Drawing.Point(463, 68);
+            this.CBtipo.Name = "CBtipo";
+            this.CBtipo.Size = new System.Drawing.Size(110, 23);
+            this.CBtipo.TabIndex = 35;
+            this.CBtipo.Text = "Tipo usuario";
+            this.CBtipo.UseVisualStyleBackColor = true;
+            // 
             // LBdni
             // 
             this.LBdni.FormattingEnabled = true;
@@ -109,6 +153,7 @@
             this.TBoxDni.Size = new System.Drawing.Size(120, 27);
             this.TBoxDni.TabIndex = 33;
             this.TBoxDni.TextChanged += new System.EventHandler(this.TBoxDni_TextChanged);
+            this.TBoxDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBoxDni_KeyPress);
             // 
             // ComboBoxNombre
             // 
@@ -159,50 +204,7 @@
             this.CBtodosUsuarios.TabIndex = 2;
             this.CBtodosUsuarios.Text = "Todos los empleados";
             this.CBtodosUsuarios.UseVisualStyleBackColor = true;
-            // 
-            // CBoxTipo
-            // 
-            this.CBoxTipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.CBoxTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CBoxTipo.FormattingEnabled = true;
-            this.CBoxTipo.Items.AddRange(new object[] {
-            "Administrador",
-            "Gerente",
-            "Empleado"});
-            this.CBoxTipo.Location = new System.Drawing.Point(579, 64);
-            this.CBoxTipo.Name = "CBoxTipo";
-            this.CBoxTipo.Size = new System.Drawing.Size(121, 27);
-            this.CBoxTipo.TabIndex = 36;
-            // 
-            // CBtipo
-            // 
-            this.CBtipo.AutoSize = true;
-            this.CBtipo.Location = new System.Drawing.Point(463, 68);
-            this.CBtipo.Name = "CBtipo";
-            this.CBtipo.Size = new System.Drawing.Size(110, 23);
-            this.CBtipo.TabIndex = 35;
-            this.CBtipo.Text = "Tipo usuario";
-            this.CBtipo.UseVisualStyleBackColor = true;
-            // 
-            // CBactivos
-            // 
-            this.CBactivos.AutoSize = true;
-            this.CBactivos.Location = new System.Drawing.Point(225, 26);
-            this.CBactivos.Name = "CBactivos";
-            this.CBactivos.Size = new System.Drawing.Size(73, 23);
-            this.CBactivos.TabIndex = 37;
-            this.CBactivos.Text = "Activos";
-            this.CBactivos.UseVisualStyleBackColor = true;
-            // 
-            // CBinactivos
-            // 
-            this.CBinactivos.AutoSize = true;
-            this.CBinactivos.Location = new System.Drawing.Point(304, 26);
-            this.CBinactivos.Name = "CBinactivos";
-            this.CBinactivos.Size = new System.Drawing.Size(88, 23);
-            this.CBinactivos.TabIndex = 38;
-            this.CBinactivos.Text = "Inactivos";
-            this.CBinactivos.UseVisualStyleBackColor = true;
+            this.CBtodosUsuarios.CheckedChanged += new System.EventHandler(this.CBtodosUsuarios_CheckedChanged);
             // 
             // Fusuarios
             // 

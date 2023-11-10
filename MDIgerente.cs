@@ -17,49 +17,7 @@ namespace SaborAcielo
             InitializeComponent();
         }
 
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
         
-        private void esconderSubMenu()
-        {
-            if (Pvendedores.Visible == true)
-            {
-                Pvendedores.Visible = false;
-            }
-            if (Pclientes.Visible == true)
-            {
-                Pclientes.Visible = false;
-            }
-            if (Pventas.Visible == true)
-            {
-                Pventas.Visible = false;
-            }
-            if (Pprodu.Visible == true)
-            {
-                Pprodu.Visible = false;
-            }
-        }
-
-        private void mostrarSubMenu(Panel subMenu)
-        {
-            if (subMenu.Visible == false)
-            {
-                esconderSubMenu();
-                subMenu.Visible = true;
-            }
-            else
-            {
-                subMenu.Visible = false;
-            }
-        }
-
         private Form activeForm = null;
         private void abrirFormularioHijo(Form formHijo)
         {
@@ -75,56 +33,18 @@ namespace SaborAcielo
 
         private void Bvendedor_Click(object sender, EventArgs e)
         {
-            mostrarSubMenu(Pvendedores);
-        }
-        private void BeditarVendedor_Click(object sender, EventArgs e)
-        {
-            abrirFormularioHijo(new FlistaUsuariosAdmin());
+            abrirFormularioHijo(new ReporteVentas());
         }
 
         private void Bproducto_Click(object sender, EventArgs e)
         {
-            mostrarSubMenu(Pprodu);
-        }
-        private void BlistarProdu_Click(object sender, EventArgs e)
-        {
-            abrirFormularioHijo(new Fproducto());
-        }
-
-        private void Bclientes_Click(object sender, EventArgs e)
-        {
-            mostrarSubMenu(Pclientes);
-        }
-
-        private void Bventas_Click(object sender, EventArgs e)
-        {
-            mostrarSubMenu(Pventas);
-        }
-
-        private void BagregarProdu_Click(object sender, EventArgs e)
-        {
-            abrirFormularioHijo(new FlistaProductosAdmin());
-        }
-
-        private void BlistarClientes_Click(object sender, EventArgs e)
-        {
-            abrirFormularioHijo(new FlistarClientes());
-        }
-
-        private void BlistarVentas_Click(object sender, EventArgs e)
-        {
-            abrirFormularioHijo(new FVentasEm());
+            abrirFormularioHijo(new ReporteProductos());
         }
 
         private void MDIgerente_Load(object sender, EventArgs e)
         {
-            esconderSubMenu();
         }
 
-        private void BlistarVendedores_Click(object sender, EventArgs e)
-        {
-            abrirFormularioHijo(new Fusuarios());
-        }
 
         private void BcerrarSesion_Click(object sender, EventArgs e)
         {

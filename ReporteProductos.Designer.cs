@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend12 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.PstockR = new System.Windows.Forms.Panel();
             this.labelR = new System.Windows.Forms.Label();
             this.LtotalR = new System.Windows.Forms.Label();
@@ -51,10 +51,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Bmes = new System.Windows.Forms.Button();
             this.B7Dias = new System.Windows.Forms.Button();
             this.Bhoy = new System.Windows.Forms.Button();
             this.DT2 = new System.Windows.Forms.DateTimePicker();
-            this.Bmes = new System.Windows.Forms.Button();
             this.CventasTipo = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label3 = new System.Windows.Forms.Label();
             this.DGnombreProdu = new System.Windows.Forms.DataGridView();
@@ -193,18 +193,19 @@
             this.Cpopulares.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Cpopulares.BackColor = System.Drawing.Color.Transparent;
-            chartArea11.Name = "ChartArea1";
-            this.Cpopulares.ChartAreas.Add(chartArea11);
-            legend11.Name = "Legend1";
-            this.Cpopulares.Legends.Add(legend11);
+            chartArea3.Name = "ChartArea1";
+            this.Cpopulares.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.Cpopulares.Legends.Add(legend3);
             this.Cpopulares.Location = new System.Drawing.Point(466, 339);
             this.Cpopulares.Name = "Cpopulares";
             this.Cpopulares.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
-            series11.ChartArea = "ChartArea1";
-            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series11.Legend = "Legend1";
-            series11.Name = "Populares";
-            this.Cpopulares.Series.Add(series11);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.IsValueShownAsLabel = true;
+            series3.Legend = "Legend1";
+            series3.Name = "Populares";
+            this.Cpopulares.Series.Add(series3);
             this.Cpopulares.Size = new System.Drawing.Size(328, 250);
             this.Cpopulares.TabIndex = 3;
             this.Cpopulares.Text = "chart1";
@@ -255,7 +256,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(289, 37);
             this.label2.TabIndex = 11;
-            this.label2.Text = "TOP 5 mas populares";
+            this.label2.Text = "TOP 3 mas populares";
             // 
             // panel1
             // 
@@ -270,6 +271,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(752, 28);
             this.panel1.TabIndex = 12;
+            // 
+            // Bmes
+            // 
+            this.Bmes.BackColor = System.Drawing.Color.LightCoral;
+            this.Bmes.FlatAppearance.BorderColor = System.Drawing.Color.Chocolate;
+            this.Bmes.FlatAppearance.BorderSize = 0;
+            this.Bmes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.Bmes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.Bmes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Bmes.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bmes.ForeColor = System.Drawing.Color.DarkRed;
+            this.Bmes.Location = new System.Drawing.Point(597, 3);
+            this.Bmes.Name = "Bmes";
+            this.Bmes.Size = new System.Drawing.Size(152, 23);
+            this.Bmes.TabIndex = 13;
+            this.Bmes.Text = "Este mes";
+            this.Bmes.UseVisualStyleBackColor = false;
+            this.Bmes.Click += new System.EventHandler(this.Bmes_click);
             // 
             // B7Dias
             // 
@@ -315,42 +334,25 @@
             this.DT2.Size = new System.Drawing.Size(84, 20);
             this.DT2.TabIndex = 10;
             // 
-            // Bmes
-            // 
-            this.Bmes.BackColor = System.Drawing.Color.LightCoral;
-            this.Bmes.FlatAppearance.BorderColor = System.Drawing.Color.Chocolate;
-            this.Bmes.FlatAppearance.BorderSize = 0;
-            this.Bmes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.Bmes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.Bmes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Bmes.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Bmes.ForeColor = System.Drawing.Color.DarkRed;
-            this.Bmes.Location = new System.Drawing.Point(597, 3);
-            this.Bmes.Name = "Bmes";
-            this.Bmes.Size = new System.Drawing.Size(152, 23);
-            this.Bmes.TabIndex = 13;
-            this.Bmes.Text = "Este mes";
-            this.Bmes.UseVisualStyleBackColor = false;
-            this.Bmes.Click += new System.EventHandler(this.Bmes_click);
-            // 
             // CventasTipo
             // 
             this.CventasTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CventasTipo.BackColor = System.Drawing.Color.Transparent;
             this.CventasTipo.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea12.Name = "ChartArea1";
-            this.CventasTipo.ChartAreas.Add(chartArea12);
-            legend12.Name = "Legend1";
-            this.CventasTipo.Legends.Add(legend12);
+            chartArea4.Name = "ChartArea1";
+            this.CventasTipo.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.CventasTipo.Legends.Add(legend4);
             this.CventasTipo.Location = new System.Drawing.Point(11, 339);
             this.CventasTipo.Name = "CventasTipo";
             this.CventasTipo.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
-            series12.ChartArea = "ChartArea1";
-            series12.Legend = "Legend1";
-            series12.Name = "Tipos";
-            series12.YValuesPerPoint = 2;
-            this.CventasTipo.Series.Add(series12);
+            series4.ChartArea = "ChartArea1";
+            series4.IsValueShownAsLabel = true;
+            series4.Legend = "Legend1";
+            series4.Name = "Tipos";
+            series4.YValuesPerPoint = 2;
+            this.CventasTipo.Series.Add(series4);
             this.CventasTipo.Size = new System.Drawing.Size(379, 250);
             this.CventasTipo.TabIndex = 13;
             this.CventasTipo.Text = "chart1";
@@ -432,6 +434,7 @@
             this.CBtodosProductos.TabIndex = 2;
             this.CBtodosProductos.Text = "Todos los productos";
             this.CBtodosProductos.UseVisualStyleBackColor = true;
+            this.CBtodosProductos.CheckedChanged += new System.EventHandler(this.CBtodosProductos_CheckedChanged);
             // 
             // ReporteProductos
             // 

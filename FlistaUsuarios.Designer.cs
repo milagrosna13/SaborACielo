@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGlistaUsuarios = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.LBdni = new System.Windows.Forms.ListBox();
@@ -53,14 +53,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGlistaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGlistaUsuarios.BackgroundColor = System.Drawing.Color.RosyBrown;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Script MT Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGlistaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DGlistaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGlistaUsuarios.Location = new System.Drawing.Point(25, 225);
             this.DGlistaUsuarios.Margin = new System.Windows.Forms.Padding(2);
@@ -111,6 +111,7 @@
             this.TBoxDni.Size = new System.Drawing.Size(120, 27);
             this.TBoxDni.TabIndex = 33;
             this.TBoxDni.TextChanged += new System.EventHandler(this.TBoxDni_TextChanged);
+            this.TBoxDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBoxDni_KeyPress);
             // 
             // ComboBoxNombre
             // 
@@ -121,6 +122,7 @@
             this.ComboBoxNombre.Name = "ComboBoxNombre";
             this.ComboBoxNombre.Size = new System.Drawing.Size(121, 27);
             this.ComboBoxNombre.TabIndex = 32;
+            this.ComboBoxNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ComboBoxNombre_KeyPress);
             // 
             // CBoxApellido
             // 
@@ -131,6 +133,7 @@
             this.CBoxApellido.Name = "CBoxApellido";
             this.CBoxApellido.Size = new System.Drawing.Size(121, 27);
             this.CBoxApellido.TabIndex = 31;
+            this.CBoxApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CBoxApellido_KeyPress);
             // 
             // CBnombre
             // 
@@ -200,6 +203,7 @@
             this.CBtodosEmp.TabIndex = 2;
             this.CBtodosEmp.Text = "Todos los empleados";
             this.CBtodosEmp.UseVisualStyleBackColor = true;
+            this.CBtodosEmp.CheckedChanged += new System.EventHandler(this.CBtodosEmp_CheckedChanged);
             // 
             // FlistaUsuarios
             // 
