@@ -147,7 +147,7 @@ namespace SaborAcielo
         {
             if (e.ColumnIndex == DGclientes.Columns["editar_cliente"].Index && e.RowIndex >= 0)
             {
-                int dni = Convert.ToInt32(DGclientes.Rows[e.RowIndex].Cells["dni_cliente"].Value);
+                int dni = Convert.ToInt32(DGclientes.Rows[e.RowIndex].Cells["Dni"].Value);
 
                 DataTable datosCliente = cliente.BuscarClientePorDNI(dni);
 

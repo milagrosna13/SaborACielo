@@ -38,6 +38,8 @@ namespace SaborAcielo.Empleado
                 TBvendedor.Text = datosVenta["dni_empleado"].ToString() + " - " + datosVenta["nombre"].ToString();
                 TBmedio.Text = datosVenta["desc_tipomedio"].ToString();
                 TBfactura.Text = datosVenta["id_venta"].ToString();
+                TBtotal.Text = datosVenta["total"].ToString();
+
             }
         }
         private void DetallesVenta()
@@ -63,35 +65,6 @@ namespace SaborAcielo.Empleado
         }
 
         
-
-        private void Bpdf_Click(object sender, EventArgs e)
-        {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Filter = "Archivos PDF|*.pdf";
-                saveFileDialog.Title = "Guardar factura como PDF";
-                saveFileDialog.ShowDialog();
-
-                if (saveFileDialog.FileName != "")
-                {
-                    using (PdfWriter writer = new PdfWriter(saveFileDialog.FileName))
-                    {
-                        using (PdfDocument pdf = new PdfDocument(writer))
-                        {
-                            Document document = new Document(pdf);
-
-                            // Aquí puedes agregar contenido al PDF, como texto, tablas, etc.
-                            // Por ejemplo:
-                            document.Add(new Paragraph("Factura de Venta"));
-                            document.Add(new Paragraph("Fecha: " + DateTime.Now.ToShortDateString()));
-                            // ... agregar el resto del contenido de la factura
-
-                            MessageBox.Show("Factura guardada como PDF.");
-                        }
-                    }
-                }
-            }
-        }
 
         private void Imprimir(object sender, PrintPageEventArgs e)
         {

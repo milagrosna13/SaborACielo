@@ -277,6 +277,34 @@ namespace SaborAcielo.datos
                 return false;
             }
         }
+
+        public DataTable ObtenerTopEmpleados()
+        {
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT TOP 3 e.nombre, sum(v.total) AS TotalGanancias FROM Venta_cabecera v " +
+                    "INNER JOIN Empleado e ON e.dni_empleado = v.dni_empleado  ";
+             
+
+               
+                    query += " WHERE v.estado = 1 ";
+                
+
+                query += " GROUP BY e.nombre ORDER BY TotalGanancias DESC";
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+               
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataTable);
+            }
+
+            return dataTable;
+        }
         //-----------------------------------------------------------------------------------------------------------------------
         //-------------------REPORTE PRODUCTOS--------------------------------------------------------------------------------------------
         public List<string> ObtenerNombresUnicos()

@@ -65,13 +65,13 @@ namespace SaborAcielo
         private void DGlistaCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = DGlistaCliente.Rows[e.RowIndex];
-            DataGridViewCell estado = row.Cells["estado_cliente"];
+            DataGridViewCell estado = row.Cells["Estado"];
             DataGridViewCell eliminar = row.Cells["eliminar_cliente"];
             int dni_seleccionado;
 
-            if (e.RowIndex >= 0 && e.ColumnIndex == DGlistaCliente.Columns["eliminar_cliente"].Index)
+            if (e.RowIndex >= 0 && e.ColumnIndex == DGlistaCliente.Columns["eliminar_cliente"].Index && Convert.ToInt32(DGlistaCliente.Rows[e.RowIndex].Cells["Dni"].Value) > 0)
             {
-                dni_seleccionado = Convert.ToInt32(DGlistaCliente.Rows[e.RowIndex].Cells["dni_cliente"].Value);
+                dni_seleccionado = Convert.ToInt32(DGlistaCliente.Rows[e.RowIndex].Cells["Dni"].Value);
                 if (estado.Value.ToString() == "inactivo")
                 {
                     var msg = MessageBox.Show("Desea dar de alta al cliente?", "Confirmar alta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

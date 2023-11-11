@@ -157,7 +157,7 @@ namespace SaborAcielo
                     cant ++;
                 }
             }
-            return cant == DGcarrito.Rows.Count-1;
+            return cant == DGcarrito.Rows.Count;
         }
 
 

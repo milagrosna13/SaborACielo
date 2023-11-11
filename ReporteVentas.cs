@@ -43,6 +43,7 @@ namespace SaborAcielo
 
             Series series = new Series("GananciasPorFecha");
             series.ChartType = SeriesChartType.Line;
+            series.IsValueShownAsLabel = true;
             series.BorderWidth = 8;
             foreach (DataRow row in datosTotalesPorFecha.Rows)
             {
@@ -235,6 +236,23 @@ namespace SaborAcielo
                 MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
                 return;
+            }
+        }
+
+        private void ReporteVentas_Load(object sender, EventArgs e)
+        {
+            DataTable ventasNombre = reporte.ObtenerTopEmpleados();
+
+            // Mostrar los datos en el gráfico
+            foreach (DataRow row in ventasNombre.Rows)
+            {
+                string nombre = row["nombre"].ToString();
+                int totalVenta = Convert.ToInt32(row["TotalGanancias"]);
+
+                // Agregar los datos al gráfico de barras
+                ctopEmp.Series["TOP3"].Points.AddXY(nombre, totalVenta);
+
+
             }
         }
     }

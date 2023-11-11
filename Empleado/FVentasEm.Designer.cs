@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGventas = new System.Windows.Forms.DataGridView();
             this.Lusuario = new System.Windows.Forms.Label();
             this.Pventas = new System.Windows.Forms.Panel();
@@ -64,6 +63,7 @@
             // 
             // DGventas
             // 
+            this.DGventas.AllowUserToAddRows = false;
             this.DGventas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -77,13 +77,12 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGventas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGventas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGventas.Location = new System.Drawing.Point(48, 378);
-            this.DGventas.Location = new System.Drawing.Point(1, 203);
-            this.DGventas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DGventas.Location = new System.Drawing.Point(32, 239);
+            this.DGventas.Margin = new System.Windows.Forms.Padding(2);
             this.DGventas.Name = "DGventas";
             this.DGventas.RowHeadersWidth = 62;
             this.DGventas.RowTemplate.Height = 28;
-            this.DGventas.Size = new System.Drawing.Size(1126, 360);
+            this.DGventas.Size = new System.Drawing.Size(751, 252);
             this.DGventas.TabIndex = 0;
             this.DGventas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGventas_CellContentClick);
             // 
@@ -108,7 +107,7 @@
             this.Pventas.Font = new System.Drawing.Font("Script MT Bold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Pventas.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Pventas.Location = new System.Drawing.Point(32, 37);
-            this.Pventas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Pventas.Margin = new System.Windows.Forms.Padding(2);
             this.Pventas.Name = "Pventas";
             this.Pventas.Size = new System.Drawing.Size(751, 198);
             this.Pventas.TabIndex = 3;
@@ -147,9 +146,9 @@
             this.GBfiltroVenta.Controls.Add(this.DTdesde);
             this.GBfiltroVenta.Controls.Add(this.label4);
             this.GBfiltroVenta.Location = new System.Drawing.Point(47, 27);
-            this.GBfiltroVenta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GBfiltroVenta.Margin = new System.Windows.Forms.Padding(2);
             this.GBfiltroVenta.Name = "GBfiltroVenta";
-            this.GBfiltroVenta.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GBfiltroVenta.Padding = new System.Windows.Forms.Padding(2);
             this.GBfiltroVenta.Size = new System.Drawing.Size(647, 159);
             this.GBfiltroVenta.TabIndex = 8;
             this.GBfiltroVenta.TabStop = false;
@@ -160,7 +159,7 @@
             this.CBmedios.Enabled = false;
             this.CBmedios.FormattingEnabled = true;
             this.CBmedios.Location = new System.Drawing.Point(367, 55);
-            this.CBmedios.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CBmedios.Margin = new System.Windows.Forms.Padding(2);
             this.CBmedios.Name = "CBmedios";
             this.CBmedios.Size = new System.Drawing.Size(178, 26);
             this.CBmedios.TabIndex = 26;
@@ -170,7 +169,7 @@
             // 
             this.CBpago.AutoSize = true;
             this.CBpago.Location = new System.Drawing.Point(251, 58);
-            this.CBpago.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CBpago.Margin = new System.Windows.Forms.Padding(2);
             this.CBpago.Name = "CBpago";
             this.CBpago.Size = new System.Drawing.Size(117, 22);
             this.CBpago.TabIndex = 25;
@@ -184,7 +183,7 @@
             this.Cestado.Enabled = false;
             this.Cestado.FormattingEnabled = true;
             this.Cestado.Location = new System.Drawing.Point(99, 57);
-            this.Cestado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Cestado.Margin = new System.Windows.Forms.Padding(2);
             this.Cestado.Name = "Cestado";
             this.Cestado.Size = new System.Drawing.Size(82, 26);
             this.Cestado.TabIndex = 24;
@@ -204,7 +203,7 @@
             // 
             this.TBnomE.Enabled = false;
             this.TBnomE.Location = new System.Drawing.Point(410, 126);
-            this.TBnomE.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TBnomE.Margin = new System.Windows.Forms.Padding(2);
             this.TBnomE.Name = "TBnomE";
             this.TBnomE.Size = new System.Drawing.Size(180, 25);
             this.TBnomE.TabIndex = 22;
@@ -224,7 +223,7 @@
             // 
             this.TBnomC.Enabled = false;
             this.TBnomC.Location = new System.Drawing.Point(410, 92);
-            this.TBnomC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TBnomC.Margin = new System.Windows.Forms.Padding(2);
             this.TBnomC.Name = "TBnomC";
             this.TBnomC.Size = new System.Drawing.Size(180, 25);
             this.TBnomC.TabIndex = 20;
@@ -254,7 +253,7 @@
             // 
             this.TBdniE.Enabled = false;
             this.TBdniE.Location = new System.Drawing.Point(160, 126);
-            this.TBdniE.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TBdniE.Margin = new System.Windows.Forms.Padding(2);
             this.TBdniE.Name = "TBdniE";
             this.TBdniE.Size = new System.Drawing.Size(180, 25);
             this.TBdniE.TabIndex = 17;
@@ -265,7 +264,7 @@
             // 
             this.CBem.AutoSize = true;
             this.CBem.Location = new System.Drawing.Point(21, 131);
-            this.CBem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CBem.Margin = new System.Windows.Forms.Padding(2);
             this.CBem.Name = "CBem";
             this.CBem.Size = new System.Drawing.Size(87, 22);
             this.CBem.TabIndex = 16;
@@ -278,7 +277,7 @@
             // 
             this.CBestado.AutoSize = true;
             this.CBestado.Location = new System.Drawing.Point(22, 58);
-            this.CBestado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CBestado.Margin = new System.Windows.Forms.Padding(2);
             this.CBestado.Name = "CBestado";
             this.CBestado.Size = new System.Drawing.Size(68, 22);
             this.CBestado.TabIndex = 15;
@@ -291,7 +290,7 @@
             // 
             this.TBdniC.Enabled = false;
             this.TBdniC.Location = new System.Drawing.Point(160, 92);
-            this.TBdniC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TBdniC.Margin = new System.Windows.Forms.Padding(2);
             this.TBdniC.Name = "TBdniC";
             this.TBdniC.Size = new System.Drawing.Size(180, 25);
             this.TBdniC.TabIndex = 14;
@@ -302,7 +301,7 @@
             // 
             this.CBcliente.AutoSize = true;
             this.CBcliente.Location = new System.Drawing.Point(21, 92);
-            this.CBcliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CBcliente.Margin = new System.Windows.Forms.Padding(2);
             this.CBcliente.Name = "CBcliente";
             this.CBcliente.Size = new System.Drawing.Size(65, 22);
             this.CBcliente.TabIndex = 9;
@@ -315,7 +314,7 @@
             // 
             this.CBfecha.AutoSize = true;
             this.CBfecha.Location = new System.Drawing.Point(21, 22);
-            this.CBfecha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CBfecha.Margin = new System.Windows.Forms.Padding(2);
             this.CBfecha.Name = "CBfecha";
             this.CBfecha.Size = new System.Drawing.Size(61, 22);
             this.CBfecha.TabIndex = 8;
@@ -329,7 +328,7 @@
             this.DThasta.Enabled = false;
             this.DThasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DThasta.Location = new System.Drawing.Point(311, 21);
-            this.DThasta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DThasta.Margin = new System.Windows.Forms.Padding(2);
             this.DThasta.MaxDate = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
             this.DThasta.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.DThasta.Name = "DThasta";
@@ -353,7 +352,7 @@
             this.DTdesde.Enabled = false;
             this.DTdesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DTdesde.Location = new System.Drawing.Point(157, 21);
-            this.DTdesde.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DTdesde.Margin = new System.Windows.Forms.Padding(2);
             this.DTdesde.MaxDate = new System.DateTime(2023, 9, 14, 20, 31, 59, 0);
             this.DTdesde.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.DTdesde.Name = "DTdesde";
@@ -390,7 +389,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(817, 34);
             this.panel1.TabIndex = 11;
@@ -405,7 +404,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.DGventas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FVentasEm";
             this.Text = "FlistarVentas";
             ((System.ComponentModel.ISupportInitialize)(this.DGventas)).EndInit();

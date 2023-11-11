@@ -48,6 +48,7 @@
             // 
             // DGusuarios
             // 
+            this.DGusuarios.AllowUserToAddRows = false;
             this.DGusuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGusuarios.BackgroundColor = System.Drawing.Color.RosyBrown;
             this.DGusuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

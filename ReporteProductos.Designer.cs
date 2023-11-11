@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.PstockR = new System.Windows.Forms.Panel();
             this.labelR = new System.Windows.Forms.Label();
             this.LtotalR = new System.Windows.Forms.Label();
@@ -148,7 +148,7 @@
             // 
             // PstockST
             // 
-            this.PstockST.BackColor = System.Drawing.Color.SandyBrown;
+            this.PstockST.BackColor = System.Drawing.Color.Turquoise;
             this.PstockST.Controls.Add(this.pictureBox2);
             this.PstockST.Controls.Add(this.labelST);
             this.PstockST.Controls.Add(this.LtotalST);
@@ -193,19 +193,19 @@
             this.Cpopulares.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Cpopulares.BackColor = System.Drawing.Color.Transparent;
-            chartArea3.Name = "ChartArea1";
-            this.Cpopulares.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.Cpopulares.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.Cpopulares.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.Cpopulares.Legends.Add(legend1);
             this.Cpopulares.Location = new System.Drawing.Point(466, 339);
             this.Cpopulares.Name = "Cpopulares";
             this.Cpopulares.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series3.IsValueShownAsLabel = true;
-            series3.Legend = "Legend1";
-            series3.Name = "Populares";
-            this.Cpopulares.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.IsValueShownAsLabel = true;
+            series1.Legend = "Legend1";
+            series1.Name = "Populares";
+            this.Cpopulares.Series.Add(series1);
             this.Cpopulares.Size = new System.Drawing.Size(328, 250);
             this.Cpopulares.TabIndex = 3;
             this.Cpopulares.Text = "chart1";
@@ -340,19 +340,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CventasTipo.BackColor = System.Drawing.Color.Transparent;
             this.CventasTipo.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea4.Name = "ChartArea1";
-            this.CventasTipo.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.CventasTipo.Legends.Add(legend4);
+            chartArea2.Name = "ChartArea1";
+            this.CventasTipo.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.CventasTipo.Legends.Add(legend2);
             this.CventasTipo.Location = new System.Drawing.Point(11, 339);
             this.CventasTipo.Name = "CventasTipo";
             this.CventasTipo.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
-            series4.ChartArea = "ChartArea1";
-            series4.IsValueShownAsLabel = true;
-            series4.Legend = "Legend1";
-            series4.Name = "Tipos";
-            series4.YValuesPerPoint = 2;
-            this.CventasTipo.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.IsValueShownAsLabel = true;
+            series2.Legend = "Legend1";
+            series2.Name = "Tipos";
+            series2.YValuesPerPoint = 2;
+            this.CventasTipo.Series.Add(series2);
             this.CventasTipo.Size = new System.Drawing.Size(379, 250);
             this.CventasTipo.TabIndex = 13;
             this.CventasTipo.Text = "chart1";
@@ -370,6 +370,7 @@
             // 
             // DGnombreProdu
             // 
+            this.DGnombreProdu.AllowUserToAddRows = false;
             this.DGnombreProdu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGnombreProdu.BackgroundColor = System.Drawing.Color.RosyBrown;
             this.DGnombreProdu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

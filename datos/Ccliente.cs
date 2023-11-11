@@ -29,7 +29,10 @@ namespace SaborAcielo.datos
                 DataTable localDataTable = new DataTable();
 
                 // Configurar el SqlDataAdapter
-                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT * FROM Cliente", new SqlConnection(connectionString)))
+                using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT dni_cliente AS Dni, nombre_cliente AS Nombre, " +
+                    "apellido_cliente AS Apellido, dire_cliente AS Direccion, sexo_cliente AS Sexo, tel_cliente AS Telefono, email_cliente AS Email, estado_cliente AS Estado, " +
+                    "fechaRegistro_cliente AS FechaRegistro " +
+                    " FROM Cliente ", new SqlConnection(connectionString)))
                 {
                     // Llenar el DataTable con los datos
                     localDataAdapter.Fill(localDataTable);
@@ -253,27 +256,28 @@ namespace SaborAcielo.datos
                     {
                         connection.Open();
 
-                        string consultaSQL = "SELECT c.* FROM Cliente c " +
+                        string consultaSQL = "SELECT dni_cliente AS Dni, nombre_cliente AS Nombre, apellido_cliente AS Apellido, dire_cliente AS Direccion, sexo_cliente AS Sexo, tel_cliente AS Telefono, email_cliente AS Email, estado_cliente AS Estado, " +
+                            "fechaRegistro_cliente AS FechaRegistro FROM Cliente " +
                             "WHERE 1 = 1 "; // Inicializa un "true" lógico
 
                         if (!string.IsNullOrEmpty(nombre))
                         {
-                            consultaSQL += " AND c.nombre_cliente LIKE @nombre";
+                            consultaSQL += " AND nombre_cliente LIKE @nombre";
                         }
 
                         if (!string.IsNullOrEmpty(apellido))
                         {
-                            consultaSQL += " AND c.apellido_cliente LIKE @apellido";
+                            consultaSQL += " AND apellido_cliente LIKE @apellido";
                         }
 
                         if (dni != 0)
                         {
-                            consultaSQL += " AND c.dni_cliente LIKE @dni";
+                            consultaSQL += " AND dni_cliente LIKE @dni";
                         }
 
                         if (fecha != null)
                         {
-                            consultaSQL += " AND CONVERT(date, c.fechaRegistro_cliente) = CONVERT(date, @fecha)";
+                            consultaSQL += " AND CONVERT(date, fechaRegistro_cliente) = CONVERT(date, @fecha)";
                         }
 
                         using (SqlCommand command = new SqlCommand(consultaSQL, connection))
@@ -319,8 +323,10 @@ namespace SaborAcielo.datos
                 {
                     DataTable localDataTable = new DataTable();
 
-                    using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT c.*" +
-                   "FROM Cliente c ", new SqlConnection(connectionString)))
+                    using (SqlDataAdapter localDataAdapter = new SqlDataAdapter("SELECT dni_cliente AS Dni, nombre_cliente AS Nombre, " +
+                        "apellido_cliente AS Apellido, dire_cliente AS Direccion, sexo_cliente AS Sexo, tel_cliente AS Telefono, " +
+                        "email_cliente AS Email, estado_cliente AS Estado, fechaRegistro_cliente AS FechaRegistro " +
+                   "FROM Cliente", new SqlConnection(connectionString)))
                     {
                         localDataAdapter.Fill(localDataTable);
                     }
