@@ -139,40 +139,43 @@
   <data name="cruz" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cruz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="eliminaricon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\eliminaricon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="vegano" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vegano.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fondoSACinicio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fondoSACinicio.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="decoracion-de-pasteles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\decoracion-de-pasteles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="saboracielo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\saboracielo2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="vegano" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\vegano.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="salir" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\salir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="VentasInicio" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\VentasInicio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cancelar2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cancelar2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="salir" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\salir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pagado" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pagado.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VentasInicio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VentasInicio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="decoracion-de-pasteles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\decoracion-de-pasteles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="eliminaricon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eliminaricon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="teamwork_2502447" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\teamwork_2502447.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sin-tacc1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sin-tacc1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EmpleadosInicio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EmpleadosInicio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="botonpildora" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\botonpildora.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sin-tacc1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sin-tacc1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

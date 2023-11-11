@@ -157,11 +157,25 @@ namespace SaborAcielo
 
         private void DGventas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == DGventas.Columns["Detalle"].Index && e.RowIndex >= 0 && Convert.ToInt32(DGventas.Rows[e.RowIndex].Cells["ID"].Value) > 0)
+            if (e.ColumnIndex == DGventas.Columns["Detalle"].Index && e.RowIndex >= 0)
             {
-                int id = Convert.ToInt32(DGventas.Rows[e.RowIndex].Cells["ID"].Value);
-                //Cventas.MostrarResumen(id, DGdetalle);
-                cventa.verFactura(id);
+                if (Convert.ToInt32(DGventas.Rows[e.RowIndex].Cells["ID"].Value) > 0)
+                {
+                    int id = Convert.ToInt32(DGventas.Rows[e.RowIndex].Cells["ID"].Value);
+                    cventa.verFactura(id);
+                }
+            }
+            if (e.ColumnIndex == DGventas.Columns["EditarEstado"].Index && e.RowIndex >= 0)
+            {
+                if (Convert.ToInt32(DGventas.Rows[e.RowIndex].Cells["ID"].Value) > 0)
+                {
+                    int id = Convert.ToInt32(DGventas.Rows[e.RowIndex].Cells["ID"].Value);
+                    if(cventa.editarEstado(id) == true)
+                    {
+                        MessageBox.Show("Estado de factura editado");
+                        cventa.cargarVentas(DGventas, tipoUsuario);
+                    }
+                }
             }
         }
 

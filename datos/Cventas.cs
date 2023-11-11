@@ -117,7 +117,12 @@ namespace SaborAcielo.datos
             columnaDetalle.Name = "Detalle";
             columnaDetalle.Text = "Ver detalle";
             columnaDetalle.UseColumnTextForButtonValue = true;
-            
+
+            DataGridViewButtonColumn columnaEliminar = new DataGridViewButtonColumn();
+            columnaEliminar.Name = "EditarEstado";
+            columnaEliminar.Text = "Baja";
+            columnaEliminar.UseColumnTextForButtonValue = true;
+
             bool columnaAgregada = false;
             foreach (DataGridViewColumn columna in dg.Columns)
             {
@@ -131,8 +136,44 @@ namespace SaborAcielo.datos
             if (!columnaAgregada)
             {
                 dg.Columns.Add(columnaDetalle);
+                dg.Columns.Add(columnaEliminar);
                 columnaDetalle.DisplayIndex = dg.ColumnCount - 1;
+                columnaEliminar.DisplayIndex = columnaDetalle.Index;
             }
+            dg.CellPainting += (sender, e) =>
+            {
+                if (e.RowIndex >= 0)
+                {
+                    if (e.ColumnIndex == dg.Columns["Detalle"].Index || e.ColumnIndex == dg.Columns["EditarEstado"].Index)
+                    {
+                        // Obtener la imagen y ajustar su tamaño
+                        Image image = null;
+                        int newWidth = 20; // Ancho deseado
+                        int newHeight = 20; // Alto deseado
+
+                        if (e.ColumnIndex == dg.Columns["EditarEstado"].Index)
+                        {
+                            // Personalizar la imagen para la columna "Editar"
+                            image = Properties.Resources.editaricon;
+                        }
+                        else if (e.ColumnIndex == dg.Columns["Detalle"].Index)
+                        {
+                            // Personalizar la imagen para la columna "Eliminar"
+                            image = Properties.Resources.pagado;
+                        }
+
+                        Image smallImage = new Bitmap(image, new Size(newWidth, newHeight));
+
+                        int x = e.CellBounds.Left + (e.CellBounds.Width - smallImage.Width) / 2;
+                        int y = e.CellBounds.Top + (e.CellBounds.Height - smallImage.Height) / 2;
+
+                        // Dibujar la imagen en el centro de la celda
+                        e.PaintBackground(e.CellBounds, true);
+                        e.Graphics.DrawImage(smallImage, x, y);
+                        e.Handled = true;
+                    }
+                }
+            };
         }
 
         public static bool MostrarResumen(int id, DataGridView dg)
@@ -302,6 +343,51 @@ namespace SaborAcielo.datos
             formularioFactura.ShowDialog();
         }
 
+        public bool editarEstado(int id)
+        {
+            int estadoActual;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SaborAcieloConnectionString"].ConnectionString))
+                {
+                    connection.Open();
+
+                    string query_select = "SELECT estado FROM Venta_cabecera WHERE id_venta = @id";
+                    using (SqlCommand cmd = new SqlCommand(query_select, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        estadoActual = (int)cmd.ExecuteScalar(); // Obtener el estado actual
+                    }
+
+                    if (estadoActual == 1)
+                    {
+                        string query_update = "UPDATE Venta_cabecera SET estado = 0 WHERE id_venta = @id";
+                        using (SqlCommand cmd = new SqlCommand(query_update, connection))
+                        {
+                            cmd.Parameters.AddWithValue("@id", id);
+                            cmd.ExecuteNonQuery(); // Ejecutar la actualización
+                        }
+                        return true;
+                    }
+                    else
+                    {
+                        string query_update = "UPDATE Venta_cabecera SET estado = 1 WHERE id_venta = @id";
+                        using (SqlCommand cmd = new SqlCommand(query_update, connection))
+                        {
+                            cmd.Parameters.AddWithValue("@id", id);
+                            cmd.ExecuteNonQuery();
+                        }
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+
+        }
 
         //filtro con todos los check 
         public bool filtrarVenta(int dni_c, string nom_c, int dni_e, string nom_e, int estado, int tipo_pago, DateTime? f_desde, DateTime? f_hasta, int tipo_us, DataGridView dt)

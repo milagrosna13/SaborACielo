@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using iText.Kernel.Events;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
@@ -71,12 +72,13 @@ namespace SaborAcielo.Empleado
             Graphics g = e.Graphics;
             int yCabecera = ImprimirCabecera(e.Graphics);
 
-            Font font = new Font("Arial", 14);
+            Font font = new Font("Times New Roman", 14);
             SolidBrush brush = new SolidBrush(Color.Black);
             int xPosTexto = 50;
-            int yPosTexto = yCabecera + 50; // Ajusta la posición según tus necesidades
+            int yPosTexto = yCabecera + 100; // Ajusta la posición según tus necesidades
 
-            g.DrawString("-----------------------------------------------------------------------", font, brush, xPosTexto, yPosTexto);
+            g.DrawString("-----------------------------------------------------------------------------------------------------",
+                font, brush, xPosTexto, yPosTexto);
             yPosTexto += 20;
 
             // Imprimir nombres de las columnas
@@ -87,7 +89,7 @@ namespace SaborAcielo.Empleado
             xPosTexto += 120;
 
             g.DrawString("Detalle", font, brush, xPosTexto, yPosTexto);
-            xPosTexto += 160;
+            xPosTexto += 170;
 
             g.DrawString("Precio Unit", font, brush, xPosTexto, yPosTexto);
             xPosTexto += 120;
@@ -100,7 +102,8 @@ namespace SaborAcielo.Empleado
 
             yPosTexto += 20;
             xPosTexto = 50;
-            g.DrawString("-----------------------------------------------------------------------", font, brush, xPosTexto, yPosTexto);
+            g.DrawString("-----------------------------------------------------------------------------------------------------",
+                font, brush, xPosTexto, yPosTexto);
 
 
             ImprimirDataGridView(e, yPosTexto+10);
@@ -108,10 +111,10 @@ namespace SaborAcielo.Empleado
 
         private int ImprimirCabecera(Graphics g)
         {
-            Font fontPanel = new Font("Script MT", 14);
-            Font font = new Font("Arial", 14);
+            Font fontPanel = new Font("Times New Roman", 14);
+            Font font = new Font("Arial", 12);
             SolidBrush brush = new SolidBrush(Color.Black);
-            
+            int xInicial = 80;
             int ultimaPosicionY = 0;
 
             foreach (Control control in Controls)
@@ -125,14 +128,20 @@ namespace SaborAcielo.Empleado
                         if (panelControl is Label)
                         {
                             Label label = (Label)panelControl;
-                            g.DrawString(label.Text, fontPanel, brush, panel.Left + label.Left, panel.Top + label.Top);
+                            g.DrawString(label.Text, fontPanel, brush, xInicial + panel.Left + label.Left, panel.Top + label.Top);
                             ultimaPosicionY = panel.Top + label.Top + label.Height; // Actualiza la última posición Y
                         }
 
                         if (panelControl is TextBox)
                         {
+
                             TextBox textBox = (TextBox)panelControl;
-                            g.DrawString(textBox.Text, font, brush, panel.Left + textBox.Left + 10, panel.Top + textBox.Top);
+                            textBox.BackColor = Color.LightGray;
+                            // Dibuja el fondo del TextBox
+                            g.FillRectangle(new SolidBrush(textBox.BackColor), xInicial + panel.Left + textBox.Left, panel.Top + textBox.Top, textBox.Width, textBox.Height);
+
+                            // Dibuja el contenido del TextBox
+                            g.DrawString(textBox.Text, fontPanel, brush, xInicial + panel.Left + textBox.Left, panel.Top + textBox.Top);
                         }
                     }
                 }
@@ -143,79 +152,43 @@ namespace SaborAcielo.Empleado
         private void ImprimirDataGridView(PrintPageEventArgs e, int yTexto)
         {
             Graphics g = e.Graphics;
-            Font font = new Font("Arial", 14);
+            Font font = new Font("Arial", 12);
             SolidBrush brush = new SolidBrush(Color.Black);
             int xPos = 50;
-            int yPos = yTexto + 20; // Ajusta la posición inicial según tus necesidades
-            
+            int yPos = yTexto + 20; 
             int columDetalle = dataGridView1.Columns["Detalle"].Index;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            using (Pen pen = new Pen(Color.Black, 1)) // para los bordes
             {
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    // Dibujar el contenido de la celda
-                    if (cell.Value != null)
-                    {
-                        string cellValue = cell.Value.ToString();
+                
+                xPos = 50;
+                yPos += dataGridView1.ColumnHeadersHeight; // Ajusta la posición para imprimir los datos
 
-                        // Verificar si la columna es "Detalle" y si el texto supera los 15 caracteres
-                        if (cell.ColumnIndex == dataGridView1.Columns["Detalle"].Index && cellValue.Length > 15)
-                        {
-                            // Dividir el texto en líneas de máximo 15 caracteres
-                            int maxLength = 15;
-                            for (int i = 0; i < cellValue.Length; i += maxLength)
-                            {
-                                int remainingLength = Math.Min(maxLength, cellValue.Length - i);
-                                g.DrawString(cellValue.Substring(i, remainingLength), font, brush, xPos, yPos);
-                                yPos += 20; // Ajusta el espacio entre las líneas
-                            }
-                        }
-                        else
+                // Imprimir los datos del DataGridView
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {// Dibujar el contenido de la celda
+                        if (cell.Value != null)
                         {
                             g.DrawString(cell.Value.ToString(), font, brush, xPos, yPos);
                         }
+
+                        // Ajustar la posición para la siguiente celda
+                        if (cell.ColumnIndex == columDetalle)
+                        {
+                            xPos += cell.Size.Width + 60;
+                        }
+                        else
+                        {
+                            xPos += cell.Size.Width + 20;
+                        }
+
                     }
-                    // Ajustar la posición para la siguiente celda
-                    if (cell.ColumnIndex == columDetalle)
-                    {
-                        xPos += cell.Size.Width + 60;
-                    }
-                    else
-                    {
-                        xPos += cell.Size.Width + 20;
-                    }
-                }
-
-                // Restablecer la posición para la siguiente fila
-                xPos = 50;
-                yPos += row.Height + 10; // Espaciado entre filas
-            }
-        }
-
-
-
-
-        private void FormularioFactura_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-
-            // Configura la fuente y el pincel
-            Font font = new Font("Arial", 12);
-            SolidBrush brush = new SolidBrush(Color.Black);
-
-            /* Dibuja el contenido de la factura
-            g.DrawString("Factura de Venta", font, brush, 100, 100);
-            g.DrawString("Fecha: " + DateTime.Now.ToShortDateString(), font, brush, 100, 130);*/
-
-            // Dibuja los labels del formulario
-            foreach (Control control in Controls)
-            {
-                if (control is Label)
-                {
-                    Label label = (Label)control;
-                    g.DrawString(label.Text, font, brush, label.Left, label.Top);
+                    xPos = 50;
+                    yPos += row.Height;
                 }
             }
         }
+
     }
 }

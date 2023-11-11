@@ -173,6 +173,16 @@ namespace SaborAcielo.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pagado {
+            get {
+                object obj = ResourceManager.GetObject("pagado", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ProductosInicio {
             get {
                 object obj = ResourceManager.GetObject("ProductosInicio", resourceCulture);
