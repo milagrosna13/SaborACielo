@@ -307,35 +307,7 @@ namespace SaborAcielo.datos
             }
         }
 
-
-        public void buscarFecha(DateTime desde, DateTime hasta, DataGridView dataGridView)
-        {
-            try
-            {
-                string consultaSQL = "SELECT * FROM Venta_cabecera " +
-                    "WHERE fecha_venta BETWEEN @desde AND @hasta ";
-                using (SqlConnection conexion = new SqlConnection("tu_cadena_de_conexion"))
-                {
-                    conexion.Open();
-                    using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
-                    {
-                        comando.Parameters.AddWithValue("@desde", desde);
-                        comando.Parameters.AddWithValue("@hasta", hasta);
-
-                        DataTable dt = new DataTable();
-                        dt.Load(comando.ExecuteReader());
-
-                        dataGridView.DataSource = dt;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-               
-            }
-        }
-
+        
         //ver factura de la compra
         public void verFactura(int id)
         {
@@ -390,7 +362,7 @@ namespace SaborAcielo.datos
         }
 
         //filtro con todos los check 
-        public bool filtrarVenta(int dni_c, string nom_c, int dni_e, string nom_e, int estado, int tipo_pago, DateTime? f_desde, DateTime? f_hasta, int tipo_us, DataGridView dt)
+        public bool filtrarVenta(int dni_c, string nom_c, int dni_e, string nom_e, int estado, int tipo_pago, int tipo_us, DataGridView dt)
         {
             if(tipo_us == 1)//es un administrador, puede filtrar por empleado
             {

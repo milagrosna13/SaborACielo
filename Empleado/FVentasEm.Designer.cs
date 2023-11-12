@@ -48,11 +48,6 @@
             this.CBestado = new System.Windows.Forms.CheckBox();
             this.TBdniC = new System.Windows.Forms.TextBox();
             this.CBcliente = new System.Windows.Forms.CheckBox();
-            this.CBfecha = new System.Windows.Forms.CheckBox();
-            this.DThasta = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
-            this.DTdesde = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.DGventas)).BeginInit();
@@ -77,11 +72,11 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGventas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGventas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGventas.Location = new System.Drawing.Point(48, 368);
+            this.DGventas.Location = new System.Drawing.Point(48, 355);
             this.DGventas.Name = "DGventas";
             this.DGventas.RowHeadersWidth = 62;
             this.DGventas.RowTemplate.Height = 28;
-            this.DGventas.Size = new System.Drawing.Size(1126, 388);
+            this.DGventas.Size = new System.Drawing.Size(1126, 401);
             this.DGventas.TabIndex = 0;
             this.DGventas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGventas_CellContentClick);
             // 
@@ -106,7 +101,7 @@
             this.Pventas.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Pventas.Location = new System.Drawing.Point(48, 57);
             this.Pventas.Name = "Pventas";
-            this.Pventas.Size = new System.Drawing.Size(1126, 305);
+            this.Pventas.Size = new System.Drawing.Size(1126, 277);
             this.Pventas.TabIndex = 3;
             // 
             // LdniEM
@@ -136,32 +131,28 @@
             this.GBfiltroVenta.Controls.Add(this.CBestado);
             this.GBfiltroVenta.Controls.Add(this.TBdniC);
             this.GBfiltroVenta.Controls.Add(this.CBcliente);
-            this.GBfiltroVenta.Controls.Add(this.CBfecha);
-            this.GBfiltroVenta.Controls.Add(this.DThasta);
-            this.GBfiltroVenta.Controls.Add(this.label5);
-            this.GBfiltroVenta.Controls.Add(this.DTdesde);
-            this.GBfiltroVenta.Controls.Add(this.label4);
             this.GBfiltroVenta.Location = new System.Drawing.Point(70, 42);
             this.GBfiltroVenta.Name = "GBfiltroVenta";
-            this.GBfiltroVenta.Size = new System.Drawing.Size(970, 245);
+            this.GBfiltroVenta.Size = new System.Drawing.Size(970, 206);
             this.GBfiltroVenta.TabIndex = 8;
             this.GBfiltroVenta.TabStop = false;
             this.GBfiltroVenta.Text = "Filtrar por";
             // 
             // CBmedios
             // 
+            this.CBmedios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBmedios.Enabled = false;
             this.CBmedios.FormattingEnabled = true;
-            this.CBmedios.Location = new System.Drawing.Point(550, 85);
+            this.CBmedios.Location = new System.Drawing.Point(547, 36);
             this.CBmedios.Name = "CBmedios";
-            this.CBmedios.Size = new System.Drawing.Size(265, 35);
+            this.CBmedios.Size = new System.Drawing.Size(238, 35);
             this.CBmedios.TabIndex = 26;
             this.CBmedios.SelectedIndexChanged += new System.EventHandler(this.CBmedios_SelectedIndexChanged);
             // 
             // CBpago
             // 
             this.CBpago.AutoSize = true;
-            this.CBpago.Location = new System.Drawing.Point(376, 89);
+            this.CBpago.Location = new System.Drawing.Point(373, 40);
             this.CBpago.Name = "CBpago";
             this.CBpago.Size = new System.Drawing.Size(169, 31);
             this.CBpago.TabIndex = 25;
@@ -172,18 +163,19 @@
             // 
             // Cestado
             // 
+            this.Cestado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cestado.Enabled = false;
             this.Cestado.FormattingEnabled = true;
-            this.Cestado.Location = new System.Drawing.Point(148, 88);
+            this.Cestado.Location = new System.Drawing.Point(145, 39);
             this.Cestado.Name = "Cestado";
-            this.Cestado.Size = new System.Drawing.Size(121, 35);
+            this.Cestado.Size = new System.Drawing.Size(147, 35);
             this.Cestado.TabIndex = 24;
             this.Cestado.SelectedIndexChanged += new System.EventHandler(this.Cestado_SelectedIndexChanged);
             // 
             // LnomE
             // 
             this.LnomE.AutoSize = true;
-            this.LnomE.Location = new System.Drawing.Point(526, 202);
+            this.LnomE.Location = new System.Drawing.Point(523, 153);
             this.LnomE.Name = "LnomE";
             this.LnomE.Size = new System.Drawing.Size(83, 27);
             this.LnomE.TabIndex = 23;
@@ -192,16 +184,17 @@
             // TBnomE
             // 
             this.TBnomE.Enabled = false;
-            this.TBnomE.Location = new System.Drawing.Point(615, 194);
+            this.TBnomE.Location = new System.Drawing.Point(612, 145);
             this.TBnomE.Name = "TBnomE";
             this.TBnomE.Size = new System.Drawing.Size(268, 34);
             this.TBnomE.TabIndex = 22;
             this.TBnomE.TextChanged += new System.EventHandler(this.TBnomE_TextChanged);
+            this.TBnomE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBnomE_KeyPress);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(530, 145);
+            this.label7.Location = new System.Drawing.Point(527, 96);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(83, 27);
             this.label7.TabIndex = 21;
@@ -210,16 +203,17 @@
             // TBnomC
             // 
             this.TBnomC.Enabled = false;
-            this.TBnomC.Location = new System.Drawing.Point(615, 142);
+            this.TBnomC.Location = new System.Drawing.Point(612, 93);
             this.TBnomC.Name = "TBnomC";
             this.TBnomC.Size = new System.Drawing.Size(268, 34);
             this.TBnomC.TabIndex = 20;
             this.TBnomC.TextChanged += new System.EventHandler(this.TBnomC_TextChanged);
+            this.TBnomC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBnomC_KeyPress);
             // 
             // LdniE
             // 
             this.LdniE.AutoSize = true;
-            this.LdniE.Location = new System.Drawing.Point(170, 202);
+            this.LdniE.Location = new System.Drawing.Point(167, 153);
             this.LdniE.Name = "LdniE";
             this.LdniE.Size = new System.Drawing.Size(45, 27);
             this.LdniE.TabIndex = 19;
@@ -228,7 +222,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(170, 145);
+            this.label3.Location = new System.Drawing.Point(167, 96);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 27);
             this.label3.TabIndex = 18;
@@ -237,7 +231,7 @@
             // TBdniE
             // 
             this.TBdniE.Enabled = false;
-            this.TBdniE.Location = new System.Drawing.Point(240, 194);
+            this.TBdniE.Location = new System.Drawing.Point(237, 145);
             this.TBdniE.Name = "TBdniE";
             this.TBdniE.Size = new System.Drawing.Size(268, 34);
             this.TBdniE.TabIndex = 17;
@@ -247,7 +241,7 @@
             // CBem
             // 
             this.CBem.AutoSize = true;
-            this.CBem.Location = new System.Drawing.Point(32, 202);
+            this.CBem.Location = new System.Drawing.Point(29, 153);
             this.CBem.Name = "CBem";
             this.CBem.Size = new System.Drawing.Size(124, 31);
             this.CBem.TabIndex = 16;
@@ -259,7 +253,7 @@
             // CBestado
             // 
             this.CBestado.AutoSize = true;
-            this.CBestado.Location = new System.Drawing.Point(33, 89);
+            this.CBestado.Location = new System.Drawing.Point(30, 40);
             this.CBestado.Name = "CBestado";
             this.CBestado.Size = new System.Drawing.Size(96, 31);
             this.CBestado.TabIndex = 15;
@@ -271,7 +265,7 @@
             // TBdniC
             // 
             this.TBdniC.Enabled = false;
-            this.TBdniC.Location = new System.Drawing.Point(240, 142);
+            this.TBdniC.Location = new System.Drawing.Point(237, 93);
             this.TBdniC.Name = "TBdniC";
             this.TBdniC.Size = new System.Drawing.Size(268, 34);
             this.TBdniC.TabIndex = 14;
@@ -281,7 +275,7 @@
             // CBcliente
             // 
             this.CBcliente.AutoSize = true;
-            this.CBcliente.Location = new System.Drawing.Point(32, 142);
+            this.CBcliente.Location = new System.Drawing.Point(29, 93);
             this.CBcliente.Name = "CBcliente";
             this.CBcliente.Size = new System.Drawing.Size(95, 31);
             this.CBcliente.TabIndex = 9;
@@ -289,62 +283,6 @@
             this.CBcliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.CBcliente.UseVisualStyleBackColor = true;
             this.CBcliente.CheckedChanged += new System.EventHandler(this.CBcliente_CheckedChanged);
-            // 
-            // CBfecha
-            // 
-            this.CBfecha.AutoSize = true;
-            this.CBfecha.Location = new System.Drawing.Point(32, 34);
-            this.CBfecha.Name = "CBfecha";
-            this.CBfecha.Size = new System.Drawing.Size(89, 31);
-            this.CBfecha.TabIndex = 8;
-            this.CBfecha.Text = "Fecha";
-            this.CBfecha.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBfecha.UseVisualStyleBackColor = true;
-            this.CBfecha.CheckedChanged += new System.EventHandler(this.CBfecha_CheckedChanged);
-            // 
-            // DThasta
-            // 
-            this.DThasta.Enabled = false;
-            this.DThasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DThasta.Location = new System.Drawing.Point(466, 32);
-            this.DThasta.MaxDate = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
-            this.DThasta.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.DThasta.Name = "DThasta";
-            this.DThasta.Size = new System.Drawing.Size(154, 34);
-            this.DThasta.TabIndex = 6;
-            this.DThasta.Value = new System.DateTime(2023, 10, 29, 0, 0, 0, 0);
-            this.DThasta.ValueChanged += new System.EventHandler(this.DThasta_ValueChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(392, 34);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 27);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Hasta";
-            // 
-            // DTdesde
-            // 
-            this.DTdesde.Enabled = false;
-            this.DTdesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTdesde.Location = new System.Drawing.Point(236, 32);
-            this.DTdesde.MaxDate = new System.DateTime(2023, 9, 14, 20, 31, 59, 0);
-            this.DTdesde.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.DTdesde.Name = "DTdesde";
-            this.DTdesde.Size = new System.Drawing.Size(151, 34);
-            this.DTdesde.TabIndex = 4;
-            this.DTdesde.Value = new System.DateTime(2023, 9, 14, 0, 0, 0, 0);
-            this.DTdesde.ValueChanged += new System.EventHandler(this.DTdesde_ValueChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(164, 34);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 27);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Desde";
             // 
             // label1
             // 
@@ -395,13 +333,8 @@
         private System.Windows.Forms.DataGridView DGventas;
         private System.Windows.Forms.Label Lusuario;
         private System.Windows.Forms.Panel Pventas;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker DThasta;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker DTdesde;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox GBfiltroVenta;
-        private System.Windows.Forms.CheckBox CBfecha;
         private System.Windows.Forms.CheckBox CBcliente;
         private System.Windows.Forms.TextBox TBdniC;
         private System.Windows.Forms.CheckBox CBestado;

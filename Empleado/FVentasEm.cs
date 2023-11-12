@@ -104,16 +104,6 @@ namespace SaborAcielo
             }
         }
 
-        private void CBfecha_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CBfecha.Checked)
-            {
-                DTdesde.Enabled = true;
-                DThasta.Enabled = true;
-                
-            }
-        }
-
         private void filtrar()
         {
             string nomc;
@@ -151,8 +141,9 @@ namespace SaborAcielo
                 pago = CBmedios.SelectedIndex + 1;
             }
             else pago = -1;
-            
-            bool filtrar = cventa.filtrarVenta(dnic, nomc, dnie, nome, estado, pago, null, null, tipoUsuario, DGventas);
+
+
+            bool filtrar = cventa.filtrarVenta(dnic, nomc, dnie, nome, estado, pago, tipoUsuario, DGventas);
         }
 
         private void DGventas_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -178,17 +169,6 @@ namespace SaborAcielo
                 }
             }
         }
-
-        private void DTdesde_ValueChanged(object sender, EventArgs e)
-        {
-            cventa.buscarFecha(DTdesde.Value, DThasta.Value, DGventas);
-        }
-
-        private void DThasta_ValueChanged(object sender, EventArgs e)
-        {
-            cventa.buscarFecha(DTdesde.Value, DThasta.Value, DGventas);
-        }
-
 
         private void CBestado_CheckedChanged(object sender, EventArgs e)
         {
@@ -257,6 +237,26 @@ namespace SaborAcielo
         private void TBnomE_TextChanged(object sender, EventArgs e)
         {
             filtrar();
+        }
+
+        private void TBnomE_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void TBnomC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
         }
     }
 }

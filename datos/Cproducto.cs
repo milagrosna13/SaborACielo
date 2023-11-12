@@ -15,6 +15,7 @@ using System.IO;
 using System.Drawing;
 using System.Net;
 using static System.Net.WebRequestMethods;
+using SaborAcielo.Properties;
 
 namespace SaborAcielo.datos
 {
@@ -529,7 +530,10 @@ namespace SaborAcielo.datos
                     {
                         if (reader.Read())
                         {
-                            imagenBytes = (byte[])reader["imagen"];
+                            if (reader["imagen"] != DBNull.Value)
+                            {
+                                imagenBytes = (byte[])reader["imagen"];
+                            }
                         }
                     }
                 }
