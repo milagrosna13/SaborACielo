@@ -35,6 +35,7 @@ namespace SaborAcielo
             else
             {
                 Tape_cliente.Enabled = false;
+                clientes.MostrarClientes(DGlistaCliente);
             }
         }
 
@@ -47,6 +48,8 @@ namespace SaborAcielo
             else
             {
                 Tnom_cliente.Enabled = false;
+                clientes.MostrarClientes(DGlistaCliente);
+
             }
         }
 
@@ -59,6 +62,8 @@ namespace SaborAcielo
             else
             {
                 Tdni_cliente.Enabled = false;
+                clientes.MostrarClientes(DGlistaCliente);
+
             }
         }
 

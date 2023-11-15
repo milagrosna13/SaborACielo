@@ -50,6 +50,7 @@
             this.CBcliente = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.CBtodos = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGventas)).BeginInit();
             this.Pventas.SuspendLayout();
             this.GBfiltroVenta.SuspendLayout();
@@ -117,6 +118,7 @@
             // 
             this.GBfiltroVenta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GBfiltroVenta.Controls.Add(this.CBtodos);
             this.GBfiltroVenta.Controls.Add(this.CBmedios);
             this.GBfiltroVenta.Controls.Add(this.CBpago);
             this.GBfiltroVenta.Controls.Add(this.Cestado);
@@ -133,7 +135,7 @@
             this.GBfiltroVenta.Controls.Add(this.CBcliente);
             this.GBfiltroVenta.Location = new System.Drawing.Point(70, 42);
             this.GBfiltroVenta.Name = "GBfiltroVenta";
-            this.GBfiltroVenta.Size = new System.Drawing.Size(970, 206);
+            this.GBfiltroVenta.Size = new System.Drawing.Size(970, 232);
             this.GBfiltroVenta.TabIndex = 8;
             this.GBfiltroVenta.TabStop = false;
             this.GBfiltroVenta.Text = "Filtrar por";
@@ -305,6 +307,18 @@
             this.panel1.Size = new System.Drawing.Size(1226, 52);
             this.panel1.TabIndex = 11;
             // 
+            // CBtodos
+            // 
+            this.CBtodos.AutoSize = true;
+            this.CBtodos.Location = new System.Drawing.Point(748, 195);
+            this.CBtodos.Name = "CBtodos";
+            this.CBtodos.Size = new System.Drawing.Size(188, 31);
+            this.CBtodos.TabIndex = 27;
+            this.CBtodos.Text = "Todas las ventas";
+            this.CBtodos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CBtodos.UseVisualStyleBackColor = true;
+            this.CBtodos.CheckedChanged += new System.EventHandler(this.CBtodos_CheckedChanged);
+            // 
             // FVentasEm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -351,5 +365,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox CBmedios;
         private System.Windows.Forms.CheckBox CBpago;
+        private System.Windows.Forms.CheckBox CBtodos;
     }
 }

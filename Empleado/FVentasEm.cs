@@ -258,5 +258,17 @@ namespace SaborAcielo
                 return;
             }
         }
+
+        private void CBtodos_CheckedChanged(object sender, EventArgs e)
+        {
+            if(CBtodos.Checked)
+            {
+                CBpago.Checked = false;
+                CBestado.Checked = false;
+                CBem.Checked = false;
+                CBcliente.Checked = false;
+                cventa.cargarVentas(DGventas, tipoUsuario);
+            }
+        }
     }
 }
